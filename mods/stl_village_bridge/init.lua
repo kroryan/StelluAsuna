@@ -6,32 +6,30 @@ working_villages.register_job(RESIDENT_JOB, {
 	inventory_image = "default_paper.png",
 	jobfunc = function(self)
 		while true do
-			-- working_villages supplies the pathfinding, bedtime threshold,
-			-- bed animation, dawn wait and return-home behaviour.
-			self:handle_night()
-			self:set_state_info("Following my village routine.")
-			self:set_displayed_action("village resident")
-			
-			local pos = self.object:get_pos()
-			if pos then
-				local center = self.pos_data.job_pos or self.pos_data.home_pos or pos
-				local target = {
-					x = center.x + math.random(-10, 10),
-					y = center.y,
-					z = center.z + math.random(-10, 10)
-				}
-				-- Find ground so they don't try to fly
-				local ok, gpos = pcall(working_villages.require("jobs/util").find_ground_below, target)
-				if ok and gpos then target = gpos end
+			if self.flee_target then
+				local ft = self.flee_target
+				self.flee_target = nil
+				self:set_state_info("Fleeing in panic!")
+				self:go_to(ft)
+			else
+				self:handle_night()
+				self:set_state_info("Following my village routine.")
+				self:set_displayed_action("village resident")
 				
-				minetest.log("action", "[stl_village_bridge] " .. tostring(self.nametag) .. " moving from " .. minetest.pos_to_string(vector.round(pos)) .. " to " .. minetest.pos_to_string(vector.round(target)))
-				local status, err = self:go_to(target)
-				if status == false then
-					minetest.log("warning", "[stl_village_bridge] " .. tostring(self.nametag) .. " failed to reach target: " .. tostring(err))
+				local pos = self.object:get_pos()
+				if pos then
+					local center = self.pos_data.job_pos or self.pos_data.home_pos or pos
+					local target = {
+						x = center.x + math.random(-15, 15),
+						y = center.y,
+						z = center.z + math.random(-15, 15)
+					}
+					local ok, gpos = pcall(working_villages.require("jobs/util").find_ground_below, target)
+					if ok and gpos then target = gpos end
+					self:go_to(target)
 				end
+				self:delay(math.random(1, 3))
 			end
-			
-			self:delay(math.random(3, 10))
 		end
 	end,
 })
@@ -65,8 +63,6 @@ local function workplace(village_id, bed)
 	return house_entrance(work, 1, bed)
 end
 
--- mg_villages intentionally exposes this hook for a mob implementation.
--- Its mapgen calls it once for every named bed whose mapblock is generated.
 mg_villages.inhabitants.spawn_one_mob = function(bed, village_id, plot_nr, bed_nr, bpos)
 	local id = bridge_id(village_id, plot_nr, bed_nr)
 	local bed_pos = {x=bed.x, y=bed.y, z=bed.z}
@@ -112,10 +108,33 @@ minetest.register_on_mods_loaded(function()
 			local old_on_activate = def.on_activate
 			def.on_activate = function(self, staticdata, dtime_s)
 				if old_on_activate then old_on_activate(self, staticdata, dtime_s) end
-				-- Hotfix: Unpause residents who were permanently stuck by a previous job_thread crash
 				if self.pause and self.get_job_name and self:get_job_name() == RESIDENT_JOB then
 					self.pause = false
 					minetest.log("action", "[stl_village_bridge] Recovered and unpaused resident " .. tostring(self.nametag) .. " on load.")
+				end
+			end
+			
+			local old_on_punch = def.on_punch
+			def.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
+				if old_on_punch then old_on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir, damage) end
+				
+				if puncher and puncher:get_pos() then
+					local mypos = self.object:get_pos()
+					local ppos = puncher:get_pos()
+					if mypos and ppos then
+						local vec = vector.subtract(mypos, ppos)
+						vec.y = 0
+						if vector.length(vec) < 0.1 then vec = {x=math.random()-0.5, y=0, z=math.random()-0.5} end
+						local flee_dir = vector.normalize(vec)
+						local flee_target = vector.add(mypos, vector.multiply(flee_dir, 15))
+						flee_target = vector.round(flee_target)
+						local ok, gpos = pcall(working_villages.require("jobs/util").find_ground_below, flee_target)
+						if ok and gpos then flee_target = gpos end
+						
+						self.flee_target = flee_target
+						self.path = {}
+						if self.set_timer then self:set_timer("delay", 9999) end
+					end
 				end
 			end
 		end

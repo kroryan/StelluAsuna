@@ -1534,11 +1534,13 @@ aliveai.viewfield=function(self,ob)
 	if not (self and self.object and ob) then return false end
 	local pos1=self.object:get_pos()
 	local pos2 = type(ob) == "userdata" and ob:get_pos() or ob
+	if not pos1 or not pos2 then return false end
 	return aliveai.distance(pos1,pos2)>aliveai.distance(aliveai.pointat(self,0.1),pos2)
 end
 
 aliveai.pointat=function(self,d)
 	local pos=self.object:get_pos()
+	if not pos then return {x=0, y=0, z=0} end
 	local yaw=aliveai.nan(self.object:get_yaw())
 	d=d or 1
 	local x =math.sin(yaw) * -d
