@@ -1272,14 +1272,15 @@ mg_villages.inhabitants.assign_mobs = function( village, village_id, force_repop
 		if total_assigned >= 7 then
 			bpos.beds = nil
 		else
-			if bpos.beds and total_assigned + #bpos.beds > 7 then
-				while #bpos.beds > (7 - total_assigned) do
-					table.remove(bpos.beds)
-				end
-			end
 			-- each bed gets a mob assigned
 			bpos = mg_villages.inhabitants.assign_mobs_to_beds( bpos, plot_nr, village.to_add_data.bpos, village );
+			
 			if bpos.beds then
+				if total_assigned + #bpos.beds > 7 then
+					while #bpos.beds > (7 - total_assigned) do
+						table.remove(bpos.beds)
+					end
+				end
 				total_assigned = total_assigned + #bpos.beds
 			end
 		end
