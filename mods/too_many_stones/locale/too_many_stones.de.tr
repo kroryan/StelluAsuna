@@ -1,0 +1,2471 @@
+# textdomain: too_many_stones
+
+
+### nodes.lua ###
+
+Blue Agate=Blauer Achat
+Gray Agate=Grauer Achat
+Green Agate=Grüner Achat
+Moss Agate=Moosachat
+Orange Agate=Oranger Achat
+Purple Agate=Lila Achat
+Red Agate=Roter Achat
+
+Amazonite=Amazonit
+Amazonite Block=Amazonitblock
+Cobbled Amazonite=Gebrochener Amazonit
+Amazonite Brick=Amazonitziegel
+Cracked Amazonite Brick=Gebrochener Amazonitziegel
+
+Amber=Bernstein
+Amber Block=Bernsteinblock
+Amber Brick=Bernsteinziegel
+Cracked Amber Brick=Gebrochener Bernsteinziegel
+
+Amethyst=Amethyst
+Amethyst Block=Amethystblock
+Amethyst Brick=Amethystziegel
+Cracked Amethyst Brick=Gebrochener Amethystziegel
+
+Andesite=Andesit
+Andesite Block=Andesitblock
+Andesite Brick=Andesitziegel
+Cracked Andesite Brick=Gebrochener Andesitziegel
+Cobbled Andesite=Gebrochener Andesit
+
+Basalt=Basalt
+Basalt Block=Basaltblock
+Basalt Brick=Basaltziegel
+Cracked Basalt Brick=Gebrochener Basaltziegel
+Cobbled Basalt=Gebrochener Basalt
+Basalt Tile=Basaltfliese
+
+Columnar Basalt=Säulenbasalt
+
+Batch=Glasschmelze
+
+Black Moonstone=Schwarzer Mondstein
+Black Moonstone Block=Block aus schwarzem Mondstein
+Black Moonstone Brick=Ziegel aus schwarzem Mondstein
+Cracked Black Moonstone Brick=Gebrochener Ziegel aus schwarzem Mondstein
+
+Black Opal=Schwarzer Opal
+
+Calcite=Calcit
+Calcite Block=Calcitblock
+Calcite Brick=Calcitziegel
+Cracked Calcite Brick=Gebrochener Calcitziegel
+
+Grey Calcite=Graue Calcit
+Grey Calcite Block=Grauer Calcitblock
+Grey Calcite Brick=Grauer Calcitziegel
+Cracked Grey Calcite Brick=Gerissener grauer Calcitziegel
+
+Orange Calcite=Oranger Calcit
+Orange Calcite Block=Oranger Calcitblock
+Orange Calcite Brick=Oranger Calcitziegel
+Cracked Orange Calcite Brick=Gerissener oranger Calcitziegel
+
+Carnotite=Carnotit
+Carnotite Block=Carnotitblock
+Carnotite Brick=Carnotitziegel
+Cracked Carnotite Brick=Gebrochener Carnotitziegel
+Cobbled Carnotite=Gebrochener Carnotit
+
+Celestine=Cölestin
+Celestine Block=Cölestinblock
+Celestine Brick=Cölestinziegel
+Cracked Celestine Brick=Gebrochener Cölestinziegel
+
+Chalcanthite=Chalkanthit
+Chalcanthite Block=Chalkanthitblock
+Chalcanthite Brick=Chalkanthitziegel
+Cracked Chalcanthite Brick=Gerissener Chalkanthitziegel
+Cobbled Chalcanthite=Gerumpelter Chalkanthit
+
+Chrysoprase=Chrysopras
+Chrysoprase Block=Chrysoprasblock
+Chrysoprase Brick=Chrysoprasziegel
+Cracked Chrysoprase Brick=Gebrochener Chrysoprasziegel
+
+Citrine=Citrin
+Citrine Block=Citrinblock
+Citrine Brick=Citrinziegel
+Cracked Citrine Brick=Gebrochener Citrinziegel
+
+Covellite=Covellit
+Covellite Block=Covellitblock
+Covellite Brick=Covellitziegel
+Cracked Covellite Brick=Gebrochener Covellitziegel
+Cobbled Covellite=Gebrochener Covellit
+
+Crocoite=Crocoit
+Crocoite Block=Crocoitblock
+Crocoite Brick=Crocoitziegel
+Cracked Crocoite Brick=Gebrochener Crocoitziegel
+
+Diorite=Diorit
+Diorite Block=Dioritblock
+Diorite Brick=Dioritziegel
+Cracked Diorite Brick=Gebrochener Dioritziegel
+Cobbled Diorite=Gebrochener Diorit
+
+Erythrite=Erythrit
+Erythrite Block=Erythritblock
+Erythrite Brick=Erythritziegel
+Cracked Erythrite Brick=Gebrochener Erythritziegel
+
+Eudialite=Eudialit
+Eudialite Block=Eudialitblock
+Eudialite Brick=Eudialitziegel
+Cracked Eudialite Brick=Gebrochener Eudialitziegel
+
+Fluorite=Fluorit
+Fluorite Block=Fluoritblock
+Fluorite Brick=Fluoritziegel
+Cracked Fluorite Brick=Gebrochener Fluoritziegel
+
+Fire Opal=Feueropal
+
+Gabbro=Gabbro
+Gabbro Block=Gabbroblock
+Cobbled Gabbro=Gebrochener Gabbro
+Gabbro Brick=Gabbroziegel
+Cracked Gabbro Brick=Gebrochener Gabbroziegel
+
+Galena=Galenit
+Galena Block=Galenitblock
+Galena Brick=Galenitziegel
+Cracked Galena Brick=Gebrochener Galenitziegel
+
+Black Granite=Schwarzer Granit
+Black Granite Block=Schwarzer Granitblock
+Black Granite Brick=Schwarzer Granitziegel
+Cracked Black Granite Brick=Gebrochener Schwarzer Granitziegel
+Cobbled Black Granite=Gebrochener Schwarzer Granit
+
+Blue Granite=Blauer Granit
+Blue Granite Block=Blauer Granitblock
+Blue Granite Brick=Blauer Granitziegel
+Cracked Blue Granite Brick=Gebrochener Blauer Granitziegel
+Cobbled Blue Granite=Gebrochener Blauer Granit
+
+Gray Granite=Grauer Granit
+Gray Granite Block=Grauer Granitblock
+Gray Granite Brick=Grauer Granitziegel
+Cracked Gray Granite Brick=Gebrochener Grauer Granitziegel
+Cobbled Gray Granite=Gebrochener Grauer Granit
+
+Green Granite=Grüner Granit
+Green Granite Block=Grüner Granitblock
+Green Granite Brick=Grüner Granitziegel
+Cracked Green Granite Brick=Gebrochener Grüner Granitziegel
+Cobbled Green Granite=Gebrochener Grüner Granit
+
+Pink Granite=Rosa Granit
+Pink Granite Block=Rosa Granitblock
+Pink Granite Brick=Rosa Granitziegel
+Cracked Pink Granite Brick=Gebrochener Rosa Granitziegel
+Cobbled Pink Granite=Gebrochener Rosa Granit
+
+Red Granite=Roter Granit
+Red Granite Block=Roter Granitblock
+Red Granite Brick=Roter Granitziegel
+Cracked Red Granite Brick=Gebrochener Roter Granitziegel
+Cobbled Red Granite=Gebrochener Roter Granit
+
+White Granite=Weißer Granit
+White Granite Block=Weißer Granitblock
+White Granite Brick=Weißer Granitziegel
+Cracked White Granite Brick=Gebrochener Weißer Granitziegel
+Cobbled White Granite=Gebrochener Weißer Granit
+
+Yellow Granite=Gelber Granit
+Yellow Granite Block=Gelber Granitblock
+Yellow Granite Brick=Gelber Granitziegel
+Cracked Yellow Granite Brick=Gebrochener Gelber Granitziegel
+Cobbled Yellow Granite=Gebrochener Gelber Granit
+
+Heliodor=Heliodor
+Heliodor Block=Heliodor-Block
+Heliodor Brick=Heliodor-Ziegel
+Cracked Heliodor Brick=Rissiger Heliodor-Ziegel
+
+Howlite=Howlith
+Howlite Block=Howlith-Block
+Howlite Brick=Howlith-Ziegel
+Cracked Howlite Brick=Rissiger Howlith-Ziegel
+Cobbled Howlite=Howlith-Pflaster
+
+Ilvaite=Ilvait
+Ilvaite Block=Ilvait-Block
+Ilvaite Brick=Ilvait-Ziegel
+Cracked Ilvaite Brick=Rissiger Ilvait-Ziegel
+Cobbled Ilvaite=Ilvait-Pflaster
+
+Jade=Jade
+Jade Block=Jade-Block
+Jade Brick=Jade-Ziegel
+Cracked Jade Brick=Rissiger Jade-Ziegel
+Cobbled Jade=Jade-Pflaster
+
+Red Jasper=Roter Jaspis
+Red Jasper Block=Roter Jaspisblock
+Red Jasper Brick=Roter Jaspisziegel
+Cracked Red Jasper Brick=Gerissener roter Jaspisziegel
+Cobbled Red Jasper=Gerumpelter roter Jaspis
+
+Kyanite=Kyanit
+Kyanite Block=Kyanit-Block
+Kyanite Brick=Kyanit-Ziegel
+Cracked Kyanite Brick=Rissiger Kyanit-Ziegel
+Cobbled Kyanite=Kyanit-Pflaster
+
+Lapis Lazuli=Lapislazuli
+Lapis Lazuli Block=Lapislazuli-Block
+Lapis Lazuli Brick=Lapislazuli-Ziegel
+Cracked Lapis Lazuli Brick=Rissiger Lapislazuli-Ziegel
+
+Lepidolite=Lepidolith
+Lepidolite Block=Lepidolithblock
+Lepidolite Brick=Lepidolithziegel
+Cracked Lepidolite Brick=Gerissener Lepidolithziegel
+Cobbled Lepidolite=Gerumpelter Lepidolith
+
+Blue Limestone=Blauer Kalkstein
+Blue Limestone Block=Blauer Kalkstein-Block
+Blue Limestone Brick=Blauer Kalkstein-Ziegel
+Cracked Blue Limestone Brick=Rissiger Blauer Kalkstein-Ziegel
+Cobbled Blue Limestone=Blauer Kalkstein-Pflaster
+
+White Limestone=Weißer Kalkstein
+White Limestone Block=Weißer Kalkstein-Block
+White Limestone Brick=Weißer Kalkstein-Ziegel
+Cracked White Limestone Brick=Rissiger Weißer Kalkstein-Ziegel
+Cobbled White Limestone=Weißer Kalkstein-Pflaster
+
+Marble=Marmor
+Marble Block=Marmor-Block
+Marble Brick=Marmor-Ziegel
+Cracked Marble Brick=Rissiger Marmor-Ziegel
+Cobbled Marble=Marmor-Pflaster
+
+Moonstone=Mondstein
+Moonstone Block=Mondsteinblock
+Moonstone Brick=Mondsteinziegel
+Cracked Moonstone Brick=Gerissener Mondsteinziegel
+
+Morion Quartz=Morionquarz
+Morion Quartz Block=Morionquarz-Block
+Morion Quartz Brick=Morionquarz-Ziegel
+Cracked Morion Quartz Brick=Rissiger Morionquarz-Ziegel
+
+Mudstone=Schlammstein
+Mudstone Block=Schlammstein-Block
+Cobbled Mudstone=Schlammstein-Pflaster
+Mudstone Brick=Schlammstein-Ziegel
+Cracked Mudstone Brick=Rissiger Schlammstein-Ziegel
+
+Opal=Opal
+
+Prasiolite=Prasiolith
+Prasiolite Block=Prasiolith-Block
+Prasiolite Brick=Prasiolith-Ziegel
+Cracked Prasiolite Brick=Rissiger Prasiolith-Ziegel
+
+Pumice=Bimsstein
+Pumice Block=Bimsstein-Block
+Pumice Brick=Bimsstein-Ziegel
+Cracked Pumice Brick=Rissiger Bimsstein-Ziegel
+
+Pyrite=Pyrit
+Pyrite Block=Pyrit-Block
+Cobbled Pyrite=Pyrit-Pflaster
+Pyrite Brick=Pyrit-Ziegel
+Cracked Pyrite Brick=Rissiger Pyrit-Ziegel
+
+Quartz=Quarz
+Quartz Block=Quarz-Block
+Quartz Brick=Quarz-Ziegel
+Cracked Quartz Brick=Rissiger Quarz-Ziegel
+
+Rhodonite=Rhodonit
+Rhodonite Block=Rhodonitblock
+Rhodonite Brick=Rhodonitziegel
+Cracked Rhodonite Brick=Gerissener Rhodonitziegel
+Cobbled Rhodonite=Gefaster Rhodonit
+
+Rose Quartz=Rosenquarz
+Rose Quartz Block=Rosenquarz-Block
+Rose Quartz Brick=Rosenquarz-Ziegel
+Cracked Rose Quartz Brick=Rissiger Rosenquarz-Ziegel
+
+Scoria=Schlacke
+Scoria Block=Schlacke-Block
+Scoria Brick=Schlacke-Ziegel
+Cracked Scoria Brick=Rissiger Schlacke-Ziegel
+Cobbled Scoria=Schlacke-Pflaster
+
+Serpentine=Serpentin
+Serpentine Block=Serpentin-Block
+Cobbled Serpentine=Serpentin-Pflaster
+Serpentine Brick=Serpentin-Ziegel
+Cracked Serpentine Brick=Rissiger Serpentin-Ziegel
+
+Shale=Schiefer
+Shale Block=Schiefer-Block
+Shale Brick=Schiefer-Ziegel
+Cracked Shale Brick=Rissiger Schiefer-Ziegel
+Cobbled Shale=Schiefer-Pflaster
+
+Slate=Schiefer
+Slate Block=Schiefer-Block
+Slate Brick=Schiefer-Ziegel
+Cracked Slate Brick=Rissiger Schiefer-Ziegel
+Cobbled Slate=Schiefer-Pflaster
+Slate Tile=Schieferfliese
+
+Smokey Quartz=Rauchquarz
+Smokey Quartz Block=Rauchquarz-Block
+Smokey Quartz Brick=Rauchquarz-Ziegel
+Cracked Smokey Quartz Brick=Rissiger Rauchquarz-Ziegel
+
+Soapstone=Speckstein
+Soapstone Block=Speckstein-Block
+Soapstone Brick=Speckstein-Ziegel
+Cracked Soapstone Brick=Rissiger Speckstein-Ziegel
+
+Sodalite=Sodalith
+Sodalite Block=Sodalith-Block
+Cobbled Sodalite=Sodalith-Pflaster
+Sodalite Brick=Sodalith-Ziegel
+Cracked Sodalite Brick=Rissiger Sodalith-Ziegel
+
+Sugilite=Sugilith
+Sugilite Block=Sugilith-Block
+Sugilite Brick=Sugilith-Ziegel
+Cracked Sugilite Brick=Rissiger Sugilith-Ziegel
+Cobbled Sugilite=Sugilith-Pflaster
+
+Green Tourmaline=Grüner Turmalin
+Green Tourmaline Block=Grüner Turmalinblock
+Green Tourmaline Brick=Grüner Turmalinziegel
+Cracked Green Tourmaline Brick=Gerissener grüner Turmalinziegel
+
+Paraiba Tourmaline=Paraíba-Turmalin
+Paraiba Tourmaline Block=Paraíba-Turmalin-Block
+Paraiba Tourmaline Brick=Paraíba-Turmalinziegel
+Cracked Paraiba Tourmaline Brick=Gerissener Paraíba-Turmalinziegel
+
+Pink Tourmaline=Rosa Turmalin
+Pink Tourmaline Block=Rosa Turmalin-Block
+Pink Tourmaline Brick=Rosa Turmalinziegel
+Cracked Pink Tourmaline Brick=Gerissener rosa Turmalinziegel
+
+Travertine=Travertin
+Travertine Block=Travertin-Block
+Cobbled Travertine=Travertin-Pflaster
+Travertine Brick=Travertin-Ziegel
+Cracked Travertine Brick=Rissiger Travertin-Ziegel
+
+Yellow Travertine=Gelber Travertin
+Yellow Travertine Block=Gelber Travertin-Block
+Cobbled Yellow Travertine=Gelber Travertin-Pflaster
+Yellow Travertine Brick=Gelber Travertin-Ziegel
+Cracked Yellow Travertine Brick=Rissiger Gelber Travertin-Ziegel
+
+Beige Tuff=Beiger Tuff
+Beige Tuff Block=Beiger Tuff-Block
+Cobbled Beige Tuff=Beiger Tuff-Pflaster
+Beige Tuff Brick=Beiger Tuff-Ziegel
+Cracked Beige Tuff=Rissiger Beiger Tuff
+
+Grey Tuff=Grauer Tuff
+Grey Tuff Block=Grauer Tuff-Block
+Cobbled Grey Tuff=Grauer Tuff-Pflaster
+Grey Tuff Brick=Grauer Tuff-Ziegel
+Cracked Grey Tuff=Rissiger Grauer Tuff
+
+Red Tuff=Roter Tuff
+Red Tuff Block=Roter Tuff-Block
+Cobbled Red Tuff=Roter Tuff-Pflaster
+Red Tuff Brick=Roter Tuff-Ziegel
+Cracked Red Tuff=Rissiger Roter Tuff
+
+Turquoise=Türkis
+Turquoise Block=Türkis-Block
+Turquoise Brick=Türkis-Ziegel
+Cracked Turquoise Brick=Rissiger Türkis-Ziegel
+Cobbled Turquoise=Türkis-Pflaster
+Turquoise Pebble=Türkis-Kiesel
+
+Vivianite=Vivianit
+Vivianite Block=Vivianit-Block
+Vivianite Brick=Vivianit-Ziegel
+Cracked Vivianite Brick=Rissiger Vivianit-Ziegel
+
+### wall.lua ###
+
+Blue Agate Wall=Blaue Achatwand
+Gray Agate Wall=Graue Achatwand
+Green Agate Wall=Grüne Achatwand
+Moss Agate Wall=Moosachatwand
+Orange Agate Wall=Orangefarbene Achatwand
+Purple Agate Wall=Violette Achatwand
+Red Agate Wall=Rote Achatwand
+
+Amazonite Wall=Amazonitwand
+Cobbled Amazonite Wall=Gepflasterte Amazonitwand
+Amazonite Brick Wall=Amazonitziegelwand
+Amazonite Block Wall=Amazonitblockwand
+Cracked Amazonite Brick Wall=Rissige Amazonitziegelwand
+
+Amber Wall=Bernsteinwand
+Amber Brick Wall=Bernsteinziegelwand
+Amber Block Wall=Bernsteinblockwand
+Cracked Amber Brick Wall=Rissige Bernsteinziegelwand
+
+Amethyst Wall=Amethystwand
+Amethyst Brick Wall=Amethystziegelwand
+Amethyst Block Wall=Amethystblockwand
+Cracked Amethyst Brick Wall=Rissige Amethystziegelwand
+
+Ammolite=Ammolit
+
+Andesite Wall=Andesitwand
+Andesite Block Wall=Andesitblockwand
+Andesite Brick Wall=Andesitziegelwand
+Cracked Andesite Brick Wall=Rissige Andesitziegelwand
+Cobbled Andesite Wall=Gepflasterte Andesitwand
+
+Basalt Wall=Basaltwand
+Basalt Block Wall=Basaltblockwand
+Basalt Brick Wall=Basaltziegelwand
+Cracked Basalt Brick Wall=Rissige Basaltziegelwand
+Cobbled Basalt Wall=Gepflasterte Basaltwand
+Basalt Tile Wall=Basaltfliesenwand
+
+Black Moonstone Wall=Schwarze Mondsteinwand
+Black Moonstone Brick Wall=Schwarze Mondsteinziegelwand
+Black Moonstone Block Wall=Schwarze Mondsteinblockwand
+Cracked Black Moonstone Brick Wall=Rissige schwarze Mondsteinziegelwand
+
+Calcite Wall=Calcitwand
+Calcite Brick Wall=Calcitziegelwand
+Calcite Block Wall=Calcitblockwand
+Cracked Calcite Brick Wall=Rissige Calcitziegelwand
+
+Grey Calcite Wall=Graue Calcitwand
+Grey Calcite Brick Wall=Graue Calcitziegelwand
+Grey Calcite Block Wall=Graue Calcitblockwand
+Cracked Grey Calcite Brick Wall=Gerissene Wand aus grauem Calcitziegel
+
+Orange Calcite Wall=Orangefarbene Calcitwand
+Orange Calcite Brick Wall=Orangefarbene Calcitziegelwand
+Orange Calcite Block Wall=Orangefarbene Calcitblockwand
+Cracked Orange Calcite Brick Wall=Gerissene Wand aus orangefarbenem Calcitziegel
+
+Carnotite Wall=Carnotitwand
+Carnotite Brick Wall=Carnotitziegelwand
+Carnotite Block Wall=Carnotitblockwand
+Cracked Carnotite Brick Wall=Rissige Carnotitziegelwand
+Cobbled Carnotite Wall=Gepflasterte Carnotitwand
+
+Celestine Wall=Celestinwand
+Celestine Brick Wall=Celestinziegelwand
+Celestine Block Wall=Celestinblockwand
+Cracked Celestine Brick Wall=Rissige Celestinziegelwand
+
+Chalcanthite Wall=Chalkanthitwand
+Chalcanthite Brick Wall=Chalkanthitziegelwand
+Chalcanthite Block Wall=Chalkanthitblockwand
+Cracked Chalcanthite Brick Wall=Gerissene Chalkanthitziegelwand
+Cobbled Chalcanthite Wall=Gerumpelte Chalkanthitwand
+
+Chrysoprase Wall=Chrysopraswand
+Chrysoprase Brick Wall=Chrysoprasziegelwand
+Chrysoprase Block Wall=Chrysoprasblockwand
+Cracked Chrysoprase Brick Wall=Rissige Chrysoprasziegelwand
+
+Citrine Wall=Citrinwand
+Citrine Brick Wall=Citrinziegelwand
+Citrine Block Wall=Citrinblockwand
+Cracked Citrine Brick Wall=Rissige Citrinziegelwand
+
+Covellite Wall=Covellitwand
+Covellite Brick Wall=Covellitziegelwand
+Covellite Block Wall=Covellitblockwand
+Cracked Covellite Brick Wall=Rissige Covellitziegelwand
+Cobbled Covellite Wall=Gepflasterte Covellitwand
+
+Crocoite Wall=Crocoitwand
+Crocoite Brick Wall=Crocoitziegelwand
+Crocoite Block Wall=Crocoitblockwand
+Cracked Crocoite Brick Wall=Rissige Crocoitziegelwand
+
+Diorite Wall=Dioritwand
+Diorite Brick Wall=Dioritziegelwand
+Diorite Block Wall=Dioritblockwand
+Cracked Diorite Brick Wall=Rissige Dioritziegelwand
+Cobbled Diorite Wall=Gepflasterte Dioritwand
+
+Erythrite Wall=Erythritwand
+Erythrite Brick Wall=Erythritziegelwand
+Erythrite Block Wall=Erythritblockwand
+Cracked Erythrite Brick Wall=Rissige Erythritziegelwand
+
+Eudialite Wall=Eudialitwand
+Eudialite Brick Wall=Eudialitziegelwand
+Eudialite Block Wall=Eudialitblockwand
+Cracked Eudialite Brick Wall=Rissige Eudialitziegelwand
+
+Fluorite Wall=Fluoritwand
+Fluorite Brick Wall=Fluoritziegelwand
+Fluorite Block Wall=Fluoritblockwand
+Cracked Fluorite Brick Wall=Rissige Fluoritziegelwand
+
+Gabbro Wall=Gabbrowand
+Cobbled Gabbro Wall=Gepflasterte Gabbrowand
+Gabbro Brick Wall=Gabbroziegelwand
+Gabbro Block Wall=Gabbroblockwand
+Cracked Gabbro Brick Wall=Rissige Gabbroziegelwand
+
+Galena Wall=Galenawand
+Galena Brick Wall=Galenaziegelwand
+Galena Block Wall=Galenablockwand
+Cracked Galena Brick Wall=Rissige Galenaziegelwand
+
+Black Granite Wall=Schwarze Granitwand
+Black Granite Brick Wall=Schwarze Granitziegelwand
+Black Granite Block Wall=Schwarze Granitblockwand
+Cracked Black Granite Brick Wall=Rissige schwarze Granitziegelwand
+Cobbled Black Granite Wall=Gepflasterte schwarze Granitwand
+
+Blue Granite Wall=Blaue Granitwand
+Blue Granite Brick Wall=Blaue Granitziegelwand
+Blue Granite Block Wall=Blaue Granitblockwand
+Cracked Blue Granite Brick Wall=Rissige blaue Granitziegelwand
+Cobbled Blue Granite Wall=Gepflasterte blaue Granitwand
+
+Gray Granite Wall=Graue Granitwand
+Gray Granite Brick Wall=Graue Granitziegelwand
+Gray Granite Block Wall=Graue Granitblockwand
+Cracked Gray Granite Brick Wall=Rissige graue Granitziegelwand
+Cobble Gray Granite Wall=Gepflasterte graue Granitwand
+
+Green Granite Wall=Grüne Granitwand
+Green Granite Brick Wall=Grüne Granitziegelwand
+Green Granite Block Wall=Grüne Granitblockwand
+Cracked Green Granite Brick Wall=Rissige grüne Granitziegelwand
+Cobbled Green Granite Wall=Gepflasterte grüne Granitwand
+
+Pink Granite Wall=Rosa Granitwand
+Pink Granite Brick Wall=Rosa Granitziegelwand
+Pink Granite Block Wall=Rosa Granitblockwand
+Cracked Pink Granite Brick Wall=Rissige rosa Granitziegelwand
+Cobbled Pink Granite Wall=Gepflasterte rosa Granitwand
+
+Red Granite Wall=Rote Granitwand
+Red Granite Brick Wall=Rote Granitziegelwand
+Red Granite Block Wall=Rote Granitblockwand
+Cracked Red Granite Brick Wall=Rissige rote Granitziegelwand
+Cobbled Red Granite Wall=Gepflasterte rote Granitwand
+
+White Granite Wall=Weiße Granitwand
+White Granite Brick Wall=Weiße Granitziegelwand
+White Granite Block Wall=Weiße Granitblockwand
+Cracked White Granite Brick Wall=Rissige weiße Granitziegelwand
+Cobbled White Granite Wall=Gepflasterte weiße Granitwand
+
+Yellow Granite Wall=Gelbe Granitwand
+Yellow Granite Brick Wall=Gelbe Granitziegelwand
+Yellow Granite Block Wall=Gelbe Granitblockwand
+Cracked Yellow Granite Brick Wall=Rissige gelbe Granitziegelwand
+Cobbled Yellow Granite Wall=Gepflasterte gelbe Granitwand
+
+Heliodor Wall=Heliodorwand
+Heliodor Brick Wall=Heliodorziegelwand
+Heliodor Block Wall=Heliodorblockwand
+Cracked Heliodor Brick Wall=Rissige Heliodorziegelwand
+
+Howlite Wall=Howlitwand
+Howlite Brick Wall=Howlitziegelwand
+Howlite Block Wall=Howlitblockwand
+Cracked Howlite Brick Wall=Rissige Howlitziegelwand
+Cobbled Howlite Wall=Gepflasterte Howlitwand
+
+Ilvaite Wall=Ilvaitwand
+Ilvaite Brick Wall=Ilvaitziegelwand
+Ilvaite Block Wall=Ilvaitblockwand
+Cracked Ilvaite Brick Wall=Rissige Ilvaitziegelwand
+Cobbled Ilvaite Wall=Gepflasterte Ilvaitwand
+
+Jade Wall=Jadewand
+Jade Brick Wall=Jadeziegelwand
+Jade Block Wall=Jadeblockwand
+Cracked Jade Brick Wall=Rissige Jadeziegelwand
+Cobbled Jade Wall=Gepflasterte Jadewand
+
+Red Jasper Wall=Rote Jaspiswand
+Red Jasper Brick Wall=Rote Jaspisziegelwand
+Red Jasper Block Wall=Rote Jaspisblockwand
+Cracked Red Jasper Brick Wall=Gerissene rote Jaspisziegelwand
+Cobbled Red Jasper Wall=Gerumpelte rote Jaspiswand
+
+Kyanite Wall=Kyanitwand
+Kyanite Brick Wall=Kyanitziegelwand
+Kyanite Block Wall=Kyanitblockwand
+Cracked Kyanite Brick Wall=Rissige Kyanitziegelwand
+Cobbled Kyanite Wall=Gepflasterte Kyanitwand
+
+Lapis Lazuli Wall=Lapislazuliwand
+Lapis Lazuli Brick Wall=Lapislazuliziegelwand
+Lapis Lazuli Block Wall=Lapislazuliblockwand
+Cracked Lapis Lazuli Brick Wall=Rissige Lapislazuliziegelwand
+
+Lepidolite=Lepidolith
+Lepidolite Block=Lepidolithblock
+Lepidolite Brick=Lepidolithziegel
+Cracked Lepidolite Brick=Gerissener Lepidolithziegel
+Cobbled Lepidolite=Gerumpelter Lepidolith
+
+Blue Limestone Wall=Blaue Kalksteinwand
+Blue Limestone Brick Wall=Blaue Kalksteinziegelwand
+Blue Limestone Block Wall=Blaue Kalksteinblockwand
+Cracked Blue Limestone Brick Wall=Rissige blaue Kalksteinziegelwand
+Cobbled Blue Limestone Wall=Gepflasterte blaue Kalksteinwand
+
+White Limestone Wall=Weiße Kalksteinwand
+White Limestone Brick Wall=Weiße Kalksteinziegelwand
+White Limestone Block Wall=Weiße Kalksteinblockwand
+Cracked White Limestone Brick Wall=Rissige weiße Kalksteinziegelwand
+Cobbled White Limestone Wall=Gepflasterte weiße Kalksteinwand
+
+Marble Wall=Marmorwand
+Marble Brick Wall=Marmorziegelwand
+Marble Block Wall=Marmorblockwand
+Cracked Marble Brick Wall=Rissige Marmorziegelwand
+Cobbled Marble Wall=Gepflasterte Marmorwand
+
+Moonstone Wall=Mondsteinwand
+Moonstone Brick Wall=Mondsteinziegelwand
+Moonstone Block Wall=Mondsteinblockwand
+Cracked Moonstone Brick Wall=Gerissene Mondsteinziegelwand
+
+Morion Quartz Wall=Morionquarzwand
+Morion Quartz Brick Wall=Morionquarzziegelwand
+Morion Quartz Block Wall=Morionquartzblockwand
+Cracked Morion Quartz Brick Wall=Rissige Morionquarzziegelwand
+
+Mudstone Wall=Schlammsteinwand
+Cobbled Mudstone Wall=Gepflasterte Schlammsteinwand
+Mudstone Brick Wall=Schlammsteinziegelwand
+Mudstone Block Wall=Schlammsteinblockwand
+Cracked Mudstone Brick Wall=Rissige Schlammsteinziegelwand
+
+Prasiolite Wall=Prasiolithwand
+Prasiolite Brick Wall=Prasiolithziegelwand
+Prasiolite Block Wall=Prasiolithblockwand
+Cracked Prasiolite Brick Wall=Rissige Prasiolithziegelwand
+
+Pumice Wall=Bimssteinwand
+Pumice Brick Wall=Bimssteinziegelwand
+Pumice Block Wall=Bimssteinblockwand
+Cracked Pumice Brick Wall=Rissige Bimssteinziegelwand
+
+Pyrite Wall=Pyritwand
+Pyrite Brick Wall=Pyritziegelwand
+Pyrite Block Wall=Pyritblockwand
+Cracked Pyrite Brick Wall=Rissige Pyritziegelwand
+
+Quartz Wall=Quarzwand
+Quartz Brick Wall=Quarzziegelwand
+Quartz Block Wall=Quarzblockwand
+Cracked Quartz Brick Wall=Rissige Quarzziegelwand
+
+Rhodonite Wall=Rhodonitwand
+Rhodonite Brick Wall=Rhodonitziegelwand
+Rhodonite Block Wall=Rhodonitblockwand
+Cracked Rhodonite Brick Wall=Gerissene Rhodonitziegelwand
+Cobbled Rhodonite Wall=Gefaste Rhodonitwand
+
+Rose Quartz Wall=Rosenquarzwand
+Rose Quartz Brick Wall=Rosenquarzziegelwand
+Rose Quartz Block Wall=Rosenquartzblockwand
+Cracked Rose Quartz Brick Wall=Rissige Rosenquarzziegelwand
+
+Scoria Wall=Skoriawand
+Scoria Brick Wall=Skoriaziegelwand
+Scoria Block Wall=Skoriablockwand
+Cracked Scoria Brick Wall=Rissige Skoriaziegelwand
+Cobbled Scoria Wall=Gepflasterte Skoriawand
+
+Serpentine Wall=Serpentinwand
+Cobbled Serpentine Wall=Gepflasterte Serpentinwand
+Serpentine Brick Wall=Serpentinziegelwand
+Serpentine Block Wall=Serpentinblockwand
+Cracked Serpentine Brick Wall=Rissige Serpentinziegelwand
+
+Shale Wall=Schieferwand
+Shale Brick Wall=Schieferziegelwand
+Shale Block Wall=Schieferblockwand
+Cracked Shale Brick Wall=Rissige Schieferziegelwand
+Cobbled Shale Wall=Gepflasterte Schieferwand
+
+Slate Wall=Schiefertafelwand
+Slate Brick Wall=Schiefertafelziegelwand
+Slate Block Wall=Schiefertafelblockwand
+Cracked Slate Brick Wall=Rissige Schiefertafelziegelwand
+Cobbled Slate Wall=Gepflasterte Schiefertafelwand
+Slate Tile Wall=Schiefertafelfliesenwand
+
+Smokey Quartz Wall=Rauchquarzwand
+Smokey Quartz Brick Wall=Rauchquarzziegelwand
+Smokey Quartz Block Wall=Rauchquarzblockwand
+Cracked Smokey Quartz Brick Wall=Rissige Rauchquarzziegelwand
+
+Soapstone Wall=Specksteinwand
+Soapstone Brick Wall=Specksteinziegelwand
+Soapstone Block Wall=Specksteinblockwand
+Cracked Soapstone Brick Wall=Rissige Specksteinziegelwand
+
+Sodalite Wall=Sodalitwand
+Cobbled Sodalite Wall=Gepflasterte Sodalitwand
+Sodalite Brick Wall=Sodalitziegelwand
+Sodalite Block Wall=Sodalitblockwand
+Cracked Sodalite Brick Wall=Rissige Sodalitziegelwand
+
+Sugilite Wall=Sugilitwand
+Sugilite Brick Wall=Sugilitziegelwand
+Sugilite Block Wall=Sugilitblockwand
+Cracked Sugilite Brick Wall=Rissige Sugilitziegelwand
+Cobbled Sugilite Wall=Gepflasterte Sugilitwand
+
+Green Tourmaline Wall=Grüne Turmalinwand
+Green Tourmaline Brick Wall=Grüner Turmalinziegelwand
+Green Tourmaline Block Wall=Grüner Turmalinblockwand
+Cracked Green Tourmaline Brick Wall=Gerissene grüne Turmalinziegelwand
+
+Paraiba Tourmaline Wall=Paraíba-Turmalinwand
+Paraiba Tourmaline Brick Wall=Paraíba-Turmalinziegelwand
+Paraiba Tourmaline Block Wall=Paraíba-Turmalinblockwand
+Cracked Paraiba Tourmaline Brick Wall=Gerissene Paraíba-Turmalinziegelwand
+
+Pink Tourmaline Wall=Rosa Turmalinwand
+Pink Tourmaline Brick Wall=Rosa Turmalinziegelwand
+Pink Tourmaline Block Wall=Rosa Turmalinblockwand
+Cracked Pink Tourmaline Brick Wall=Gerissene rosa Turmalinziegelwand
+
+Travertine Wall=Travertinwand
+Cobbled Travertine Wall=Gepflasterte Travertinwand
+Travertine Brick Wall=Travertinziegelwand
+Travertine Block Wall=Travertinblockwand
+Cracked Travertine Brick Wall=Rissige Travertinziegelwand
+
+Yellow Travertine Wall=Gelber Travertinwand
+Cobbled Yellow Travertine Wall=Gepflasterte gelbe Travertinwand
+Yellow Travertine Brick Wall=Gelbe Travertinziegelwand
+Yellow Travertine Block Wall=Gelber Travertinblockwand
+Cracked Yellow Travertine Brick Wall=Rissige gelbe Travertinziegelwand
+
+Beige Tuff Wall=Beige Tuffwand
+Cobbled Beige Tuff Wall=Gepflasterte beige Tuffwand
+Beige Tuff Block Wall=Beige Tuffblockwand
+Beige Tuff Brick Wall=Beige Tuffziegelwand
+Cracked Beige Tuff Brick Wall=Rissige Beige Tuffziegelwand
+
+Grey Tuff Wall=Graue Tuffwand
+Cobbled Grey Tuff Wall=Gepflasterte graue Tuffwand
+Grey Tuff Block Wall=Graue Tuffblockwand
+Grey Tuff Brick Wall=Graue Tuffziegelwand
+Cracked Grey Tuff Brick Wall=Rissige graue Tuffziegelwand
+
+Red Tuff Wall=Rote Tuffwand
+Cobbled Red Tuff Wall=Gepflasterte rote Tuffwand
+Red Tuff Block Wall=Rote Tuffblockwand
+Red Tuff Brick Wall=Rote Tuffziegelwand
+Cracked Red Tuff Brick Wall=Rissige rote Tuffziegelwand
+
+Turquoise Wall=Türkiswand
+Turquoise Brick Wall=Türkisziegelwand
+Turquoise Block Wall=Türkisblockwand
+Cracked Turquoise Brick Wall=Rissige Türkisziegelwand
+Cobbled Turquoise Wall=Gepflasterte Türkiswand
+
+Vivianite Wall=Vivianitwand
+Vivianite Brick Wall=Vivianitziegelwand
+Vivianite Block Wall=Vivianitblockwand
+Cracked Vivianite Brick Wall=Rissige Vivianitziegelwand
+
+### stairs.lua ###
+
+Blue Agate Slab=Blaue Achatplatte
+Gray Agate Slab=Graue Achatplatte
+Green Agate Slab=Grüne Achatplatte
+Moss Agate Slab=Moosachatplatte
+Orange Agate Slab=Orangefarbene Achatplatte
+Purple Agate Slab=Violette Achatplatte
+Red Agate Slab=Rote Achatplatte
+
+Amazonite Slab=Amazonitplatte
+Cobbled Amazonite Slab=Gepflasterte Amazonitplatte
+Amazonite Brick Slab=Amazonitziegelplatte
+Amazonite Block Slab=Amazonitblockplatte
+Cracked Amazonite Brick Slab=Rissige Amazonitziegelplatte
+
+Amber Slab=Bernsteinplatte
+Amber Brick Slab=Bernsteinziegelplatte
+Amber Block Slab=Bernsteinblockplatte
+Cracked Amber Brick Slab=Rissige Bernsteinziegelplatte
+
+Amethyst Slab=Amethystplatte
+Amethyst Brick Slab=Amethystziegelplatte
+Amethyst Block Slab=Amethystblockplatte
+Cracked Amethyst Brick Slab=Rissige Amethystziegelplatte
+
+Andesite Slab=Andesitplatte
+Andesite Block Slab=Andesitblockplatte
+Cobbled Andesite Slab=Gepflasterte Andesitplatte
+Andesite Brick Slab=Andesitziegelplatte
+Cobbled Andesite Brick Slab=Gepflasterte Andesitziegelplatte
+
+Basalt Slab=Basaltsplatte
+Basalt Block Slab=Basaltblockplatte
+Basalt Brick Slab=Basaltziegelplatte
+Cracked Basalt Brick Slab=Rissige Basaltziegelplatte
+Cobbled Basalt Slab=Gepflasterte Basaltsplatte
+Basalt Tile Slab=Basaltfliesenplatte
+
+Black Moonstone Slab=Schwarze Mondsteinplatte
+Black Moonstone Brick Slab=Schwarze Mondsteinziegelplatte
+Black Moonstone Block Slab=Schwarze Mondsteinblockplatte
+Cracked Black Moonstone Brick Slab=Rissige Schwarze Mondsteinziegelplatte
+
+Calcite Slab=Calcitplatte
+Calcite Brick Slab=Calcitziegelplatte
+Calcite Block Slab=Calcitblockplatte
+Cracked Calcite Brick Slab=Rissige Calcitziegelplatte
+
+Grey Calcite Slab=Graue Calcitplatte
+Grey Calcite Brick Slab=Graue Calcitziegelplatte
+Grey Calcite Block Slab=Graue Calcitblockplatte
+Cracked Grey Calcite Brick Slab=Gerissene Platte aus grauem Calcitziegel
+
+Orange Calcite Slab=Orangefarbene Calcitplatte
+Orange Calcite Brick Slab=Orangefarbene Calcitziegelplatte
+Orange Calcite Block Slab=Orangefarbene Calcitblockplatte
+Cracked Orange Calcite Brick Slab=Gerissene Platte aus orangefarbenem Calcitziegel
+
+Carnotite Slab=Carnotitplatte
+Carnotite Brick Slab=Carnotitziegelplatte
+Carnotite Block Slab=Carnotitblockplatte
+Cracked Carnotite Brick Slab=Rissige Carnotitziegelplatte
+Cobbled Carnotite Slab=Gepflasterte Carnotitplatte
+
+Celestine Slab=Celestinplatte
+Celestine Brick Slab=Celestinziegelplatte
+Celestine Block Slab=Celestinblockplatte
+Cracked Celestine Brick Slab=Rissige Celestinziegelplatte
+
+Chalcanthite Slab=Chalkanthitplatte
+Chalcanthite Brick Slab=Chalkanthitziegelplatte
+Chalcanthite Block Slab=Chalkanthitblockplatte
+Cracked Chalcanthite Brick Slab=Gerissene Chalkanthitziegelplatte
+Cobbled Chalcanthite Slab=Gerumpelte Chalkanthitplatte
+
+Chrysoprase Slab=Chrysoprasplatte
+Chrysoprase Brick Slab=Chrysoprasziegelplatte
+Chrysoprase Block Slab=Chrysoprasblockplatte
+Cracked Chrysoprase Brick Slab=Rissige Chrysoprasziegelplatte
+
+Citrine Slab=Citrinplatte
+Citrine Brick Slab=Citrinziegelplatte
+Citrine Block Slab=Citrinblockplatte
+Cracked Citrine Brick Slab=Rissige Citrinziegelplatte
+
+Covellite Slab=Covellitplatte
+Covellite Brick Slab=Covellitziegelplatte
+Covellite Block Slab=Covellitblockplatte
+Cracked Covellite Brick Slab=Rissige Covellitziegelplatte
+Cobbled Covellite Slab=Gepflasterte Covellitplatte
+
+Crocoite Slab=Crocoitplatte
+Crocoite Brick Slab=Crocoitziegelplatte
+Crocoite Block Slab=Crocoitblockplatte
+Cracked Crocoite Brick Slab=Rissige Crocoitziegelplatte
+
+Diorite Slab=Dioritplatte
+Diorite Brick Slab=Dioritziegelplatte
+Diorite Block Slab=Dioritblockplatte
+Cracked Diorite Brick Slab=Rissige Dioritziegelplatte
+Cobbled Diorite Slab=Gepflasterte Dioritplatte
+
+Erythrite Slab=Erythritplatte
+Erythrite Brick Slab=Erythritziegelplatte
+Erythrite Block Slab=Erythritblockplatte
+Cracked Erythrite Brick Slab=Rissige Erythritziegelplatte
+
+Eudialite Slab=Eudialitplatte
+Eudialite Brick Slab=Eudialitziegelplatte
+Eudialite Block Slab=Eudialitblockplatte
+Cracked Eudialite Brick Slab=Rissige Eudialitziegelplatte
+
+Fluorite Slab=Fluoritplatte
+Fluorite Brick Slab=Fluoritziegelplatte
+Fluorite Block Slab=Fluoritblockplatte
+Cracked Fluorite Brick Slab=Rissige Fluoritziegelplatte
+
+Gabbro Slab=Gabbroplatte
+Cobbled Gabbro Slab=Gepflasterte Gabbroplatte
+Gabbro Brick Slab=Gabbroziegelplatte
+Gabbro Block Slab=Gabbroblockplatte
+Cracked Gabbro Brick Slab=Rissige Gabbroziegelplatte
+
+Galena Slab=Galenaplatte
+Galena Brick Slab=Galenaziegelplatte
+Galena Block Slab=Galenablockplatte
+Cracked Galena Brick Slab=Rissige Galenaziegelplatte
+
+Black Granite Slab=Schwarze Granitplatte
+Black Granite Brick Slab=Schwarze Granitziegelplatte
+Black Granite Block Slab=Schwarze Granitblockplatte
+Cracked Black Granite Brick Slab=Rissige Schwarze Granitziegelplatte
+Cobbled Black Granite Slab=Gepflasterte Schwarze Granitplatte
+
+Blue Granite Slab=Blaue Granitplatte
+Blue Granite Brick Slab=Blaue Granitziegelplatte
+Blue Granite Block Slab=Blaue Granitblockplatte
+Cracked Blue Granite Brick Slab=Rissige Blaue Granitziegelplatte
+Cobbled Blue Granite Slab=Gepflasterte Blaue Granitplatte
+
+Gray Granite Slab=Graue Granitplatte
+Gray Granite Brick Slab=Graue Granitziegelplatte
+Gray Granite Block Slab=Graue Granitblockplatte
+Cracked Gray Granite Brick Slab=Rissige Graue Granitziegelplatte
+Cobbled Gray Granite Slab=Gepflasterte Graue Granitplatte
+
+Green Granite Slab=Grüne Granitplatte
+Green Granite Brick Slab=Grüne Granitziegelplatte
+Green Granite Block Slab=Grüne Granitblockplatte
+Cracked Green Granite Brick Slab=Rissige Grüne Granitziegelplatte
+Cobbled Green Granite Slab=Gepflasterte Grüne Granitplatte
+
+Pink Granite Slab=Rosa Granitplatte
+Pink Granite Brick Slab=Rosa Granitziegelplatte
+Pink Granite Block Slab=Rosa Granitblockplatte
+Cracked Pink Granite Brick Slab=Rissige Rosa Granitziegelplatte
+Cobbled Pink Granite Slab=Gepflasterte Rosa Granitplatte
+
+Red Granite Slab=Rote Granitplatte
+Red Granite Brick Slab=Rote Granitziegelplatte
+Red Granite Block Slab=Rote Granitblockplatte
+Cracked Red Granite Brick Slab=Rissige Rote Granitziegelplatte
+Cobbled Red Granite Slab=Gepflasterte Rote Granitplatte
+
+White Granite Slab=Weiße Granitplatte
+White Granite Brick Slab=Weiße Granitziegelplatte
+White Granite Block Slab=Weiße Granitblockplatte
+Cracked White Granite Brick Slab=Rissige Weiße Granitziegelplatte
+Cobbled White Granite Slab=Gepflasterte Weiße Granitplatte
+
+Yellow Granite Slab=Gelbe Granitplatte
+Yellow Granite Brick Slab=Gelbe Granitziegelplatte
+Yellow Granite Block Slab=Gelbe Granitblockplatte
+Cracked Yellow Granite Brick Slab=Rissige Gelbe Granitziegelplatte
+Cobbled Yellow Granite Slab=Gepflasterte Gelbe Granitplatte
+
+Heliodor Slab=Heliodorplatte
+Heliodor Brick Slab=Heliodorziegelplatte
+Heliodor Block Slab=Heliodorblockplatte
+Cracked Heliodor Brick Slab=Rissige Heliodorziegelplatte
+
+Howlite Slab=Howlitplatte
+Howlite Brick Slab=Howlitziegelplatte
+Howlite Block Slab=Howlitblockplatte
+Cracked Howlite Brick Slab=Rissige Howlitziegelplatte
+Cobbled Howlite Slab=Gepflasterte Howlitplatte
+
+Ilvaite Slab=Ilvaitplatte
+Ilvaite Brick Slab=Ilvaitziegelplatte
+Ilvaite Block Slab=Ilvaitblockplatte
+Cracked Ilvaite Brick Slab=Rissige Ilvaitziegelplatte
+Cobbled Ilvaite Slab=Gepflasterte Ilvaitplatte
+
+Jade Slab=Jadeplatte
+Jade Brick Slab=Jadeziegelplatte
+Jade Block Slab=Jadeblockplatte
+Cracked Jade Brick Slab=Rissige Jadeziegelplatte
+Cobbled Jade Slab=Gepflasterte Jadeplatte
+
+Red Jasper Slab=Rote Jaspisplatte
+Red Jasper Brick Slab=Rote Jaspisziegelplatte
+Red Jasper Block Slab=Rote Jaspisblockplatte
+Cracked Red Jasper Brick Slab=Gerissene rote Jaspisziegelplatte
+Cobbled Red Jasper Slab=Gerumpelte rote Jaspisplatte
+
+Kyanite Slab=Kyanitplatte
+Kyanite Brick Slab=Kyanitziegelplatte
+Kyanite Block Slab=Kyanitblockplatte
+Cracked Kyanite Brick Slab=Rissige Kyanitziegelplatte
+Cobbled Kyanite Slab=Gepflasterte Kyanitplatte
+
+Lapis Lazuli Slab=Lapislazuliplatte
+Lapis Lazuli Brick Slab=Lapislazuliziegelplatte
+Lapis Lazuli Block Slab=Lapislazuliblockplatte
+Cracked Lapis Lazuli Brick Slab=Rissige Lapislazuliziegelplatte
+
+Lepidolite Slab=Lepidolithplatte
+Lepidolite Brick Slab=Lepidolithziegelplatte
+Lepidolite Block Slab=Lepidolithblockplatte
+Cracked Lepidolite Brick Slab=Gerissene Lepidolithziegelplatte
+Cobbled Lepidolite Slab=Gerumpelte Lepidolithplatte
+
+Blue Limestone Slab=Blaue Kalksteinplatte
+Blue Limestone Brick Slab=Blaue Kalksteinziegelplatte
+Blue Limestone Block Slab=Blaue Kalksteinblockplatte
+Cracked Blue Limestone Brick Slab=Rissige Blaue Kalksteinziegelplatte
+Cobbled Blue Limestone Slab=Gepflasterte Blaue Kalksteinplatte
+
+White Limestone Slab=Weiße Kalksteinplatte
+White Limestone Brick Slab=Weiße Kalksteinziegelplatte
+White Limestone Block Slab=Weiße Kalksteinblockplatte
+Cracked White Limestone Brick Slab=Rissige Weiße Kalksteinziegelplatte
+Cobbled White Limestone Slab=Gepflasterte Weiße Kalksteinplatte
+
+Marble Slab=Marmorplatte
+Marble Brick Slab=Marmorziegelplatte
+Marble Block Slab=Marmorblockplatte
+Cracked Marble Brick Slab=Rissige Marmorziegelplatte
+Cobbled Marble Slab=Gepflasterte Marmorplatte
+
+Moonstone Slab=Mondsteinplatte
+Moonstone Brick Slab=Mondsteinziegelplatte
+Moonstone Block Slab=Mondsteinblockplatte
+Cracked Moonstone Brick Slab=Gerissene Mondsteinziegelplatte
+
+Morion Quartz Slab=Morionquarzplatte
+Morion Quartz Brick Slab=Morionquarzziegelplatte
+Morion Quartz Block Slab=Morionquarzblockplatte
+Cracked Morion Quartz Brick Slab=Rissige Morionquarzziegelplatte
+
+Mudstone Slab=Schlammsteinplatte
+Cobbled Mudstone Slab=Gepflasterte Schlammsteinplatte
+Mudstone Brick Slab=Schlammsteinziegelplatte
+Mudstone Block Slab=Schlammsteinblockplatte
+Cracked Mudstone Brick Slab=Rissige Schlammsteinziegelplatte
+
+Prasiolite Slab=Prasiolithplatte
+Cobbled Prasiolite Slab=Gepflasterte Prasiolithplatte
+Prasiolite Brick Slab=Prasiolithziegelplatte
+Prasiolite Block Slab=Prasiolithblockplatte
+Cracked Prasiolite Brick Slab=Rissige Prasiolithziegelplatte
+
+Pumice Slab=Bimssteinplatte
+Pumice Brick Slab=Bimssteinziegelplatte
+Pumice Block Slab=Bimssteinblockplatte
+Cracked Pumice Brick Slab=Rissige Bimssteinziegelplatte
+
+Pyrite Slab=Pyritplatte
+Pyrite Brick Slab=Pyritziegelplatte
+Pyrite Block Slab=Pyritblockplatte
+Cracked Pyrite Brick Slab=Rissige Pyritziegelplatte
+
+Quartz Slab=Quarzplatte
+Cobbled Quartz Slab=Gepflasterte Quarzplatte
+Quartz Brick Slab=Quarzziegelplatte
+Quartz Block Slab=Quarzblockplatte
+Cracked Quartz Brick Slab=Rissige Quarzziegelplatte
+
+Rhodonite Slab=Rhodonitplatte
+Rhodonite Brick Slab=Rhodonitziegelplatte
+Rhodonite Block Slab=Rhodonitblockplatte
+Cracked Rhodonite Brick Slab=Gerissene Rhodonitziegelplatte
+Cobbled Rhodonite Slab=Gefaste Rhodonitplatte
+
+Rose Quartz Slab=Rosenquarzplatte
+Rose Quartz Brick Slab=Rosenquarzziegelplatte
+Rose Quartz Block Slab=Rosenquarzblockplatte
+Cracked Rose Quartz Brick Slab=Rissige Rosenquarzziegelplatte
+
+Scoria Slab=Skoriaplatte
+Scoria Brick Slab=Skoriaziegelplatte
+Scoria Block Slab=Skoriablockplatte
+Cracked Scoria Brick Slab=Rissige Skoriaziegelplatte
+Cobbled Scoria Slab=Gepflasterte Skoriaplatte
+
+Serpentine Slab=Serpentinsteinplatte
+Cobbled Serpentine Slab=Gepflasterte Serpentinsteinplatte
+Serpentine Brick Slab=Serpentinsteinziegelplatte
+Serpentine Block Slab=Serpentinsteinblockplatte
+Cracked Serpentine Brick Slab=Rissige Serpentinsteinziegelplatte
+
+Shale Slab=Schiefersplatte
+Shale Brick Slab=Schieferziegelplatte
+Shale Block Slab=Schieferblockplatte
+Cracked Shale Brick Slab=Rissige Schieferziegelplatte
+Cobbled Shale Slab=Gepflasterte Schiefersplatte
+
+Slate Slab=Schieferplatte
+Slate Brick Slab=Schieferziegelplatte
+Slate Block Slab=Schieferblockplatte
+Cracked Slate Brick Slab=Rissige Schieferziegelplatte
+Cobbled Slate Slab=Gepflasterte Schieferplatte
+Slate Tile Slab=Schieferfliesenplatte
+
+Smokey Quartz Slab=Rauchquarzplatte
+Smokey Quartz Brick Slab=Rauchquarzziegelplatte
+Smokey Quartz Block Slab=Rauchquarzblockplatte
+Cracked Smokey Quartz Brick Slab=Rissige Rauchquarzziegelplatte
+
+Soapstone Slab=Specksteinplatte
+Soapstone Brick Slab=Specksteinziegelplatte
+Soapstone Block Slab=Specksteinblockplatte
+Cracked Soapstone Brick Slab=Rissige Specksteinziegelplatte
+
+Sodalite Slab=Sodalithplatte
+Cobbled Sodalite Slab=Gepflasterte Sodalithplatte
+Sodalite Brick Slab=Sodalithziegelplatte
+Sodalite Block Slab=Sodalithblockplatte
+Cracked Sodalite Brick Slab=Rissige Sodalithziegelplatte
+
+Sugilite Slab=Sugilithplatte
+Sugilite Brick Slab=Sugilithziegelplatte
+Sugilite Block Slab=Sugilithblockplatte
+Cracked Sugilite Brick Slab=Rissige Sugilithziegelplatte
+Cobbled Sugilite Slab=Gepflasterte Sugilithplatte
+
+Green Tourmaline Slab=Grüner Turmalinplatte
+Green Tourmaline Brick Slab=Grüner Turmalinziegelplatte
+Green Tourmaline Block Slab=Grüner Turmalinblockplatte
+Cracked Green Tourmaline Brick Slab=Gerissene grüne Turmalinziegelplatte
+
+Paraiba Tourmaline Slab=Paraíba-Turmalinplatte
+Paraiba Tourmaline Brick Slab=Paraíba-Turmalinziegelplatte
+Paraiba Tourmaline Block Slab=Paraíba-Turmalinblockplatte
+Cracked Paraiba Tourmaline Brick Slab=Gerissene Paraíba-Turmalinziegelplatte
+
+Pink Tourmaline Slab=Rosa Turmalinplatte
+Pink Tourmaline Brick Slab=Rosa Turmalinziegelplatte
+Pink Tourmaline Block Slab=Rosa Turmalinblockplatte
+Cracked Pink Tourmaline Brick Slab=Gerissene rosa Turmalinziegelplatte
+
+Travertine Slab=Travertinplatte
+Cobbled Travertine Slab=Gepflasterte Travertinplatte
+Travertine Brick Slab=Travertinziegelplatte
+Travertine Block Slab=Travertinblockplatte
+Cracked Travertine Brick Slab=Rissige Travertinziegelplatte
+
+Yellow Travertine Slab=Gelbe Travertinplatte
+Cobbled Yellow Travertine Slab=Gepflasterte Gelbe Travertinplatte
+Yellow Travertine Brick Slab=Gelbe Travertinziegelplatte
+Yellow Travertine Block Slab=Gelbe Travertinblockplatte
+Cracked Yellow Travertine Brick Slab=Rissige Gelbe Travertinziegelplatte
+
+Beige Tuff Slab=Beige Tuffplatte
+Cobbled Beige Tuff Slab=Gepflasterte Beige Tuffplatte
+Beige Tuff Block Slab=Beige Tuffblockplatte
+Beige Tuff Brick Slab=Beige Tuffziegelplatte
+Cracked Beige Tuff Brick Slab=Rissige Beige Tuffziegelplatte
+
+Grey Tuff Slab=Graue Tuffplatte
+Cobbled Grey Tuff Slab=Gepflasterte Graue Tuffplatte
+Grey Tuff Block Slab=Graue Tuffblockplatte
+Grey Tuff Brick Slab=Graue Tuffziegelplatte
+Cracked Grey Tuff Brick Slab=Rissige Graue Tuffziegelplatte
+
+Red Tuff Slab=Rote Tuffplatte
+Cobbled Red Tuff Slab=Gepflasterte Rote Tuffplatte
+Red Tuff Block Slab=Rote Tuffblockplatte
+Red Tuff Brick Slab=Rote Tuffziegelplatte
+Cracked Red Tuff Brick Slab=Rissige Rote Tuffziegelplatte
+
+Turquoise Slab=Türkisplatte
+Turquoise Brick Slab=Türkisziegelplatte
+Turquoise Block Slab=Türkisblockplatte
+Cracked Turquoise Brick Slab=Rissige Türkisziegelplatte
+Cobbled Turquoise Slab=Gepflasterte Türkisplatte
+
+Vivianite Slab=Vivianitplatte
+Cobbled Vivianite Slab=Gepflasterte Vivianitplatte
+Vivianite Brick Slab=Vivianitziegelplatte
+Vivianite Block Slab=Vivianitblockplatte
+Cracked Vivianite Brick Slab=Rissige Vivianitziegelplatte
+
+
+
+Blue Agate Stair=Blaue Achat-Treppe
+Gray Agate Stair=Graue Achat-Treppe
+Green Agate Stair=Grüne Achat-Treppe
+Moss Agate Stair=Moosachat-Treppe
+Orange Agate Stair=Orange Achat-Treppe
+Purple Agate Stair=Lila Achat-Treppe
+Red Agate Stair=Rote Achat-Treppe
+
+Amazonite Stair=Amazonit-Treppe
+Cobbled Amazonite Stair=Gepflasterte Amazonit-Treppe
+Amazonite Brick Stair=Amazonit-Ziegel-Treppe
+Amazonite Block Stair=Amazonit-Block-Treppe
+Cracked Amazonite Brick Stair=Rissige Amazonit-Ziegel-Treppe
+
+Amber Stair=Bernstein-Treppe
+Amber Brick Stair=Bernstein-Ziegel-Treppe
+Amber Block Stair=Bernstein-Block-Treppe
+Cracked Amber Brick Stair=Rissige Bernstein-Ziegel-Treppe
+
+Amethyst Stair=Amethyst-Treppe
+Amethyst Brick Stair=Amethyst-Ziegel-Treppe
+Amethyst Block Stair=Amethyst-Block-Treppe
+Cracked Amethyst Brick Stair=Rissige Amethyst-Ziegel-Treppe
+
+Andesite Stair=Andesit-Treppe
+Andesite Block Stair=Andesit-Block-Treppe
+Cobbled Andesite Stair=Gepflasterte Andesit-Treppe
+Andesite Brick Stair=Andesit-Ziegel-Treppe
+Cobbled Andesite Brick Stair=Gepflasterte Andesit-Ziegel-Treppe
+
+Basalt Stair=Basalt-Treppe
+Basalt Block Stair=Basalt-Block-Treppe
+Basalt Brick Stair=Basalt-Ziegel-Treppe
+Cracked Basalt Brick Stair=Rissige Basalt-Ziegel-Treppe
+Cobbled Basalt Stair=Gepflasterte Basalt-Treppe
+Basalt Tile Stairs=Basaltfliesentreppen
+
+Black Moonstone Stair=Schwarze Mondstein-Treppe
+Black Moonstone Brick Stair=Schwarze Mondstein-Ziegel-Treppe
+Black Moonstone Block Stair=Schwarze Mondstein-Block-Treppe
+Cracked Black Moonstone Brick Stair=Rissige Schwarze Mondstein-Ziegel-Treppe
+
+Calcite Stair=Calcit-Treppe
+Calcite Brick Stair=Calcit-Ziegel-Treppe
+Calcite Block Stair=Calcit-Block-Treppe
+Cracked Calcite Brick Stair=Rissige Calcit-Ziegel-Treppe
+
+Grey Calcite Stair=Graue Calcittreppe
+Grey Calcite Brick Stair=Graue Calcitziegeltreppe
+Grey Calcite Block Stair=Graue Calcitblocktreppe
+Cracked Grey Calcite Brick Stair=Gerissene Treppe aus grauem Calcitziegel
+
+Orange Calcite Stair=Orangefarbene Calcittreppe
+Orange Calcite Brick Stair=Orangefarbene Calcitziegeltreppe
+Orange Calcite Block Stair=Orangefarbene Calcitblocktreppe
+Cracked Orange Calcite Brick Stair=Gerissene Treppe aus orangefarbenem Calcitziegel
+
+Carnotite Stair=Carnotit-Treppe
+Carnotite Brick Stair=Carnotit-Ziegel-Treppe
+Carnotite Block Stair=Carnotit-Block-Treppe
+Cracked Carnotite Brick Stair=Rissige Carnotit-Ziegel-Treppe
+Cobbled Carnotite Stair=Gepflasterte Carnotit-Treppe
+
+Celestine Stair=Cölestin-Treppe
+Celestine Brick Stair=Cölestin-Ziegel-Treppe
+Celestine Block Stair=Cölestin-Block-Treppe
+Cracked Celestine Brick Stair=Rissige Cölestin-Ziegel-Treppe
+
+Chalcanthite Stair=Chalkanthittreppe
+Chalcanthite Brick Stair=Chalkanthitziegeltreppe
+Chalcanthite Block Stair=Chalkanthitblocktreppe
+Cracked Chalcanthite Brick Stair=Gerissene Chalkanthitziegeltreppe
+Cobbled Chalcanthite Stair=Gerumpelte Chalkanthittreppe
+
+Chrysoprase Stair=Chrysopras-Treppe
+Chrysoprase Brick Stair=Chrysopras-Ziegel-Treppe
+Chrysoprase Block Stair=Chrysopras-Block-Treppe
+Cracked Chrysoprase Brick Stair=Rissige Chrysopras-Ziegel-Treppe
+
+Citrine Stair=Citrin-Treppe
+Citrine Brick Stair=Citrin-Ziegel-Treppe
+Citrine Block Stair=Citrin-Block-Treppe
+Cracked Citrine Brick Stair=Rissige Citrin-Ziegel-Treppe
+
+Covellite Stair=Covellit-Treppe
+Covellite Brick Stair=Covellit-Ziegel-Treppe
+Covellite Block Stair=Covellit-Block-Treppe
+Cracked Covellite Brick Stair=Rissige Covellit-Ziegel-Treppe
+Cobbled Covellite Stair=Gepflasterte Covellit-Treppe
+
+Crocoite Stair=Crocoit-Treppe
+Crocoite Brick Stair=Crocoit-Ziegel-Treppe
+Crocoite Block Stair=Crocoit-Block-Treppe
+Cracked Crocoite Brick Stair=Rissige Crocoit-Ziegel-Treppe
+
+Diorite Stair=Diorit-Treppe
+Diorite Brick Stair=Diorit-Ziegel-Treppe
+Diorite Block Stair=Diorit-Block-Treppe
+Cracked Diorite Brick Stair=Rissige Diorit-Ziegel-Treppe
+Cobbled Diorite Stair=Gepflasterte Diorit-Treppe
+
+Erythrite Stair=Erythrit-Treppe
+Erythrite Brick Stair=Erythrit-Ziegel-Treppe
+Erythrite Block Stair=Erythrit-Block-Treppe
+Cracked Erythrite Brick Stair=Rissige Erythrit-Ziegel-Treppe
+
+Eudialite Stair=Eudialith-Treppe
+Eudialite Brick Stair=Eudialith-Ziegel-Treppe
+Eudialite Block Stair=Eudialith-Block-Treppe
+Cracked Eudialite Brick Stair=Rissige Eudialith-Ziegel-Treppe
+
+Fluorite Stair=Fluorit-Treppe
+Fluorite Brick Stair=Fluorit-Ziegel-Treppe
+Fluorite Block Stair=Fluorit-Block-Treppe
+Cracked Fluorite Brick Stair=Rissige Fluorit-Ziegel-Treppe
+
+Gabbro Stair=Gabbro-Treppe
+Cobbled Gabbro Stair=Gepflasterte Gabbro-Treppe
+Gabbro Brick Stair=Gabbro-Ziegel-Treppe
+Gabbro Block Stair=Gabbro-Block-Treppe
+Cracked Gabbro Brick Stair=Rissige Gabbro-Ziegel-Treppe
+
+Galena Stair=Galenit-Treppe
+Galena Brick Stair=Galenit-Ziegel-Treppe
+Galena Block Stair=Galenit-Block-Treppe
+Cracked Galena Brick Stair=Rissige Galenit-Ziegel-Treppe
+
+Black Granite Stair=Schwarze Granit-Treppe
+Black Granite Brick Stair=Schwarze Granit-Ziegel-Treppe
+Black Granite Block Stair=Schwarze Granit-Block-Treppe
+Cracked Black Granite Brick Stair=Rissige schwarze Granit-Ziegel-Treppe
+Cobbled Black Granite Stair=Gepflasterte schwarze Granit-Treppe
+
+Blue Granite Stair=Blaue Granit-Treppe
+Blue Granite Brick Stair=Blaue Granit-Ziegel-Treppe
+Blue Granite Block Stair=Blaue Granit-Block-Treppe
+Cracked Blue Granite Brick Stair=Rissige blaue Granit-Ziegel-Treppe
+Cobbled Blue Granite Stair=Gepflasterte blaue Granit-Treppe
+
+Gray Granite Stair=Graue Granit-Treppe
+Gray Granite Brick Stair=Graue Granit-Ziegel-Treppe
+Gray Granite Block Stair=Graue Granit-Block-Treppe
+Cracked Gray Granite Brick Stair=Rissige graue Granit-Ziegel-Treppe
+Cobbled Gray Granite Stair=Gepflasterte graue Granit-Treppe
+
+Green Granite Stair=Grüne Granit-Treppe
+Green Granite Brick Stair=Grüne Granit-Ziegel-Treppe
+Green Granite Block Stair=Grüne Granit-Block-Treppe
+Cracked Green Granite Brick Stair=Rissige grüne Granit-Ziegel-Treppe
+Cobbled Green Granite Stair=Gepflasterte grüne Granit-Treppe
+
+Pink Granite Stair=Rosa Granit-Treppe
+Pink Granite Brick Stair=Rosa Granit-Ziegel-Treppe
+Pink Granite Block Stair=Rosa Granit-Block-Treppe
+Cracked Pink Granite Brick Stair=Rissige rosa Granit-Ziegel-Treppe
+Cobbled Pink Granite Stair=Gepflasterte rosa Granit-Treppe
+
+Red Granite Stair=Rote Granit-Treppe
+Red Granite Brick Stair=Rote Granit-Ziegel-Treppe
+Red Granite Block Stair=Rote Granit-Block-Treppe
+Cracked Red Granite Brick Stair=Rissige rote Granit-Ziegel-Treppe
+Cobbled Red Granite Stair=Gepflasterte rote Granit-Treppe
+
+White Granite Stair=Weiße Granit-Treppe
+White Granite Brick Stair=Weiße Granit-Ziegel-Treppe
+White Granite Block Stair=Weiße Granit-Block-Treppe
+Cracked White Granite Brick Stair=Rissige weiße Granit-Ziegel-Treppe
+Cobbled White Granite Stair=Gepflasterte weiße Granit-Treppe
+
+Yellow Granite Stair=Gelbe Granit-Treppe
+Yellow Granite Brick Stair=Gelbe Granit-Ziegel-Treppe
+Yellow Granite Block Stair=Gelbe Granit-Block-Treppe
+Cracked Yellow Granite Brick Stair=Rissige gelbe Granit-Ziegel-Treppe
+Cobbled Yellow Granite Stair=Gepflasterte gelbe Granit-Treppe
+
+Heliodor Stair=Heliodor-Treppe
+Heliodor Brick Stair=Heliodor-Ziegel-Treppe
+Heliodor Block Stair=Heliodor-Block-Treppe
+Cracked Heliodor Brick Stair=Rissige Heliodor-Ziegel-Treppe
+
+Howlite Stair=Howlit-Treppe
+Howlite Brick Stair=Howlit-Ziegel-Treppe
+Howlite Block Stair=Howlit-Block-Treppe
+Cracked Howlite Brick Stair=Rissige Howlit-Ziegel-Treppe
+Cobbled Howlite Stair=Gepflasterte Howlit-Treppe
+
+Ilvaite Stair=Ilvait-Treppe
+Ilvaite Brick Stair=Ilvait-Ziegel-Treppe
+Ilvaite Block Stair=Ilvait-Block-Treppe
+Cracked Ilvaite Brick Stair=Rissige Ilvait-Ziegel-Treppe
+Cobbled Ilvaite Stair=Gepflasterte Ilvait-Treppe
+
+Jade Stair=Jade-Treppe
+Jade Brick Stair=Jade-Ziegel-Treppe
+Jade Block Stair=Jade-Block-Treppe
+Cracked Jade Brick Stair=Rissige Jade-Ziegel-Treppe
+Cobbled Jade Stair=Gepflasterte Jade-Treppe
+
+Red Jasper Stair=Rote Jaspistreppe
+Red Jasper Brick Stair=Rote Jaspisziegeltreppe
+Red Jasper Block Stair=Rote Jaspisblocktreppe
+Cracked Red Jasper Brick Stair=Gerissene rote Jaspisziegeltreppe
+Cobbled Red Jasper Stair=Gerumpelte rote Jaspistreppe
+
+Kyanite Stair=Kyanit-Treppe
+Kyanite Brick Stair=Kyanit-Ziegel-Treppe
+Kyanite Block Stair=Kyanit-Block-Treppe
+Cracked Kyanite Brick Stair=Rissige Kyanit-Ziegel-Treppe
+Cobbled Kyanite Stair=Gepflasterte Kyanit-Treppe
+
+Lapis Lazuli Stair=Lapislazuli-Treppe
+Lapis Lazuli Brick Stair=Lapislazuli-Ziegel-Treppe
+Lapis Lazuli Block Stair=Lapislazuli-Block-Treppe
+Cracked Lapis Lazuli Brick Stair=Rissige Lapislazuli-Ziegel-Treppe
+
+Lepidolite Stair=Lepidolithtreppe
+Lepidolite Brick Stair=Lepidolithziegeltreppe
+Lepidolite Block Stair=Lepidolithblocktreppe
+Cracked Lepidolite Brick Stair=Gerissene Lepidolithziegeltreppe
+Cobbled Lepidolite Stair=Gerumpelte Lepidolithtreppe
+
+Blue Limestone Stair=Blaue Kalkstein-Treppe
+Blue Limestone Brick Stair=Blaue Kalkstein-Ziegel-Treppe
+Blue Limestone Block Stair=Blaue Kalkstein-Block-Treppe
+Cracked Blue Limestone Brick Stair=Rissige blaue Kalkstein-Ziegel-Treppe
+Cobbled Blue Limestone Stair=Gepflasterte blaue Kalkstein-Treppe
+
+White Limestone Stair=Weiße Kalkstein-Treppe
+White Limestone Brick Stair=Weiße Kalkstein-Ziegel-Treppe
+White Limestone Block Stair=Weiße Kalkstein-Block-Treppe
+Cracked White Limestone Brick Stair=Rissige weiße Kalkstein-Ziegel-Treppe
+Cobbled White Limestone Stair=Gepflasterte weiße Kalkstein-Treppe
+
+Marble Stair=Marmor-Treppe
+Marble Brick Stair=Marmor-Ziegel-Treppe
+Marble Block Stair=Marmor-Block-Treppe
+Cracked Marble Brick Stair=Rissige Marmor-Ziegel-Treppe
+Cobbled Marble Stair=Gepflasterte Marmor-Treppe
+
+Moonstone Stair=Mondsteintreppe
+Moonstone Brick Stair=Mondsteinziegeltreppe
+Moonstone Block Stair=Mondsteinblocktreppe
+Cracked Moonstone Brick Stair=Gerissene Mondsteinziegeltreppe
+
+Morion Quartz Stair=Morionquarz-Treppe
+Morion Quartz Brick Stair=Morionquarz-Ziegel-Treppe
+Morion Quartz Block Stair=Morionquarz-Block-Treppe
+Cracked Morion Quartz Brick Stair=Rissige Morionquarz-Ziegel-Treppe
+
+Mudstone Stair=Schlammstein-Treppe
+Cobbled Mudstone Stair=Gepflasterte Schlammstein-Treppe
+Mudstone Brick Stair=Schlammstein-Ziegel-Treppe
+Mudstone Block Stair=Schlammstein-Block-Treppe
+Cracked Mudstone Brick Stair=Rissige Schlammstein-Ziegel-Treppe
+
+Prasiolite Stair=Prasiolith-Treppe
+Prasiolite Brick Stair=Prasiolith-Ziegel-Treppe
+Prasiolite Block Stair=Prasiolith-Block-Treppe
+Cracked Prasiolite Brick Stair=Rissige Prasiolith-Ziegel-Treppe
+
+Pumice Stair=Bimsstein-Treppe
+Pumice Brick Stair=Bimsstein-Ziegel-Treppe
+Pumice Block Stair=Bimsstein-Block-Treppe
+Cracked Pumice Brick Stair=Rissige Bimsstein-Ziegel-Treppe
+
+Pyrite Stair=Pyrit-Treppe
+Pyrite Brick Stair=Pyrit-Ziegel-Treppe
+Pyrite Block Stair=Pyrit-Block-Treppe
+Cracked Pyrite Brick Stair=Rissige Pyrit-Ziegel-Treppe
+
+Quartz Stair=Quarz-Treppe
+Quartz Brick Stair=Quarz-Ziegel-Treppe
+Quartz Block Stair=Quarz-Block-Treppe
+Cracked Quartz Brick Stair=Rissige Quarz-Ziegel-Treppe
+
+Rhodonite Stair=Rhodonittreppe
+Rhodonite Brick Stair=Rhodonitziegeltreppe
+Rhodonite Block Stair=Rhodonitblocktreppe
+Cracked Rhodonite Brick Stair=Gerissene Rhodonitziegeltreppe
+Cobbled Rhodonite Stair=Gefaste Rhodonittreppe
+
+Rose Quartz Stair=Rosenquarz-Treppe
+Rose Quartz Brick Stair=Rosenquarz-Ziegel-Treppe
+Rose Quartz Block Stair=Rosenquarz-Block-Treppe
+Cracked Rose Quartz Brick Stair=Rissige Rosenquarz-Ziegel-Treppe
+
+Scoria Stair=Skorie-Treppe
+Scoria Brick Stair=Skorie-Ziegel-Treppe
+Scoria Block Stair=Skorie-Block-Treppe
+Cracked Scoria Brick Stair=Rissige Skorie-Ziegel-Treppe
+Cobbled Scoria Stair=Gepflasterte Skorie-Treppe
+
+Serpentine Stair=Serpentin-Treppe
+Cobbled Serpentine Stair=Gepflasterte Serpentin-Treppe
+Serpentine Brick Stair=Serpentin-Ziegel-Treppe
+Serpentine Block Stair=Serpentin-Block-Treppe
+Cracked Serpentine Brick Stair=Rissige Serpentin-Ziegel-Treppe
+
+Shale Stair=Schiefer-Treppe
+Shale Brick Stair=Schiefer-Ziegel-Treppe
+Shale Block Stair=Schiefer-Block-Treppe
+Cracked Shale Brick Stair=Rissige Schiefer-Ziegel-Treppe
+Cobbled Shale Stair=Gepflasterte Schiefer-Treppe
+
+Slate Stair=Schiefer-Treppe
+Slate Brick Stair=Schiefer-Ziegel-Treppe
+Slate Block Stair=Schiefer-Block-Treppe
+Cracked Slate Brick Stair=Rissige Schiefer-Ziegel-Treppe
+Cobbled Slate Stair=Gepflasterte Schiefer-Treppe
+Slate Tile Stair=Schieferfliesen-Treppe
+
+Smokey Quartz Stair=Rauchquarz-Treppe
+Smokey Quartz Brick Stair=Rauchquarz-Ziegel-Treppe
+Smokey Quartz Block Stair=Rauchquarz-Block-Treppe
+Cracked Smokey Quartz Brick Stair=Rissige Rauchquarz-Ziegel-Treppe
+
+Soapstone Stair=Speckstein-Treppe
+Soapstone Brick Stair=Speckstein-Ziegel-Treppe
+Soapstone Block Stair=Speckstein-Block-Treppe
+Cracked Soapstone Brick Stair=Rissige Speckstein-Ziegel-Treppe
+
+Sodalite Stair=Sodalith-Treppe
+Cobbled Sodalite Stair=Gepflasterte Sodalith-Treppe
+Sodalite Brick Stair=Sodalith-Ziegel-Treppe
+Sodalite Block Stair=Sodalith-Block-Treppe
+Cracked Sodalite Brick Stair=Rissige Sodalith-Ziegel-Treppe
+
+Sugilite Stair=Sugilit-Treppe
+Sugilite Brick Stair=Sugilit-Ziegel-Treppe
+Sugilite Block Stair=Sugilit-Block-Treppe
+Cracked Sugilite Brick Stair=Rissige Sugilit-Ziegel-Treppe
+Cobbled Sugilite Stair=Gepflasterte Sugilit-Treppe
+
+Green Tourmaline Stair=Grüner Turmalintreppe
+Green Tourmaline Brick Stair=Grüner Turmalinziegeltreppe
+Green Tourmaline Block Stair=Grüner Turmalinblocktreppe
+Cracked Green Tourmaline Brick Stair=Gerissene grüne Turmalinziegeltreppe
+
+Paraiba Tourmaline Stair=Paraíba-Turmalinstufe
+Paraiba Tourmaline Brick Stair=Paraíba-Turmalinziegelstufe
+Paraiba Tourmaline Block Stair=Paraíba-Turmalinblockstufe
+Cracked Paraiba Tourmaline Brick Stair=Gerissene Paraíba-Turmalinziegelstufe
+
+Pink Tourmaline Stair=Rosa Turmalinstufe
+Pink Tourmaline Brick Stair=Rosa Turmalinziegelstufe
+Pink Tourmaline Block Stair=Rosa Turmalinblockstufe
+Cracked Pink Tourmaline Brick Stair=Gerissene rosa Turmalinziegelstufe
+
+Travertine Stair=Travertin-Treppe
+Cobbled Travertine Stair=Gepflasterte Travertin-Treppe
+Travertine Brick Stair=Travertin-Ziegel-Treppe
+Travertine Block Stair=Travertin-Block-Treppe
+Cracked Travertine Brick Stair=Rissige Travertin-Ziegel-Treppe
+
+Yellow Travertine Stair=Gelber Travertin-Treppe
+Cobbled Yellow Travertine Stair=Gepflasterte gelber Travertin-Treppe
+Yellow Travertine Brick Stair=Gelber Travertin-Ziegel-Treppe
+Yellow Travertine Block Stair=Gelber Travertin-Block-Treppe
+Cracked Yellow Travertine Brick Stair=Rissige gelber Travertin-Ziegel-Treppe
+
+Beige Tuff Stair=Beige Tuff-Treppe
+Beige Tuff Brick Stair=Beige Tuff-Ziegel-Treppe
+Beige Tuff Block Stair=Beige Tuff-Block-Treppe
+Cracked Beige Tuff Brick Stair=Rissige Beige Tuff-Ziegel-Treppe
+Cobbled Beige Tuff Stair=Gepflasterte Beige Tuff-Treppe
+
+Grey Tuff Stair=Grauer Tuff-Treppe
+Grey Tuff Brick Stair=Grauer Tuff-Ziegel-Treppe
+Grey Tuff Block Stair=Grauer Tuff-Block-Treppe
+Cracked Grey Tuff Brick Stair=Rissige Grauer Tuff-Ziegel-Treppe
+Cobbled Grey Tuff Stair=Gepflasterte Grauer Tuff-Treppe
+
+Red Tuff Stair=Roter Tuff-Treppe
+Red Tuff Brick Stair=Roter Tuff-Ziegel-Treppe
+Red Tuff Block Stair=Roter Tuff-Block-Treppe
+Cracked Red Tuff Brick Stair=Rissige Roter Tuff-Ziegel-Treppe
+Cobbled Red Tuff Stair=Gepflasterte Roter Tuff-Treppe
+
+Turquoise Stair=Türkis-Treppe
+Turquoise Brick Stair=Türkis-Ziegel-Treppe
+Turquoise Block Stair=Türkis-Block-Treppe
+Cracked Turquoise Brick Stair=Rissige Türkis-Ziegel-Treppe
+Cobbled Turquoise Stair=Gepflasterte Türkis-Treppe
+
+Vivianite Stair=Vivianit-Treppe
+Vivianite Brick Stair=Vivianit-Ziegel-Treppe
+Vivianite Block Stair=Vivianit-Block-Treppe
+Cracked Vivianite Brick Stair=Rissige Vivianit-Ziegel-Treppe
+
+
+
+Inner Blue Agate Stair=Innere blaue Achat-Treppe
+Inner Gray Agate Stair=Innere graue Achat-Treppe
+Inner Green Agate Stair=Innere grüne Achat-Treppe
+Inner Moss Agate Stair=Innere Moosachat-Treppe
+Inner Orange Agate Stair=Innere orange Achat-Treppe
+Inner Purple Agate Stair=Innere violette Achat-Treppe
+Inner Red Agate Stair=Innere rote Achat-Treppe
+
+Inner Amazonite Stair=Innere Amazonit-Treppe
+Inner Cobbled Amazonite Stair=Innere gepflasterte Amazonit-Treppe
+Inner Amazonite Brick Stair=Innere Amazonit-Ziegel-Treppe
+Inner Amazonite Block Stair=Innere Amazonit-Block-Treppe
+Inner Cracked Amazonite Brick Stair=Innere rissige Amazonit-Ziegel-Treppe
+
+Inner Amber Stair=Innere Bernstein-Treppe
+Inner Amber Brick Stair=Innere Bernstein-Ziegel-Treppe
+Inner Amber Block Stair=Innere Bernstein-Block-Treppe
+Inner Cracked Amber Brick Stair=Innere rissige Bernstein-Ziegel-Treppe
+
+Inner Amethyst Stair=Innere Amethyst-Treppe
+Inner Amethyst Brick Stair=Innere Amethyst-Ziegel-Treppe
+Inner Amethyst Block Stair=Innere Amethyst-Block-Treppe
+Inner Cracked Amethyst Brick Stair=Innere rissige Amethyst-Ziegel-Treppe
+
+Inner Andesite Stair=Innere Andesit-Treppe
+Inner Andesite Block Stair=Innere Andesit-Block-Treppe
+Inner Andesite Brick Stair=Innere Andesit-Ziegel-Treppe
+Inner Cracked Andesite Brick Stair=Innere rissige Andesit-Ziegel-Treppe
+Inner Cobbled Andesite Stair=Innere gepflasterte Andesit-Treppe
+
+Inner Basalt Stair=Innere Basalt-Treppe
+Inner Basalt Block Stair=Innere Basalt-Block-Treppe
+Inner Basalt Brick Stair=Innere Basalt-Ziegel-Treppe
+Inner Cracked Basalt Brick Stair=Innere rissige Basalt-Ziegel-Treppe
+Inner Cobbled Basalt Stair=Innere gepflasterte Basalt-Treppe
+Inner Basalt Tile Stair=Innere Basaltfliesen-Treppe
+
+Inner Black Moonstone Stair=Innere schwarze Mondstein-Treppe
+Inner Black Moonstone Brick Stair=Innere schwarze Mondstein-Ziegel-Treppe
+Inner Black Moonstone Block Stair=Innere schwarze Mondstein-Block-Treppe
+Inner Cracked Black Moonstone Brick Stair=Innere rissige schwarze Mondstein-Ziegel-Treppe
+
+Inner Calcite Stair=Innere Calcit-Treppe
+Inner Calcite Brick Stair=Innere Calcit-Ziegel-Treppe
+Inner Calcite Block Stair=Innere Calcit-Block-Treppe
+Inner Cracked Calcite Brick Stair=Innere rissige Calcit-Ziegel-Treppe
+
+Inner Grey Calcite Stair=Innere graue Calcittreppe
+Inner Grey Calcite Brick Stair=Innere graue Calcitziegeltreppe
+Inner Grey Calcite Block Stair=Innere graue Calcitblocktreppe
+Inner Cracked Grey Calcite Brick Stair=Innere gerissene Treppe aus grauem Calcitziegel
+
+Inner Orange Calcite Stair=Innere orangefarbene Calcittreppe
+Inner Orange Calcite Brick Stair=Innere orangefarbene Calcitziegeltreppe
+Inner Orange Calcite Block Stair=Innere orangefarbene Calcitblocktreppe
+Inner Cracked Orange Calcite Brick Stair=Innere gerissene Treppe aus orangefarbenem Calcitziegel
+
+Inner Carnotite Stair=Innere Carnotit-Treppe
+Inner Carnotite Brick Stair=Innere Carnotit-Ziegel-Treppe
+Inner Carnotite Block Stair=Innere Carnotit-Block-Treppe
+Inner Cracked Carnotite Brick Stair=Innere rissige Carnotit-Ziegel-Treppe
+Inner Cobbled Carnotite Stair=Innere gepflasterte Carnotit-Treppe
+
+Inner Celestine Stair=Innere Celestin-Treppe
+Inner Celestine Brick Stair=Innere Celestin-Ziegel-Treppe
+Inner Celestine Block Stair=Innere Celestin-Block-Treppe
+Inner Cracked Celestine Brick Stair=Innere rissige Celestin-Ziegel-Treppe
+
+Inner Chalcanthite Stair=Innere Chalkanthittreppe
+Inner Chalcanthite Brick Stair=Innere Chalkanthitziegeltreppe
+Inner Chalcanthite Block Stair=Innere Chalkanthitblocktreppe
+Inner Cracked Chalcanthite Brick Stair=Innere gerissene Chalkanthitziegeltreppe
+Inner Cobbled Chalcanthite Stair=Innere gerumpelte Chalkanthittreppe
+
+Inner Chrysoprase Stair=Innere Chrysopras-Treppe
+Inner Chrysoprase Brick Stair=Innere Chrysopras-Ziegel-Treppe
+Inner Chrysoprase Block Stair=Innere Chrysopras-Block-Treppe
+Inner Cracked Chrysoprase Brick Stair=Innere rissige Chrysopras-Ziegel-Treppe
+
+Inner Citrine Stair=Innere Citrin-Treppe
+Inner Citrine Brick Stair=Innere Citrin-Ziegel-Treppe
+Inner Citrine Block Stair=Innere Citrin-Block-Treppe
+Inner Cracked Citrine Brick Stair=Innere rissige Citrin-Ziegel-Treppe
+
+Inner Covellite Stair=Innere Covellit-Treppe
+Inner Covellite Brick Stair=Innere Covellit-Ziegel-Treppe
+Inner Covellite Block Stair=Innere Covellit-Block-Treppe
+Inner Cracked Covellite Brick Stair=Innere rissige Covellit-Ziegel-Treppe
+Inner Cobbled Covellite Stair=Innere gepflasterte Covellit-Treppe
+
+Inner Crocoite Stair=Innere Crocoit-Treppe
+Inner Crocoite Brick Stair=Innere Crocoit-Ziegel-Treppe
+Inner Crocoite Block Stair=Innere Crocoit-Block-Treppe
+Inner Cracked Crocoite Brick Stair=Innere rissige Crocoit-Ziegel-Treppe
+
+Inner Diorite Stair=Innere Diorit-Treppe
+Inner Diorite Brick Stair=Innere Diorit-Ziegel-Treppe
+Inner Diorite Block Stair=Innere Diorit-Block-Treppe
+Inner Cracked Diorite Brick Stair=Innere rissige Diorit-Ziegel-Treppe
+Inner Cobbled Diorite Stair=Innere gepflasterte Diorit-Treppe
+
+Inner Erythrite Stair=Innere Erythrit-Treppe
+Inner Erythrite Brick Stair=Innere Erythrit-Ziegel-Treppe
+Inner Erythrite Block Stair=Innere Erythrit-Block-Treppe
+Inner Cracked Erythrite Brick Stair=Innere rissige Erythrit-Ziegel-Treppe
+
+Inner Eudialite Stair=Innere Eudialit-Treppe
+Inner Eudialite Brick Stair=Innere Eudialit-Ziegel-Treppe
+Inner Eudialite Block Stair=Innere Eudialit-Block-Treppe
+Inner Cracked Eudialite Brick Stair=Innere rissige Eudialit-Ziegel-Treppe
+
+Inner Fluorite Stair=Innere Fluorit-Treppe
+Inner Fluorite Brick Stair=Innere Fluorit-Ziegel-Treppe
+Inner Fluorite Block Stair=Innere Fluorit-Block-Treppe
+Inner Cracked Fluorite Brick Stair=Innere rissige Fluorit-Ziegel-Treppe
+
+Inner Gabbro Stair=Innere Gabbro-Treppe
+Inner Cobbled Gabbro Stair=Innere gepflasterte Gabbro-Treppe
+Inner Gabbro Brick Stair=Innere Gabbro-Ziegel-Treppe
+Inner Gabbro Block Stair=Innere Gabbro-Block-Treppe
+Inner Cracked Gabbro Brick Stair=Innere rissige Gabbro-Ziegel-Treppe
+
+Inner Galena Stair=Innere Galenit-Treppe
+Inner Galena Brick Stair=Innere Galenit-Ziegel-Treppe
+Inner Galena Block Stair=Innere Galenit-Block-Treppe
+Inner Cracked Galena Brick Stair=Innere rissige Galenit-Ziegel-Treppe
+
+Inner Black Granite Stair=Innere schwarze Granit-Treppe
+Inner Black Granite Brick Stair=Innere schwarze Granit-Ziegel-Treppe
+Inner Black Granite Block Stair=Innere schwarze Granit-Block-Treppe
+Inner Cracked Black Granite Brick Stair=Innere rissige schwarze Granit-Ziegel-Treppe
+Inner Cobbled Black Granite Stair=Innere gepflasterte schwarze Granit-Treppe
+
+Inner Blue Granite Stair=Innere blaue Granit-Treppe
+Inner Blue Granite Brick Stair=Innere blaue Granit-Ziegel-Treppe
+Inner Blue Granite Block Stair=Innere blaue Granit-Block-Treppe
+Inner Cracked Blue Granite Brick Stair=Innere rissige blaue Granit-Ziegel-Treppe
+Inner Cobbled Blue Granite Stair=Innere gepflasterte blaue Granit-Treppe
+
+Inner Gray Granite Stair=Innere graue Granit-Treppe
+Inner Gray Granite Brick Stair=Innere graue Granit-Ziegel-Treppe
+Inner Gray Granite Block Stair=Innere graue Granit-Block-Treppe
+Inner Cracked Gray Granite Brick Stair=Innere rissige graue Granit-Ziegel-Treppe
+Inner Cobbled Gray Granite Stair=Innere gepflasterte graue Granit-Treppe
+
+Inner Green Granite Stair=Innere grüne Granit-Treppe
+Inner Green Granite Brick Stair=Innere grüne Granit-Ziegel-Treppe
+Inner Green Granite Block Stair=Innere grüne Granit-Block-Treppe
+Inner Cracked Green Granite Brick Stair=Innere rissige grüne Granit-Ziegel-Treppe
+Inner Cobbled Green Granite Stair=Innere gepflasterte grüne Granit-Treppe
+
+Inner Pink Granite Stair=Innere rosa Granit-Treppe
+Inner Pink Granite Brick Stair=Innere rosa Granit-Ziegel-Treppe
+Inner Pink Granite Block Stair=Innere rosa Granit-Block-Treppe
+Inner Cracked Pink Granite Brick Stair=Innere rissige rosa Granit-Ziegel-Treppe
+Inner Cobbled Pink Granite Stair=Innere gepflasterte rosa Granit-Treppe
+
+Inner Red Granite Stair=Innere rote Granit-Treppe
+Inner Red Granite Brick Stair=Innere rote Granit-Ziegel-Treppe
+Inner Red Granite Block Stair=Innere rote Granit-Block-Treppe
+Inner Cracked Red Granite Brick Stair=Innere rissige rote Granit-Ziegel-Treppe
+Inner Cobbled Red Granite Stair=Innere gepflasterte rote Granit-Treppe
+
+Inner White Granite Stair=Innere weiße Granit-Treppe
+Inner White Granite Brick Stair=Innere weiße Granit-Ziegel-Treppe
+Inner White Granite Block Stair=Innere weiße Granit-Block-Treppe
+Inner Cracked White Granite Brick Stair=Innere rissige weiße Granit-Ziegel-Treppe
+Inner Cobbled White Granite Stair=Innere gepflasterte weiße Granit-Treppe
+
+Inner Yellow Granite Stair=Innere gelbe Granit-Treppe
+Inner Yellow Granite Brick Stair=Innere gelbe Granit-Ziegel-Treppe
+Inner Yellow Granite Block Stair=Innere gelbe Granit-Block-Treppe
+Inner Cracked Yellow Granite Brick Stair=Innere rissige gelbe Granit-Ziegel-Treppe
+Inner Cobbled Yellow Granite Stair=Innere gepflasterte gelbe Granit-Treppe
+
+Inner Heliodor Stair=Innere Heliodor-Treppe
+Inner Heliodor Brick Stair=Innere Heliodor-Ziegel-Treppe
+Inner Heliodor Block Stair=Innere Heliodor-Block-Treppe
+Inner Cracked Heliodor Brick Stair=Innere rissige Heliodor-Ziegel-Treppe
+
+Inner Howlite Stair=Innere Howlite-Treppe
+Inner Howlite Brick Stair=Innere Howlite-Ziegel-Treppe
+Inner Howlite Block Stair=Innere Howlite-Block-Treppe
+Inner Cracked Howlite Brick Stair=Innere rissige Howlite-Ziegel-Treppe
+Inner Cobbled Howlite Stair=Innere gepflasterte Howlite-Treppe
+
+Inner Ilvaite Stair=Innere Ilvaite-Treppe
+Inner Ilvaite Brick Stair=Innere Ilvaite-Ziegel-Treppe
+Inner Ilvaite Block Stair=Innere Ilvaite-Block-Treppe
+Inner Cracked Ilvaite Brick Stair=Innere rissige Ilvaite-Ziegel-Treppe
+Inner Cobbled Ilvaite Stair=Innere gepflasterte Ilvaite-Treppe
+
+Inner Jade Stair=Innere Jade-Treppe
+Inner Jade Brick Stair=Innere Jade-Ziegel-Treppe
+Inner Jade Block Stair=Innere Jade-Block-Treppe
+Inner Cracked Jade Brick Stair=Innere rissige Jade-Ziegel-Treppe
+Inner Cobbled Jade Stair=Innere gepflasterte Jade-Treppe
+
+Inner Red Jasper Stair=Innere rote Jaspistreppe
+Inner Red Jasper Brick Stair=Innere rote Jaspisziegeltreppe
+Inner Red Jasper Block Stair=Innere rote Jaspisblocktreppe
+Inner Cracked Red Jasper Brick Stair=Innere gerissene rote Jaspisziegeltreppe
+Inner Cobbled Red Jasper Stair=Innere gerumpelte rote Jaspistreppe
+
+Inner Kyanite Stair=Innere Kyanit-Treppe
+Inner Kyanite Brick Stair=Innere Kyanit-Ziegel-Treppe
+Inner Kyanite Block Stair=Innere Kyanit-Block-Treppe
+Inner Cracked Kyanite Brick Stair=Innere rissige Kyanit-Ziegel-Treppe
+Inner Cobbled Kyanite Stair=Innere gepflasterte Kyanit-Treppe
+
+Inner Lapis Lazuli Stair=Innere Lapislazuli-Treppe
+Inner Lapis Lazuli Brick Stair=Innere Lapislazuli-Ziegel-Treppe
+Inner Lapis Lazuli Block Stair=Innere Lapislazuli-Block-Treppe
+Inner Cracked Lapis Lazuli Brick Stair=Innere rissige Lapislazuli-Ziegel-Treppe
+
+Inner Lepidolite Stair=Innere Lepidolithtreppe
+Inner Lepidolite Brick Stair=Innere Lepidolithziegeltreppe
+Inner Lepidolite Block Stair=Innere Lepidolithblocktreppe
+Inner Cracked Lepidolite Brick Stair=Innere gerissene Lepidolithziegeltreppe
+Inner Cobbled Lepidolite Stair=Innere gerumpelte Lepidolithtreppe
+
+Inner Blue Limestone Stair=Innere blaue Kalkstein-Treppe
+Inner Blue Limestone Brick Stair=Innere blaue Kalkstein-Ziegel-Treppe
+Inner Blue Limestone Block Stair=Innere blaue Kalkstein-Block-Treppe
+Inner Cracked Blue Limestone Brick Stair=Innere rissige blaue Kalkstein-Ziegel-Treppe
+Inner Cobbled Blue Limestone Stair=Innere gepflasterte blaue Kalkstein-Treppe
+
+Inner White Limestone Stair=Innere weiße Kalkstein-Treppe
+Inner White Limestone Brick Stair=Innere weiße Kalkstein-Ziegel-Treppe
+Inner White Limestone Block Stair=Innere weiße Kalkstein-Block-Treppe
+Inner Cracked White Limestone Brick Stair=Innere rissige weiße Kalkstein-Ziegel-Treppe
+Inner Cobbled White Limestone Stair=Innere gepflasterte weiße Kalkstein-Treppe
+
+Inner Marble Stair=Innere Marmor-Treppe
+Inner Marble Brick Stair=Innere Marmor-Ziegel-Treppe
+Inner Marble Block Stair=Innere Marmor-Block-Treppe
+Inner Cracked Marble Brick Stair=Innere rissige Marmor-Ziegel-Treppe
+Inner Cobbled Marble Stair=Innere gepflasterte Marmor-Treppe
+
+Inner Moonstone Stair=Innere Mondsteintreppe
+Inner Moonstone Brick Stair=Innere Mondsteinziegeltreppe
+Inner Moonstone Block Stair=Innere Mondsteinblocktreppe
+Inner Cracked Moonstone Brick Stair=Innere gerissene Mondsteinziegeltreppe
+
+Inner Morion Quartz Stair=Innere Morion-Quarz-Treppe
+Inner Morion Quartz Brick Stair=Innere Morion-Quarz-Ziegel-Treppe
+Inner Morion Quartz Block Stair=Innere Morion-Quarz-Block-Treppe
+Inner Cracked Morion Quartz Brick Stair=Innere rissige Morion-Quarz-Ziegel-Treppe
+
+Inner Mudstone Stair=Innere Schiefer-Treppe
+Inner Cobbled Mudstone Stair=Innere gepflasterte Schiefer-Treppe
+Inner Mudstone Brick Stair=Innere Schiefer-Ziegel-Treppe
+Inner Mudstone Block Stair=Innere Schiefer-Block-Treppe
+Inner Cracked Mudstone Brick Stair=Innere rissige Schiefer-Ziegel-Treppe
+
+Inner Prasiolite Stair=Innere Prasiolith-Treppe
+Inner Prasiolite Brick Stair=Innere Prasiolith-Ziegel-Treppe
+Inner Prasiolite Block Stair=Innere Prasiolith-Block-Treppe
+Inner Cracked Prasiolite Brick Stair=Innere rissige Prasiolith-Ziegel-Treppe
+
+Inner Pumice Stair=Innere Bimsstein-Treppe
+Inner Pumice Brick Stair=Innere Bimsstein-Ziegel-Treppe
+Inner Pumice Block Stair=Innere Bimsstein-Block-Treppe
+Inner Cracked Pumice Brick Stair=Innere rissige Bimsstein-Ziegel-Treppe
+
+Inner Pyrite Stair=Innere Pyrit-Treppe
+Inner Pyrite Brick Stair=Innere Pyrit-Ziegel-Treppe
+Inner Pyrite Block Stair=Innere Pyrit-Block-Treppe
+Inner Cracked Pyrite Brick Stair=Innere rissige Pyrit-Ziegel-Treppe
+
+Inner Quartz Stair=Innere Quarz-Treppe
+Inner Quartz Brick Stair=Innere Quarz-Ziegel-Treppe
+Inner Quartz Block Stair=Innere Quarz-Block-Treppe
+Inner Cracked Quartz Brick Stair=Innere rissige Quarz-Ziegel-Treppe
+
+Inner Rhodonite Stair=Innere Rhodonittreppe
+Inner Rhodonite Brick Stair=Innere Rhodonitziegeltreppe
+Inner Rhodonite Block Stair=Innere Rhodonitblocktreppe
+Inner Cracked Rhodonite Brick Stair=Innere gerissene Rhodonitziegeltreppe
+Inner Cobbled Rhodonite Stair=Innere gefaste Rhodonittreppe
+
+Inner Rose Quartz Stair=Innere Rosenquarz-Treppe
+Inner Rose Quartz Brick Stair=Innere Rosenquarz-Ziegel-Treppe
+Inner Rose Quartz Block Stair=Innere Rosenquarz-Block-Treppe
+Inner Cracked Rose Quartz Brick Stair=Innere rissige Rosenquarz-Ziegel-Treppe
+
+Inner Scoria Stair=Innere Scoria-Treppe
+Inner Scoria Brick Stair=Innere Scoria-Ziegel-Treppe
+Inner Scoria Block Stair=Innere Scoria-Block-Treppe
+Inner Cracked Scoria Brick Stair=Innere rissige Scoria-Ziegel-Treppe
+Inner Cobbled Scoria Stair=Innere gepflasterte Scoria-Treppe
+
+Inner Serpentine Stair=Innere Serpentin-Treppe
+Inner Cobbled Serpentine Stair=Innere gepflasterte Serpentin-Treppe
+Inner Serpentine Brick Stair=Innere Serpentin-Ziegel-Treppe
+Inner Serpentine Block Stair=Innere Serpentin-Block-Treppe
+Inner Cracked Serpentine Brick Stair=Innere rissige Serpentin-Ziegel-Treppe
+
+Inner Shale Stair=Innere Schiefer-Treppe
+Inner Shale Brick Stair=Innere Schiefer-Ziegel-Treppe
+Inner Shale Block Stair=Innere Schiefer-Block-Treppe
+Inner Cracked Shale Brick Stair=Innere rissige Schiefer-Ziegel-Treppe
+Inner Cobbled Shale Stair=Innere gepflasterte Schiefer-Treppe
+
+Inner Slate Stair=Innere Schiefer-Treppe
+Inner Slate Brick Stair=Innere Schiefer-Ziegel-Treppe
+Inner Slate Block Stair=Innere Schiefer-Block-Treppe
+Inner Cracked Slate Brick Stair=Innere rissige Schiefer-Ziegel-Treppe
+Inner Cobbled Slate Stair=Innere gepflasterte Schiefer-Treppe
+Inner Slate Tile Stair=Innere Schieferfliesen-Treppe
+
+Inner Smokey Quartz Stair=Innere Rauchquarz-Treppe
+Inner Smokey Quartz Brick Stair=Innere Rauchquarz-Ziegel-Treppe
+Inner Smokey Quartz Block Stair=Innere Rauchquarz-Block-Treppe
+Inner Cracked Smokey Quartz Brick Stair=Innere rissige Rauchquarz-Ziegel-Treppe
+
+Inner Soapstone Stair=Innere Speckstein-Treppe
+Inner Soapstone Brick Stair=Innere Speckstein-Ziegel-Treppe
+Inner Soapstone Block Stair=Innere Speckstein-Block-Treppe
+Inner Cracked Soapstone Brick Stair=Innere rissige Speckstein-Ziegel-Treppe
+
+Inner Sodalite Stair=Innere Sodalith-Treppe
+Inner Cobbled Sodalite Stair=Innere gepflasterte Sodalith-Treppe
+Inner Sodalite Brick Stair=Innere Sodalith-Ziegel-Treppe
+Inner Sodalite Block Stair=Innere Sodalith-Block-Treppe
+Inner Cracked Sodalite Brick Stair=Innere rissige Sodalith-Ziegel-Treppe
+
+Inner Sugilite Stair=Innere Sugilith-Treppe
+Inner Sugilite Brick Stair=Innere Sugilith-Ziegel-Treppe
+Inner Sugilite Block Stair=Innere Sugilith-Block-Treppe
+Inner Cracked Sugilite Brick Stair=Innere rissige Sugilith-Ziegel-Treppe
+Inner Cobbled Sugilite Stair=Innere gepflasterte Sugilith-Treppe
+
+Inner Green Tourmaline Stair=Innere grüne Turmalintreppe
+Inner Green Tourmaline Brick Stair=Innere grüner Turmalinziegeltreppe
+Inner Green Tourmaline Block Stair=Innere grüner Turmalinblocktreppe
+Inner Cracked Green Tourmaline Brick Stair=Innere gerissene grüne Turmalinziegeltreppe
+
+Inner Paraiba Tourmaline Stair=Innere Paraíba-Turmalinstufe
+Inner Paraiba Tourmaline Brick Stair=Innere Paraíba-Turmalinziegelstufe
+Inner Paraiba Tourmaline Block Stair=Innere Paraíba-Turmalinblockstufe
+Inner Cracked Paraiba Tourmaline Brick Stair=Innere gerissene Paraíba-Turmalinziegelstufe
+
+Inner Pink Tourmaline Stair=Innere rosa Turmalinstufe
+Inner Pink Tourmaline Brick Stair=Innere rosa Turmalinziegelstufe
+Inner Pink Tourmaline Block Stair=Innere rosa Turmalinblockstufe
+Inner Cracked Pink Tourmaline Brick Stair=Innere gerissene rosa Turmalinziegelstufe
+
+Inner Travertine Stair=Innere Travertin-Treppe
+Inner Cobbled Travertine Stair=Innere gepflasterte Travertin-Treppe
+Inner Travertine Brick Stair=Innere Travertin-Ziegel-Treppe
+Inner Travertine Block Stair=Innere Travertin-Block-Treppe
+Inner Cracked Travertine Brick Stair=Innere rissige Travertin-Ziegel-Treppe
+
+Inner Yellow Travertine Stair=Innere gelbe Travertin-Treppe
+Inner Cobbled Yellow Travertine Stair=Innere gepflasterte gelbe Travertin-Treppe
+Inner Yellow Travertine Brick Stair=Innere gelbe Travertin-Ziegel-Treppe
+Inner Yellow Travertine Block Stair=Innere gelbe Travertin-Block-Treppe
+Inner Cracked Yellow Travertine Brick Stair=Innere rissige gelbe Travertin-Ziegel-Treppe
+
+Inner Beige Tuff Stair=Innere beige Tuff-Treppe
+Inner Cobbled Beige Tuff Stair=Innere gepflasterte beige Tuff-Treppe
+Inner Beige Tuff Brick Stair=Innere beige Tuff-Ziegel-Treppe
+Inner Beige Tuff Block Stair=Innere beige Tuff-Block-Treppe
+Inner Cracked Beige Tuff Brick Stair=Innere rissige beige Tuff-Ziegel-Treppe
+
+Inner Grey Tuff Stair=Innere graue Tuff-Treppe
+Inner Cobbled Grey Tuff Stair=Innere gepflasterte graue Tuff-Treppe
+Inner Grey Tuff Brick Stair=Innere graue Tuff-Ziegel-Treppe
+Inner Grey Tuff Block Stair=Innere graue Tuff-Block-Treppe
+Inner Cracked Grey Tuff Brick Stair=Innere rissige graue Tuff-Ziegel-Treppe
+
+Inner Red Tuff Stair=Innere rote Tuff-Treppe
+Inner Cobbled Red Tuff Stair=Innere gepflasterte rote Tuff-Treppe
+Inner Red Tuff Brick Stair=Innere rote Tuff-Ziegel-Treppe
+Inner Red Tuff Block Stair=Innere rote Tuff-Block-Treppe
+Inner Cracked Red Tuff Brick Stair=Innere rissige rote Tuff-Ziegel-Treppe
+
+Inner Turquoise Stair=Innere Türkis-Treppe
+Inner Turquoise Brick Stair=Innere Türkis-Ziegel-Treppe
+Inner Turquoise Block Stair=Innere Türkis-Block-Treppe
+Inner Cracked Turquoise Brick Stair=Innere rissige Türkis-Ziegel-Treppe
+Inner Cobbled Turquoise Stair=Innere gepflasterte Türkis-Treppe
+
+Inner Vivianite Stair=Innere Vivianit-Treppe
+Inner Vivianite Brick Stair=Innere Vivianit-Ziegel-Treppe
+Inner Vivianite Block Stair=Innere Vivianit-Block-Treppe
+Inner Cracked Vivianite Brick Stair=Innere rissige Vivianit-Ziegel-Treppe
+
+
+
+Outer Blue Agate Stair=Äußere blaue Achat-Treppe
+Outer Gray Agate Stair=Äußere graue Achat-Treppe
+Outer Green Agate Stair=Äußere grüne Achat-Treppe
+Outer Moss Agate Stair=Äußere Moosachat-Treppe
+Outer Orange Agate Stair=Äußere orange Achat-Treppe
+Outer Purple Agate Stair=Äußere violette Achat-Treppe
+Outer Red Agate Stair=Äußere rote Achat-Treppe
+
+Outer Amazonite Stair=Äußere Amazonit-Treppe
+Outer Cobbled Amazonite Stair=Äußere gepflasterte Amazonit-Treppe
+Outer Amazonite Brick Stair=Äußere Amazonit-Ziegel-Treppe
+Outer Amazonite Block Stair=Äußere Amazonit-Block-Treppe
+Outer Cracked Amazonite Brick Stair=Äußere rissige Amazonit-Ziegel-Treppe
+
+Outer Amber Stair=Äußere Bernstein-Treppe
+Outer Amber Brick Stair=Äußere Bernstein-Ziegel-Treppe
+Outer Amber Block Stair=Äußere Bernstein-Block-Treppe
+Outer Cracked Amber Brick Stair=Äußere rissige Bernstein-Ziegel-Treppe
+
+Outer Amethyst Stair=Äußere Amethyst-Treppe
+Outer Amethyst Brick Stair=Äußere Amethyst-Ziegel-Treppe
+Outer Amethyst Block Stair=Äußere Amethyst-Block-Treppe
+Outer Cracked Amethyst Brick Stair=Äußere rissige Amethyst-Ziegel-Treppe
+
+Outer Andesite Stair=Äußere Andesit-Treppe
+Outer Andesite Block Stair=Äußere Andesit-Block-Treppe
+Outer Andesite Brick Stair=Äußere Andesit-Ziegel-Treppe
+Outer Cracked Andesite Brick Stair=Äußere rissige Andesit-Ziegel-Treppe
+Outer Cobbled Andesite Stair=Äußere gepflasterte Andesit-Treppe
+
+Outer Basalt Stair=Äußere Basalt-Treppe
+Outer Basalt Block Stair=Äußere Basalt-Block-Treppe
+Outer Basalt Brick Stair=Äußere Basalt-Ziegel-Treppe
+Outer Cracked Basalt Brick Stair=Äußere rissige Basalt-Ziegel-Treppe
+Outer Cobbled Basalt Stair=Äußere gepflasterte Basalt-Treppe
+Outer Basalt Tile Stair=Äußere Basaltfliesen-Treppe
+
+Outer Black Moonstone Stair=Äußere schwarze Mondstein-Treppe
+Outer Black Moonstone Brick Stair=Äußere schwarze Mondstein-Ziegel-Treppe
+Outer Black Moonstone Block Stair=Äußere schwarze Mondstein-Block-Treppe
+Outer Cracked Black Moonstone Brick Stair=Äußere rissige schwarze Mondstein-Ziegel-Treppe
+
+Outer Calcite Stair=Äußere Calcit-Treppe
+Outer Calcite Brick Stair=Äußere Calcit-Ziegel-Treppe
+Outer Calcite Block Stair=Äußere Calcit-Block-Treppe
+Outer Cracked Calcite Brick Stair=Äußere rissige Calcit-Ziegel-Treppe
+
+Outer Grey Calcite Stair=Äußere graue Calcittreppe
+Outer Grey Calcite Brick Stair=Äußere graue Calcitziegeltreppe
+Outer Grey Calcite Block Stair=Äußere graue Calcitblocktreppe
+Outer Cracked Grey Calcite Brick Stair=Äußere gerissene Treppe aus grauem Calcitziegel
+
+Outer Orange Calcite Stair=Äußere orangefarbene Calcittreppe
+Outer Orange Calcite Brick Stair=Äußere orangefarbene Calcitziegeltreppe
+Outer Orange Calcite Block Stair=Äußere orangefarbene Calcitblocktreppe
+Outer Cracked Orange Calcite Brick Stair=Äußere gerissene Treppe aus orangefarbenem Calcitziegel
+
+Outer Carnotite Stair=Äußere Carnotit-Treppe
+Outer Carnotite Brick Stair=Äußere Carnotit-Ziegel-Treppe
+Outer Carnotite Block Stair=Äußere Carnotit-Block-Treppe
+Outer Cracked Carnotite Brick Stair=Äußere rissige Carnotit-Ziegel-Treppe
+Outer Cobbled Carnotite Stair=Äußere gepflasterte Carnotit-Treppe
+
+Outer Celestine Stair=Äußere Celestin-Treppe
+Outer Celestine Brick Stair=Äußere Celestin-Ziegel-Treppe
+Outer Celestine Block Stair=Äußere Celestin-Block-Treppe
+Outer Cracked Celestine Brick Stair=Äußere rissige Celestin-Ziegel-Treppe
+
+Outer Chalcanthite Stair=Äußere Chalkanthittreppe
+Outer Chalcanthite Brick Stair=Äußere Chalkanthitziegeltreppe
+Outer Chalcanthite Block Stair=Äußere Chalkanthitblocktreppe
+Outer Cracked Chalcanthite Brick Stair=Äußere gerissene Chalkanthitziegeltreppe
+Outer Cobbled Chalcanthite Stair=Äußere gerumpelte Chalkanthittreppe
+
+Outer Chrysoprase Stair=Äußere Chrysopras-Treppe
+Outer Chrysoprase Brick Stair=Äußere Chrysopras-Ziegel-Treppe
+Outer Chrysoprase Block Stair=Äußere Chrysopras-Block-Treppe
+Outer Cracked Chrysoprase Brick Stair=Äußere rissige Chrysopras-Ziegel-Treppe
+
+Outer Citrine Stair=Äußere Citrin-Treppe
+Outer Citrine Brick Stair=Äußere Citrin-Ziegel-Treppe
+Outer Citrine Block Stair=Äußere Citrin-Block-Treppe
+Outer Cracked Citrine Brick Stair=Äußere rissige Citrin-Ziegel-Treppe
+
+Outer Covellite Stair=Äußere Covellit-Treppe
+Outer Covellite Brick Stair=Äußere Covellit-Ziegel-Treppe
+Outer Covellite Block Stair=Äußere Covellit-Block-Treppe
+Outer Cracked Covellite Brick Stair=Äußere rissige Covellit-Ziegel-Treppe
+Outer Cobbled Covellite Stair=Äußere gepflasterte Covellit-Treppe
+
+Outer Crocoite Stair=Äußere Crocoit-Treppe
+Outer Crocoite Brick Stair=Äußere Crocoit-Ziegel-Treppe
+Outer Crocoite Block Stair=Äußere Crocoit-Block-Treppe
+Outer Cracked Crocoite Brick Stair=Äußere rissige Crocoit-Ziegel-Treppe
+
+Outer Diorite Stair=Äußere Diorit-Treppe
+Outer Diorite Brick Stair=Äußere Diorit-Ziegel-Treppe
+Outer Diorite Block Stair=Äußere Diorit-Block-Treppe
+Outer Cracked Diorite Brick Stair=Äußere rissige Diorit-Ziegel-Treppe
+Outer Cobbled Diorite Stair=Äußere gepflasterte Diorit-Treppe
+
+Outer Erythrite Stair=Äußere Erythrit-Treppe
+Outer Erythrite Brick Stair=Äußere Erythrit-Ziegel-Treppe
+Outer Erythrite Block Stair=Äußere Erythrit-Block-Treppe
+Outer Cracked Erythrite Brick Stair=Äußere rissige Erythrit-Ziegel-Treppe
+
+Outer Eudialite Stair=Äußere Eudialit-Treppe
+Outer Eudialite Brick Stair=Äußere Eudialit-Ziegel-Treppe
+Outer Eudialite Block Stair=Äußere Eudialit-Block-Treppe
+Outer Cracked Eudialite Brick Stair=Äußere rissige Eudialit-Ziegel-Treppe
+
+Outer Fluorite Stair=Äußere Fluorit-Treppe
+Outer Fluorite Brick Stair=Äußere Fluorit-Ziegel-Treppe
+Outer Fluorite Block Stair=Äußere Fluorit-Block-Treppe
+Outer Cracked Fluorite Brick Stair=Äußere rissige Fluorit-Ziegel-Treppe
+
+Outer Gabbro Stair=Äußere Gabbro-Treppe
+Outer Cobbled Gabbro Stair=Äußere gepflasterte Gabbro-Treppe
+Outer Gabbro Brick Stair=Äußere Gabbro-Ziegel-Treppe
+Outer Gabbro Block Stair=Äußere Gabbro-Block-Treppe
+Outer Cracked Gabbro Brick Stair=Äußere rissige Gabbro-Ziegel-Treppe
+
+Outer Galena Stair=Äußere Galenit-Treppe
+Outer Galena Brick Stair=Äußere Galenit-Ziegel-Treppe
+Outer Galena Block Stair=Äußere Galenit-Block-Treppe
+Outer Cracked Galena Brick Stair=Äußere rissige Galenit-Ziegel-Treppe
+
+Outer Black Granite Stair=Äußere schwarze Granit-Treppe
+Outer Black Granite Brick Stair=Äußere schwarze Granit-Ziegel-Treppe
+Outer Black Granite Block Stair=Äußere schwarze Granit-Block-Treppe
+Outer Cracked Black Granite Brick Stair=Äußere rissige schwarze Granit-Ziegel-Treppe
+Outer Cobbled Black Granite Stair=Äußere gepflasterte schwarze Granit-Treppe
+
+Outer Blue Granite Stair=Äußere blaue Granit-Treppe
+Outer Blue Granite Brick Stair=Äußere blaue Granit-Ziegel-Treppe
+Outer Blue Granite Block Stair=Äußere blaue Granit-Block-Treppe
+Outer Cracked Blue Granite Brick Stair=Äußere rissige blaue Granit-Ziegel-Treppe
+Outer Cobbled Blue Granite Stair=Äußere gepflasterte blaue Granit-Treppe
+
+Outer Gray Granite Stair=Äußere graue Granit-Treppe
+Outer Gray Granite Brick Stair=Äußere graue Granit-Ziegel-Treppe
+Outer Gray Granite Block Stair=Äußere graue Granit-Block-Treppe
+Outer Cracked Gray Granite Brick Stair=Äußere rissige graue Granit-Ziegel-Treppe
+Outer Cobbled Gray Granite Stair=Äußere gepflasterte graue Granit-Treppe
+
+Outer Green Granite Stair=Äußere grüne Granit-Treppe
+Outer Green Granite Brick Stair=Äußere grüne Granit-Ziegel-Treppe
+Outer Green Granite Block Stair=Äußere grüne Granit-Block-Treppe
+Outer Cracked Green Granite Brick Stair=Äußere rissige grüne Granit-Ziegel-Treppe
+Outer Cobbled Green Granite Stair=Äußere gepflasterte grüne Granit-Treppe
+
+Outer Pink Granite Stair=Äußere rosa Granit-Treppe
+Outer Pink Granite Brick Stair=Äußere rosa Granit-Ziegel-Treppe
+Outer Pink Granite Block Stair=Äußere rosa Granit-Block-Treppe
+Outer Cracked Pink Granite Brick Stair=Äußere rissige rosa Granit-Ziegel-Treppe
+Outer Cobbled Pink Granite Stair=Äußere gepflasterte rosa Granit-Treppe
+
+Outer Red Granite Stair=Äußere rote Granit-Treppe
+Outer Red Granite Brick Stair=Äußere rote Granit-Ziegel-Treppe
+Outer Red Granite Block Stair=Äußere rote Granit-Block-Treppe
+Outer Cracked Red Granite Brick Stair=Äußere rissige rote Granit-Ziegel-Treppe
+Outer Cobbled Red Granite Stair=Äußere gepflasterte rote Granit-Treppe
+
+Outer White Granite Stair=Äußere weiße Granit-Treppe
+Outer White Granite Brick Stair=Äußere weiße Granit-Ziegel-Treppe
+Outer White Granite Block Stair=Äußere weiße Granit-Block-Treppe
+Outer Cracked White Granite Brick Stair=Äußere rissige weiße Granit-Ziegel-Treppe
+Outer Cobbled White Granite Stair=Äußere gepflasterte weiße Granit-Treppe
+
+Outer Yellow Granite Stair=Äußere gelbe Granit-Treppe
+Outer Yellow Granite Brick Stair=Äußere gelbe Granit-Ziegel-Treppe
+Outer Yellow Granite Block Stair=Äußere gelbe Granit-Block-Treppe
+Outer Cracked Yellow Granite Brick Stair=Äußere rissige gelbe Granit-Ziegel-Treppe
+Outer Cobbled Yellow Granite Stair=Äußere gepflasterte gelbe Granit-Treppe
+
+Outer Heliodor Stair=Äußere Heliodor-Treppe
+Outer Heliodor Brick Stair=Äußere Heliodor-Ziegel-Treppe
+Outer Heliodor Block Stair=Äußere Heliodor-Block-Treppe
+Outer Cracked Heliodor Brick Stair=Äußere rissige Heliodor-Ziegel-Treppe
+
+Outer Howlite Stair=Äußere Howlite-Treppe
+Outer Howlite Brick Stair=Äußere Howlite-Ziegel-Treppe
+Outer Howlite Block Stair=Äußere Howlite-Block-Treppe
+Outer Cracked Howlite Brick Stair=Äußere rissige Howlite-Ziegel-Treppe
+Outer Cobbled Howlite Stair=Äußere gepflasterte Howlite-Treppe
+
+Outer Ilvaite Stair=Äußere Ilvaite-Treppe
+Outer Ilvaite Brick Stair=Äußere Ilvaite-Ziegel-Treppe
+Outer Ilvaite Block Stair=Äußere Ilvaite-Block-Treppe
+Outer Cracked Ilvaite Brick Stair=Äußere rissige Ilvaite-Ziegel-Treppe
+Outer Cobbled Ilvaite Stair=Äußere gepflasterte Ilvaite-Treppe
+
+Outer Jade Stair=Äußere Jade-Treppe
+Outer Jade Brick Stair=Äußere Jade-Ziegel-Treppe
+Outer Jade Block Stair=Äußere Jade-Block-Treppe
+Outer Cracked Jade Brick Stair=Äußere rissige Jade-Ziegel-Treppe
+Outer Cobbled Jade Stair=Äußere gepflasterte Jade-Treppe
+
+Outer Red Jasper Stair=Äußere rote Jaspistreppe
+Outer Red Jasper Brick Stair=Äußere rote Jaspisziegeltreppe
+Outer Red Jasper Block Stair=Äußere rote Jaspisblocktreppe
+Outer Cracked Red Jasper Brick Stair=Äußere gerissene rote Jaspisziegeltreppe
+Outer Cobbled Red Jasper Stair=Äußere gerumpelte rote Jaspistreppe
+
+Outer Kyanite Stair=Äußere Kyanit-Treppe
+Outer Kyanite Brick Stair=Äußere Kyanit-Ziegel-Treppe
+Outer Kyanite Block Stair=Äußere Kyanit-Block-Treppe
+Outer Cracked Kyanite Brick Stair=Äußere rissige Kyanit-Ziegel-Treppe
+Outer Cobbled Kyanite Stair=Äußere gepflasterte Kyanit-Treppe
+
+Outer Lapis Lazuli Stair=Äußere Lapislazuli-Treppe
+Outer Lapis Lazuli Brick Stair=Äußere Lapislazuli-Ziegel-Treppe
+Outer Lapis Lazuli Block Stair=Äußere Lapislazuli-Block-Treppe
+Outer Cracked Lapis Lazuli Brick Stair=Äußere rissige Lapislazuli-Ziegel-Treppe
+
+Outer Lepidolite Stair=Äußere Lepidolithtreppe
+Outer Lepidolite Brick Stair=Äußere Lepidolithziegeltreppe
+Outer Lepidolite Block Stair=Äußere Lepidolithblocktreppe
+Outer Cracked Lepidolite Brick Stair=Äußere gerissene Lepidolithziegeltreppe
+Outer Cobbled Lepidolite Stair=Äußere gerumpelte Lepidolithtreppe
+
+Outer Blue Limestone Stair=Äußere blaue Kalkstein-Treppe
+Outer Blue Limestone Brick Stair=Äußere blaue Kalkstein-Ziegel-Treppe
+Outer Blue Limestone Block Stair=Äußere blaue Kalkstein-Block-Treppe
+Outer Cracked Blue Limestone Brick Stair=Äußere rissige blaue Kalkstein-Ziegel-Treppe
+Outer Cobbled Blue Limestone Stair=Äußere gepflasterte blaue Kalkstein-Treppe
+
+Outer White Limestone Stair=Äußere weiße Kalkstein-Treppe
+Outer White Limestone Brick Stair=Äußere weiße Kalkstein-Ziegel-Treppe
+Outer White Limestone Block Stair=Äußere weiße Kalkstein-Block-Treppe
+Outer Cracked White Limestone Brick Stair=Äußere rissige weiße Kalkstein-Ziegel-Treppe
+Outer Cobbled White Limestone Stair=Äußere gepflasterte weiße Kalkstein-Treppe
+
+Outer Marble Stair=Äußere Marmor-Treppe
+Outer Marble Brick Stair=Äußere Marmor-Ziegel-Treppe
+Outer Marble Block Stair=Äußere Marmor-Block-Treppe
+Outer Cracked Marble Brick Stair=Äußere rissige Marmor-Ziegel-Treppe
+Outer Cobbled Marble Stair=Äußere gepflasterte Marmor-Treppe
+
+Outer Moonstone Stair=Äußere Mondsteintreppe
+Outer Moonstone Brick Stair=Äußere Mondsteinziegeltreppe
+Outer Moonstone Block Stair=Äußere Mondsteinblocktreppe
+Outer Cracked Moonstone Brick Stair=Äußere gerissene Mondsteinziegeltreppe
+
+Outer Morion Quartz Stair=Äußere Morion-Quarz-Treppe
+Outer Morion Quartz Brick Stair=Äußere Morion-Quarz-Ziegel-Treppe
+Outer Morion Quartz Block Stair=Äußere Morion-Quarz-Block-Treppe
+Outer Cracked Morion Quartz Brick Stair=Äußere rissige Morion-Quarz-Ziegel-Treppe
+
+Outer Mudstone Stair=Äußere Schiefer-Treppe
+Outer Cobbled Mudstone Stair=Äußere gepflasterte Schiefer-Treppe
+Outer Mudstone Brick Stair=Äußere Schiefer-Ziegel-Treppe
+Outer Mudstone Block Stair=Äußere Schiefer-Block-Treppe
+Outer Cracked Mudstone Brick Stair=Äußere rissige Schiefer-Ziegel-Treppe
+
+Outer Prasiolite Stair=Äußere Prasiolith-Treppe
+Outer Prasiolite Brick Stair=Äußere Prasiolith-Ziegel-Treppe
+Outer Prasiolite Block Stair=Äußere Prasiolith-Block-Treppe
+Outer Cracked Prasiolite Brick Stair=Äußere rissige Prasiolith-Ziegel-Treppe
+
+Outer Pumice Stair=Äußere Bimsstein-Treppe
+Outer Pumice Brick Stair=Äußere Bimsstein-Ziegel-Treppe
+Outer Pumice Block Stair=Äußere Bimsstein-Block-Treppe
+Outer Cracked Pumice Brick Stair=Äußere rissige Bimsstein-Ziegel-Treppe
+
+Outer Pyrite Stair=Äußere Pyrit-Treppe
+Outer Pyrite Brick Stair=Äußere Pyrit-Ziegel-Treppe
+Outer Pyrite Block Stair=Äußere Pyrit-Block-Treppe
+Outer Cracked Pyrite Brick Stair=Äußere rissige Pyrit-Ziegel-Treppe
+
+Outer Quartz Stair=Äußere Quarz-Treppe
+Outer Quartz Brick Stair=Äußere Quarz-Ziegel-Treppe
+Outer Quartz Block Stair=Äußere Quarz-Block-Treppe
+Outer Cracked Quartz Brick Stair=Äußere rissige Quarz-Ziegel-Treppe
+
+Outer Rhodonite Stair=Äußere Rhodonittreppe
+Outer Rhodonite Brick Stair=Äußere Rhodonitziegeltreppe
+Outer Rhodonite Block Stair=Äußere Rhodonitblocktreppe
+Outer Cracked Rhodonite Brick Stair=Äußere gerissene Rhodonitziegeltreppe
+Outer Cobbled Rhodonite Stair=Äußere gefaste Rhodonittreppe
+
+Outer Rose Quartz Stair=Äußere Rosenquarz-Treppe
+Outer Rose Quartz Brick Stair=Äußere Rosenquarz-Ziegel-Treppe
+Outer Rose Quartz Block Stair=Äußere Rosenquarz-Block-Treppe
+Outer Cracked Rose Quartz Brick Stair=Äußere rissige Rosenquarz-Ziegel-Treppe
+
+Outer Scoria Stair=Äußere Scoria-Treppe
+Outer Scoria Brick Stair=Äußere Scoria-Ziegel-Treppe
+Outer Scoria Block Stair=Äußere Scoria-Block-Treppe
+Outer Cracked Scoria Brick Stair=Äußere rissige Scoria-Ziegel-Treppe
+Outer Cobbled Scoria Stair=Äußere gepflasterte Scoria-Treppe
+
+Outer Serpentine Stair=Äußere Serpentin-Treppe
+Outer Cobbled Serpentine Stair=Äußere gepflasterte Serpentin-Treppe
+Outer Serpentine Brick Stair=Äußere Serpentin-Ziegel-Treppe
+Outer Serpentine Block Stair=Äußere Serpentin-Block-Treppe
+Outer Cracked Serpentine Brick Stair=Äußere rissige Serpentin-Ziegel-Treppe
+
+Outer Shale Stair=Äußere Schiefer-Treppe
+Outer Shale Brick Stair=Äußere Schiefer-Ziegel-Treppe
+Outer Shale Block Stair=Äußere Schiefer-Block-Treppe
+Outer Cracked Shale Brick Stair=Äußere rissige Schiefer-Ziegel-Treppe
+Outer Cobbled Shale Stair=Äußere gepflasterte Schiefer-Treppe
+
+Outer Slate Stair=Äußere Schiefer-Treppe
+Outer Slate Brick Stair=Äußere Schiefer-Ziegel-Treppe
+Outer Slate Block Stair=Äußere Schiefer-Block-Treppe
+Outer Cracked Slate Brick Stair=Äußere rissige Schiefer-Ziegel-Treppe
+Outer Cobbled Slate Stair=Äußere gepflasterte Schiefer-Treppe
+Outer Slate Tile Stair=Äußere Schieferfliesen-Treppe
+
+Outer Smokey Quartz Stair=Äußere Rauchquarz-Treppe
+Outer Smokey Quartz Brick Stair=Äußere Rauchquarz-Ziegel-Treppe
+Outer Smokey Quartz Block Stair=Äußere Rauchquarz-Block-Treppe
+Outer Cracked Smokey Quartz Brick Stair=Äußere rissige Rauchquarz-Ziegel-Treppe
+
+Outer Soapstone Stair=Äußere Speckstein-Treppe
+Outer Soapstone Brick Stair=Äußere Speckstein-Ziegel-Treppe
+Outer Soapstone Block Stair=Äußere Speckstein-Block-Treppe
+Outer Cracked Soapstone Brick Stair=Äußere rissige Speckstein-Ziegel-Treppe
+
+Outer Sodalite Stair=Äußere Sodalith-Treppe
+Outer Cobbled Sodalite Stair=Äußere gepflasterte Sodalith-Treppe
+Outer Sodalite Brick Stair=Äußere Sodalith-Ziegel-Treppe
+Outer Sodalite Block Stair=Äußere Sodalith-Block-Treppe
+Outer Cracked Sodalite Brick Stair=Äußere rissige Sodalith-Ziegel-Treppe
+
+Outer Sugilite Stair=Äußere Sugilith-Treppe
+Outer Sugilite Brick Stair=Äußere Sugilith-Ziegel-Treppe
+Outer Sugilite Block Stair=Äußere Sugilith-Block-Treppe
+Outer Cracked Sugilite Brick Stair=Äußere rissige Sugilith-Ziegel-Treppe
+Outer Cobbled Sugilite Stair=Äußere gepflasterte Sugilith-Treppe
+
+Outer Green Tourmaline Stair=Äußere grüne Turmalintreppe
+Outer Green Tourmaline Brick Stair=Äußere grüner Turmalinziegeltreppe
+Outer Green Tourmaline Block Stair=Äußere grüner Turmalinblocktreppe
+Outer Cracked Green Tourmaline Brick Stair=Äußere gerissene grüne Turmalinziegeltreppe
+
+Outer Paraiba Tourmaline Stair=Äußere Paraíba-Turmalinstufe
+Outer Paraiba Tourmaline Brick Stair=Äußere Paraíba-Turmalinziegelstufe
+Outer Paraiba Tourmaline Block Stair=Äußere Paraíba-Turmalinblockstufe
+Outer Cracked Paraiba Tourmaline Brick Stair=Äußere gerissene Paraíba-Turmalinziegelstufe
+
+Outer Pink Tourmaline Stair=Äußere rosa Turmalinstufe
+Outer Pink Tourmaline Brick Stair=Äußere rosa Turmalinziegelstufe
+Outer Pink Tourmaline Block Stair=Äußere rosa Turmalinblockstufe
+Outer Cracked Pink Tourmaline Brick Stair=Äußere gerissene rosa Turmalinziegelstufe
+
+Outer Travertine Stair=Äußere Travertin-Treppe
+Outer Cobbled Travertine Stair=Äußere gepflasterte Travertin-Treppe
+Outer Travertine Brick Stair=Äußere Travertin-Ziegel-Treppe
+Outer Travertine Block Stair=Äußere Travertin-Block-Treppe
+Outer Cracked Travertine Brick Stair=Äußere rissige Travertin-Ziegel-Treppe
+
+Outer Yellow Travertine Stair=Äußere gelbe Travertin-Treppe
+Outer Cobbled Yellow Travertine Stair=Äußere gepflasterte gelbe Travertin-Treppe
+Outer Yellow Travertine Brick Stair=Äußere gelbe Travertin-Ziegel-Treppe
+Outer Yellow Travertine Block Stair=Äußere gelbe Travertin-Block-Treppe
+Outer Cracked Yellow Travertine Brick Stair=Äußere rissige gelbe Travertin-Ziegel-Treppe
+
+Outer Beige Tuff Stair=Äußere beige Tuff-Treppe
+Outer Cobbled Beige Tuff Stair=Äußere gepflasterte beige Tuff-Treppe
+Outer Beige Tuff Brick Stair=Äußere beige Tuff-Ziegel-Treppe
+Outer Beige Tuff Block Stair=Äußere beige Tuff-Block-Treppe
+Outer Cracked Beige Tuff Brick Stair=Äußere rissige beige Tuff-Ziegel-Treppe
+
+Outer Grey Tuff Stair=Äußere graue Tuff-Treppe
+Outer Cobbled Grey Tuff Stair=Äußere gepflasterte graue Tuff-Treppe
+Outer Grey Tuff Brick Stair=Äußere graue Tuff-Ziegel-Treppe
+Outer Grey Tuff Block Stair=Äußere graue Tuff-Block-Treppe
+Outer Cracked Grey Tuff Brick Stair=Äußere rissige graue Tuff-Ziegel-Treppe
+
+Outer Red Tuff Stair=Äußere rote Tuff-Treppe
+Outer Cobbled Red Tuff Stair=Äußere gepflasterte rote Tuff-Treppe
+Outer Red Tuff Brick Stair=Äußere rote Tuff-Ziegel-Treppe
+Outer Red Tuff Block Stair=Äußere rote Tuff-Block-Treppe
+Outer Cracked Red Tuff Brick Stair=Äußere rissige rote Tuff-Ziegel-Treppe
+
+Outer Turquoise Stair=Äußere Türkis-Treppe
+Outer Turquoise Brick Stair=Äußere Türkis-Ziegel-Treppe
+Outer Turquoise Block Stair=Äußere Türkis-Block-Treppe
+Outer Cracked Turquoise Brick Stair=Äußere rissige Türkis-Ziegel-Treppe
+Outer Cobbled Turquoise Stair=Äußere gepflasterte Türkis-Treppe
+
+Outer Vivianite Stair=Äußere Vivianit-Treppe
+Outer Vivianite Brick Stair=Äußere Vivianit-Ziegel-Treppe
+Outer Vivianite Block Stair=Äußere Vivianit-Block-Treppe
+Outer Cracked Vivianite Brick Stair=Äußere rissige Vivianit-Ziegel-Treppe
+
+### nodes_glowing.lua ###
+
+Glowing Apatite=Leuchtender Apatit
+Glowing Apatite Block=Leuchtender Apatitblock
+Cobbled Glowing Apatite=Gepflasterter leuchtender Apatit
+Glowing Apatite Brick=Leuchtender Apatitziegel
+Cracked Glowing Apatite Brick=Rissiger leuchtender Apatitziegel
+
+Glowing Calcite=Leuchtender Calcit
+Glowing Calcite Block=Leuchtender Calcitblock
+Cobbled Glowing Calcite=Gepflasterter leuchtender Calcit
+Glowing Calcite Brick=Leuchtender Calcitziegel
+Cracked Glowing Calcite Brick=Rissiger leuchtender Calcitziegel
+
+Glowing Esperite=Leuchtender Esperit
+Glowing Esperite Block=Leuchtender Esperitblock
+Cobbled Glowing Esperite=Gepflasterter leuchtender Esperit
+Glowing Esperite Brick=Leuchtender Esperitziegel
+Cracked Glowing Esperite Brick=Rissiger leuchtender Esperitziegel
+
+Glowing Fluorite=Leuchtender Fluorit
+Glowing Fluorite Block=Leuchtender Fluoritblock
+Cobbled Glowing Fluorite=Gepflasterter leuchtender Fluorit
+Glowing Fluorite Brick=Leuchtender Fluoritziegel
+Cracked Glowing Fluorite Brick=Rissiger leuchtender Fluoritziegel
+
+Glowing Selenite=Leuchtender Selenit
+Glowing Selenite Block=Leuchtender Selenitblock
+Cobbled Glowing Selenite=Gepflasterter leuchtender Selenit
+Glowing Selenite Brick=Leuchtender Selenitziegel
+Cracked Glowing Selenite Brick=Rissiger leuchtender Selenitziegel
+
+Glowing Sodalite=Leuchtender Sodalith
+Glowing Sodalite Block=Leuchtender Sodalithblock
+Cobbled Glowing Sodalite=Gepflasterter leuchtender Sodalith
+Glowing Sodalite Brick=Leuchtender Sodalithziegel
+Cracked Glowing Sodalite Brick=Rissiger leuchtender Sodalithziegel
+
+Glowing Willemite=Leuchtender Willemite
+Glowing Willemite Block=Leuchtender Willemiteblock
+Cobbled Glowing Willemite=Gepflasterter leuchtender Willemite
+Glowing Willemite Brick=Leuchtender Willemiteziegel
+Cracked Glowing Willemite Brick=Rissiger leuchtender Willemiteziegel
+
+### nodes_crystal.lua ###
+
+Budding Amazonite=Sprießender Amazonit
+Amazonite Crystal=Amazonit Kristall
+
+Budding Amber=Sprießendes Bernstein
+Amber Crystal=Bernstein Kristall
+
+Budding Amethyst=Sprießender Amethyst
+Amethyst Crystal=Amethyst Kristall
+
+Budding Celestine=Sprießende Cölestin
+Celestine Crystal=Cölestin Kristall
+
+Budding Chalcanthite=Sprießende Chalkanthit
+Chalcanthite Crystal=Chalkanthit Kristall
+
+Budding Citrine=Sprießender Citrin
+Citrine Crystal=Citrin Kristall
+
+Budding Crocoite=Sprießender Crocoit
+Crocoite Crystal=Crocoit Kristall
+
+Budding Eudialite=Sprießender Eudialit
+Eudialite Crystal=Eudialit Kristall
+
+Budding Heliodor=Sprießender Heliodor
+Heliodor Crystal=Heliodor Kristall
+
+Budding Kyanite=Sprießender Kyanit
+Kyanite Crystal=Kyanit Kristall
+
+Budding Moonstone=Sprießender Mondstein
+Moonstone Crystal=Mondstein Kristall
+
+Budding Morion Quartz=Sprießender Morion Quarz
+Morion Quartz Crystal=Morion Quarz Kristall
+
+Budding Prasiolite=Sprießender Prasiolith
+Prasiolite Crystal=Prasiolith Kristall
+
+Budding Quartz=Sprießender Quarz
+Quartz Crystal=Quarz Kristall
+
+Budding Rose Quartz=Sprießender Rosenquarz
+Rose Quartz Crystal=Rosenquarz Kristall
+
+Budding Smokey Quartz=Sprießender Rauchquarz
+Smokey Quartz Crystal=Rauchquarz Kristall
+
+Budding Green Tourmaline=Sprießender Grüner Turmalin
+Green Tourmaline Crystal=Grüner Turmalin Kristall
+
+Budding Paraiba Tourmaline=Sprießender Paraiba Turmalin
+Paraiba Tourmaline Crystal=Paraiba Turmalin Kristall
+
+Budding Pink Tourmaline=Sprießender Rosa Turmalin
+Pink Tourmaline Crystal=Rosa Turmalin Kristall
+
+Budding Vivianite=Sprießende Vivianit
+Vivianite Crystal=Vivianit Kristall

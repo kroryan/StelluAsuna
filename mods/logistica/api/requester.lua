@@ -1,0 +1,229 @@
+local FS = logistica.FTRANSLATOR
+
+local NUM_REQUEST_SLOTS = 8
+local PUSH_LIST_PICKER = "push_pick"
+local ON_OFF_BUTTON = "on_off_btn"
+local AMOUNT_FIELD_PREFIX = "reqamt"
+local SAVE_BUTTON = "save_btn"
+local FORMSPEC_NAME = "logistica_requester"
+
+local requesterForms = {}
+
+local function get_amount_fields(amounts, x, y)
+  local fields = {}
+  for i = 1, NUM_REQUEST_SLOTS do
+    local fx = x + (i - 1) * 1.24
+    fields[i] = "field["..(fx)..","..y..";1.1,0.6;"..AMOUNT_FIELD_PREFIX..i..";;"..(amounts[i] or 0).."]"
+  end
+  return table.concat(fields)
+end
+
+local function get_requester_formspec(pos)
+  local posForm = "nodemeta:"..pos.x..","..pos.y..","..pos.z
+  local pushPos = logistica.get_requester_target(pos)
+  local selectedList = logistica.get_requester_target_list(pos)
+  local isOn = logistica.is_machine_on(pos)
+  local amounts = logistica.get_requester_slot_amounts(pos)
+  return "formspec_version[4]" ..
+    "size["..logistica.inv_size(10.6, 10.5).."]" ..
+    logistica.ui.background..
+    logistica.ui.button_only_style..
+    logistica.ui.push_list_picker(PUSH_LIST_PICKER, 0.5, 3.9, pushPos, selectedList, FS("Put items in:"))..
+    logistica.ui.on_off_btn(isOn, 3.0, 3.8, ON_OFF_BUTTON, FS("Enable"))..
+    "label[0.5,0.4;"..FS("Request items from network and put them into the target inventory").."]"..
+    "list["..posForm..";filter;0.5,1.0;8,1;0]"..
+    "label[0.5,2.2;"..FS("Request up to (per slot):").."]"..
+    get_amount_fields(amounts, 0.5, 2.5)..
+    "button[9.25,3.9;1.0,0.6;"..SAVE_BUTTON..";Save]"..
+    logistica.player_inv_formspec(0.5, 5.0)..
+    "listring[current_player;main]"..
+    "listring["..posForm..";filter]"
+end
+
+local function show_requester_formspec(playerName, pos)
+  logistica.migrate_requester_slot_amounts(pos)
+  local inv = minetest.get_meta(pos):get_inventory()
+  if inv:get_size("filter") < NUM_REQUEST_SLOTS then
+    inv:set_size("filter", NUM_REQUEST_SLOTS)
+    inv:set_size("actual", NUM_REQUEST_SLOTS)
+  end
+  requesterForms[playerName] = {position = pos}
+  minetest.show_formspec(playerName, FORMSPEC_NAME, get_requester_formspec(pos))
+end
+
+local function save_slot_amounts(pos, fields)
+  for i = 1, NUM_REQUEST_SLOTS do
+    local fieldName = AMOUNT_FIELD_PREFIX..i
+    if fields[fieldName] ~= nil then
+      logistica.set_requester_slot_amount(pos, i, tonumber(fields[fieldName]) or 0)
+    end
+  end
+end
+
+local function on_player_receive_fields(player, formname, fields)
+  if not player or not player:is_player() then return false end
+  if formname ~= FORMSPEC_NAME then return false end
+  local playerName = player:get_player_name()
+  if not requesterForms[playerName] then return false end
+  local pos = requesterForms[playerName].position
+  if not pos then return false end
+  if not logistica.player_has_network_access(pos, playerName) then return true end
+
+  save_slot_amounts(pos, fields)
+
+  if fields.quit then
+    requesterForms[playerName] = nil
+  elseif fields[ON_OFF_BUTTON] then
+    if not pos then return false end
+    logistica.toggle_machine_on_off(pos)
+    show_requester_formspec(player:get_player_name(), pos)
+  elseif fields[PUSH_LIST_PICKER] then
+    local selected = fields[PUSH_LIST_PICKER]
+    logistica.set_requester_target_list(pos, selected)
+  end
+  return true
+end
+
+local function on_requester_punch(pos, node, puncher, pointed_thing)
+  local targetPos = logistica.get_requester_target(pos)
+  if targetPos and puncher:is_player() and puncher:get_player_control().sneak then
+    logistica.show_output_at(targetPos, tostring(minetest.hash_node_position(pos)))
+  end
+end
+
+local function on_requester_rotate(pos, node, player, mode, newParam2)
+  local target = vector.add(pos, logistica.get_rot_directions(newParam2).backward)
+  logistica.show_output_at(target, tostring(minetest.hash_node_position(pos)))
+end
+
+local function on_requester_rightclick(pos, node, clicker, itemstack, pointed_thing)
+  if not clicker or not clicker:is_player() then return end
+  if logistica.should_hide_from_player(pos, clicker:get_player_name()) then return end
+  show_requester_formspec(clicker:get_player_name(), pos)
+end
+
+local function after_place_requester(pos, placer, itemstack, numRequestSlots)
+  local meta = minetest.get_meta(pos)
+  if placer and placer:is_player() then
+    meta:set_string("owner", placer:get_player_name())
+  end
+  logistica.set_requester_target_list(pos, "main")
+  local inv = meta:get_inventory()
+  inv:set_size("filter", numRequestSlots)
+  inv:set_size("actual", numRequestSlots)
+  logistica.on_requester_change(pos)
+  logistica.show_output_at(logistica.get_requester_target(pos), tostring(minetest.hash_node_position(pos)))
+  logistica.set_node_tooltip_from_state(pos, nil, false)
+end
+
+local function allow_requester_storage_inv_put(pos, listname, index, stack, player)
+  if listname ~= "filter" then return 0 end
+  if not logistica.player_has_network_access(pos, player:get_player_name()) then return 0 end
+  local inv = minetest.get_meta(pos):get_inventory()
+  local copyStack = ItemStack(stack:get_name())
+  copyStack:set_count(1)
+  inv:set_stack("filter", index, copyStack)
+  -- default amount to 1 when placing into an empty slot with no amount set
+  local meta = minetest.get_meta(pos)
+  if meta:get_int(AMOUNT_FIELD_PREFIX..index) == 0 then
+    meta:set_int(AMOUNT_FIELD_PREFIX..index, 1)
+  end
+  logistica.update_cache_at_pos(pos, LOG_CACHE_REQUESTER)
+  logistica.start_requester_timer(pos, 1)
+  return 0
+end
+
+local function allow_requester_inv_take(pos, listname, index, stack, player)
+  if listname ~= "filter" then return 0 end
+  if not logistica.player_has_network_access(pos, player:get_player_name()) then return 0 end
+  local inv = minetest.get_meta(pos):get_inventory()
+  local slotStack = inv:get_stack(listname, index)
+  slotStack:clear()
+  inv:set_stack(listname, index, slotStack)
+  logistica.update_cache_at_pos(pos, LOG_CACHE_REQUESTER)
+  return 0
+end
+
+local function allow_requester_inv_move(_, _, _, _, _, _, _)
+  return 0
+end
+
+----------------------------------------------------------------
+-- Minetest registration
+----------------------------------------------------------------
+
+minetest.register_on_player_receive_fields(on_player_receive_fields)
+
+minetest.register_on_leaveplayer(function(objRef, timed_out)
+  if objRef:is_player() then
+    requesterForms[objRef:get_player_name()] = nil
+  end
+end)
+
+----------------------------------------------------------------
+-- Public Registration API
+----------------------------------------------------------------
+-- `simpleName` is used for the description and for the name (can contain spaces)
+-- transferRate is how many items per tick this requester can transfer, -1 for unlimited
+function logistica.register_requester(description, name, transferRate, tiles)
+  local lname = string.lower(name:gsub(" ", "_"))
+  local requester_name = "logistica:"..lname
+  logistica.GROUPS.requesters.register(requester_name)
+  local grps = {oddly_breakable_by_hand = 3, cracky = 3, handy = 1, pickaxey = 1, }
+  grps[logistica.TIER_ALL] = 1
+  local def = {
+    description = description,
+    drawtype = "normal",
+    tiles = tiles,
+    paramtype = "light",
+    paramtype2 = "facedir",
+    is_ground_content = false,
+    groups = grps,
+    drop = requester_name,
+    sounds = logistica.node_sound_metallic(),
+    on_timer = logistica.on_timer_powered(logistica.on_requester_timer),
+    after_place_node = function (pos, placer, itemstack)
+      after_place_requester(pos, placer, itemstack, NUM_REQUEST_SLOTS)
+    end,
+    after_dig_node = logistica.on_requester_change,
+    on_punch = on_requester_punch,
+    on_rotate = on_requester_rotate,
+    on_rightclick = on_requester_rightclick,
+    allow_metadata_inventory_put = allow_requester_storage_inv_put,
+    allow_metadata_inventory_take = allow_requester_inv_take,
+    allow_metadata_inventory_move = allow_requester_inv_move,
+    logistica = {
+      requester_transfer_rate = transferRate,
+      on_connect_to_network = function(pos, networkId)
+        logistica.start_requester_timer(pos, nil, true)
+      end,
+      on_power = function(pos, isPoweredOn)
+        logistica.set_node_tooltip_from_state(pos, nil, isPoweredOn)
+        if isPoweredOn then
+          logistica.start_requester_timer(pos)
+        end
+      end,
+    },
+    _mcl_hardness = 1.5,
+    _mcl_blast_resistance = 10
+  }
+
+  minetest.register_node(requester_name, def)
+  logistica.register_non_pushable(requester_name)
+
+  local def_disabled = table.copy(def)
+  local tiles_disabled = {}
+  for k, v in pairs(def.tiles) do tiles_disabled[k] = v.."^logistica_disabled.png" end
+
+  def_disabled.tiles = tiles_disabled
+  def_disabled.groups = { oddly_breakable_by_hand = 3, cracky = 3, choppy = 3, handy = 1, pickaxey = 1, axey = 1, not_in_creative_inventory = 1 }
+  def_disabled.on_construct = nil
+  def_disabled.after_dig_node = nil
+  def_disabled.on_punch = nil
+  def_disabled.on_rightclick = nil
+  def_disabled.on_timer = nil
+  def_disabled.logistica = nil
+
+  minetest.register_node(requester_name.."_disabled", def_disabled)
+
+end

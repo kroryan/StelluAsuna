@@ -1,0 +1,25 @@
+local fn formatter(str, ...) {
+  local arg = {n=select('#', ...), ...}
+  return str:gsub("@(.)", (matched) => {
+    local c = string.byte(matched)
+    if string.byte("1") <= c and c <= string.byte("9") {
+      return arg[c - string.byte("0")]
+    } else {
+      return matched
+    }
+  })
+}
+
+local fn get_translator(mod) {
+  local modname = mod or minetest.get_current_modname()
+  local S
+  if minetest.get_translator {
+    S = minetest.get_translator(modname)
+  } else {
+    modutil.log.warning("minetest translator not found!")
+    S = formatter
+  }
+  return S
+}
+
+return get_translator

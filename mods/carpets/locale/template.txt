@@ -1,0 +1,18 @@
+# textdomain: carpets
+
+##[ init.lua ]##
+Black carpet=
+Blue carpet=
+Brown carpet=
+Cyan carpet=
+Dark green carpet=
+Dark grey carpet=
+Green carpet=
+Grey carpet=
+Magenta carpet=
+Orange carpet=
+Pink carpet=
+Red carpet=
+Violet carpet=
+White carpet=
+Yellow carpet=

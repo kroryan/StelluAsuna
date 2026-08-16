@@ -1,0 +1,38 @@
+# Enable mapgen? Unset this to prevent all worldgates from generating.
+worldgate.mapgen (Enable mapgen?) bool true
+
+# Generate native worldgates? Native worldgates are the built-in worldgates that this mod provides by default.
+worldgate.native (Generate native worldgates?) bool true
+
+# Link native worldgates? This links surface worldgates to a random neighbor and underground/aerial worldgates to worldgates on the surface.
+worldgate.native.link (Link native worldgates?) bool true
+
+# Average number of nodes between native worldgates.
+worldgate.native.spread (Distance between native worldgates) int 1000 500 25000
+
+# The percentage of spread by which to randomly offset the x/z coordinates of native worldgates. A higher jitter randomly moves the gates further from their generated positions, thereby making their locations less predictable.
+worldgate.native.xzjitter (Native worldgate x/z jitter) float 12.5 0 25
+
+# The maximum y position of any worldgate. Any worldgates above this elevation will not generate.
+worldgate.ymax (Worldgate maximum y position) int 29900 0 29900
+
+# The minimum y position of any worldgate. Any worldgates below this elevation will not generate.
+worldgate.ymin (Worldgate minimum y position) int -29900 -29900 0
+
+# Generate worldgates underwater? If set, worldgates can spawn on the ocean floor; if unset, worldgates will spawn on the water's surface.
+worldgate.underwaterspawn (Generate worldgates underwater?) bool false
+
+# Generate worldgates in midair? If set, worldgates can be floating on their own in the air; if unset, gates that attempt to generate in the air will fail to generate.
+worldgate.midairspawn (Generate worldgates in midair?) bool false
+
+# Percentage chance of a Telemosaic extender structure node being broken when a gate generates. This causes extenders to be replaced with cobblestone.
+worldgate.breakage (Percent chance of an extender being broken) int 8 0 100
+
+# Increase extender range? This supersedes the Telemosaic configuration values for extender ranges. If you wish to use the Telemosaic settings instead, unset this configuration option and change the Telemosaic settings accordingly.
+worldgate.superextenders (Increase extender range?) bool true
+
+# Glowing Telemosaic beacons?
+worldgate.beaconglow (Glowing Telemosaic beacons?) bool true
+
+# Consume Mese Crystal Fragments after converting to a Telemosaic key? By default, Telemosaic keys are converted back to crystal fragments after use.
+worldgate.destroykeys (Consume Telemosaic keys?) bool true

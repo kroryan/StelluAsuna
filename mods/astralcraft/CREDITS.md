@@ -1,0 +1,3 @@
+- `sounds/astralcraft_shooting_star_appear.ogg` is derived from ["coin flip" by MrGungus](https://freesound.org/people/MrGungus/sounds/766544/), licensed [CC0](https://creativecommons.org/publicdomain/zero/1.0/)
+- `sounds/astralcraft_warp_star_teleport.ogg` is derived from ["Power Up, Bright, A.wav" by InspectorJ](https://freesound.org/people/InspectorJ/sounds/411460/), licensed [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- `sounds/astralcraft_warp_star_landing.ogg` is derived from ["[SFX Hit] drop/bomb effect 5" by waveplaySFX](https://freesound.org/people/waveplaySFX/sounds/187502/), licensed [CC0](https://creativecommons.org/publicdomain/zero/1.0/)

@@ -1,0 +1,17 @@
+otherworlds.crafting (Enable crafting recipes) bool true
+
+otherworlds.space (Enable Space asteroids) bool true
+otherworlds.space.ymin (Space asteroid min height) int 5000
+otherworlds.space.ymax (Space asteroid max height) int 5999
+
+otherworlds.redsky (Enable Redsky asteroids) bool true
+otherworlds.redsky.ymin (Redsky asteroid min height) int 6000
+otherworlds.redsky.ymax (Redsky asteroid max height) int 6999
+
+otherworlds.blackness (Enable Dark space) bool true
+otherworlds.blackness.ymin (Redsky asteroid min height) int 7000
+otherworlds.blackness.ymax (Redsky asteroid max height) int 31000
+
+otherworlds.gravity (Enable gravity) bool false
+
+otherworlds.ore_chance (Chance of finding ores) int 27

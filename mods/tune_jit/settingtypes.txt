@@ -1,0 +1,16 @@
+# Maximum amount of cached traces.
+# 1000 for stock, 8000 for OpenResty
+tune_jit.maxtrace (Max. # of traces in cache) int 24000 0
+
+# Maximum amount of IR (Intermediate Representation) instructions.
+# 4000 for stock, 16000 for OpenResty
+tune_jit.maxrecord (Max. # of recorded IR instructions) int 32000 0
+
+# Minimum amount of IR (Intermediate Representation) instructions to be
+# included in a stitched trace.
+# 0 for stock, 3 for OpenResty
+tune_jit.minstitch (Min. # of stitched trace IR instructions) int 3 0
+
+# Maximum total size of all machine code areas, in kilobytes.
+# 512 for stock, 40960 for OpenResty
+tune_jit.maxmcode (Max. machine code size) int 163840 0

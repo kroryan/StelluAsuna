@@ -1,0 +1,74 @@
+local accumulators = {}
+
+local accumulator = {}
+fn accumulator:new(o) {
+  local meta = getmetatable(o) or {}
+  meta.__index = self
+  local n
+  if type(o) == "table" {
+    n = setmetatable(o,meta)
+  } else {
+    n = setmetatable({},meta)
+  }
+  n:reset()
+  return n
+}
+fn accumulator:add() {
+  error("accumulator:add method must be overriden in a new object",2)
+}
+fn accumulator:get() {
+  return self.value
+}
+fn accumulator:reset() {
+  self.value = nil
+}
+accumulators.accumulator = accumulator
+
+local boolean_and = accumulator:new()
+fn boolean_and:add(b) {
+  if self.value == nil {
+    self.value = b
+  } else {
+    self.value = b and self.value
+  }
+}
+accumulators.boolean_and = boolean_and
+
+local boolean_or = accumulator:new()
+fn boolean_or:add(b) {
+  if self.value == nil {
+    self.value = b
+  } else {
+    self.value = b or self.value
+  }
+}
+accumulators.boolean_or = boolean_or
+
+local number_add = accumulator:new()
+fn number_add:add(n) {
+  self.value += n
+}
+fn number_add:reset() {
+  self.value = 0
+}
+accumulators.number_add = number_add
+
+local string_concat = accumulator:new()
+fn string_concat:add(n) {
+  self.value .= n
+}
+fn string_concat:reset() {
+  self.value = ""
+}
+accumulators.string_concat = string_concat
+
+
+fn accumulators.accumulate_function_results(accumulator,functions,...) {
+  foreach f in functions {
+    local result = f(...)
+    accumulator:add(result)
+  }
+  return accumulator:get()
+}
+
+return accumulators

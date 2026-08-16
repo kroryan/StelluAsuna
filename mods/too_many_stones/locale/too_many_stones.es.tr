@@ -1,0 +1,2471 @@
+# textdomain: too_many_stones
+
+
+### nodes.lua ###
+
+Blue Agate=Ágata azul
+Gray Agate=Ágata gris
+Green Agate=Ágata verde
+Moss Agate=Ágata musgosa
+Orange Agate=Ágata naranja
+Purple Agate=Ágata morada
+Red Agate=Ágata roja
+
+Amazonite=Amazonita
+Amazonite Block=Bloque de amazonita
+Cobbled Amazonite=Amazonita empedrada
+Amazonite Brick=Ladrillo de amazonita
+Cracked Amazonite Brick=Ladrillo de amazonita agrietado
+
+Amber=Ámbar
+Amber Block=Bloque de ámbar
+Amber Brick=Ladrillo de ámbar
+Cracked Amber Brick=Ladrillo de ámbar agrietado
+
+Amethyst=Amatista
+Amethyst Block=Bloque de amatista
+Amethyst Brick=Ladrillo de amatista
+Cracked Amethyst Brick=Ladrillo de amatista agrietado
+
+Ammolite=Ammolita
+
+Andesite=Andesita
+Andesite Block=Bloque de andesita
+Andesite Brick=Ladrillo de andesita
+Cracked Andesite Brick=Ladrillo de andesita agrietado
+Cobbled Andesite=Andesita empedrada
+
+Basalt=Basalto
+Basalt Block=Bloque de basalto
+Basalt Brick=Ladrillo de basalto
+Cracked Basalt Brick=Ladrillo de basalto agrietado
+Cobbled Basalt=Basalto empedrado
+Basalt Tile=Azulejo de basalto
+
+Columnar Basalt=Basalto columnar
+
+Batch=Polvo de mezcla para vidrio
+
+Black Moonstone=Piedra lunar negra
+Black Moonstone Block=Bloque de piedra lunar negra
+Black Moonstone Brick=Ladrillo de piedra lunar negra
+Cracked Black Moonstone Brick=Ladrillo de piedra lunar negra agrietado
+
+Black Opal=Ópalo negro
+
+Calcite=Calcita
+Calcite Block=Bloque de calcita
+Calcite Brick=Ladrillo de calcita
+Cracked Calcite Brick=Ladrillo de calcita agrietado
+
+Grey Calcite=Calcita Gris
+Grey Calcite Block=Bloque de Calcita Gris
+Grey Calcite Brick=Ladrillo de Calcita Gris
+Cracked Grey Calcite Brick=Ladrillo de Calcita Gris Agrietado
+
+Orange Calcite=Calcita Naranja
+Orange Calcite Block=Bloque de Calcita Naranja
+Orange Calcite Brick=Ladrillo de Calcita Naranja
+Cracked Orange Calcite Brick=Ladrillo de Calcita Naranja Agrietado
+
+Carnotite=Carnotita
+Carnotite Block=Bloque de carnotita
+Carnotite Brick=Ladrillo de carnotita
+Cracked Carnotite Brick=Ladrillo de carnotita agrietado
+Cobbled Carnotite=Carnotita empedrada
+
+Celestine=Celestita
+Celestine Block=Bloque de celestita
+Celestine Brick=Ladrillo de celestita
+Cracked Celestine Brick=Ladrillo de celestita agrietado
+
+Chalcanthite=Calcanthita
+Chalcanthite Block=Bloque de Calcanthita
+Chalcanthite Brick=Ladrillo de Calcanthita
+Cracked Chalcanthite Brick=Ladrillo de Calcanthita Agrietado
+Cobbled Chalcanthite=Calcanthita Guijarreada
+
+Chrysoprase=Crisoprasa
+Chrysoprase Block=Bloque de crisoprasa
+Chrysoprase Brick=Ladrillo de crisoprasa
+Cracked Chrysoprase Brick=Ladrillo de crisoprasa agrietado
+
+Citrine=Cuarzo citrino
+Citrine Block=Bloque de cuarzo citrino
+Citrine Brick=Ladrillo de cuarzo citrino
+Cracked Citrine Brick=Ladrillo de cuarzo citrino agrietado
+
+Covellite=Covellita
+Covellite Block=Bloque de covellita
+Covellite Brick=Ladrillo de covellita
+Cracked Covellite Brick=Ladrillo de covellita agrietado
+Cobbled Covellite=Covellita empedrada
+
+Crocoite=Crocoita
+Crocoite Block=Bloque de crocoita
+Crocoite Brick=Ladrillo de crocoita
+Cracked Crocoite Brick=Ladrillo de crocoita agrietado
+
+Diorite=Diorita
+Diorite Block=Bloque de diorita
+Diorite Brick=Ladrillo de diorita
+Cracked Diorite Brick=Ladrillo de diorita agrietado
+Cobbled Diorite=Diorita empedrada
+
+Erythrite=Eritrita
+Erythrite Block=Bloque de eritrita
+Erythrite Brick=Ladrillo de eritrita
+Cracked Erythrite Brick=Ladrillo de eritrita agrietado
+
+Eudialite=Eudialita
+Eudialite Block=Bloque de eudialita
+Eudialite Brick=Ladrillo de eudialita
+Cracked Eudialite Brick=Ladrillo de eudialita agrietado
+
+Fluorite=Fluorita
+Fluorite Block=Bloque de fluorita
+Fluorite Brick=Ladrillo de fluorita
+Cracked Fluorite Brick=Ladrillo de fluorita agrietado
+
+Fire Opal=Ópalo de fuego
+
+Gabbro=Gabro
+Gabbro Block=Bloque de gabro
+Cobbled Gabbro=Gabro empedrado
+Gabbro Brick=Ladrillo de gabro
+Cracked Gabbro Brick=Ladrillo de gabro agrietado
+
+Galena=Galena
+Galena Block=Bloque de galena
+Galena Brick=Ladrillo de galena
+Cracked Galena Brick=Ladrillo de galena agrietado
+
+Black Granite=Granito negro
+Black Granite Block=Bloque de granito negro
+Black Granite Brick=Ladrillo de granito negro
+Cracked Black Granite Brick=Ladrillo de granito negro agrietado
+Cobbled Black Granite=Granito negro empedrado
+
+Blue Granite=Granito azul
+Blue Granite Block=Bloque de granito azul
+Blue Granite Brick=Ladrillo de granito azul
+Cracked Blue Granite Brick=Ladrillo de granito azul agrietado
+Cobbled Blue Granite=Granito azul empedrado
+
+Gray Granite=Granito gris
+Gray Granite Block=Bloque de granito gris
+Gray Granite Brick=Ladrillo de granito gris
+Cracked Gray Granite Brick=Ladrillo de granito gris agrietado
+Cobbled Gray Granite=Granito gris empedrado
+
+Green Granite=Granito verde
+Green Granite Block=Bloque de granito verde
+Green Granite Brick=Ladrillo de granito verde
+Cracked Green Granite Brick=Ladrillo de granito verde agrietado
+Cobbled Green Granite=Granito verde empedrado
+
+Pink Granite=Granito rosa
+Pink Granite Block=Bloque de granito rosa
+Pink Granite Brick=Ladrillo de granito rosa
+Cracked Pink Granite Brick=Ladrillo de granito rosa agrietado
+Cobbled Pink Granite=Granito rosa empedrado
+
+Red Granite=Granito rojo
+Red Granite Block=Bloque de granito rojo
+Red Granite Brick=Ladrillo de granito rojo
+Cracked Red Granite Brick=Ladrillo de granito rojo agrietado
+Cobbled Red Granite=Granito rojo empedrado
+
+White Granite=Granito blanco
+White Granite Block=Bloque de granito blanco
+White Granite Brick=Ladrillo de granito blanco
+Cracked White Granite Brick=Ladrillo de granito blanco agrietado
+Cobbled White Granite=Granito blanco empedrado
+
+Yellow Granite=Granito amarillo
+Yellow Granite Block=Bloque de granito amarillo
+Yellow Granite Brick=Ladrillo de granito amarillo
+Cracked Yellow Granite Brick=Ladrillo de granito amarillo agrietado
+Cobbled Yellow Granite=Granito amarillo empedrado
+
+Heliodor=Heliodoro
+Heliodor Block=Bloque de heliodoro
+Heliodor Brick=Ladrillo de heliodoro
+Cracked Heliodor Brick=Ladrillo de heliodoro agrietado
+
+Howlite=Howlita
+Howlite Block=Bloque de howlita
+Howlite Brick=Ladrillo de howlita
+Cracked Howlite Brick=Ladrillo de howlita agrietado
+Cobbled Howlite=Howlita empedrada
+
+Ilvaite=Ilvaita
+Ilvaite Block=Bloque de ilvaita
+Ilvaite Brick=Ladrillo de ilvaita
+Cracked Ilvaite Brick=Ladrillo de ilvaita agrietado
+Cobbled Ilvaite=Ilvaita empedrada
+
+Jade=Jade
+Jade Block=Bloque de jade
+Jade Brick=Ladrillo de jade
+Cracked Jade Brick=Ladrillo de jade agrietado
+Cobbled Jade=Jade empedrado
+
+Red Jasper=Jaspe Rojo
+Red Jasper Block=Bloque de Jaspe Rojo
+Red Jasper Brick=Ladrillo de Jaspe Rojo
+Cracked Red Jasper Brick=Ladrillo de Jaspe Rojo Agrietado
+Cobbled Red Jasper=Jaspe Rojo Guijarreado
+
+Kyanite=Cianita
+Kyanite Block=Bloque de cianita
+Kyanite Brick=Ladrillo de cianita
+Cracked Kyanite Brick=Ladrillo de cianita agrietado
+Cobbled Kyanite=Cianita empedrada
+
+Lapis Lazuli=Lapislázuli
+Lapis Lazuli Block=Bloque de lapislázuli
+Lapis Lazuli Brick=Ladrillo de lapislázuli
+Cracked Lapis Lazuli Brick=Ladrillo de lapislázuli agrietado
+
+Lepidolite=Lepidolita
+Lepidolite Block=Bloque de Lepidolita
+Lepidolite Brick=Ladrillo de Lepidolita
+Cracked Lepidolite Brick=Ladrillo de Lepidolita Agrietado
+Cobbled Lepidolite=Lepidolita Guijarreada
+
+Blue Limestone=Piedra caliza azul
+Blue Limestone Block=Bloque de piedra caliza azul
+Blue Limestone Brick=Ladrillo de piedra caliza azul
+Cracked Blue Limestone Brick=Ladrillo de piedra caliza azul agrietado
+Cobbled Blue Limestone=Piedra caliza azul empedrada
+
+White Limestone=Piedra caliza blanca
+White Limestone Block=Bloque de piedra caliza blanca
+White Limestone Brick=Ladrillo de piedra caliza blanca
+Cracked White Limestone Brick=Ladrillo de piedra caliza blanca agrietado
+Cobbled White Limestone=Piedra caliza blanca empedrada
+
+Marble=Mármol
+Marble Block=Bloque de mármol
+Marble Brick=Ladrillo de mármol
+Cracked Marble Brick=Ladrillo de mármol agrietado
+Cobbled Marble=Mármol empedrado
+
+Moonstone=Piedra Lunar
+Moonstone Block=Bloque de Piedra Lunar
+Moonstone Brick=Ladrillo de Piedra Lunar
+Cracked Moonstone Brick=Ladrillo de Piedra Lunar Agrietado
+
+Morion Quartz=Cuarzo morión
+Morion Quartz Block=Bloque de cuarzo morión
+Morion Quartz Brick=Ladrillo de cuarzo morión
+Cracked Morion Quartz Brick=Ladrillo de cuarzo morión agrietado
+
+Mudstone=Lutita
+Mudstone Block=Bloque de lutita
+Cobbled Mudstone=Lutita empedrada
+Mudstone Brick=Ladrillo de lutita
+Cracked Mudstone Brick=Ladrillo de lutita agrietado
+
+Opal=Ópalo
+
+Prasiolite=Prasiolita
+Prasiolite Block=Bloque de prasiolita
+Prasiolite Brick=Ladrillo de prasiolita
+Cracked Prasiolite Brick=Ladrillo de prasiolita agrietado
+
+Pumice=Pómez
+Pumice Block=Bloque de pómez
+Pumice Brick=Ladrillo de pómez
+Cracked Pumice Brick=Ladrillo de pómez agrietado
+
+Pyrite=Pirita
+Pyrite Block=Bloque de pirita
+Cobbled Pyrite=Pirita empedrada
+Pyrite Brick=Ladrillo de pirita
+Cracked Pyrite Brick=Ladrillo de pirita agrietado
+
+Quartz=Cuarzo
+Quartz Block=Bloque de cuarzo
+Quartz Brick=Ladrillo de cuarzo
+Cracked Quartz Brick=Ladrillo de cuarzo agrietado
+
+Rhodonite=Rodonita
+Rhodonite Block=Bloque de Rodonita
+Rhodonite Brick=Ladrillo de Rodonita
+Cracked Rhodonite Brick=Ladrillo de Rodonita Agrietado
+Cobbled Rhodonite=Rodonita Guijarreada
+
+Rose Quartz=Cuarzo rosa
+Rose Quartz Block=Bloque de cuarzo rosa
+Rose Quartz Brick=Ladrillo de cuarzo rosa
+Cracked Rose Quartz Brick=Ladrillo de cuarzo rosa agrietado
+
+Scoria=Escoria
+Scoria Block=Bloque de escoria
+Scoria Brick=Ladrillo de escoria
+Cracked Scoria Brick=Ladrillo de escoria agrietado
+Cobbled Scoria=Escoria empedrada
+
+Serpentine=Serpentina
+Serpentine Block=Bloque de serpentina
+Cobbled Serpentine=Serpentina empedrada
+Serpentine Brick=Ladrillo de serpentina
+Cracked Serpentine Brick=Ladrillo de serpentina agrietado
+
+Shale=Esquisto
+Shale Block=Bloque de esquisto
+Shale Brick=Ladrillo de esquisto
+Cracked Shale Brick=Ladrillo de esquisto agrietado
+Cobbled Shale=Esquisto empedrado
+
+Slate=Pizarra
+Slate Block=Bloque de pizarra
+Slate Brick=Ladrillo de pizarra
+Cracked Slate Brick=Ladrillo de pizarra agrietado
+Cobbled Slate=Pizarra empedrada
+Slate Tile=Azulejo de pizarra
+
+Smokey Quartz=Cuarzo ahumado
+Smokey Quartz Block=Bloque de cuarzo ahumado
+Smokey Quartz Brick=Ladrillo de cuarzo ahumado
+Cracked Smokey Quartz Brick=Ladrillo de cuarzo ahumado agrietado
+
+Soapstone=Esteatita
+Soapstone Block=Bloque de esteatita
+Soapstone Brick=Ladrillo de esteatita
+Cracked Soapstone Brick=Ladrillo de esteatita agrietado
+
+Sodalite=Sodalita
+Sodalite Block=Bloque de sodalita
+Cobbled Sodalite=Sodalita empedrada
+Sodalite Brick=Ladrillo de sodalita
+Cracked Sodalite Brick=Ladrillo de sodalita agrietado
+
+Sugilite=Sugilita
+Sugilite Block=Bloque de sugilita
+Sugilite Brick=Ladrillo de sugilita
+Cracked Sugilite Brick=Ladrillo de sugilita agrietado
+Cobbled Sugilite=Sugilita empedrada
+
+Green Tourmaline=Turmalina Verde
+Green Tourmaline Block=Bloque de Turmalina Verde
+Green Tourmaline Brick=Ladrillo de Turmalina Verde
+Cracked Green Tourmaline Brick=Ladrillo de Turmalina Verde Agrietado
+
+Paraiba Tourmaline=Turmalina Paraíba
+Paraiba Tourmaline Block=Bloque de Turmalina Paraíba
+Paraiba Tourmaline Brick=Ladrillo de Turmalina Paraíba
+Cracked Paraiba Tourmaline Brick=Ladrillo de Turmalina Paraíba Agrietado
+
+Pink Tourmaline=Turmalina Rosa
+Pink Tourmaline Block=Bloque de Turmalina Rosa
+Pink Tourmaline Brick=Ladrillo de Turmalina Rosa
+Cracked Pink Tourmaline Brick=Ladrillo de Turmalina Rosa Agrietado
+
+Travertine=Travertino
+Travertine Block=Bloque de travertino
+Cobbled Travertine=Travertino empedrado
+Travertine Brick=Ladrillo de travertino
+Cracked Travertine Brick=Ladrillo de travertino agrietado
+
+Yellow Travertine=Travertino amarillo
+Yellow Travertine Block=Bloque de travertino amarillo
+Cobbled Yellow Travertine=Travertino amarillo empedrado
+Yellow Travertine Brick=Ladrillo de travertino amarillo
+Cracked Yellow Travertine Brick=Ladrillo de travertino amarillo agrietado
+
+Beige Tuff=Toba beige
+Beige Tuff Block=Bloque de toba beige
+Cobbled Beige Tuff=Toba beige empedrada
+Beige Tuff Brick=Ladrillo de toba beige
+Cracked Beige Tuff=Toba beige agrietada
+
+Grey Tuff=Toba gris
+Grey Tuff Block=Bloque de toba gris
+Cobbled Grey Tuff=Toba gris empedrada
+Grey Tuff Brick=Ladrillo de toba gris
+Cracked Grey Tuff=Toba gris agrietada
+
+Red Tuff=Toba roja
+Red Tuff Block=Bloque de toba roja
+Cobbled Red Tuff=Toba roja empedrada
+Red Tuff Brick=Ladrillo de toba roja
+Cracked Red Tuff=Toba roja agrietada
+
+Turquoise=Turquesa
+Turquoise Block=Bloque de turquesa
+Turquoise Brick=Ladrillo de turquesa
+Cracked Turquoise Brick=Ladrillo de turquesa agrietado
+Cobbled Turquoise=Turquesa empedrada
+Turquoise Pebble=Guijarro de turquesa
+
+Vivianite=Vivianita
+Vivianite Block=Bloque de vivianita
+Vivianite Brick=Ladrillo de vivianita
+Cracked Vivianite Brick=Ladrillo de vivianita agrietado
+
+### wall.lua ###
+
+Blue Agate Wall=Muro de Ágata Azul
+Gray Agate Wall=Muro de Ágata Gris
+Green Agate Wall=Muro de Ágata Verde
+Moss Agate Wall=Muro de Ágata Musgosa
+Orange Agate Wall=Muro de Ágata Naranja
+Purple Agate Wall=Muro de Ágata Morada
+Red Agate Wall=Muro de Ágata Roja
+
+Amazonite Wall=Muro de Amazonita
+Cobbled Amazonite Wall=Muro de Amazonita Adoquinada
+Amazonite Brick Wall=Muro de Ladrillos de Amazonita
+Amazonite Block Wall=Muro de Bloques de Amazonita
+Cracked Amazonite Brick Wall=Muro de Ladrillos de Amazonita Agrietados
+
+Amber Wall=Muro de Ámbar
+Amber Brick Wall=Muro de Ladrillos de Ámbar
+Amber Block Wall=Muro de Bloques de Ámbar
+Cracked Amber Brick Wall=Muro de Ladrillos de Ámbar Agrietados
+
+Amethyst Wall=Muro de Amatista
+Amethyst Brick Wall=Muro de Ladrillos de Amatista
+Amethyst Block Wall=Muro de Bloques de Amatista
+Cracked Amethyst Brick Wall=Muro de Ladrillos de Amatista Agrietados
+
+Andesite Wall=Muro de Andesita
+Andesite Block Wall=Muro de Bloques de Andesita
+Andesite Brick Wall=Muro de Ladrillos de Andesita
+Cracked Andesite Brick Wall=Muro de Ladrillos de Andesita Agrietados
+Cobbled Andesite Wall=Muro de Andesita Adoquinada
+
+Basalt Wall=Muro de Basalto
+Basalt Block Wall=Muro de Bloques de Basalto
+Basalt Brick Wall=Muro de Ladrillos de Basalto
+Cracked Basalt Brick Wall=Muro de Ladrillos de Basalto Agrietados
+Cobbled Basalt Wall=Muro de Basalto Adoquinado
+Basalt Tile Wall=Muro de Baldosas de Basalto
+
+Black Moonstone Wall=Muro de Piedra Lunar Negra
+Black Moonstone Brick Wall=Muro de Ladrillos de Piedra Lunar Negra
+Black Moonstone Block Wall=Muro de Bloques de Piedra Lunar Negra
+Cracked Black Moonstone Brick Wall=Muro de Ladrillos de Piedra Lunar Negra Agrietados
+
+Grey Calcite Wall=Pared de Calcita Gris
+Grey Calcite Brick Wall=Pared de Ladrillo de Calcita Gris
+Grey Calcite Block Wall=Pared de Bloque de Calcita Gris
+Cracked Grey Calcite Brick Wall=Pared de Ladrillo de Calcita Gris Agrietado
+
+Calcite Wall=Muro de Calcita
+Calcite Brick Wall=Muro de Ladrillos de Calcita
+Calcite Block Wall=Muro de Bloques de Calcita
+Cracked Calcite Brick Wall=Muro de Ladrillos de Calcita Agrietados
+
+Orange Calcite Wall=Pared de Calcita Naranja
+Orange Calcite Brick Wall=Pared de Ladrillo de Calcita Naranja
+Orange Calcite Block Wall=Pared de Bloque de Calcita Naranja
+Cracked Orange Calcite Brick Wall=Pared de Ladrillo de Calcita Naranja Agrietado
+
+Carnotite Wall=Muro de Carnotita
+Carnotite Brick Wall=Muro de Ladrillos de Carnotita
+Carnotite Block Wall=Muro de Bloques de Carnotita
+Cracked Carnotite Brick Wall=Muro de Ladrillos de Carnotita Agrietados
+Cobbled Carnotite Wall=Muro de Carnotita Adoquinada
+
+Celestine Wall=Muro de Celestita
+Celestine Brick Wall=Muro de Ladrillos de Celestita
+Celestine Block Wall=Muro de Bloques de Celestita
+Cracked Celestine Brick Wall=Muro de Ladrillos de Celestita Agrietados
+
+Chalcanthite Wall=Pared de Calcanthita
+Chalcanthite Brick Wall=Pared de Ladrillo de Calcanthita
+Chalcanthite Block Wall=Pared de Bloque de Calcanthita
+Cracked Chalcanthite Brick Wall=Pared de Ladrillo de Calcanthita Agrietado
+Cobbled Chalcanthite Wall=Pared de Calcanthita Guijarreada
+
+Chrysoprase Wall=Muro de Crisoprasa
+Chrysoprase Brick Wall=Muro de Ladrillos de Crisoprasa
+Chrysoprase Block Wall=Muro de Bloques de Crisoprasa
+Cracked Chrysoprase Brick Wall=Muro de Ladrillos de Crisoprasa Agrietados
+
+Citrine Wall=Muro de Citrino
+Citrine Brick Wall=Muro de Ladrillos de Citrino
+Citrine Block Wall=Muro de Bloques de Citrino
+Cracked Citrine Brick Wall=Muro de Ladrillos de Citrino Agrietados
+
+Covellite Wall=Muro de Covellita
+Covellite Brick Wall=Muro de Ladrillos de Covellita
+Covellite Block Wall=Muro de Bloques de Covellita
+Cracked Covellite Brick Wall=Muro de Ladrillos de Covellita Agrietados
+Cobbled Covellite Wall=Muro de Covellita Adoquinada
+
+Crocoite Wall=Muro de Crocoita
+Crocoite Brick Wall=Muro de Ladrillos de Crocoita
+Crocoite Block Wall=Muro de Bloques de Crocoita
+Cracked Crocoite Brick Wall=Muro de Ladrillos de Crocoita Agrietados
+
+Diorite Wall=Muro de Diorita
+Diorite Brick Wall=Muro de Ladrillos de Diorita
+Diorite Block Wall=Muro de Bloques de Diorita
+Cracked Diorite Brick Wall=Muro de Ladrillos de Diorita Agrietados
+Cobbled Diorite Wall=Muro de Diorita Adoquinada
+
+Erythrite Wall=Muro de Eritrita
+Erythrite Brick Wall=Muro de Ladrillos de Eritrita
+Erythrite Block Wall=Muro de Bloques de Eritrita
+Cracked Erythrite Brick Wall=Muro de Ladrillos de Eritrita Agrietados
+
+Eudialite Wall=Muro de Eudialita
+Eudialite Brick Wall=Muro de Ladrillos de Eudialita
+Eudialite Block Wall=Muro de Bloques de Eudialita
+Cracked Eudialite Brick Wall=Muro de Ladrillos de Eudialita Agrietados
+
+Fluorite Wall=Muro de Fluorita
+Fluorite Brick Wall=Muro de Ladrillos de Fluorita
+Fluorite Block Wall=Muro de Bloques de Fluorita
+Cracked Fluorite Brick Wall=Muro de Ladrillos de Fluorita Agrietados
+
+Gabbro Wall=Muro de Gabro
+Cobbled Gabbro Wall=Muro de Gabro Adoquinado
+Gabbro Brick Wall=Muro de Ladrillos de Gabro
+Gabbro Block Wall=Muro de Bloques de Gabro
+Cracked Gabbro Brick Wall=Muro de Ladrillos de Gabro Agrietados
+
+Galena Wall=Muro de Galena
+Galena Brick Wall=Muro de Ladrillos de Galena
+Galena Block Wall=Muro de Bloques de Galena
+Cracked Galena Brick Wall=Muro de Ladrillos de Galena Agrietados
+
+Black Granite Wall=Muro de Granito Negro
+Black Granite Brick Wall=Muro de Ladrillos de Granito Negro
+Black Granite Block Wall=Muro de Bloques de Granito Negro
+Cracked Black Granite Brick Wall=Muro de Ladrillos de Granito Negro Agrietados
+Cobbled Black Granite Wall=Muro de Granito Negro Adoquinado
+
+Blue Granite Wall=Muro de Granito Azul
+Blue Granite Brick Wall=Muro de Ladrillos de Granito Azul
+Blue Granite Block Wall=Muro de Bloques de Granito Azul
+Cracked Blue Granite Brick Wall=Muro de Ladrillos de Granito Azul Agrietados
+Cobbled Blue Granite Wall=Muro de Granito Azul Adoquinado
+
+Gray Granite Wall=Muro de Granito Gris
+Gray Granite Brick Wall=Muro de Ladrillos de Granito Gris
+Gray Granite Block Wall=Muro de Bloques de Granito Gris
+Cracked Gray Granite Brick Wall=Muro de Ladrillos de Granito Gris Agrietados
+Cobbled Gray Granite Wall=Muro de Granito Gris Adoquinado
+
+Green Granite Wall=Muro de Granito Verde
+Green Granite Brick Wall=Muro de Ladrillos de Granito Verde
+Green Granite Block Wall=Muro de Bloques de Granito Verde
+Cracked Green Granite Brick Wall=Muro de Ladrillos de Granito Verde Agrietados
+Cobbled Green Granite Wall=Muro de Granito Verde Adoquinado
+
+Pink Granite Wall=Muro de Granito Rosa
+Pink Granite Brick Wall=Muro de Ladrillos de Granito Rosa
+Pink Granite Block Wall=Muro de Bloques de Granito Rosa
+Cracked Pink Granite Brick Wall=Muro de Ladrillos de Granito Rosa Agrietados
+Cobbled Pink Granite Wall=Muro de Granito Rosa Adoquinado
+
+Red Granite Wall=Muro de Granito Rojo
+Red Granite Brick Wall=Muro de Ladrillos de Granito Rojo
+Red Granite Block Wall=Muro de Bloques de Granito Rojo
+Cracked Red Granite Brick Wall=Muro de Ladrillos de Granito Rojo Agrietados
+Cobbled Red Granite Wall=Muro de Granito Rojo Adoquinado
+
+White Granite Wall=Muro de Granito Blanco
+White Granite Brick Wall=Muro de Ladrillos de Granito Blanco
+White Granite Block Wall=Muro de Bloques de Granito Blanco
+Cracked White Granite Brick Wall=Muro de Ladrillos de Granito Blanco Agrietados
+Cobbled White Granite Wall=Muro de Granito Blanco Adoquinado
+
+Yellow Granite Wall=Muro de Granito Amarillo
+Yellow Granite Brick Wall=Muro de Ladrillos de Granito Amarillo
+Yellow Granite Block Wall=Muro de Bloques de Granito Amarillo
+Cracked Yellow Granite Brick Wall=Muro de Ladrillos de Granito Amarillo Agrietados
+Cobbled Yellow Granite Wall=Muro de Granito Amarillo Adoquinado
+
+Heliodor Wall=Muro de Heliodoro
+Heliodor Brick Wall=Muro de Ladrillos de Heliodoro
+Heliodor Block Wall=Muro de Bloques de Heliodoro
+Cracked Heliodor Brick Wall=Muro de Ladrillos de Heliodoro Agrietados
+
+Howlite Wall=Muro de Howlita
+Howlite Brick Wall=Muro de Ladrillos de Howlita
+Howlite Block Wall=Muro de Bloques de Howlita
+Cracked Howlite Brick Wall=Muro de Ladrillos de Howlita Agrietados
+Cobbled Howlite Wall=Muro de Howlita Adoquinada
+
+Ilvaite Wall=Muro de Ilvaita
+Ilvaite Brick Wall=Muro de Ladrillos de Ilvaita
+Ilvaite Block Wall=Muro de Bloques de Ilvaita
+Cracked Ilvaite Brick Wall=Muro de Ladrillos de Ilvaita Agrietados
+Cobbled Ilvaite Wall=Muro de Ilvaita Adoquinada
+
+Jade Wall=Muro de Jade
+Jade Brick Wall=Muro de Ladrillos de Jade
+Jade Block Wall=Muro de Bloques de Jade
+Cracked Jade Brick Wall=Muro de Ladrillos de Jade Agrietados
+Cobbled Jade Wall=Muro de Jade Adoquinado
+
+Red Jasper Wall=Pared de Jaspe Rojo
+Red Jasper Brick Wall=Pared de Ladrillo de Jaspe Rojo
+Red Jasper Block Wall=Pared de Bloque de Jaspe Rojo
+Cracked Red Jasper Brick Wall=Pared de Ladrillo de Jaspe Rojo Agrietado
+Cobbled Red Jasper Wall=Pared de Jaspe Rojo Guijarreado
+
+Kyanite Wall=Muro de Cianita
+Kyanite Brick Wall=Muro de Ladrillos de Cianita
+Kyanite Block Wall=Muro de Bloques de Cianita
+Cracked Kyanite Brick Wall=Muro de Ladrillos de Cianita Agrietados
+Cobbled Kyanite Wall=Muro de Cianita Adoquinado
+
+Lapis Lazuli Wall=Muro de Lapislázuli
+Lapis Lazuli Brick Wall=Muro de Ladrillos de Lapislázuli
+Lapis Lazuli Block Wall=Muro de Bloques de Lapislázuli
+Cracked Lapis Lazuli Brick Wall=Muro de Ladrillos de Lapislázuli Agrietados
+
+Lepidolite Wall=Pared de Lepidolita
+Lepidolite Brick Wall=Pared de Ladrillo de Lepidolita
+Lepidolite Block Wall=Pared de Bloque de Lepidolita
+Cracked Lepidolite Brick Wall=Pared de Ladrillo de Lepidolita Agrietado
+Cobbled Lepidolite Wall=Pared de Lepidolita Guijarreada
+
+Blue Limestone Wall=Muro de Piedra Caliza Azul
+Blue Limestone Brick Wall=Muro de Ladrillos de Piedra Caliza Azul
+Blue Limestone Block Wall=Muro de Bloques de Piedra Caliza Azul
+Cracked Blue Limestone Brick Wall=Muro de Ladrillos de Piedra Caliza Azul Agrietados
+Cobbled Blue Limestone Wall=Muro de Piedra Caliza Azul Adoquinado
+
+White Limestone Wall=Muro de Piedra Caliza Blanca
+White Limestone Brick Wall=Muro de Ladrillos de Piedra Caliza Blanca
+White Limestone Block Wall=Muro de Bloques de Piedra Caliza Blanca
+Cracked White Limestone Brick Wall=Muro de Ladrillos de Piedra Caliza Blanca Agrietados
+Cobbled White Limestone Wall=Muro de Piedra Caliza Blanca Adoquinado
+
+Marble Wall=Muro de Mármol
+Marble Brick Wall=Muro de Ladrillos de Mármol
+Marble Block Wall=Muro de Bloques de Mármol
+Cracked Marble Brick Wall=Muro de Ladrillos de Mármol Agrietados
+Cobbled Marble Wall=Muro de Mármol Adoquinado
+
+Moonstone Wall=Pared de Piedra Lunar
+Moonstone Brick Wall=Pared de Ladrillo de Piedra Lunar
+Moonstone Block Wall=Pared de Bloque de Piedra Lunar
+Cracked Moonstone Brick Wall=Pared de Ladrillo de Piedra Lunar Agrietado
+
+Morion Quartz Wall=Muro de Cuarzo Morión
+Morion Quartz Brick Wall=Muro de Ladrillos de Cuarzo Morión
+Morion Quartz Block Wall=Muro de Bloques de Cuarzo Morión
+Cracked Morion Quartz Brick Wall=Muro de Ladrillos de Cuarzo Morión Agrietados
+
+Mudstone Wall=Muro de Rocas Lutitas
+Cobbled Mudstone Wall=Muro de Rocas Lutitas Adoquinado
+Mudstone Brick Wall=Muro de Ladrillos de Rocas Lutitas
+Mudstone Block Wall=Muro de Bloques de Rocas Lutitas
+Cracked Mudstone Brick Wall=Muro de Ladrillos de Rocas Lutitas Agrietados
+
+Prasiolite Wall=Muro de Prasiolita
+Prasiolite Brick Wall=Muro de Ladrillos de Prasiolita
+Prasiolite Block Wall=Muro de Bloques de Prasiolita
+Cracked Prasiolite Brick Wall=Muro de Ladrillos de Prasiolita Agrietados
+
+Pumice Wall=Muro de Piedra Pómez
+Pumice Brick Wall=Muro de Ladrillos de Piedra Pómez
+Pumice Block Wall=Muro de Bloques de Piedra Pómez
+Cracked Pumice Brick Wall=Muro de Ladrillos de Piedra Pómez Agrietados
+
+Pyrite Wall=Muro de Pirita
+Pyrite Brick Wall=Muro de Ladrillos de Pirita
+Pyrite Block Wall=Muro de Bloques de Pirita
+Cracked Pyrite Brick Wall=Muro de Ladrillos de Pirita Agrietados
+
+Quartz Wall=Muro de Cuarzo
+Quartz Brick Wall=Muro de Ladrillos de Cuarzo
+Quartz Block Wall=Muro de Bloques de Cuarzo
+Cracked Quartz Brick Wall=Muro de Ladrillos de Cuarzo Agrietados
+
+Rhodonite Wall=Pared de Rodonita
+Rhodonite Brick Wall=Pared de Ladrillo de Rodonita
+Rhodonite Block Wall=Pared de Bloque de Rodonita
+Cracked Rhodonite Brick Wall=Pared de Ladrillo de Rodonita Agrietado
+Cobbled Rhodonite Wall=Pared de Rodonita Guijarreada
+
+Rose Quartz Wall=Muro de Cuarzo Rosa
+Rose Quartz Brick Wall=Muro de Ladrillos de Cuarzo Rosa
+Rose Quartz Block Wall=Muro de Bloques de Cuarzo Rosa
+Cracked Rose Quartz Brick Wall=Muro de Ladrillos de Cuarzo Rosa Agrietados
+
+Scoria Wall=Muro de Escoria
+Scoria Brick Wall=Muro de Ladrillos de Escoria
+Scoria Block Wall=Muro de Bloques de Escoria
+Cracked Scoria Brick Wall=Muro de Ladrillos de Escoria Agrietados
+Cobbled Scoria Wall=Muro de Escoria Adoquinado
+
+Serpentine Wall=Muro de Serpentina
+Cobbled Serpentine Wall=Muro de Serpentina Adoquinado
+Serpentine Brick Wall=Muro de Ladrillos de Serpentina
+Serpentine Block Wall=Muro de Bloques de Serpentina
+Cracked Serpentine Brick Wall=Muro de Ladrillos de Serpentina Agrietados
+
+Shale Wall=Muro de Pizarra
+Shale Brick Wall=Muro de Ladrillos de Pizarra
+Shale Block Wall=Muro de Bloques de Pizarra
+Cracked Shale Brick Wall=Muro de Ladrillos de Pizarra Agrietados
+Cobbled Shale Wall=Muro de Pizarra Adoquinado
+
+Slate Wall=Muro de Pizarra
+Slate Brick Wall=Muro de Ladrillos de Pizarra
+Slate Block Wall=Muro de Bloques de Pizarra
+Cracked Slate Brick Wall=Muro de Ladrillos de Pizarra Agrietados
+Cobbled Slate Wall=Muro de Pizarra Adoquinado
+Slate Tile Wall=Muro de Baldosas de Pizarra
+
+Smokey Quartz Wall=Muro de Cuarzo Ahumado
+Smokey Quartz Brick Wall=Muro de Ladrillos de Cuarzo Ahumado
+Smokey Quartz Block Wall=Muro de Bloques de Cuarzo Ahumado
+Cracked Smokey Quartz Brick Wall=Muro de Ladrillos de Cuarzo Ahumado Agrietados
+
+Soapstone Wall=Muro de Esteatita
+Soapstone Brick Wall=Muro de Ladrillos de Esteatita
+Soapstone Block Wall=Muro de Bloques de Esteatita
+Cracked Soapstone Brick Wall=Muro de Ladrillos de Esteatita Agrietados
+
+Sodalite Wall=Muro de Sodalita
+Cobbled Sodalite Wall=Muro de Sodalita Adoquinado
+Sodalite Brick Wall=Muro de Ladrillos de Sodalita
+Sodalite Block Wall=Muro de Bloques de Sodalita
+Cracked Sodalite Brick Wall=Muro de Ladrillos de Sodalita Agrietados
+
+Sugilite Wall=Muro de Sugilita
+Sugilite Brick Wall=Muro de Ladrillos de Sugilita
+Sugilite Block Wall=Muro de Bloques de Sugilita
+Cracked Sugilite Brick Wall=Muro de Ladrillos de Sugilita Agrietados
+Cobbled Sugilite Wall=Muro de Sugilita Adoquinado
+
+Green Tourmaline Wall=Pared de Turmalina Verde
+Green Tourmaline Brick Wall=Pared de Ladrillo de Turmalina Verde
+Green Tourmaline Block Wall=Pared de Bloque de Turmalina Verde
+Cracked Green Tourmaline Brick Wall=Pared de Ladrillo de Turmalina Verde Agrietado
+
+Paraiba Tourmaline Wall=Pared de Turmalina Paraíba
+Paraiba Tourmaline Brick Wall=Pared de Ladrillo de Turmalina Paraíba
+Paraiba Tourmaline Block Wall=Pared de Bloque de Turmalina Paraíba
+Cracked Paraiba Tourmaline Brick Wall=Pared de Ladrillo de Turmalina Paraíba Agrietado
+
+Pink Tourmaline Wall=Pared de Turmalina Rosa
+Pink Tourmaline Brick Wall=Pared de Ladrillo de Turmalina Rosa
+Pink Tourmaline Block Wall=Pared de Bloque de Turmalina Rosa
+Cracked Pink Tourmaline Brick Wall=Pared de Ladrillo de Turmalina Rosa Agrietado
+
+Travertine Wall=Muro de Travertino
+Cobbled Travertine Wall=Muro de Travertino Adoquinado
+Travertine Brick Wall=Muro de Ladrillos de Travertino
+Travertine Block Wall=Muro de Bloques de Travertino
+Cracked Travertine Brick Wall=Muro de Ladrillos de Travertino Agrietados
+
+Yellow Travertine Wall=Muro de Travertino Amarillo
+Cobbled Yellow Travertine Wall=Muro de Travertino Amarillo Adoquinado
+Yellow Travertine Brick Wall=Muro de Ladrillos de Travertino Amarillo
+Yellow Travertine Block Wall=Muro de Bloques de Travertino Amarillo
+Cracked Yellow Travertine Brick Wall=Muro de Ladrillos de Travertino Amarillo Agrietados
+
+Beige Tuff Wall=Muro de Toba Beige
+Cobbled Beige Tuff Wall=Muro de Toba Beige Adoquinado
+Beige Tuff Block Wall=Muro de Bloques de Toba Beige
+Beige Tuff Brick Wall=Muro de Ladrillos de Toba Beige
+Cracked Beige Tuff Brick Wall=Muro de Ladrillos de Toba Beige Agrietados
+
+Grey Tuff Wall=Muro de Toba Gris
+Cobbled Grey Tuff Wall=Muro de Toba Gris Adoquinado
+Grey Tuff Block Wall=Muro de Bloques de Toba Gris
+Grey Tuff Brick Wall=Muro de Ladrillos de Toba Gris
+Cracked Grey Tuff Brick Wall=Muro de Ladrillos de Toba Gris Agrietados
+
+Red Tuff Wall=Muro de Toba Roja
+Cobbled Red Tuff Wall=Muro de Toba Roja Adoquinado
+Red Tuff Block Wall=Muro de Bloques de Toba Roja
+Red Tuff Brick Wall=Muro de Ladrillos de Toba Roja
+Cracked Red Tuff Brick Wall=Muro de Ladrillos de Toba Roja Agrietados
+
+Turquoise Wall=Muro de Turquesa
+Turquoise Brick Wall=Muro de Ladrillos de Turquesa
+Turquoise Block Wall=Muro de Bloques de Turquesa
+Cracked Turquoise Brick Wall=Muro de Ladrillos de Turquesa Agrietados
+Cobbled Turquoise Wall=Muro de Turquesa Adoquinado
+
+Vivianite Wall=Muro de Vivianita
+Vivianite Brick Wall=Muro de Ladrillos de Vivianita
+Vivianite Block Wall=Muro de Bloques de Vivianita
+Cracked Vivianite Brick Wall=Muro de Ladrillos de Vivianita Agrietados
+
+### stairs.lua ###
+
+Blue Agate Slab=Losa de Ágata Azul
+Gray Agate Slab=Losa de Ágata Gris
+Green Agate Slab=Losa de Ágata Verde
+Moss Agate Slab=Losa de Ágata Musgo
+Orange Agate Slab=Losa de Ágata Naranja
+Purple Agate Slab=Losa de Ágata Morada
+Red Agate Slab=Losa de Ágata Roja
+
+Amazonite Slab=Losa de Amazonita
+Cobbled Amazonite Slab=Losa de Amazonita Adoquinada
+Amazonite Brick Slab=Losa de Ladrillos de Amazonita
+Amazonite Block Slab=Losa de Bloques de Amazonita
+Cracked Amazonite Brick Slab=Losa de Ladrillos de Amazonita Agrietados
+
+Amber Slab=Losa de Ámbar
+Amber Brick Slab=Losa de Ladrillos de Ámbar
+Amber Block Slab=Losa de Bloques de Ámbar
+Cracked Amber Brick Slab=Losa de Ladrillos de Ámbar Agrietados
+
+Amethyst Slab=Losa de Amatista
+Amethyst Brick Slab=Losa de Ladrillos de Amatista
+Amethyst Block Slab=Losa de Bloques de Amatista
+Cracked Amethyst Brick Slab=Losa de Ladrillos de Amatista Agrietados
+
+Andesite Slab=Losa de Andesita
+Andesite Block Slab=Losa de Bloques de Andesita
+Cobbled Andesite Slab=Losa de Andesita Adoquinada
+Andesite Brick Slab=Losa de Ladrillos de Andesita
+Cobbled Andesite Brick Slab=Losa de Ladrillos de Andesita Adoquinada
+
+Basalt Slab=Losa de Basalto
+Basalt Block Slab=Losa de Bloques de Basalto
+Basalt Brick Slab=Losa de Ladrillos de Basalto
+Cracked Basalt Brick Slab=Losa de Ladrillos de Basalto Agrietados
+Cobbled Basalt Slab=Losa de Basalto Adoquinado
+Basalt Tile Slab=Losa de Azulejos de Basalto
+
+Black Moonstone Slab=Losa de Piedra Lunar Negra
+Black Moonstone Brick Slab=Losa de Ladrillos de Piedra Lunar Negra
+Black Moonstone Block Slab=Losa de Bloques de Piedra Lunar Negra
+Cracked Black Moonstone Brick Slab=Losa de Ladrillos de Piedra Lunar Negra Agrietados
+
+Grey Calcite Slab=Loseta de Calcita Gris
+Grey Calcite Brick Slab=Loseta de Ladrillo de Calcita Gris
+Grey Calcite Block Slab=Loseta de Bloque de Calcita Gris
+Cracked Grey Calcite Brick Slab=Loseta de Ladrillo de Calcita Gris Agrietado
+
+Calcite Slab=Losa de Calcita
+Calcite Brick Slab=Losa de Ladrillos de Calcita
+Calcite Block Slab=Losa de Bloques de Calcita
+Cracked Calcite Brick Slab=Losa de Ladrillos de Calcita Agrietados
+
+Orange Calcite Slab=Loseta de Calcita Naranja
+Orange Calcite Brick Slab=Loseta de Ladrillo de Calcita Naranja
+Orange Calcite Block Slab=Loseta de Bloque de Calcita Naranja
+Cracked Orange Calcite Brick Slab=Loseta de Ladrillo de Calcita Naranja Agrietado
+
+Carnotite Slab=Losa de Carnotita
+Carnotite Brick Slab=Losa de Ladrillos de Carnotita
+Carnotite Block Slab=Losa de Bloques de Carnotita
+Cracked Carnotite Brick Slab=Losa de Ladrillos de Carnotita Agrietados
+Cobbled Carnotite Slab=Losa de Carnotita Adoquinada
+
+Celestine Slab=Losa de Celestita
+Celestine Brick Slab=Losa de Ladrillos de Celestita
+Celestine Block Slab=Losa de Bloques de Celestita
+Cracked Celestine Brick Slab=Losa de Ladrillos de Celestita Agrietados
+
+Chalcanthite Slab=Loseta de Calcanthita
+Chalcanthite Brick Slab=Loseta de Ladrillo de Calcanthita
+Chalcanthite Block Slab=Loseta de Bloque de Calcanthita
+Cracked Chalcanthite Brick Slab=Loseta de Ladrillo de Calcanthita Agrietado
+Cobbled Chalcanthite Slab=Loseta de Calcanthita Guijarreada
+
+Chrysoprase Slab=Losa de Crisoprasa
+Chrysoprase Brick Slab=Losa de Ladrillos de Crisoprasa
+Chrysoprase Block Slab=Losa de Bloques de Crisoprasa
+Cracked Chrysoprase Brick Slab=Losa de Ladrillos de Crisoprasa Agrietados
+
+Citrine Slab=Losa de Citrino
+Citrine Brick Slab=Losa de Ladrillos de Citrino
+Citrine Block Slab=Losa de Bloques de Citrino
+Cracked Citrine Brick Slab=Losa de Ladrillos de Citrino Agrietados
+
+Covellite Slab=Losa de Covellita
+Covellite Brick Slab=Losa de Ladrillos de Covellita
+Covellite Block Slab=Losa de Bloques de Covellita
+Cracked Covellite Brick Slab=Losa de Ladrillos de Covellita Agrietados
+Cobbled Covellite Slab=Losa de Covellita Adoquinada
+
+Crocoite Slab=Losa de Crocoita
+Crocoite Brick Slab=Losa de Ladrillos de Crocoita
+Crocoite Block Slab=Losa de Bloques de Crocoita
+Cracked Crocoite Brick Slab=Losa de Ladrillos de Crocoita Agrietados
+
+Diorite Slab=Losa de Diorita
+Diorite Brick Slab=Losa de Ladrillos de Diorita
+Diorite Block Slab=Losa de Bloques de Diorita
+Cracked Diorite Brick Slab=Losa de Ladrillos de Diorita Agrietados
+Cobbled Diorite Slab=Losa de Diorita Adoquinada
+
+Erythrite Slab=Losa de Eritrita
+Erythrite Brick Slab=Losa de Ladrillos de Eritrita
+Erythrite Block Slab=Losa de Bloques de Eritrita
+Cracked Erythrite Brick Slab=Losa de Ladrillos de Eritrita Agrietados
+
+Eudialite Slab=Losa de Eudialita
+Eudialite Brick Slab=Losa de Ladrillos de Eudialita
+Eudialite Block Slab=Losa de Bloques de Eudialita
+Cracked Eudialite Brick Slab=Losa de Ladrillos de Eudialita Agrietados
+
+Fluorite Slab=Losa de Fluorita
+Fluorite Brick Slab=Losa de Ladrillos de Fluorita
+Fluorite Block Slab=Losa de Bloques de Fluorita
+Cracked Fluorite Brick Slab=Losa de Ladrillos de Fluorita Agrietados
+
+Gabbro Slab=Losa de Gabro
+Cobbled Gabbro Slab=Losa de Gabro Adoquinada
+Gabbro Brick Slab=Losa de Ladrillos de Gabro
+Gabbro Block Slab=Losa de Bloques de Gabro
+Cracked Gabbro Brick Slab=Losa de Ladrillos de Gabro Agrietados
+
+Galena Slab=Losa de Galena
+Galena Brick Slab=Losa de Ladrillos de Galena
+Galena Block Slab=Losa de Bloques de Galena
+Cracked Galena Brick Slab=Losa de Ladrillos de Galena Agrietados
+
+Black Granite Slab=Losa de Granito Negro
+Black Granite Brick Slab=Losa de Ladrillos de Granito Negro
+Black Granite Block Slab=Losa de Bloques de Granito Negro
+Cracked Black Granite Brick Slab=Losa de Ladrillos de Granito Negro Agrietados
+Cobbled Black Granite Slab=Losa de Granito Negro Adoquinada
+
+Blue Granite Slab=Losa de Granito Azul
+Blue Granite Brick Slab=Losa de Ladrillos de Granito Azul
+Blue Granite Block Slab=Losa de Bloques de Granito Azul
+Cracked Blue Granite Brick Slab=Losa de Ladrillos de Granito Azul Agrietados
+Cobbled Blue Granite Slab=Losa de Granito Azul Adoquinada
+
+Gray Granite Slab=Losa de Granito Gris
+Gray Granite Brick Slab=Losa de Ladrillos de Granito Gris
+Gray Granite Block Slab=Losa de Bloques de Granito Gris
+Cracked Gray Granite Brick Slab=Losa de Ladrillos de Granito Gris Agrietados
+Cobbled Gray Granite Slab=Losa de Granito Gris Adoquinada
+
+Green Granite Slab=Losa de Granito Verde
+Green Granite Brick Slab=Losa de Ladrillos de Granito Verde
+Green Granite Block Slab=Losa de Bloques de Granito Verde
+Cracked Green Granite Brick Slab=Losa de Ladrillos de Granito Verde Agrietados
+Cobbled Green Granite Slab=Losa de Granito Verde Adoquinada
+
+Pink Granite Slab=Losa de Granito Rosa
+Pink Granite Brick Slab=Losa de Ladrillos de Granito Rosa
+Pink Granite Block Slab=Losa de Bloques de Granito Rosa
+Cracked Pink Granite Brick Slab=Losa de Ladrillos de Granito Rosa Agrietados
+Cobbled Pink Granite Slab=Losa de Granito Rosa Adoquinada
+
+Red Granite Slab=Losa de Granito Rojo
+Red Granite Brick Slab=Losa de Ladrillos de Granito Rojo
+Red Granite Block Slab=Losa de Bloques de Granito Rojo
+Cracked Red Granite Brick Slab=Losa de Ladrillos de Granito Rojo Agrietados
+Cobbled Red Granite Slab=Losa de Granito Rojo Adoquinada
+
+White Granite Slab=Losa de Granito Blanco
+White Granite Brick Slab=Losa de Ladrillos de Granito Blanco
+White Granite Block Slab=Losa de Bloques de Granito Blanco
+Cracked White Granite Brick Slab=Losa de Ladrillos de Granito Blanco Agrietados
+Cobbled White Granite Slab=Losa de Granito Blanco Adoquinada
+
+Yellow Granite Slab=Losa de Granito Amarillo
+Yellow Granite Brick Slab=Losa de Ladrillos de Granito Amarillo
+Yellow Granite Block Slab=Losa de Bloques de Granito Amarillo
+Cracked Yellow Granite Brick Slab=Losa de Ladrillos de Granito Amarillo Agrietados
+Cobbled Yellow Granite Slab=Losa de Granito Amarillo Adoquinada
+
+Heliodor Slab=Losa de Heliodoro
+Heliodor Brick Slab=Losa de Ladrillos de Heliodoro
+Heliodor Block Slab=Losa de Bloques de Heliodoro
+Cracked Heliodor Brick Slab=Losa de Ladrillos de Heliodoro Agrietados
+
+Howlite Slab=Losa de Howlite
+Howlite Brick Slab=Losa de Ladrillos de Howlite
+Howlite Block Slab=Losa de Bloques de Howlite
+Cracked Howlite Brick Slab=Losa de Ladrillos de Howlite Agrietados
+Cobbled Howlite Slab=Losa de Howlite Guiada
+
+Ilvaite Slab=Losa de Ilvaite
+Ilvaite Brick Slab=Losa de Ladrillos de Ilvaite
+Ilvaite Block Slab=Losa de Bloques de Ilvaite
+Cracked Ilvaite Brick Slab=Losa de Ladrillos de Ilvaite Agrietados
+Cobbled Ilvaite Slab=Losa de Ilvaite Guiada
+
+Jade Slab=Losa de Jade
+Jade Brick Slab=Losa de Ladrillos de Jade
+Jade Block Slab=Losa de Bloques de Jade
+Cracked Jade Brick Slab=Losa de Ladrillos de Jade Agrietados
+Cobbled Jade Slab=Losa de Jade Guiada
+
+Red Jasper Slab=Loseta de Jaspe Rojo
+Red Jasper Brick Slab=Loseta de Ladrillo de Jaspe Rojo
+Red Jasper Block Slab=Loseta de Bloque de Jaspe Rojo
+Cracked Red Jasper Brick Slab=Loseta de Ladrillo de Jaspe Rojo Agrietado
+Cobbled Red Jasper Slab=Loseta de Jaspe Rojo Guijarreado
+
+Kyanite Slab=Losa de Kyanite
+Kyanite Brick Slab=Losa de Ladrillos de Kyanite
+Kyanite Block Slab=Losa de Bloques de Kyanite
+Cracked Kyanite Brick Slab=Losa de Ladrillos de Kyanite Agrietados
+Cobbled Kyanite Slab=Losa de Kyanite Guiada
+
+Lapis Lazuli Slab=Losa de Lapislázuli
+Lapis Lazuli Brick Slab=Losa de Ladrillos de Lapislázuli
+Lapis Lazuli Block Slab=Losa de Bloques de Lapislázuli
+Cracked Lapis Lazuli Brick Slab=Losa de Ladrillos de Lapislázuli Agrietados
+
+Lepidolite Slab=Loseta de Lepidolita
+Lepidolite Brick Slab=Loseta de Ladrillo de Lepidolita
+Lepidolite Block Slab=Loseta de Bloque de Lepidolita
+Cracked Lepidolite Brick Slab=Loseta de Ladrillo de Lepidolita Agrietado
+Cobbled Lepidolite Slab=Loseta de Lepidolita Guijarreada
+
+Blue Limestone Slab=Losa de Piedra Caliza Azul
+Blue Limestone Brick Slab=Losa de Ladrillos de Piedra Caliza Azul
+Blue Limestone Block Slab=Losa de Bloques de Piedra Caliza Azul
+Cracked Blue Limestone Brick Slab=Losa de Ladrillos de Piedra Caliza Azul Agrietados
+Cobbled Blue Limestone Slab=Losa de Piedra Caliza Azul Guiada
+
+White Limestone Slab=Losa de Piedra Caliza Blanca
+White Limestone Brick Slab=Losa de Ladrillos de Piedra Caliza Blanca
+White Limestone Block Slab=Losa de Bloques de Piedra Caliza Blanca
+Cracked White Limestone Brick Slab=Losa de Ladrillos de Piedra Caliza Blanca Agrietados
+Cobbled White Limestone Slab=Losa de Piedra Caliza Blanca Guiada
+
+Marble Slab=Losa de Mármol
+Marble Brick Slab=Losa de Ladrillos de Mármol
+Marble Block Slab=Losa de Bloques de Mármol
+Cracked Marble Brick Slab=Losa de Ladrillos de Mármol Agrietados
+Cobbled Marble Slab=Losa de Mármol Guiada
+
+Moonstone Slab=Loseta de Piedra Lunar
+Moonstone Brick Slab=Loseta de Ladrillo de Piedra Lunar
+Moonstone Block Slab=Loseta de Bloque de Piedra Lunar
+Cracked Moonstone Brick Slab=Loseta de Ladrillo de Piedra Lunar Agrietado
+
+Morion Quartz Slab=Losa de Cuarzo Morión
+Morion Quartz Brick Slab=Losa de Ladrillos de Cuarzo Morión
+Morion Quartz Block Slab=Losa de Bloques de Cuarzo Morión
+Cracked Morion Quartz Brick Slab=Losa de Ladrillos de Cuarzo Morión Agrietados
+
+Mudstone Slab=Losa de Piedra Fango
+Cobbled Mudstone Slab=Losa de Piedra Fango Guiada
+Mudstone Brick Slab=Losa de Ladrillos de Piedra Fango
+Mudstone Block Slab=Losa de Bloques de Piedra Fango
+Cracked Mudstone Brick Slab=Losa de Ladrillos de Piedra Fango Agrietados
+
+Prasiolite Slab=Losa de Prasiolita
+Cobbled Prasiolite Slab=Losa de Prasiolita Guiada
+Prasiolite Brick Slab=Losa de Ladrillos de Prasiolita
+Prasiolite Block Slab=Losa de Bloques de Prasiolita
+Cracked Prasiolite Brick Slab=Losa de Ladrillos de Prasiolita Agrietados
+
+Pumice Slab=Losa de Piedra Pómez
+Pumice Brick Slab=Losa de Ladrillos de Piedra Pómez
+Pumice Block Slab=Losa de Bloques de Piedra Pómez
+Cracked Pumice Brick Slab=Losa de Ladrillos de Piedra Pómez Agrietados
+
+Pyrite Slab=Losa de Pirita
+Pyrite Brick Slab=Losa de Ladrillos de Pirita
+Pyrite Block Slab=Losa de Bloques de Pirita
+Cracked Pyrite Brick Slab=Losa de Ladrillos de Pirita Agrietados
+
+Quartz Slab=Losa de Cuarzo
+Cobbled Quartz Slab=Losa de Cuarzo Guiada
+Quartz Brick Slab=Losa de Ladrillos de Cuarzo
+Quartz Block Slab=Losa de Bloques de Cuarzo
+Cracked Quartz Brick Slab=Losa de Ladrillos de Cuarzo Agrietados
+
+Rhodonite Slab=Loseta de Rodonita
+Rhodonite Brick Slab=Loseta de Ladrillo de Rodonita
+Rhodonite Block Slab=Loseta de Bloque de Rodonita
+Cracked Rhodonite Brick Slab=Loseta de Ladrillo de Rodonita Agrietado
+Cobbled Rhodonite Slab=Loseta de Rodonita Guijarreada
+
+Rose Quartz Slab=Losa de Cuarzo Rosa
+Rose Quartz Brick Slab=Losa de Ladrillos de Cuarzo Rosa
+Rose Quartz Block Slab=Losa de Bloques de Cuarzo Rosa
+Cracked Rose Quartz Brick Slab=Losa de Ladrillos de Cuarzo Rosa Agrietados
+
+Scoria Slab=Losa de Escoria
+Scoria Brick Slab=Losa de Ladrillos de Escoria
+Scoria Block Slab=Losa de Bloques de Escoria
+Cracked Scoria Brick Slab=Losa de Ladrillos de Escoria Agrietados
+Cobbled Scoria Slab=Losa de Escoria Guiada
+
+Serpentine Slab=Losa de Serpentinita
+Cobbled Serpentine Slab=Losa de Serpentinita Guiada
+Serpentine Brick Slab=Losa de Ladrillos de Serpentinita
+Serpentine Block Slab=Losa de Bloques de Serpentinita
+Cracked Serpentine Brick Slab=Losa de Ladrillos de Serpentinita Agrietados
+
+Shale Slab=Losa de Esquisto
+Shale Brick Slab=Losa de Ladrillos de Esquisto
+Shale Block Slab=Losa de Bloques de Esquisto
+Cracked Shale Brick Slab=Losa de Ladrillos de Esquisto Agrietados
+Cobbled Shale Slab=Losa de Esquisto Guiada
+
+Slate Slab=Losa de Pizarra
+Slate Brick Slab=Losa de Ladrillos de Pizarra
+Slate Block Slab=Losa de Bloques de Pizarra
+Cracked Slate Brick Slab=Losa de Ladrillos de Pizarra Agrietados
+Cobbled Slate Slab=Losa de Pizarra Guiada
+Slate Tile Slab=Losa de Azulejo de Pizarra
+
+Smokey Quartz Slab=Losa de Cuarzo Ahumado
+Smokey Quartz Brick Slab=Losa de Ladrillos de Cuarzo Ahumado
+Smokey Quartz Block Slab=Losa de Bloques de Cuarzo Ahumado
+Cracked Smokey Quartz Brick Slab=Losa de Ladrillos de Cuarzo Ahumado Agrietados
+
+Soapstone Slab=Losa de Esteatita
+Soapstone Brick Slab=Losa de Ladrillos de Esteatita
+Soapstone Block Slab=Losa de Bloques de Esteatita
+Cracked Soapstone Brick Slab=Losa de Ladrillos de Esteatita Agrietados
+
+Sodalite Slab=Losa de Sodalita
+Cobbled Sodalite Slab=Losa de Sodalita Guiada
+Sodalite Brick Slab=Losa de Ladrillos de Sodalita
+Sodalite Block Slab=Losa de Bloques de Sodalita
+Cracked Sodalite Brick Slab=Losa de Ladrillos de Sodalita Agrietados
+
+Sugilite Slab=Losa de Sugilita
+Sugilite Brick Slab=Losa de Ladrillos de Sugilita
+Sugilite Block Slab=Losa de Bloques de Sugilita
+Cracked Sugilite Brick Slab=Losa de Ladrillos de Sugilita Agrietados
+Cobbled Sugilite Slab=Losa de Sugilita Guiada
+
+Green Tourmaline Slab=Loseta de Turmalina Verde
+Green Tourmaline Brick Slab=Loseta de Ladrillo de Turmalina Verde
+Green Tourmaline Block Slab=Loseta de Bloque de Turmalina Verde
+Cracked Green Tourmaline Brick Slab=Loseta de Ladrillo de Turmalina Verde Agrietado
+
+Paraiba Tourmaline Slab=Loseta de Turmalina Paraíba
+Paraiba Tourmaline Brick Slab=Loseta de Ladrillo de Turmalina Paraíba
+Paraiba Tourmaline Block Slab=Loseta de Bloque de Turmalina Paraíba
+Cracked Paraiba Tourmaline Brick Slab=Loseta de Ladrillo de Turmalina Paraíba Agrietado
+
+Pink Tourmaline Slab=Loseta de Turmalina Rosa
+Pink Tourmaline Brick Slab=Loseta de Ladrillo de Turmalina Rosa
+Pink Tourmaline Block Slab=Loseta de Bloque de Turmalina Rosa
+Cracked Pink Tourmaline Brick Slab=Loseta de Ladrillo de Turmalina Rosa Agrietado
+
+Travertine Slab=Losa de Travertino
+Cobbled Travertine Slab=Losa de Travertino Guiada
+Travertine Brick Slab=Losa de Ladrillos de Travertino
+Travertine Block Slab=Losa de Bloques de Travertino
+Cracked Travertine Brick Slab=Losa de Ladrillos de Travertino Agrietados
+
+Yellow Travertine Slab=Losa de Travertino Amarillo
+Cobbled Yellow Travertine Slab=Losa de Travertino Amarillo Guiada
+Yellow Travertine Brick Slab=Losa de Ladrillos de Travertino Amarillo
+Yellow Travertine Block Slab=Losa de Bloques de Travertino Amarillo
+Cracked Yellow Travertine Brick Slab=Losa de Ladrillos de Travertino Amarillo Agrietados
+
+Beige Tuff Slab=Losa de Toba Beige
+Cobbled Beige Tuff Slab=Losa de Toba Beige Guiada
+Beige Tuff Block Slab=Losa de Bloques de Toba Beige
+Beige Tuff Brick Slab=Losa de Ladrillos de Toba Beige
+Cracked Beige Tuff Brick Slab=Losa de Ladrillos de Toba Beige Agrietados
+
+Grey Tuff Slab=Losa de Toba Gris
+Cobbled Grey Tuff Slab=Losa de Toba Gris Guiada
+Grey Tuff Block Slab=Losa de Bloques de Toba Gris
+Grey Tuff Brick Slab=Losa de Ladrillos de Toba Gris
+Cracked Grey Tuff Brick Slab=Losa de Ladrillos de Toba Gris Agrietados
+
+Red Tuff Slab=Losa de Toba Roja
+Cobbled Red Tuff Slab=Losa de Toba Roja Guiada
+Red Tuff Block Slab=Losa de Bloques de Toba Roja
+Red Tuff Brick Slab=Losa de Ladrillos de Toba Roja
+Cracked Red Tuff Brick Slab=Losa de Ladrillos de Toba Roja Agrietados
+
+Turquoise Slab=Losa de Turquesa
+Turquoise Brick Slab=Losa de Ladrillos de Turquesa
+Turquoise Block Slab=Losa de Bloques de Turquesa
+Cracked Turquoise Brick Slab=Losa de Ladrillos de Turquesa Agrietados
+Cobbled Turquoise Slab=Losa de Turquesa Guiada
+
+Vivianite Slab=Losa de Vivianita
+Cobbled Vivianite Slab=Losa de Vivianita Guiada
+Vivianite Brick Slab=Losa de Ladrillos de Vivianita
+Vivianite Block Slab=Losa de Bloques de Vivianita
+Cracked Vivianite Brick Slab=Losa de Ladrillos de Vivianita Agrietados
+
+
+
+Blue Agate Stair=Escalera de Ágata Azul
+Gray Agate Stair=Escalera de Ágata Gris
+Green Agate Stair=Escalera de Ágata Verde
+Moss Agate Stair=Escalera de Ágata Musgosa
+Orange Agate Stair=Escalera de Ágata Naranja
+Purple Agate Stair=Escalera de Ágata Morada
+Red Agate Stair=Escalera de Ágata Roja
+
+Amazonite Stair=Escalera de Amazonita
+Cobbled Amazonite Stair=Escalera de Amazonita Guiada
+Amazonite Brick Stair=Escalera de Ladrillos de Amazonita
+Amazonite Block Stair=Escalera de Bloques de Amazonita
+Cracked Amazonite Brick Stair=Escalera de Ladrillos de Amazonita Agrietados
+
+Amber Stair=Escalera de Ámbar
+Amber Brick Stair=Escalera de Ladrillos de Ámbar
+Amber Block Stair=Escalera de Bloques de Ámbar
+Cracked Amber Brick Stair=Escalera de Ladrillos de Ámbar Agrietados
+
+Amethyst Stair=Escalera de Amatista
+Amethyst Brick Stair=Escalera de Ladrillos de Amatista
+Amethyst Block Stair=Escalera de Bloques de Amatista
+Cracked Amethyst Brick Stair=Escalera de Ladrillos de Amatista Agrietados
+
+Andesite Stair=Escalera de Andesita
+Andesite Block Stair=Escalera de Bloques de Andesita
+Cobbled Andesite Stair=Escalera de Andesita Guiada
+Andesite Brick Stair=Escalera de Ladrillos de Andesita
+Cobbled Andesite Brick Stair=Escalera de Ladrillos de Andesita Guiada
+
+Basalt Stair=Escalera de Basalto
+Basalt Block Stair=Escalera de Bloques de Basalto
+Basalt Brick Stair=Escalera de Ladrillos de Basalto
+Cracked Basalt Brick Stair=Escalera de Ladrillos de Basalto Agrietados
+Cobbled Basalt Stair=Escalera de Basalto Guiada
+Basalt Tile Stairs =Escalera de Tejas de Basalto
+
+Black Moonstone Stair=Escalera de Piedra Lunar Negra
+Black Moonstone Brick Stair=Escalera de Ladrillos de Piedra Lunar Negra
+Black Moonstone Block Stair=Escalera de Bloques de Piedra Lunar Negra
+Cracked Black Moonstone Brick Stair=Escalera de Ladrillos de Piedra Lunar Negra Agrietados
+
+Grey Calcite Stair=Escalera de Calcita Gris
+Grey Calcite Brick Stair=Escalera de Ladrillo de Calcita Gris
+Grey Calcite Block Stair=Escalera de Bloque de Calcita Gris
+Cracked Grey Calcite Brick Stair=Escalera de Ladrillo de Calcita Gris Agrietado
+
+Calcite Stair=Escalera de Calcita
+Calcite Brick Stair=Escalera de Ladrillos de Calcita
+Calcite Block Stair=Escalera de Bloques de Calcita
+Cracked Calcite Brick Stair=Escalera de Ladrillos de Calcita Agrietados
+
+Orange Calcite Stair=Escalera de Calcita Naranja
+Orange Calcite Brick Stair=Escalera de Ladrillo de Calcita Naranja
+Orange Calcite Block Stair=Escalera de Bloque de Calcita Naranja
+Cracked Orange Calcite Brick Stair=Escalera de Ladrillo de Calcita Naranja Agrietado
+
+Carnotite Stair=Escalera de Carnotita
+Carnotite Brick Stair=Escalera de Ladrillos de Carnotita
+Carnotite Block Stair=Escalera de Bloques de Carnotita
+Cracked Carnotite Brick Stair=Escalera de Ladrillos de Carnotita Agrietados
+Cobbled Carnotite Stair=Escalera de Carnotita Guiada
+
+Celestine Stair=Escalera de Celestina
+Celestine Brick Stair=Escalera de Ladrillos de Celestina
+Celestine Block Stair=Escalera de Bloques de Celestina
+Cracked Celestine Brick Stair=Escalera de Ladrillos de Celestina Agrietados
+
+Chalcanthite Stair=Escalera de Calcanthita
+Chalcanthite Brick Stair=Escalera de Ladrillo de Calcanthita
+Chalcanthite Block Stair=Escalera de Bloque de Calcanthita
+Cracked Chalcanthite Brick Stair=Escalera de Ladrillo de Calcanthita Agrietado
+Cobbled Chalcanthite Stair=Escalera de Calcanthita Guijarreada
+
+Chrysoprase Stair=Escalera de Crisoprasa
+Chrysoprase Brick Stair=Escalera de Ladrillos de Crisoprasa
+Chrysoprase Block Stair=Escalera de Bloques de Crisoprasa
+Cracked Chrysoprase Brick Stair=Escalera de Ladrillos de Crisoprasa Agrietados
+
+Citrine Stair=Escalera de Citrino
+Citrine Brick Stair=Escalera de Ladrillos de Citrino
+Citrine Block Stair=Escalera de Bloques de Citrino
+Cracked Citrine Brick Stair=Escalera de Ladrillos de Citrino Agrietados
+
+Covellite Stair=Escalera de Covellita
+Covellite Brick Stair=Escalera de Ladrillos de Covellita
+Covellite Block Stair=Escalera de Bloques de Covellita
+Cracked Covellite Brick Stair=Escalera de Ladrillos de Covellita Agrietados
+Cobbled Covellite Stair=Escalera de Covellita Guiada
+
+Crocoite Stair=Escalera de Crocoita
+Crocoite Brick Stair=Escalera de Ladrillos de Crocoita
+Crocoite Block Stair=Escalera de Bloques de Crocoita
+Cracked Crocoite Brick Stair=Escalera de Ladrillos de Crocoita Agrietados
+
+Diorite Stair=Escalera de Diorita
+Diorite Brick Stair=Escalera de Ladrillos de Diorita
+Diorite Block Stair=Escalera de Bloques de Diorita
+Cracked Diorite Brick Stair=Escalera de Ladrillos de Diorita Agrietados
+Cobbled Diorite Stair=Escalera de Diorita Guiada
+
+Erythrite Stair=Escalera de Eritrita
+Erythrite Brick Stair=Escalera de Ladrillos de Eritrita
+Erythrite Block Stair=Escalera de Bloques de Eritrita
+Cracked Erythrite Brick Stair=Escalera de Ladrillos de Eritrita Agrietados
+
+Eudialite Stair=Escalera de Eudialita
+Eudialite Brick Stair=Escalera de Ladrillos de Eudialita
+Eudialite Block Stair=Escalera de Bloques de Eudialita
+Cracked Eudialite Brick Stair=Escalera de Ladrillos de Eudialita Agrietados
+
+Fluorite Stair=Escalera de Fluorita
+Fluorite Brick Stair=Escalera de Ladrillos de Fluorita
+Fluorite Block Stair=Escalera de Bloques de Fluorita
+Cracked Fluorite Brick Stair=Escalera de Ladrillos de Fluorita Agrietados
+
+Gabbro Stair=Escalera de Gabro
+Cobbled Gabbro Stair=Escalera de Gabro Guiada
+Gabbro Brick Stair=Escalera de Ladrillos de Gabro
+Gabbro Block Stair=Escalera de Bloques de Gabro
+Cracked Gabbro Brick Stair=Escalera de Ladrillos de Gabro Agrietados
+
+Galena Stair=Escalera de Galena
+Galena Brick Stair=Escalera de Ladrillos de Galena
+Galena Block Stair=Escalera de Bloques de Galena
+Cracked Galena Brick Stair=Escalera de Ladrillos de Galena Agrietados
+
+Black Granite Stair=Escalera de Granito Negro
+Black Granite Brick Stair=Escalera de Ladrillos de Granito Negro
+Black Granite Block Stair=Escalera de Bloques de Granito Negro
+Cracked Black Granite Brick Stair=Escalera de Ladrillos de Granito Negro Agrietados
+Cobbled Black Granite Stair=Escalera de Granito Negro Guiada
+
+Blue Granite Stair=Escalera de Granito Azul
+Blue Granite Brick Stair=Escalera de Ladrillos de Granito Azul
+Blue Granite Block Stair=Escalera de Bloques de Granito Azul
+Cracked Blue Granite Brick Stair=Escalera de Ladrillos de Granito Azul Agrietados
+Cobbled Blue Granite Stair=Escalera de Granito Azul Guiada
+
+Gray Granite Stair=Escalera de Granito Gris
+Gray Granite Brick Stair=Escalera de Ladrillos de Granito Gris
+Gray Granite Block Stair=Escalera de Bloques de Granito Gris
+Cracked Gray Granite Brick Stair=Escalera de Ladrillos de Granito Gris Agrietados
+Cobbled Gray Granite Stair=Escalera de Granito Gris Guiada
+
+Green Granite Stair=Escalera de Granito Verde
+Green Granite Brick Stair=Escalera de Ladrillos de Granito Verde
+Green Granite Block Stair=Escalera de Bloques de Granito Verde
+Cracked Green Granite Brick Stair=Escalera de Ladrillos de Granito Verde Agrietados
+Cobbled Green Granite Stair=Escalera de Granito Verde Guiada
+
+Pink Granite Stair=Escalera de Granito Rosa
+Pink Granite Brick Stair=Escalera de Ladrillos de Granito Rosa
+Pink Granite Block Stair=Escalera de Bloques de Granito Rosa
+Cracked Pink Granite Brick Stair=Escalera de Ladrillos de Granito Rosa Agrietados
+Cobbled Pink Granite Stair=Escalera de Granito Rosa Guiada
+
+Red Granite Stair=Escalera de Granito Rojo
+Red Granite Brick Stair=Escalera de Ladrillos de Granito Rojo
+Red Granite Block Stair=Escalera de Bloques de Granito Rojo
+Cracked Red Granite Brick Stair=Escalera de Ladrillos de Granito Rojo Agrietados
+Cobbled Red Granite Stair=Escalera de Granito Rojo Guiada
+
+White Granite Stair=Escalera de Granito Blanco
+White Granite Brick Stair=Escalera de Ladrillos de Granito Blanco
+White Granite Block Stair=Escalera de Bloques de Granito Blanco
+Cracked White Granite Brick Stair=Escalera de Ladrillos de Granito Blanco Agrietados
+Cobbled White Granite Stair=Escalera de Granito Blanco Guiada
+
+Yellow Granite Stair=Escalera de Granito Amarillo
+Yellow Granite Brick Stair=Escalera de Ladrillos de Granito Amarillo
+Yellow Granite Block Stair=Escalera de Bloques de Granito Amarillo
+Cracked Yellow Granite Brick Stair=Escalera de Ladrillos de Granito Amarillo Agrietados
+Cobbled Yellow Granite Stair=Escalera de Granito Amarillo Guiada
+
+Heliodor Stair=Escalera de Heliodor
+Heliodor Brick Stair=Escalera de Ladrillos de Heliodor
+Heliodor Block Stair=Escalera de Bloques de Heliodor
+Cracked Heliodor Brick Stair=Escalera de Ladrillos de Heliodor Agrietados
+
+Howlite Stair=Escalera de Howlite
+Howlite Brick Stair=Escalera de Ladrillos de Howlite
+Howlite Block Stair=Escalera de Bloques de Howlite
+Cracked Howlite Brick Stair=Escalera de Ladrillos de Howlite Agrietados
+Cobbled Howlite Stair=Escalera de Howlite Guiada
+
+Ilvaite Stair=Escalera de Ilvaite
+Ilvaite Brick Stair=Escalera de Ladrillos de Ilvaite
+Ilvaite Block Stair=Escalera de Bloques de Ilvaite
+Cracked Ilvaite Brick Stair=Escalera de Ladrillos de Ilvaite Agrietados
+Cobbled Ilvaite Stair=Escalera de Ilvaite Guiada
+
+Jade Stair=Escalera de Jade
+Jade Brick Stair=Escalera de Ladrillos de Jade
+Jade Block Stair=Escalera de Bloques de Jade
+Cracked Jade Brick Stair=Escalera de Ladrillos de Jade Agrietados
+Cobbled Jade Stair=Escalera de Jade Guiada
+
+Red Jasper Stair=Escalera de Jaspe Rojo
+Red Jasper Brick Stair=Escalera de Ladrillo de Jaspe Rojo
+Red Jasper Block Stair=Escalera de Bloque de Jaspe Rojo
+Cracked Red Jasper Brick Stair=Escalera de Ladrillo de Jaspe Rojo Agrietado
+Cobbled Red Jasper Stair=Escalera de Jaspe Rojo Guijarreado
+
+Kyanite Stair=Escalera de Kyanite
+Kyanite Brick Stair=Escalera de Ladrillos de Kyanite
+Kyanite Block Stair=Escalera de Bloques de Kyanite
+Cracked Kyanite Brick Stair=Escalera de Ladrillos de Kyanite Agrietados
+Cobbled Kyanite Stair=Escalera de Kyanite Guiada
+
+Lapis Lazuli Stair=Escalera de Lapislázuli
+Lapis Lazuli Brick Stair=Escalera de Ladrillos de Lapislázuli
+Lapis Lazuli Block Stair=Escalera de Bloques de Lapislázuli
+Cracked Lapis Lazuli Brick Stair=Escalera de Ladrillos de Lapislázuli Agrietados
+
+Lepidolite Stair=Escalera de Lepidolita
+Lepidolite Brick Stair=Escalera de Ladrillo de Lepidolita
+Lepidolite Block Stair=Escalera de Bloque de Lepidolita
+Cracked Lepidolite Brick Stair=Escalera de Ladrillo de Lepidolita Agrietado
+Cobbled Lepidolite Stair=Escalera de Lepidolita Guijarreada
+
+Blue Limestone Stair=Escalera de Piedra Caliza Azul
+Blue Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Azul
+Blue Limestone Block Stair=Escalera de Bloques de Piedra Caliza Azul
+Cracked Blue Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Azul Agrietados
+Cobbled Blue Limestone Stair=Escalera de Piedra Caliza Azul Guiada
+
+White Limestone Stair=Escalera de Piedra Caliza Blanca
+White Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Blanca
+White Limestone Block Stair=Escalera de Bloques de Piedra Caliza Blanca
+Cracked White Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Blanca Agrietados
+Cobbled White Limestone Stair=Escalera de Piedra Caliza Blanca Guiada
+
+Marble Stair=Escalera de Mármol
+Marble Brick Stair=Escalera de Ladrillos de Mármol
+Marble Block Stair=Escalera de Bloques de Mármol
+Cracked Marble Brick Stair=Escalera de Ladrillos de Mármol Agrietados
+Cobbled Marble Stair=Escalera de Mármol Guiada
+
+Moonstone Stair=Escalera de Piedra Lunar
+Moonstone Brick Stair=Escalera de Ladrillo de Piedra Lunar
+Moonstone Block Stair=Escalera de Bloque de Piedra Lunar
+Cracked Moonstone Brick Stair=Escalera de Ladrillo de Piedra Lunar Agrietado
+
+Morion Quartz Stair=Escalera de Cuarzo Morion
+Morion Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Morion
+Morion Quartz Block Stair=Escalera de Bloques de Cuarzo Morion
+Cracked Morion Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Morion Agrietados
+
+Mudstone Stair=Escalera de Piedra Lutita
+Cobbled Mudstone Stair=Escalera de Piedra Lutita Guiada
+Mudstone Brick Stair=Escalera de Ladrillos de Piedra Lutita
+Mudstone Block Stair=Escalera de Bloques de Piedra Lutita
+Cracked Mudstone Brick Stair=Escalera de Ladrillos de Piedra Lutita Agrietados
+
+Prasiolite Stair=Escalera de Prasiolita
+Prasiolite Brick Stair=Escalera de Ladrillos de Prasiolita
+Prasiolite Block Stair=Escalera de Bloques de Prasiolita
+Cracked Prasiolite Brick Stair=Escalera de Ladrillos de Prasiolita Agrietados
+
+Pumice Stair=Escalera de Pumita
+Pumice Brick Stair=Escalera de Ladrillos de Pumita
+Pumice Block Stair=Escalera de Bloques de Pumita
+Cracked Pumice Brick Stair=Escalera de Ladrillos de Pumita Agrietados
+
+Pyrite Stair=Escalera de Pirita
+Pyrite Brick Stair=Escalera de Ladrillos de Pirita
+Pyrite Block Stair=Escalera de Bloques de Pirita
+Cracked Pyrite Brick Stair=Escalera de Ladrillos de Pirita Agrietados
+
+Quartz Stair=Escalera de Cuarzo
+Quartz Brick Stair=Escalera de Ladrillos de Cuarzo
+Quartz Block Stair=Escalera de Bloques de Cuarzo
+Cracked Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Agrietados
+
+Rhodonite Stair=Escalera de Rodonita
+Rhodonite Brick Stair=Escalera de Ladrillo de Rodonita
+Rhodonite Block Stair=Escalera de Bloque de Rodonita
+Cracked Rhodonite Brick Stair=Escalera de Ladrillo de Rodonita Agrietado
+Cobbled Rhodonite Stair=Escalera de Rodonita Guijarreada
+
+Rose Quartz Stair=Escalera de Cuarzo Rosa
+Rose Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Rosa
+Rose Quartz Block Stair=Escalera de Bloques de Cuarzo Rosa
+Cracked Rose Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Rosa Agrietados
+
+Scoria Stair=Escalera de Escoria
+Scoria Brick Stair=Escalera de Ladrillos de Escoria
+Scoria Block Stair=Escalera de Bloques de Escoria
+Cracked Scoria Brick Stair=Escalera de Ladrillos de Escoria Agrietados
+Cobbled Scoria Stair=Escalera de Escoria Guiada
+
+Serpentine Stair=Escalera de Serpentina
+Cobbled Serpentine Stair=Escalera de Serpentina Guiada
+Serpentine Brick Stair=Escalera de Ladrillos de Serpentina
+Serpentine Block Stair=Escalera de Bloques de Serpentina
+Cracked Serpentine Brick Stair=Escalera de Ladrillos de Serpentina Agrietados
+
+Shale Stair=Escalera de Pizarra
+Shale Brick Stair=Escalera de Ladrillos de Pizarra
+Shale Block Stair=Escalera de Bloques de Pizarra
+Cracked Shale Brick Stair=Escalera de Ladrillos de Pizarra Agrietados
+Cobbled Shale Stair=Escalera de Pizarra Guiada
+
+Slate Stair=Escalera de Esquisto
+Slate Brick Stair=Escalera de Ladrillos de Esquisto
+Slate Block Stair=Escalera de Bloques de Esquisto
+Cracked Slate Brick Stair=Escalera de Ladrillos de Esquisto Agrietados
+Cobbled Slate Stair=Escalera de Esquisto Guiada
+Slate Tile Stair=Escalera de Baldosas de Esquisto
+
+Smokey Quartz Stair=Escalera de Cuarzo Ahumado
+Smokey Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Ahumado
+Smokey Quartz Block Stair=Escalera de Bloques de Cuarzo Ahumado
+Cracked Smokey Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Ahumado Agrietados
+
+Soapstone Stair=Escalera de Esteatita
+Soapstone Brick Stair=Escalera de Ladrillos de Esteatita
+Soapstone Block Stair=Escalera de Bloques de Esteatita
+Cracked Soapstone Brick Stair=Escalera de Ladrillos de Esteatita Agrietados
+
+Sodalite Stair=Escalera de Sodalita
+Cobbled Sodalite Stair=Escalera de Sodalita Guiada
+Sodalite Brick Stair=Escalera de Ladrillos de Sodalita
+Sodalite Block Stair=Escalera de Bloques de Sodalita
+Cracked Sodalite Brick Stair=Escalera de Ladrillos de Sodalita Agrietados
+
+Sugilite Stair=Escalera de Sugilita
+Sugilite Brick Stair=Escalera de Ladrillos de Sugilita
+Sugilite Block Stair=Escalera de Bloques de Sugilita
+Cracked Sugilite Brick Stair=Escalera de Ladrillos de Sugilita Agrietados
+Cobbled Sugilite Stair=Escalera de Sugilita Guiada
+
+Green Tourmaline Stair=Escalera de Turmalina Verde
+Green Tourmaline Brick Stair=Escalera de Ladrillo de Turmalina Verde
+Green Tourmaline Block Stair=Escalera de Bloque de Turmalina Verde
+Cracked Green Tourmaline Brick Stair=Escalera de Ladrillo de Turmalina Verde Agrietado
+
+Paraiba Tourmaline Stair=Escalera de Turmalina Paraíba
+Paraiba Tourmaline Brick Stair=Escalera de Ladrillo de Turmalina Paraíba
+Paraiba Tourmaline Block Stair=Escalera de Bloque de Turmalina Paraíba
+Cracked Paraiba Tourmaline Brick Stair=Escalera de Ladrillo de Turmalina Paraíba Agrietado
+
+Pink Tourmaline Stair=Escalera de Turmalina Rosa
+Pink Tourmaline Brick Stair=Escalera de Ladrillo de Turmalina Rosa
+Pink Tourmaline Block Stair=Escalera de Bloque de Turmalina Rosa
+Cracked Pink Tourmaline Brick Stair=Escalera de Ladrillo de Turmalina Rosa Agrietado
+
+Travertine Stair=Escalera de Travertino
+Cobbled Travertine Stair=Escalera de Travertino Guiada
+Travertine Brick Stair=Escalera de Ladrillos de Travertino
+Travertine Block Stair=Escalera de Bloques de Travertino
+Cracked Travertine Brick Stair=Escalera de Ladrillos de Travertino Agrietados
+
+Yellow Travertine Stair=Escalera de Travertino Amarillo
+Cobbled Yellow Travertine Stair=Escalera de Travertino Amarillo Guiada
+Yellow Travertine Brick Stair=Escalera de Ladrillos de Travertino Amarillo
+Yellow Travertine Block Stair=Escalera de Bloques de Travertino Amarillo
+Cracked Yellow Travertine Brick Stair=Escalera de Ladrillos de Travertino Amarillo Agrietados
+
+Beige Tuff Stair=Escalera de Toba Beige
+Beige Tuff Brick Stair=Escalera de Ladrillos de Toba Beige
+Beige Tuff Block Stair=Escalera de Bloques de Toba Beige
+Cracked Beige Tuff Brick Stair=Escalera de Ladrillos de Toba Beige Agrietados
+Cobbled Beige Tuff Stair=Escalera de Toba Beige Guiada
+
+Grey Tuff Stair=Escalera de Toba Gris
+Grey Tuff Brick Stair=Escalera de Ladrillos de Toba Gris
+Grey Tuff Block Stair=Escalera de Bloques de Toba Gris
+Cracked Grey Tuff Brick Stair=Escalera de Ladrillos de Toba Gris Agrietados
+Cobbled Grey Tuff Stair=Escalera de Toba Gris Guiada
+
+Red Tuff Stair=Escalera de Toba Roja
+Red Tuff Brick Stair=Escalera de Ladrillos de Toba Roja
+Red Tuff Block Stair=Escalera de Bloques de Toba Roja
+Cracked Red Tuff Brick Stair=Escalera de Ladrillos de Toba Roja Agrietados
+Cobbled Red Tuff Stair=Escalera de Toba Roja Guiada
+
+Turquoise Stair=Escalera de Turquesa
+Turquoise Brick Stair=Escalera de Ladrillos de Turquesa
+Turquoise Block Stair=Escalera de Bloques de Turquesa
+Cracked Turquoise Brick Stair=Escalera de Ladrillos de Turquesa Agrietados
+Cobbled Turquoise Stair=Escalera de Turquesa Guiada
+
+Vivianite Stair=Escalera de Vivianita
+Vivianite Brick Stair=Escalera de Ladrillos de Vivianita
+Vivianite Block Stair=Escalera de Bloques de Vivianita
+Cracked Vivianite Brick Stair=Escalera de Ladrillos de Vivianita Agrietados
+
+
+
+Inner Blue Agate Stair=Escalera de Ágata Azul Interior
+Inner Gray Agate Stair=Escalera de Ágata Gris Interior
+Inner Green Agate Stair=Escalera de Ágata Verde Interior
+Inner Moss Agate Stair=Escalera de Ágata Musgo Interior
+Inner Orange Agate Stair=Escalera de Ágata Naranja Interior
+Inner Purple Agate Stair=Escalera de Ágata Morada Interior
+Inner Red Agate Stair=Escalera de Ágata Roja Interior
+
+Inner Amazonite Stair=Escalera de Amazonita Interior
+Inner Cobbled Amazonite Stair=Escalera de Amazonita Interior Guiada
+Inner Amazonite Brick Stair=Escalera de Ladrillos de Amazonita Interior
+Inner Amazonite Block Stair=Escalera de Bloques de Amazonita Interior
+Inner Cracked Amazonite Brick Stair=Escalera de Ladrillos de Amazonita Interior Agrietados
+
+Inner Amber Stair=Escalera de Ámbar Interior
+Inner Amber Brick Stair=Escalera de Ladrillos de Ámbar Interior
+Inner Amber Block Stair=Escalera de Bloques de Ámbar Interior
+Inner Cracked Amber Brick Stair=Escalera de Ladrillos de Ámbar Interior Agrietados
+
+Inner Amethyst Stair=Escalera de Amatista Interior
+Inner Amethyst Brick Stair=Escalera de Ladrillos de Amatista Interior
+Inner Amethyst Block Stair=Escalera de Bloques de Amatista Interior
+Inner Cracked Amethyst Brick Stair=Escalera de Ladrillos de Amatista Interior Agrietados
+
+Inner Andesite Stair=Escalera de Andesita Interior
+Inner Andesite Block Stair=Escalera de Bloques de Andesita Interior
+Inner Andesite Brick Stair=Escalera de Ladrillos de Andesita Interior
+Inner Cracked Andesite Brick Stair=Escalera de Ladrillos de Andesita Interior Agrietados
+Inner Cobbled Andesite Stair=Escalera de Andesita Interior Guiada
+
+Inner Basalt Stair=Escalera de Basalto Interior
+Inner Basalt Block Stair=Escalera de Bloques de Basalto Interior
+Inner Basalt Brick Stair=Escalera de Ladrillos de Basalto Interior
+Inner Cracked Basalt Brick Stair=Escalera de Ladrillos de Basalto Interior Agrietados
+Inner Cobbled Basalt Stair=Escalera de Basalto Interior Guiada
+Inner Basalt Tile Stair=Escalera de Azulejos de Basalto Interior
+
+Inner Black Moonstone Stair=Escalera de Piedra Lunar Negra Interior
+Inner Black Moonstone Brick Stair=Escalera de Ladrillos de Piedra Lunar Negra Interior
+Inner Black Moonstone Block Stair=Escalera de Bloques de Piedra Lunar Negra Interior
+Inner Cracked Black Moonstone Brick Stair=Escalera de Ladrillos de Piedra Lunar Negra Interior Agrietados
+
+Inner Grey Calcite Stair=Escalera Interna de Calcita Gris
+Inner Grey Calcite Brick Stair=Escalera Interna de Ladrillo de Calcita Gris
+Inner Grey Calcite Block Stair=Escalera Interna de Bloque de Calcita Gris
+Inner Cracked Grey Calcite Brick Stair=Escalera Interna de Ladrillo de Calcita Gris Agrietado
+
+Inner Calcite Stair=Escalera de Calcita Interior
+Inner Calcite Brick Stair=Escalera de Ladrillos de Calcita Interior
+Inner Calcite Block Stair=Escalera de Bloques de Calcita Interior
+Inner Cracked Calcite Brick Stair=Escalera de Ladrillos de Calcita Interior Agrietados
+
+Inner Orange Calcite Stair=Escalera Interna de Calcita Naranja
+Inner Orange Calcite Brick Stair=Escalera Interna de Ladrillo de Calcita Naranja
+Inner Orange Calcite Block Stair=Escalera Interna de Bloque de Calcita Naranja
+Inner Cracked Orange Calcite Brick Stair=Escalera Interna de Ladrillo de Calcita Naranja Agrietado
+
+Inner Carnotite Stair=Escalera de Carnotita Interior
+Inner Carnotite Brick Stair=Escalera de Ladrillos de Carnotita Interior
+Inner Carnotite Block Stair=Escalera de Bloques de Carnotita Interior
+Inner Cracked Carnotite Brick Stair=Escalera de Ladrillos de Carnotita Interior Agrietados
+Inner Cobbled Carnotite Stair=Escalera de Carnotita Interior Guiada
+
+Inner Celestine Stair=Escalera de Celestina Interior
+Inner Celestine Brick Stair=Escalera de Ladrillos de Celestina Interior
+Inner Celestine Block Stair=Escalera de Bloques de Celestina Interior
+Inner Cracked Celestine Brick Stair=Escalera de Ladrillos de Celestina Interior Agrietados
+
+Inner Chalcanthite Stair=Escalera Interna de Calcanthita
+Inner Chalcanthite Brick Stair=Escalera Interna de Ladrillo de Calcanthita
+Inner Chalcanthite Block Stair=Escalera Interna de Bloque de Calcanthita
+Inner Cracked Chalcanthite Brick Stair=Escalera Interna de Ladrillo de Calcanthita Agrietado
+Inner Cobbled Chalcanthite Stair=Escalera Interna de Calcanthita Guijarreada
+
+Inner Chrysoprase Stair=Escalera de Crisoprasa Interior
+Inner Chrysoprase Brick Stair=Escalera de Ladrillos de Crisoprasa Interior
+Inner Chrysoprase Block Stair=Escalera de Bloques de Crisoprasa Interior
+Inner Cracked Chrysoprase Brick Stair=Escalera de Ladrillos de Crisoprasa Interior Agrietados
+
+Inner Citrine Stair=Escalera de Citrino Interior
+Inner Citrine Brick Stair=Escalera de Ladrillos de Citrino Interior
+Inner Citrine Block Stair=Escalera de Bloques de Citrino Interior
+Inner Cracked Citrine Brick Stair=Escalera de Ladrillos de Citrino Interior Agrietados
+
+Inner Covellite Stair=Escalera de Covellita Interior
+Inner Covellite Brick Stair=Escalera de Ladrillos de Covellita Interior
+Inner Covellite Block Stair=Escalera de Bloques de Covellita Interior
+Inner Cracked Covellite Brick Stair=Escalera de Ladrillos de Covellita Interior Agrietados
+Inner Cobbled Covellite Stair=Escalera de Covellita Interior Guiada
+
+Inner Crocoite Stair=Escalera de Crocoíta Interior
+Inner Crocoite Brick Stair=Escalera de Ladrillos de Crocoíta Interior
+Inner Crocoite Block Stair=Escalera de Bloques de Crocoíta Interior
+Inner Cracked Crocoite Brick Stair=Escalera de Ladrillos de Crocoíta Interior Agrietados
+
+Inner Diorite Stair=Escalera de Diorita Interior
+Inner Diorite Brick Stair=Escalera de Ladrillos de Diorita Interior
+Inner Diorite Block Stair=Escalera de Bloques de Diorita Interior
+Inner Cracked Diorite Brick Stair=Escalera de Ladrillos de Diorita Interior Agrietados
+Inner Cobbled Diorite Stair=Escalera de Diorita Interior Guiada
+
+Inner Erythrite Stair=Escalera de Eritrita Interior
+Inner Erythrite Brick Stair=Escalera de Ladrillos de Eritrita Interior
+Inner Erythrite Block Stair=Escalera de Bloques de Eritrita Interior
+Inner Cracked Erythrite Brick Stair=Escalera de Ladrillos de Eritrita Interior Agrietados
+
+Inner Eudialite Stair=Escalera de Eudialita Interior
+Inner Eudialite Brick Stair=Escalera de Ladrillos de Eudialita Interior
+Inner Eudialite Block Stair=Escalera de Bloques de Eudialita Interior
+Inner Cracked Eudialite Brick Stair=Escalera de Ladrillos de Eudialita Interior Agrietados
+
+Inner Fluorite Stair=Escalera de Fluorita Interior
+Inner Fluorite Brick Stair=Escalera de Ladrillos de Fluorita Interior
+Inner Fluorite Block Stair=Escalera de Bloques de Fluorita Interior
+Inner Cracked Fluorite Brick Stair=Escalera de Ladrillos de Fluorita Interior Agrietados
+
+Inner Gabbro Stair=Escalera de Gabbro Interior
+Inner Cobbled Gabbro Stair=Escalera de Gabbro Interior Guiada
+Inner Gabbro Brick Stair=Escalera de Ladrillos de Gabbro Interior
+Inner Gabbro Block Stair=Escalera de Bloques de Gabbro Interior
+Inner Cracked Gabbro Brick Stair=Escalera de Ladrillos de Gabbro Interior Agrietados
+
+Inner Galena Stair=Escalera de Galena Interior
+Inner Galena Brick Stair=Escalera de Ladrillos de Galena Interior
+Inner Galena Block Stair=Escalera de Bloques de Galena Interior
+Inner Cracked Galena Brick Stair=Escalera de Ladrillos de Galena Interior Agrietados
+
+Inner Black Granite Stair=Escalera de Granito Negro Interior
+Inner Black Granite Brick Stair=Escalera de Ladrillos de Granito Negro Interior
+Inner Black Granite Block Stair=Escalera de Bloques de Granito Negro Interior
+Inner Cracked Black Granite Brick Stair=Escalera de Ladrillos de Granito Negro Interior Agrietados
+Inner Cobbled Black Granite Stair=Escalera de Granito Negro Interior Guiada
+
+Inner Blue Granite Stair=Escalera de Granito Azul Interior
+Inner Blue Granite Brick Stair=Escalera de Ladrillos de Granito Azul Interior
+Inner Blue Granite Block Stair=Escalera de Bloques de Granito Azul Interior
+Inner Cracked Blue Granite Brick Stair=Escalera de Ladrillos de Granito Azul Interior Agrietados
+Inner Cobbled Blue Granite Stair=Escalera de Granito Azul Interior Guiada
+
+Inner Gray Granite Stair=Escalera de Granito Gris Interior
+Inner Gray Granite Brick Stair=Escalera de Ladrillos de Granito Gris Interior
+Inner Gray Granite Block Stair=Escalera de Bloques de Granito Gris Interior
+Inner Cracked Gray Granite Brick Stair=Escalera de Ladrillos de Granito Gris Interior Agrietados
+Inner Cobbled Gray Granite Stair=Escalera de Granito Gris Interior Guiada
+
+Inner Green Granite Stair=Escalera de Granito Verde Interior
+Inner Green Granite Brick Stair=Escalera de Ladrillos de Granito Verde Interior
+Inner Green Granite Block Stair=Escalera de Bloques de Granito Verde Interior
+Inner Cracked Green Granite Brick Stair=Escalera de Ladrillos de Granito Verde Interior Agrietados
+Inner Cobbled Green Granite Stair=Escalera de Granito Verde Interior Guiada
+
+Inner Pink Granite Stair=Escalera de Granito Rosa Interior
+Inner Pink Granite Brick Stair=Escalera de Ladrillos de Granito Rosa Interior
+Inner Pink Granite Block Stair=Escalera de Bloques de Granito Rosa Interior
+Inner Cracked Pink Granite Brick Stair=Escalera de Ladrillos de Granito Rosa Interior Agrietados
+Inner Cobbled Pink Granite Stair=Escalera de Granito Rosa Interior Guiada
+
+Inner Red Granite Stair=Escalera de Granito Rojo Interior
+Inner Red Granite Brick Stair=Escalera de Ladrillos de Granito Rojo Interior
+Inner Red Granite Block Stair=Escalera de Bloques de Granito Rojo Interior
+Inner Cracked Red Granite Brick Stair=Escalera de Ladrillos de Granito Rojo Interior Agrietados
+Inner Cobbled Red Granite Stair=Escalera de Granito Rojo Interior Guiada
+
+Inner White Granite Stair=Escalera de Granito Blanco Interior
+Inner White Granite Brick Stair=Escalera de Ladrillos de Granito Blanco Interior
+Inner White Granite Block Stair=Escalera de Bloques de Granito Blanco Interior
+Inner Cracked White Granite Brick Stair=Escalera de Ladrillos de Granito Blanco Interior Agrietados
+Inner Cobbled White Granite Stair=Escalera de Granito Blanco Interior Guiada
+
+Inner Yellow Granite Stair=Escalera de Granito Amarillo Interior
+Inner Yellow Granite Brick Stair=Escalera de Ladrillos de Granito Amarillo Interior
+Inner Yellow Granite Block Stair=Escalera de Bloques de Granito Amarillo Interior
+Inner Cracked Yellow Granite Brick Stair=Escalera de Ladrillos de Granito Amarillo Interior Agrietados
+Inner Cobbled Yellow Granite Stair=Escalera de Granito Amarillo Interior Guiada
+
+Inner Heliodor Stair=Escalera de Heliodoro Interior
+Inner Heliodor Brick Stair=Escalera de Ladrillos de Heliodoro Interior
+Inner Heliodor Block Stair=Escalera de Bloques de Heliodoro Interior
+Inner Cracked Heliodor Brick Stair=Escalera de Ladrillos de Heliodoro Interior Agrietados
+
+Inner Howlite Stair=Escalera de Howlita Interior
+Inner Howlite Brick Stair=Escalera de Ladrillos de Howlita Interior
+Inner Howlite Block Stair=Escalera de Bloques de Howlita Interior
+Inner Cracked Howlite Brick Stair=Escalera de Ladrillos de Howlita Interior Agrietados
+Inner Cobbled Howlite Stair=Escalera de Howlita Interior Guiada
+
+Inner Ilvaite Stair=Escalera de Ilvaita Interior
+Inner Ilvaite Brick Stair=Escalera de Ladrillos de Ilvaita Interior
+Inner Ilvaite Block Stair=Escalera de Bloques de Ilvaita Interior
+Inner Cracked Ilvaite Brick Stair=Escalera de Ladrillos de Ilvaita Interior Agrietados
+Inner Cobbled Ilvaite Stair=Escalera de Ilvaita Interior Guiada
+
+Inner Jade Stair=Escalera de Jade Interior
+Inner Jade Brick Stair=Escalera de Ladrillos de Jade Interior
+Inner Jade Block Stair=Escalera de Bloques de Jade Interior
+Inner Cracked Jade Brick Stair=Escalera de Ladrillos de Jade Interior Agrietados
+Inner Cobbled Jade Stair=Escalera de Jade Interior Guiada
+
+Inner Red Jasper Stair=Escalera Interna de Jaspe Rojo
+Inner Red Jasper Brick Stair=Escalera Interna de Ladrillo de Jaspe Rojo
+Inner Red Jasper Block Stair=Escalera Interna de Bloque de Jaspe Rojo
+Inner Cracked Red Jasper Brick Stair=Escalera Interna de Ladrillo de Jaspe Rojo Agrietado
+Inner Cobbled Red Jasper Stair=Escalera Interna de Jaspe Rojo Guijarreado
+
+Inner Kyanite Stair=Escalera de Cianita Interior
+Inner Kyanite Brick Stair=Escalera de Ladrillos de Cianita Interior
+Inner Kyanite Block Stair=Escalera de Bloques de Cianita Interior
+Inner Cracked Kyanite Brick Stair=Escalera de Ladrillos de Cianita Interior Agrietados
+Inner Cobbled Kyanite Stair=Escalera de Cianita Interior Guiada
+
+Inner Lapis Lazuli Stair=Escalera de Lapislázuli Interior
+Inner Lapis Lazuli Brick Stair=Escalera de Ladrillos de Lapislázuli Interior
+Inner Lapis Lazuli Block Stair=Escalera de Bloques de Lapislázuli Interior
+Inner Cracked Lapis Lazuli Brick Stair=Escalera de Ladrillos de Lapislázuli Interior Agrietados
+
+Inner Lepidolite Stair=Escalera Interna de Lepidolita
+Inner Lepidolite Brick Stair=Escalera Interna de Ladrillo de Lepidolita
+Inner Lepidolite Block Stair=Escalera Interna de Bloque de Lepidolita
+Inner Cracked Lepidolite Brick Stair=Escalera Interna de Ladrillo de Lepidolita Agrietado
+Inner Cobbled Lepidolite Stair=Escalera Interna de Lepidolita Guijarreada
+
+Inner Blue Limestone Stair=Escalera de Piedra Caliza Azul Interior
+Inner Blue Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Azul Interior
+Inner Blue Limestone Block Stair=Escalera de Bloques de Piedra Caliza Azul Interior
+Inner Cracked Blue Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Azul Interior Agrietados
+Inner Cobbled Blue Limestone Stair=Escalera de Piedra Caliza Azul Interior Guiada
+
+Inner White Limestone Stair=Escalera de Piedra Caliza Blanca Interior
+Inner White Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Blanca Interior
+Inner White Limestone Block Stair=Escalera de Bloques de Piedra Caliza Blanca Interior
+Inner Cracked White Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Blanca Interior Agrietados
+Inner Cobbled White Limestone Stair=Escalera de Piedra Caliza Blanca Interior Guiada
+
+Inner Marble Stair=Escalera de Mármol Interior
+Inner Marble Brick Stair=Escalera de Ladrillos de Mármol Interior
+Inner Marble Block Stair=Escalera de Bloques de Mármol Interior
+Inner Cracked Marble Brick Stair=Escalera de Ladrillos de Mármol Interior Agrietados
+Inner Cobbled Marble Stair=Escalera de Mármol Interior Guiada
+
+Inner Moonstone Stair=Escalera Interna de Piedra Lunar
+Inner Moonstone Brick Stair=Escalera Interna de Ladrillo de Piedra Lunar
+Inner Moonstone Block Stair=Escalera Interna de Bloque de Piedra Lunar
+Inner Cracked Moonstone Brick Stair=Escalera Interna de Ladrillo de Piedra Lunar Agrietado
+
+Inner Morion Quartz Stair=Escalera de Cuarzo Morión Interior
+Inner Morion Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Morión Interior
+Inner Morion Quartz Block Stair=Escalera de Bloques de Cuarzo Morión Interior
+Inner Cracked Morion Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Morión Interior Agrietados
+
+Inner Mudstone Stair=Escalera de Mudstone Interior
+Inner Cobbled Mudstone Stair=Escalera de Mudstone Interior Guiada
+Inner Mudstone Brick Stair=Escalera de Ladrillos de Mudstone Interior
+Inner Mudstone Block Stair=Escalera de Bloques de Mudstone Interior
+Inner Cracked Mudstone Brick Stair=Escalera de Ladrillos de Mudstone Interior Agrietados
+
+Inner Prasiolite Stair=Escalera de Prasiolita Interior
+Inner Prasiolite Brick Stair=Escalera de Ladrillos de Prasiolita Interior
+Inner Prasiolite Block Stair=Escalera de Bloques de Prasiolita Interior
+Inner Cracked Prasiolite Brick Stair=Escalera de Ladrillos de Prasiolita Interior Agrietados
+
+Inner Pumice Stair=Escalera de Pómez Interior
+Inner Pumice Brick Stair=Escalera de Ladrillos de Pómez Interior
+Inner Pumice Block Stair=Escalera de Bloques de Pómez Interior
+Inner Cracked Pumice Brick Stair=Escalera de Ladrillos de Pómez Interior Agrietados
+
+Inner Pyrite Stair=Escalera de Pirita Interior
+Inner Pyrite Brick Stair=Escalera de Ladrillos de Pirita Interior
+Inner Pyrite Block Stair=Escalera de Bloques de Pirita Interior
+Inner Cracked Pyrite Brick Stair=Escalera de Ladrillos de Pirita Interior Agrietados
+
+Inner Quartz Stair=Escalera de Cuarzo Interior
+Inner Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Interior
+Inner Quartz Block Stair=Escalera de Bloques de Cuarzo Interior
+Inner Cracked Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Interior Agrietados
+
+Inner Rhodonite Stair=Escalera Interna de Rodonita
+Inner Rhodonite Brick Stair=Escalera Interna de Ladrillo de Rodonita
+Inner Rhodonite Block Stair=Escalera Interna de Bloque de Rodonita
+Inner Cracked Rhodonite Brick Stair=Escalera Interna de Ladrillo de Rodonita Agrietado
+Inner Cobbled Rhodonite Stair=Escalera Interna de Rodonita Guijarreada
+
+Inner Rose Quartz Stair=Escalera de Cuarzo Rosa Interior
+Inner Rose Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Rosa Interior
+Inner Rose Quartz Block Stair=Escalera de Bloques de Cuarzo Rosa Interior
+Inner Cracked Rose Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Rosa Interior Agrietados
+
+Inner Scoria Stair=Escalera de Escoria Interior
+Inner Scoria Brick Stair=Escalera de Ladrillos de Escoria Interior
+Inner Scoria Block Stair=Escalera de Bloques de Escoria Interior
+Inner Cracked Scoria Brick Stair=Escalera de Ladrillos de Escoria Interior Agrietados
+Inner Cobbled Scoria Stair=Escalera de Escoria Interior Guiada
+
+Inner Serpentine Stair=Escalera de Serpentina Interior
+Inner Cobbled Serpentine Stair=Escalera de Serpentina Interior Guiada
+Inner Serpentine Brick Stair=Escalera de Ladrillos de Serpentina Interior
+Inner Serpentine Block Stair=Escalera de Bloques de Serpentina Interior
+Inner Cracked Serpentine Brick Stair=Escalera de Ladrillos de Serpentina Interior Agrietados
+
+Inner Shale Stair=Escalera de Pizarra Interior
+Inner Shale Brick Stair=Escalera de Ladrillos de Pizarra Interior
+Inner Shale Block Stair=Escalera de Bloques de Pizarra Interior
+Inner Cracked Shale Brick Stair=Escalera de Ladrillos de Pizarra Interior Agrietados
+Inner Cobbled Shale Stair=Escalera de Pizarra Interior Guiada
+
+Inner Slate Stair=Escalera de Pizarra Interior
+Inner Slate Brick Stair=Escalera de Ladrillos de Pizarra Interior
+Inner Slate Block Stair=Escalera de Bloques de Pizarra Interior
+Inner Cracked Slate Brick Stair=Escalera de Ladrillos de Pizarra Interior Agrietados
+Inner Cobbled Slate Stair=Escalera de Pizarra Interior Guiada
+Inner Slate Tile Stair=Escalera de Azulejos de Pizarra Interior
+
+Inner Smokey Quartz Stair=Escalera de Cuarzo Ahumado Interior
+Inner Smokey Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Ahumado Interior
+Inner Smokey Quartz Block Stair=Escalera de Bloques de Cuarzo Ahumado Interior
+Inner Cracked Smokey Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Ahumado Interior Agrietados
+
+Inner Soapstone Stair=Escalera de Esteatita Interior
+Inner Soapstone Brick Stair=Escalera de Ladrillos de Esteatita Interior
+Inner Soapstone Block Stair=Escalera de Bloques de Esteatita Interior
+Inner Cracked Soapstone Brick Stair=Escalera de Ladrillos de Esteatita Interior Agrietados
+
+Inner Sodalite Stair=Escalera de Sodalita Interior
+Inner Cobbled Sodalite Stair=Escalera de Sodalita Interior Guiada
+Inner Sodalite Brick Stair=Escalera de Ladrillos de Sodalita Interior
+Inner Sodalite Block Stair=Escalera de Bloques de Sodalita Interior
+Inner Cracked Sodalite Brick Stair=Escalera de Ladrillos de Sodalita Interior Agrietados
+
+Inner Sugilite Stair=Escalera de Sugilita Interior
+Inner Sugilite Brick Stair=Escalera de Ladrillos de Sugilita Interior
+Inner Sugilite Block Stair=Escalera de Bloques de Sugilita Interior
+Inner Cracked Sugilite Brick Stair=Escalera de Ladrillos de Sugilita Interior Agrietados
+Inner Cobbled Sugilite Stair=Escalera de Sugilita Interior Guiada
+
+Inner Green Tourmaline Stair=Escalera Interna de Turmalina Verde
+Inner Green Tourmaline Brick Stair=Escalera Interna de Ladrillo de Turmalina Verde
+Inner Green Tourmaline Block Stair=Escalera Interna de Bloque de Turmalina Verde
+Inner Cracked Green Tourmaline Brick Stair=Escalera Interna de Ladrillo de Turmalina Verde Agrietado
+
+Inner Paraiba Tourmaline Stair=Escalera Interna de Turmalina Paraíba
+Inner Paraiba Tourmaline Brick Stair=Escalera Interna de Ladrillo de Turmalina Paraíba
+Inner Paraiba Tourmaline Block Stair=Escalera Interna de Bloque de Turmalina Paraíba
+Inner Cracked Paraiba Tourmaline Brick Stair=Escalera Interna de Ladrillo de Turmalina Paraíba Agrietado
+
+Inner Pink Tourmaline Stair=Escalera Interna de Turmalina Rosa
+Inner Pink Tourmaline Brick Stair=Escalera Interna de Ladrillo de Turmalina Rosa
+Inner Pink Tourmaline Block Stair=Escalera Interna de Bloque de Turmalina Rosa
+Inner Cracked Pink Tourmaline Brick Stair=Escalera Interna de Ladrillo de Turmalina Rosa Agrietado
+
+Inner Travertine Stair=Escalera de Travertino Interior
+Inner Cobbled Travertine Stair=Escalera de Travertino Interior Guiada
+Inner Travertine Brick Stair=Escalera de Ladrillos de Travertino Interior
+Inner Travertine Block Stair=Escalera de Bloques de Travertino Interior
+Inner Cracked Travertine Brick Stair=Escalera de Ladrillos de Travertino Interior Agrietados
+
+Inner Yellow Travertine Stair=Escalera de Travertino Amarillo Interior
+Inner Cobbled Yellow Travertine Stair=Escalera de Travertino Amarillo Interior Guiada
+Inner Yellow Travertine Brick Stair=Escalera de Ladrillos de Travertino Amarillo Interior
+Inner Yellow Travertine Block Stair=Escalera de Bloques de Travertino Amarillo Interior
+Inner Cracked Yellow Travertine Brick Stair=Escalera de Ladrillos de Travertino Amarillo Interior Agrietados
+
+Inner Beige Tuff Stair=Escalera de Toba Beige Interior
+Inner Cobbled Beige Tuff Stair=Escalera de Toba Beige Interior Guiada
+Inner Beige Tuff Brick Stair=Escalera de Ladrillos de Toba Beige Interior
+Inner Beige Tuff Block Stair=Escalera de Bloques de Toba Beige Interior
+Inner Cracked Beige Tuff Brick Stair=Escalera de Ladrillos de Toba Beige Interior Agrietados
+
+Inner Grey Tuff Stair=Escalera de Toba Gris Interior
+Inner Cobbled Grey Tuff Stair=Escalera de Toba Gris Interior Guiada
+Inner Grey Tuff Brick Stair=Escalera de Ladrillos de Toba Gris Interior
+Inner Grey Tuff Block Stair=Escalera de Bloques de Toba Gris Interior
+Inner Cracked Grey Tuff Brick Stair=Escalera de Ladrillos de Toba Gris Interior Agrietados
+
+Inner Red Tuff Stair=Escalera de Toba Roja Interior
+Inner Cobbled Red Tuff Stair=Escalera de Toba Roja Interior Guiada
+Inner Red Tuff Brick Stair=Escalera de Ladrillos de Toba Roja Interior
+Inner Red Tuff Block Stair=Escalera de Bloques de Toba Roja Interior
+Inner Cracked Red Tuff Brick Stair=Escalera de Ladrillos de Toba Roja Interior Agrietados
+
+Inner Turquoise Stair=Escalera de Turquesa Interior
+Inner Turquoise Brick Stair=Escalera de Ladrillos de Turquesa Interior
+Inner Turquoise Block Stair=Escalera de Bloques de Turquesa Interior
+Inner Cracked Turquoise Brick Stair=Escalera de Ladrillos de Turquesa Interior Agrietados
+Inner Cobbled Turquoise Stair=Escalera de Turquesa Interior Guiada
+
+Inner Vivianite Stair=Escalera de Vivianita Interior
+Inner Vivianite Brick Stair=Escalera de Ladrillos de Vivianita Interior
+Inner Vivianite Block Stair=Escalera de Bloques de Vivianita Interior
+Inner Cracked Vivianite Brick Stair=Escalera de Ladrillos de Vivianita Interior Agrietados
+
+
+
+Outer Blue Agate Stair=Escalera de Ágata Azul Exterior
+Outer Gray Agate Stair=Escalera de Ágata Gris Exterior
+Outer Green Agate Stair=Escalera de Ágata Verde Exterior
+Outer Moss Agate Stair=Escalera de Ágata Musgo Exterior
+Outer Orange Agate Stair=Escalera de Ágata Naranja Exterior
+Outer Purple Agate Stair=Escalera de Ágata Morada Exterior
+Outer Red Agate Stair=Escalera de Ágata Roja Exterior
+
+Outer Amazonite Stair=Escalera de Amazonita Exterior
+Outer Cobbled Amazonite Stair=Escalera de Amazonita Exterior Guiada
+Outer Amazonite Brick Stair=Escalera de Ladrillos de Amazonita Exterior
+Outer Amazonite Block Stair=Escalera de Bloques de Amazonita Exterior
+Outer Cracked Amazonite Brick Stair=Escalera de Ladrillos de Amazonita Exterior Agrietados
+
+Outer Amber Stair=Escalera de Ámbar Exterior
+Outer Amber Brick Stair=Escalera de Ladrillos de Ámbar Exterior
+Outer Amber Block Stair=Escalera de Bloques de Ámbar Exterior
+Outer Cracked Amber Brick Stair=Escalera de Ladrillos de Ámbar Exterior Agrietados
+
+Outer Amethyst Stair=Escalera de Amatista Exterior
+Outer Amethyst Brick Stair=Escalera de Ladrillos de Amatista Exterior
+Outer Amethyst Block Stair=Escalera de Bloques de Amatista Exterior
+Outer Cracked Amethyst Brick Stair=Escalera de Ladrillos de Amatista Exterior Agrietados
+
+Outer Andesite Stair=Escalera de Andesita Exterior
+Outer Andesite Block Stair=Escalera de Bloques de Andesita Exterior
+Outer Andesite Brick Stair=Escalera de Ladrillos de Andesita Exterior
+Outer Cracked Andesite Brick Stair=Escalera de Ladrillos de Andesita Exterior Agrietados
+Outer Cobbled Andesite Stair=Escalera de Andesita Exterior Guiada
+
+Outer Basalt Stair=Escalera de Basalto Exterior
+Outer Basalt Block Stair=Escalera de Bloques de Basalto Exterior
+Outer Basalt Brick Stair=Escalera de Ladrillos de Basalto Exterior
+Outer Cracked Basalt Brick Stair=Escalera de Ladrillos de Basalto Exterior Agrietados
+Outer Cobbled Basalt Stair=Escalera de Basalto Exterior Guiada
+Outer Basalt Tile Stair=Escalera de Azulejos de Basalto Exterior
+
+Outer Black Moonstone Stair=Escalera de Piedra Lunar Negra Exterior
+Outer Black Moonstone Brick Stair=Escalera de Ladrillos de Piedra Lunar Negra Exterior
+Outer Black Moonstone Block Stair=Escalera de Bloques de Piedra Lunar Negra Exterior
+Outer Cracked Black Moonstone Brick Stair=Escalera de Ladrillos de Piedra Lunar Negra Exterior Agrietados
+
+Outer Grey Calcite Stair=Escalera Externa de Calcita Gris
+Outer Grey Calcite Brick Stair=Escalera Externa de Ladrillo de Calcita Gris
+Outer Grey Calcite Block Stair=Escalera Externa de Bloque de Calcita Gris
+Outer Cracked Grey Calcite Brick Stair=Escalera Externa de Ladrillo de Calcita Gris Agrietado
+
+Outer Calcite Stair=Escalera de Calcita Exterior
+Outer Calcite Brick Stair=Escalera de Ladrillos de Calcita Exterior
+Outer Calcite Block Stair=Escalera de Bloques de Calcita Exterior
+Outer Cracked Calcite Brick Stair=Escalera de Ladrillos de Calcita Exterior Agrietados
+
+Outer Orange Calcite Stair=Escalera Externa de Calcita Naranja
+Outer Orange Calcite Brick Stair=Escalera Externa de Ladrillo de Calcita Naranja
+Outer Orange Calcite Block Stair=Escalera Externa de Bloque de Calcita Naranja
+Outer Cracked Orange Calcite Brick Stair=Escalera Externa de Ladrillo de Calcita Naranja Agrietado
+
+Outer Carnotite Stair=Escalera de Carnotita Exterior
+Outer Carnotite Brick Stair=Escalera de Ladrillos de Carnotita Exterior
+Outer Carnotite Block Stair=Escalera de Bloques de Carnotita Exterior
+Outer Cracked Carnotite Brick Stair=Escalera de Ladrillos de Carnotita Exterior Agrietados
+Outer Cobbled Carnotite Stair=Escalera de Carnotita Exterior Guiada
+
+Outer Celestine Stair=Escalera de Celestina Exterior
+Outer Celestine Brick Stair=Escalera de Ladrillos de Celestina Exterior
+Outer Celestine Block Stair=Escalera de Bloques de Celestina Exterior
+Outer Cracked Celestine Brick Stair=Escalera de Ladrillos de Celestina Exterior Agrietados
+
+Outer Chalcanthite Stair=Escalera Externa de Calcanthita
+Outer Chalcanthite Brick Stair=Escalera Externa de Ladrillo de Calcanthita
+Outer Chalcanthite Block Stair=Escalera Externa de Bloque de Calcanthita
+Outer Cracked Chalcanthite Brick Stair=Escalera Externa de Ladrillo de Calcanthita Agrietado
+Outer Cobbled Chalcanthite Stair=Escalera Externa de Calcanthita Guijarreada
+
+Outer Chrysoprase Stair=Escalera de Crisoprasa Exterior
+Outer Chrysoprase Brick Stair=Escalera de Ladrillos de Crisoprasa Exterior
+Outer Chrysoprase Block Stair=Escalera de Bloques de Crisoprasa Exterior
+Outer Cracked Chrysoprase Brick Stair=Escalera de Ladrillos de Crisoprasa Exterior Agrietados
+
+Outer Citrine Stair=Escalera de Citrino Exterior
+Outer Citrine Brick Stair=Escalera de Ladrillos de Citrino Exterior
+Outer Citrine Block Stair=Escalera de Bloques de Citrino Exterior
+Outer Cracked Citrine Brick Stair=Escalera de Ladrillos de Citrino Exterior Agrietados
+
+Outer Covellite Stair=Escalera de Covellita Exterior
+Outer Covellite Brick Stair=Escalera de Ladrillos de Covellita Exterior
+Outer Covellite Block Stair=Escalera de Bloques de Covellita Exterior
+Outer Cracked Covellite Brick Stair=Escalera de Ladrillos de Covellita Exterior Agrietados
+Outer Cobbled Covellite Stair=Escalera de Covellita Exterior Guiada
+
+Outer Crocoite Stair=Escalera de Crocoíta Exterior
+Outer Crocoite Brick Stair=Escalera de Ladrillos de Crocoíta Exterior
+Outer Crocoite Block Stair=Escalera de Bloques de Crocoíta Exterior
+Outer Cracked Crocoite Brick Stair=Escalera de Ladrillos de Crocoíta Exterior Agrietados
+
+Outer Diorite Stair=Escalera de Diorita Exterior
+Outer Diorite Brick Stair=Escalera de Ladrillos de Diorita Exterior
+Outer Diorite Block Stair=Escalera de Bloques de Diorita Exterior
+Outer Cracked Diorite Brick Stair=Escalera de Ladrillos de Diorita Exterior Agrietados
+Outer Cobbled Diorite Stair=Escalera de Diorita Exterior Guiada
+
+Outer Erythrite Stair=Escalera de Eritrita Exterior
+Outer Erythrite Brick Stair=Escalera de Ladrillos de Eritrita Exterior
+Outer Erythrite Block Stair=Escalera de Bloques de Eritrita Exterior
+Outer Cracked Erythrite Brick Stair=Escalera de Ladrillos de Eritrita Exterior Agrietados
+
+Outer Eudialite Stair=Escalera de Eudialita Exterior
+Outer Eudialite Brick Stair=Escalera de Ladrillos de Eudialita Exterior
+Outer Eudialite Block Stair=Escalera de Bloques de Eudialita Exterior
+Outer Cracked Eudialite Brick Stair=Escalera de Ladrillos de Eudialita Exterior Agrietados
+
+Outer Fluorite Stair=Escalera de Fluorita Exterior
+Outer Fluorite Brick Stair=Escalera de Ladrillos de Fluorita Exterior
+Outer Fluorite Block Stair=Escalera de Bloques de Fluorita Exterior
+Outer Cracked Fluorite Brick Stair=Escalera de Ladrillos de Fluorita Exterior Agrietados
+
+Outer Gabbro Stair=Escalera de Gabbro Exterior
+Outer Cobbled Gabbro Stair=Escalera de Gabbro Exterior Guiada
+Outer Gabbro Brick Stair=Escalera de Ladrillos de Gabbro Exterior
+Outer Gabbro Block Stair=Escalera de Bloques de Gabbro Exterior
+Outer Cracked Gabbro Brick Stair=Escalera de Ladrillos de Gabbro Exterior Agrietados
+
+Outer Galena Stair=Escalera de Galena Exterior
+Outer Galena Brick Stair=Escalera de Ladrillos de Galena Exterior
+Outer Galena Block Stair=Escalera de Bloques de Galena Exterior
+Outer Cracked Galena Brick Stair=Escalera de Ladrillos de Galena Exterior Agrietados
+
+Outer Black Granite Stair=Escalera de Granito Negro Exterior
+Outer Black Granite Brick Stair=Escalera de Ladrillos de Granito Negro Exterior
+Outer Black Granite Block Stair=Escalera de Bloques de Granito Negro Exterior
+Outer Cracked Black Granite Brick Stair=Escalera de Ladrillos de Granito Negro Exterior Agrietados
+Outer Cobbled Black Granite Stair=Escalera de Granito Negro Exterior Guiada
+
+Outer Blue Granite Stair=Escalera de Granito Azul Exterior
+Outer Blue Granite Brick Stair=Escalera de Ladrillos de Granito Azul Exterior
+Outer Blue Granite Block Stair=Escalera de Bloques de Granito Azul Exterior
+Outer Cracked Blue Granite Brick Stair=Escalera de Ladrillos de Granito Azul Exterior Agrietados
+Outer Cobbled Blue Granite Stair=Escalera de Granito Azul Exterior Guiada
+
+Outer Gray Granite Stair=Escalera de Granito Gris Exterior
+Outer Gray Granite Brick Stair=Escalera de Ladrillos de Granito Gris Exterior
+Outer Gray Granite Block Stair=Escalera de Bloques de Granito Gris Exterior
+Outer Cracked Gray Granite Brick Stair=Escalera de Ladrillos de Granito Gris Exterior Agrietados
+Outer Cobbled Gray Granite Stair=Escalera de Granito Gris Exterior Guiada
+
+Outer Green Granite Stair=Escalera de Granito Verde Exterior
+Outer Green Granite Brick Stair=Escalera de Ladrillos de Granito Verde Exterior
+Outer Green Granite Block Stair=Escalera de Bloques de Granito Verde Exterior
+Outer Cracked Green Granite Brick Stair=Escalera de Ladrillos de Granito Verde Exterior Agrietados
+Outer Cobbled Green Granite Stair=Escalera de Granito Verde Exterior Guiada
+
+Outer Pink Granite Stair=Escalera de Granito Rosa Exterior
+Outer Pink Granite Brick Stair=Escalera de Ladrillos de Granito Rosa Exterior
+Outer Pink Granite Block Stair=Escalera de Bloques de Granito Rosa Exterior
+Outer Cracked Pink Granite Brick Stair=Escalera de Ladrillos de Granito Rosa Exterior Agrietados
+Outer Cobbled Pink Granite Stair=Escalera de Granito Rosa Exterior Guiada
+
+Outer Red Granite Stair=Escalera de Granito Rojo Exterior
+Outer Red Granite Brick Stair=Escalera de Ladrillos de Granito Rojo Exterior
+Outer Red Granite Block Stair=Escalera de Bloques de Granito Rojo Exterior
+Outer Cracked Red Granite Brick Stair=Escalera de Ladrillos de Granito Rojo Exterior Agrietados
+Outer Cobbled Red Granite Stair=Escalera de Granito Rojo Exterior Guiada
+
+Outer White Granite Stair=Escalera de Granito Blanco Exterior
+Outer White Granite Brick Stair=Escalera de Ladrillos de Granito Blanco Exterior
+Outer White Granite Block Stair=Escalera de Bloques de Granito Blanco Exterior
+Outer Cracked White Granite Brick Stair=Escalera de Ladrillos de Granito Blanco Exterior Agrietados
+Outer Cobbled White Granite Stair=Escalera de Granito Blanco Exterior Guiada
+
+Outer Yellow Granite Stair=Escalera de Granito Amarillo Exterior
+Outer Yellow Granite Brick Stair=Escalera de Ladrillos de Granito Amarillo Exterior
+Outer Yellow Granite Block Stair=Escalera de Bloques de Granito Amarillo Exterior
+Outer Cracked Yellow Granite Brick Stair=Escalera de Ladrillos de Granito Amarillo Exterior Agrietados
+Outer Cobbled Yellow Granite Stair=Escalera de Granito Amarillo Exterior Guiada
+
+Outer Heliodor Stair=Escalera de Heliodoro Exterior
+Outer Heliodor Brick Stair=Escalera de Ladrillos de Heliodoro Exterior
+Outer Heliodor Block Stair=Escalera de Bloques de Heliodoro Exterior
+Outer Cracked Heliodor Brick Stair=Escalera de Ladrillos de Heliodoro Exterior Agrietados
+
+Outer Howlite Stair=Escalera de Howlita Exterior
+Outer Howlite Brick Stair=Escalera de Ladrillos de Howlita Exterior
+Outer Howlite Block Stair=Escalera de Bloques de Howlita Exterior
+Outer Cracked Howlite Brick Stair=Escalera de Ladrillos de Howlita Exterior Agrietados
+Outer Cobbled Howlite Stair=Escalera de Howlita Exterior Guiada
+
+Outer Ilvaite Stair=Escalera de Ilvaita Exterior
+Outer Ilvaite Brick Stair=Escalera de Ladrillos de Ilvaita Exterior
+Outer Ilvaite Block Stair=Escalera de Bloques de Ilvaita Exterior
+Outer Cracked Ilvaite Brick Stair=Escalera de Ladrillos de Ilvaita Exterior Agrietados
+Outer Cobbled Ilvaite Stair=Escalera de Ilvaita Exterior Guiada
+
+Outer Jade Stair=Escalera de Jade Exterior
+Outer Jade Brick Stair=Escalera de Ladrillos de Jade Exterior
+Outer Jade Block Stair=Escalera de Bloques de Jade Exterior
+Outer Cracked Jade Brick Stair=Escalera de Ladrillos de Jade Exterior Agrietados
+Outer Cobbled Jade Stair=Escalera de Jade Exterior Guiada
+
+Outer Red Jasper Stair=Escalera Externa de Jaspe Rojo
+Outer Red Jasper Brick Stair=Escalera Externa de Ladrillo de Jaspe Rojo
+Outer Red Jasper Block Stair=Escalera Externa de Bloque de Jaspe Rojo
+Outer Cracked Red Jasper Brick Stair=Escalera Externa de Ladrillo de Jaspe Rojo Agrietado
+Outer Cobbled Red Jasper Stair=Escalera Externa de Jaspe Rojo Guijarreado
+
+Outer Kyanite Stair=Escalera de Cianita Exterior
+Outer Kyanite Brick Stair=Escalera de Ladrillos de Cianita Exterior
+Outer Kyanite Block Stair=Escalera de Bloques de Cianita Exterior
+Outer Cracked Kyanite Brick Stair=Escalera de Ladrillos de Cianita Exterior Agrietados
+Outer Cobbled Kyanite Stair=Escalera de Cianita Exterior Guiada
+
+Outer Lapis Lazuli Stair=Escalera de Lapislázuli Exterior
+Outer Lapis Lazuli Brick Stair=Escalera de Ladrillos de Lapislázuli Exterior
+Outer Lapis Lazuli Block Stair=Escalera de Bloques de Lapislázuli Exterior
+Outer Cracked Lapis Lazuli Brick Stair=Escalera de Ladrillos de Lapislázuli Exterior Agrietados
+
+Outer Lepidolite Stair=Escalera Externa de Lepidolita
+Outer Lepidolite Brick Stair=Escalera Externa de Ladrillo de Lepidolita
+Outer Lepidolite Block Stair=Escalera Externa de Bloque de Lepidolita
+Outer Cracked Lepidolite Brick Stair=Escalera Externa de Ladrillo de Lepidolita Agrietado
+Outer Cobbled Lepidolite Stair=Escalera Externa de Lepidolita Guijarreada
+
+Outer Blue Limestone Stair=Escalera de Piedra Caliza Azul Exterior
+Outer Blue Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Azul Exterior
+Outer Blue Limestone Block Stair=Escalera de Bloques de Piedra Caliza Azul Exterior
+Outer Cracked Blue Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Azul Exterior Agrietados
+Outer Cobbled Blue Limestone Stair=Escalera de Piedra Caliza Azul Exterior Guiada
+
+Outer White Limestone Stair=Escalera de Piedra Caliza Blanca Exterior
+Outer White Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Blanca Exterior
+Outer White Limestone Block Stair=Escalera de Bloques de Piedra Caliza Blanca Exterior
+Outer Cracked White Limestone Brick Stair=Escalera de Ladrillos de Piedra Caliza Blanca Exterior Agrietados
+Outer Cobbled White Limestone Stair=Escalera de Piedra Caliza Blanca Exterior Guiada
+
+Outer Marble Stair=Escalera de Mármol Exterior
+Outer Marble Brick Stair=Escalera de Ladrillos de Mármol Exterior
+Outer Marble Block Stair=Escalera de Bloques de Mármol Exterior
+Outer Cracked Marble Brick Stair=Escalera de Ladrillos de Mármol Exterior Agrietados
+Outer Cobbled Marble Stair=Escalera de Mármol Exterior Guiada
+
+Outer Moonstone Stair=Escalera Externa de Piedra Lunar
+Outer Moonstone Brick Stair=Escalera Externa de Ladrillo de Piedra Lunar
+Outer Moonstone Block Stair=Escalera Externa de Bloque de Piedra Lunar
+Outer Cracked Moonstone Brick Stair=Escalera Externa de Ladrillo de Piedra Lunar Agrietado
+
+Outer Morion Quartz Stair=Escalera de Cuarzo Morión Exterior
+Outer Morion Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Morión Exterior
+Outer Morion Quartz Block Stair=Escalera de Bloques de Cuarzo Morión Exterior
+Outer Cracked Morion Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Morión Exterior Agrietados
+
+Outer Mudstone Stair=Escalera de Mudstone Exterior
+Outer Cobbled Mudstone Stair=Escalera de Mudstone Exterior Guiada
+Outer Mudstone Brick Stair=Escalera de Ladrillos de Mudstone Exterior
+Outer Mudstone Block Stair=Escalera de Bloques de Mudstone Exterior
+Outer Cracked Mudstone Brick Stair=Escalera de Ladrillos de Mudstone Exterior Agrietados
+
+Outer Prasiolite Stair=Escalera de Prasiolita Exterior
+Outer Prasiolite Brick Stair=Escalera de Ladrillos de Prasiolita Exterior
+Outer Prasiolite Block Stair=Escalera de Bloques de Prasiolita Exterior
+Outer Cracked Prasiolite Brick Stair=Escalera de Ladrillos de Prasiolita Exterior Agrietados
+
+Outer Pumice Stair=Escalera de Pómez Exterior
+Outer Pumice Brick Stair=Escalera de Ladrillos de Pómez Exterior
+Outer Pumice Block Stair=Escalera de Bloques de Pómez Exterior
+Outer Cracked Pumice Brick Stair=Escalera de Ladrillos de Pómez Exterior Agrietados
+
+Outer Pyrite Stair=Escalera de Pirita Exterior
+Outer Pyrite Brick Stair=Escalera de Ladrillos de Pirita Exterior
+Outer Pyrite Block Stair=Escalera de Bloques de Pirita Exterior
+Outer Cracked Pyrite Brick Stair=Escalera de Ladrillos de Pirita Exterior Agrietados
+
+Outer Quartz Stair=Escalera de Cuarzo Exterior
+Outer Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Exterior
+Outer Quartz Block Stair=Escalera de Bloques de Cuarzo Exterior
+Outer Cracked Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Exterior Agrietados
+
+Outer Rhodonite Stair=Escalera Externa de Rodonita
+Outer Rhodonite Brick Stair=Escalera Externa de Ladrillo de Rodonita
+Outer Rhodonite Block Stair=Escalera Externa de Bloque de Rodonita
+Outer Cracked Rhodonite Brick Stair=Escalera Externa de Ladrillo de Rodonita Agrietado
+Outer Cobbled Rhodonite Stair=Escalera Externa de Rodonita Guijarreada
+
+Outer Rose Quartz Stair=Escalera de Cuarzo Rosa Exterior
+Outer Rose Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Rosa Exterior
+Outer Rose Quartz Block Stair=Escalera de Bloques de Cuarzo Rosa Exterior
+Outer Cracked Rose Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Rosa Exterior Agrietados
+
+Outer Scoria Stair=Escalera de Escoria Exterior
+Outer Scoria Brick Stair=Escalera de Ladrillos de Escoria Exterior
+Outer Scoria Block Stair=Escalera de Bloques de Escoria Exterior
+Outer Cracked Scoria Brick Stair=Escalera de Ladrillos de Escoria Exterior Agrietados
+Outer Cobbled Scoria Stair=Escalera de Escoria Exterior Guiada
+
+Outer Serpentine Stair=Escalera de Serpentina Exterior
+Outer Cobbled Serpentine Stair=Escalera de Serpentina Exterior Guiada
+Outer Serpentine Brick Stair=Escalera de Ladrillos de Serpentina Exterior
+Outer Serpentine Block Stair=Escalera de Bloques de Serpentina Exterior
+Outer Cracked Serpentine Brick Stair=Escalera de Ladrillos de Serpentina Exterior Agrietados
+
+Outer Shale Stair=Escalera de Pizarra Exterior
+Outer Shale Brick Stair=Escalera de Ladrillos de Pizarra Exterior
+Outer Shale Block Stair=Escalera de Bloques de Pizarra Exterior
+Outer Cracked Shale Brick Stair=Escalera de Ladrillos de Pizarra Exterior Agrietados
+Outer Cobbled Shale Stair=Escalera de Pizarra Exterior Guiada
+
+Outer Slate Stair=Escalera de Pizarra Exterior
+Outer Slate Brick Stair=Escalera de Ladrillos de Pizarra Exterior
+Outer Slate Block Stair=Escalera de Bloques de Pizarra Exterior
+Outer Cracked Slate Brick Stair=Escalera de Ladrillos de Pizarra Exterior Agrietados
+Outer Cobbled Slate Stair=Escalera de Pizarra Exterior Guiada
+Outer Slate Tile Stair=Escalera de Azulejos de Pizarra Exterior
+
+Outer Smokey Quartz Stair=Escalera de Cuarzo Ahumado Exterior
+Outer Smokey Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Ahumado Exterior
+Outer Smokey Quartz Block Stair=Escalera de Bloques de Cuarzo Ahumado Exterior
+Outer Cracked Smokey Quartz Brick Stair=Escalera de Ladrillos de Cuarzo Ahumado Exterior Agrietados
+
+Outer Soapstone Stair=Escalera de Esteatita Exterior
+Outer Soapstone Brick Stair=Escalera de Ladrillos de Esteatita Exterior
+Outer Soapstone Block Stair=Escalera de Bloques de Esteatita Exterior
+Outer Cracked Soapstone Brick Stair=Escalera de Ladrillos de Esteatita Exterior Agrietados
+
+Outer Sodalite Stair=Escalera de Sodalita Exterior
+Outer Cobbled Sodalite Stair=Escalera de Sodalita Exterior Guiada
+Outer Sodalite Brick Stair=Escalera de Ladrillos de Sodalita Exterior
+Outer Sodalite Block Stair=Escalera de Bloques de Sodalita Exterior
+Outer Cracked Sodalite Brick Stair=Escalera de Ladrillos de Sodalita Exterior Agrietados
+
+Outer Sugilite Stair=Escalera de Sugilita Exterior
+Outer Sugilite Brick Stair=Escalera de Ladrillos de Sugilita Exterior
+Outer Sugilite Block Stair=Escalera de Bloques de Sugilita Exterior
+Outer Cracked Sugilite Brick Stair=Escalera de Ladrillos de Sugilita Exterior Agrietados
+Outer Cobbled Sugilite Stair=Escalera de Sugilita Exterior Guiada
+
+Outer Green Tourmaline Stair=Escalera Externa de Turmalina Verde
+Outer Green Tourmaline Brick Stair=Escalera Externa de Ladrillo de Turmalina Verde
+Outer Green Tourmaline Block Stair=Escalera Externa de Bloque de Turmalina Verde
+Outer Cracked Green Tourmaline Brick Stair=Escalera Externa de Ladrillo de Turmalina Verde Agrietado
+
+Outer Paraiba Tourmaline Stair=Escalera Externa de Turmalina Paraíba
+Outer Paraiba Tourmaline Brick Stair=Escalera Externa de Ladrillo de Turmalina Paraíba
+Outer Paraiba Tourmaline Block Stair=Escalera Externa de Bloque de Turmalina Paraíba
+Outer Cracked Paraiba Tourmaline Brick Stair=Escalera Externa de Ladrillo de Turmalina Paraíba Agrietado
+
+Outer Pink Tourmaline Stair=Escalera Externa de Turmalina Rosa
+Outer Pink Tourmaline Brick Stair=Escalera Externa de Ladrillo de Turmalina Rosa
+Outer Pink Tourmaline Block Stair=Escalera Externa de Bloque de Turmalina Rosa
+Outer Cracked Pink Tourmaline Brick Stair=Escalera Externa de Ladrillo de Turmalina Rosa Agrietado
+
+Outer Travertine Stair=Escalera de Travertino Exterior
+Outer Cobbled Travertine Stair=Escalera de Travertino Exterior Guiada
+Outer Travertine Brick Stair=Escalera de Ladrillos de Travertino Exterior
+Outer Travertine Block Stair=Escalera de Bloques de Travertino Exterior
+Outer Cracked Travertine Brick Stair=Escalera de Ladrillos de Travertino Exterior Agrietados
+
+Outer Yellow Travertine Stair=Escalera de Travertino Amarillo Exterior
+Outer Cobbled Yellow Travertine Stair=Escalera de Travertino Amarillo Exterior Guiada
+Outer Yellow Travertine Brick Stair=Escalera de Ladrillos de Travertino Amarillo Exterior
+Outer Yellow Travertine Block Stair=Escalera de Bloques de Travertino Amarillo Exterior
+Outer Cracked Yellow Travertine Brick Stair=Escalera de Ladrillos de Travertino Amarillo Exterior Agrietados
+
+Outer Beige Tuff Stair=Escalera de Toba Beige Exterior
+Outer Cobbled Beige Tuff Stair=Escalera de Toba Beige Exterior Guiada
+Outer Beige Tuff Brick Stair=Escalera de Ladrillos de Toba Beige Exterior
+Outer Beige Tuff Block Stair=Escalera de Bloques de Toba Beige Exterior
+Outer Cracked Beige Tuff Brick Stair=Escalera de Ladrillos de Toba Beige Exterior Agrietados
+
+Outer Grey Tuff Stair=Escalera de Toba Gris Exterior
+Outer Cobbled Grey Tuff Stair=Escalera de Toba Gris Exterior Guiada
+Outer Grey Tuff Brick Stair=Escalera de Ladrillos de Toba Gris Exterior
+Outer Grey Tuff Block Stair=Escalera de Bloques de Toba Gris Exterior
+Outer Cracked Grey Tuff Brick Stair=Escalera de Ladrillos de Toba Gris Exterior Agrietados
+
+Outer Red Tuff Stair=Escalera de Toba Roja Exterior
+Outer Cobbled Red Tuff Stair=Escalera de Toba Roja Exterior Guiada
+Outer Red Tuff Brick Stair=Escalera de Ladrillos de Toba Roja Exterior
+Outer Red Tuff Block Stair=Escalera de Bloques de Toba Roja Exterior
+Outer Cracked Red Tuff Brick Stair=Escalera de Ladrillos de Toba Roja Exterior Agrietados
+
+Outer Turquoise Stair=Escalera de Turquesa Exterior
+Outer Turquoise Brick Stair=Escalera de Ladrillos de Turquesa Exterior
+Outer Turquoise Block Stair=Escalera de Bloques de Turquesa Exterior
+Outer Cracked Turquoise Brick Stair=Escalera de Ladrillos de Turquesa Exterior Agrietados
+Outer Cobbled Turquoise Stair=Escalera de Turquesa Exterior Guiada
+
+Outer Vivianite Stair=Escalera de Vivianita Exterior
+Outer Vivianite Brick Stair=Escalera de Ladrillos de Vivianita Exterior
+Outer Vivianite Block Stair=Escalera de Bloques de Vivianita Exterior
+Outer Cracked Vivianite Brick Stair=Escalera de Ladrillos de Vivianita Exterior Agrietados
+
+### nodes_glowing.lua ###
+
+Glowing Apatite=Apatito Brillante
+Glowing Apatite Block=Bloque de Apatito Brillante
+Cobbled Glowing Apatite=Apatito Brillante Enlosado
+Glowing Apatite Brick=Ladrillo de Apatito Brillante
+Cracked Glowing Apatite Brick=Ladrillo Agrietado de Apatito Brillante
+
+Glowing Calcite=Calcita Brillante
+Glowing Calcite Block=Bloque de Calcita Brillante
+Cobbled Glowing Calcite=Calcita Brillante Enlosada
+Glowing Calcite Brick=Ladrillo de Calcita Brillante
+Cracked Glowing Calcite Brick=Ladrillo Agrietado de Calcita Brillante
+
+Glowing Esperite=Esperita Brillante
+Glowing Esperite Block=Bloque de Esperita Brillante
+Cobbled Glowing Esperite=Esperita Brillante Enlosada
+Glowing Esperite Brick=Ladrillo de Esperita Brillante
+Cracked Glowing Esperite Brick=Ladrillo Agrietado de Esperita Brillante
+
+Glowing Fluorite=Fluorita Brillante
+Glowing Fluorite Block=Bloque de Fluorita Brillante
+Cobbled Glowing Fluorite=Fluorita Brillante Enlosada
+Glowing Fluorite Brick=Ladrillo de Fluorita Brillante
+Cracked Glowing Fluorite Brick=Ladrillo Agrietado de Fluorita Brillante
+
+Glowing Selenite=Selenita Brillante
+Glowing Selenite Block=Bloque de Selenita Brillante
+Cobbled Glowing Selenite=Selenita Brillante Enlosada
+Glowing Selenite Brick=Ladrillo de Selenita Brillante
+Cracked Glowing Selenite Brick=Ladrillo Agrietado de Selenita Brillante
+
+Glowing Sodalite=Sodalita Brillante
+Glowing Sodalite Block=Bloque de Sodalita Brillante
+Cobbled Glowing Sodalite=Sodalita Brillante Enlosada
+Glowing Sodalite Brick=Ladrillo de Sodalita Brillante
+Cracked Glowing Sodalite Brick=Ladrillo Agrietado de Sodalita Brillante
+
+Glowing Willemite=Willemite Brillante
+Glowing Willemite Block=Bloque de Willemite Brillante
+Cobbled Glowing Willemite=Willemite Brillante Enlosada
+Glowing Willemite Brick=Ladrillo de Willemite Brillante
+Cracked Glowing Willemite Brick=Ladrillo Agrietado de Willemite Brillante
+
+### nodes_crystal.lua ###
+
+Budding Amazonite=Amazonita Brotante
+Amazonite Crystal=Cristal de Amazonita
+
+Budding Amber=Ámbar Brotante
+Amber Crystal=Cristal de Ámbar
+
+Budding Amethyst=Amatista Brotante
+Amethyst Crystal=Cristal de Amatista
+
+Budding Celestine=Celestina Brotante
+Celestine Crystal=Cristal de Celestina
+
+Budding Chalcanthite=Chalkantita Brotante
+Chalcanthite Crystal=Cristal de Chalkantita
+
+Budding Citrine=Citrino Brotante
+Citrine Crystal=Cristal de Citrino
+
+Budding Crocoite=Crocoita Brotante
+Crocoite Crystal=Cristal de Crocoita
+
+Budding Eudialite=Eudialita Brotante
+Eudialite Crystal=Cristal de Eudialita
+
+Budding Heliodor=Heliodoro Brotante
+Heliodor Crystal=Cristal de Heliodoro
+
+Budding Kyanite=Cianita Brotante
+Kyanite Crystal=Cristal de Cianita
+
+Budding Moonstone=Piedra Lunar Brotante
+Moonstone Crystal=Cristal de Piedra Lunar
+
+Budding Morion Quartz=Cuarzo Morión Brotante
+Morion Quartz Crystal=Cristal de Cuarzo Morión
+
+Budding Prasiolite=Prasiolita Brotante
+Prasiolite Crystal=Cristal de Prasiolita
+
+Budding Quartz=Cuarzo Brotante
+Quartz Crystal=Cristal de Cuarzo
+
+Budding Rose Quartz=Cuarzo Rosa Brotante
+Rose Quartz Crystal=Cristal de Cuarzo Rosa
+
+Budding Smokey Quartz=Cuarzo Ahumado Brotante
+Smokey Quartz Crystal=Cristal de Cuarzo Ahumado
+
+Budding Green Tourmaline=Turmalina Verde Brotante
+Green Tourmaline Crystal=Cristal de Turmalina Verde
+
+Budding Paraiba Tourmaline=Turmalina Paraíba Brotante
+Paraiba Tourmaline Crystal=Cristal de Turmalina Paraíba
+
+Budding Pink Tourmaline=Turmalina Rosa Brotante
+Pink Tourmaline Crystal=Cristal de Turmalina Rosa
+
+Budding Vivianite=Vivianita Brotante
+Vivianite Crystal=Cristal de Vivianita

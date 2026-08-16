@@ -1,0 +1,44 @@
+# textdomain: telemosaic
+##[ beacon.lua ]##
+Protected Telemosaic Beacon=
+Telemosaic Beacon=
+Telemosaic Beacon Active (you hacker you!)=
+Protected Telemosaic Beacon Active (you hacker you!)=
+Telemosaic Beacon Error (you hacker you!)=
+Protected Telemosaic Beacon Error (you hacker you!)=
+Telemosaic Beacon Disabled (you hacker you!)=
+Protected Telemosaic Beacon Disabled (you hacker you!)=
+
+##[ extender.lua ]##
+Telemosaic Extender, Tier @1 (@2)=
+Telemosaic Extender, Tier @1=
+Grey=
+# from MTG wool
+White=
+Dark Grey=
+Black=
+Violet=
+Blue=
+Cyan=
+Dark Green=
+Green=
+Yellow=
+Brown=
+Orange=
+Red=
+Magenta=
+Pink=
+
+##[ functions.lua ]##
+You need to add extenders for @1 node(s).=
+Destination is protected.=
+No telemosaic at destination.=
+Destination is blocked.=
+You can only use a singular mese crystal fragment to create a telemosaic key.=
+Telemosaic key is invalid.=
+No telemosaic at new destination.=
+Travel to destination is not allowed.=
+Telemosaic is disabled.=
+
+##[ key.lua ]##
+Telemosaic Key=

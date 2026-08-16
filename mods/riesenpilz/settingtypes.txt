@@ -1,0 +1,26 @@
+#    Enable giant mushroom biome map generation
+riesenpilz.enable_mapgen (Enable mapgen) bool false
+
+#    Generate the giant mushroom biome everywhere
+riesenpilz.always_generate (Generate everywhere) bool false
+
+#    Generate a smooth dithered transition at biome boundaries
+riesenpilz.smooth_biome_transitions (Smooth biome transitions) bool true
+
+#    If enabled, show log messages in the chat and not only in debug.txt
+riesenpilz.log_to_chat (Log to chat) bool false
+
+#    Specify how much text is logged for debugging purposes to the info log or
+#    the chat (with log_to_chat)
+#    0: Disabled
+#    1: A bit of information
+#    2: Acceptable amount of information
+#    3: Lots of text
+riesenpilz.log_level (Log level) int 2 1 3
+
+#    Override default:apple such that it has a nodebox
+riesenpilz.default_apple_3d (Redefine default:apple visuals) bool true
+
+#    Disallows growing a mushroom or apple with the growingtool if not every
+#    node has a free place
+riesenpilz.giant_restrict_area (Disallow cramped growingtool growth) bool false

@@ -1,0 +1,8 @@
+# Use native dungeon features? If disabled, the dungeon features included with this mod will not be registered and only dungeon features from other mods will be generated.
+dungeonsplus.use_native (Use native dungeon features?) bool true
+
+# Allow surface dungeon rooms that are mostly exposed to the sky to be decorated? Enabling this setting may result in decorated rooms being placed directly under the sky in situations where dungeons are generated on the world surface.
+dungeonsplus.allow_exposed_decoration (Allow exposed dungeon decoration?) bool false
+
+# Allow submerged dungeon rooms to be decorated? This affects dungeon rooms that are directly facing water.
+dungeonsplus.allow_submerged_decoration (Allow exposed submerged decoration?) bool false

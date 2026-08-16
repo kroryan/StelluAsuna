@@ -1,0 +1,9 @@
+# How many times a node can be collected via bottle before the target node is used up. Used up nodes will be replaced with a registered replacement node and have a chance to drop nothing when mined. Set to 0 for infinite bottle fills per node.
+bottles.node_fill_limit (Node fill limit) int 10 0 99
+
+# Allow infinite bottling for liquids:
+# "all" = all liquids allow infinite bottling
+# "flowing" = only flowing liquids allow infinite bottling
+# "none" = no liquids allow infinite bottling
+# NOTE: This setting can easily be circumvented for most typical liquids
+bottles.liquid_fill_unlimited (Liquid fill unlimited) enum all all,flowing,none

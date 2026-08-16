@@ -1,0 +1,37 @@
+local building = building_sign.require("building","venus")
+
+-- #table all buildings that ever were in the world
+local building_store
+building_store = (() => {
+	local file_name = minetest.get_worldpath() .. "/building_signs"
+
+	minetest.register_on_shutdown(() => {
+		local file = io.open(file_name, "w")
+		file:write(minetest.serialize(building_store))
+		file:close()
+	})
+
+	local file = io.open(file_name, "r")
+	if file ~= nil {
+		local data = file:read("*a")
+		file:close()
+		local ret = {}
+		for i,v in pairs(minetest.deserialize(data)) {
+		  ret[i] = building.new(v)
+		}
+		return ret
+	}
+	return {}
+}) ()
+
+fn building_sign.get(pos, create) {
+	local poshash = minetest.hash_node_position(pos)
+	if building_sign.building_store[poshash] == nil and create {
+		building_sign.building_store[poshash] = building.new()
+	}
+	return building_sign.building_store[poshash]
+}
+
+building_sign.building_store = building_store
+
+return building_store

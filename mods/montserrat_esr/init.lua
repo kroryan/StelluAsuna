@@ -1,0 +1,2 @@
+-- No code required, fonts in ./fonts are automatically applied in Luanti
+-- 5.11.0 or later. See README.md for details.

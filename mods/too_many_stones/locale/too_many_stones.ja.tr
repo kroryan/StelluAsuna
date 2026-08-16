@@ -1,0 +1,2471 @@
+# textdomain: too_many_stones
+
+
+### nodes.lua ###
+
+Blue Agate=青色の瑪瑙
+Gray Agate=灰色の瑪瑙
+Green Agate=緑色の瑪瑙
+Moss Agate=苔むした瑪瑙
+Orange Agate=橙色の瑪瑙
+Purple Agate=紫色の瑪瑙
+Red Agate=赤色の瑪瑙
+
+Amazonite=アマゾナイト
+Amazonite Block=アマゾナイトブロック
+Cobbled Amazonite=石畳にしたアマゾナイト
+Amazonite Brick=アマゾナイトレンガ
+Cracked Amazonite Brick=ひび割れたアマゾナイトレンガ
+
+Amber=琥珀
+Amber Block=琥珀ブロック
+Amber Brick=琥珀レンガ
+Cracked Amber Brick=ひび割れた琥珀レンガ
+
+Amethyst=アメジスト
+Amethyst Block=アメジストブロック
+Amethyst Brick=アメジストレンガ
+Cracked Amethyst Brick=ひび割れたアメジストレンガ
+
+Andesite=安山岩
+Andesite Block=安山岩ブロック
+Andesite Brick=安山岩レンガ
+Cracked Andesite Brick=ひび割れた安山岩レンガ
+Cobbled Andesite=石畳にした安山岩
+
+Basalt=玄武岩
+Basalt Block=玄武岩ブロック
+Basalt Brick=玄武岩レンガ
+Cracked Basalt Brick=ひび割れた玄武岩レンガ
+Cobbled Basalt=石畳にした玄武岩
+Basalt Tile=玄武岩タイル
+
+Columnar Basalt=柱状の玄武岩
+
+Batch=ガラスバッチ
+
+Black Moonstone=黒色のムーンストーン
+Black Moonstone Block=黒色のムーンストーンブロック
+Black Moonstone Brick=黒色のムーンストーンレンガ
+Cracked Black Moonstone Brick=ひび割れた黒色のムーンストーンレンガ
+
+Black Opal=ブラックオパール
+
+Calcite=方解石
+Calcite Block=方解石ブロック
+Calcite Brick=方解石レンガ
+Cracked Calcite Brick=ひび割れた方解石レンガ
+
+Grey Calcite=灰色の方解石
+Grey Calcite Block=灰色の方解石ブロック
+Grey Calcite Brick=灰色の方解石レンガ
+Cracked Grey Calcite Brick=ひび割れた灰色の方解石レンガ
+
+Orange Calcite=橙色の方解石
+Orange Calcite Block=橙色の方解石ブロック
+Orange Calcite Brick=橙色の方解石レンガ
+Cracked Orange Calcite Brick=ひび割れた橙色の方解石レンガ
+
+Carnotite=カルノタイト
+Carnotite Block=カルノタイトブロック
+Carnotite Brick=カルノタイトレンガ
+Cracked Carnotite Brick=ひび割れたカルノタイトレンガ
+Cobbled Carnotite=石畳にしたカルノタイト
+
+Celestine=天青石
+Celestine Block=天青石ブロック
+Celestine Brick=天青石レンガ
+Cracked Celestine Brick=ひび割れた天青石レンガ
+
+Chalcanthite=カルカンサイト
+Chalcanthite Block=カルカンサイトブロック
+Chalcanthite Brick=カルカンサイトレンガ
+Cracked Chalcanthite Brick=ひび割れたカルカンサイトレンガ
+Cobbled Chalcanthite=石畳にしたカルカンサイト
+
+Chrysoprase=クリソプレーズ
+Chrysoprase Block=クリソプレーズブロック
+Chrysoprase Brick=クリソプレーズレンガ
+Cracked Chrysoprase Brick=ひび割れたクリソプレーズレンガ
+
+Citrine=シトリン
+Citrine Block=シトリンブロック
+Citrine Brick=シトリンレンガ
+Cracked Citrine Brick=ひび割れたシトリンレンガ
+
+Covellite=コベライト
+Covellite Block=コベライトブロック
+Covellite Brick=コベライトレンガ
+Cracked Covellite Brick=ひび割れたコベライトレンガ
+Cobbled Covellite=石畳にしたコベライト
+
+Crocoite=クロコアイト
+Crocoite Block=クロコアイトブロック
+Crocoite Brick=クロコアイトレンガ
+Cracked Crocoite Brick=ひび割れたクロコアイトレンガ
+
+Diorite=閃緑岩
+Diorite Block=閃緑岩ブロック
+Diorite Brick=閃緑岩レンガ
+Cracked Diorite Brick=ひび割れた閃緑岩レンガ
+Cobbled Diorite=石畳にした閃緑岩
+
+Erythrite=エリスライト
+Erythrite Block=エリスライトブロック
+Erythrite Brick=エリスライトレンガ
+Cracked Erythrite Brick=ひび割れたエリスライトレンガ
+
+Eudialite=ユーディアライト
+Eudialite Block=ユーディアライトブロック
+Eudialite Brick=ユーディアライトレンガ
+Cracked Eudialite Brick=ひび割れたユーディアライトレンガ
+
+Fluorite=蛍石
+Fluorite Block=蛍石ブロック
+Fluorite Brick=蛍石レンガ
+Cracked Fluorite Brick=ひび割れた蛍石レンガ
+
+Fire Opal=ファイアオパール
+
+Gabbro=斑れい岩
+Gabbro Block=斑れい岩ブロック
+Cobbled Gabbro=石畳にした斑れい岩
+Gabbro Brick=斑れい岩レンガ
+Cracked Gabbro Brick=ひび割れた斑れい岩レンガ
+
+Galena=方鉛鉱
+Galena Block=方鉛鉱ブロック
+Galena Brick=方鉛鉱レンガ
+Cracked Galena Brick=ひび割れた方鉛鉱レンガ
+
+Black Granite=黒色の花崗岩
+Black Granite Block=黒色の花崗岩ブロック
+Black Granite Brick=黒色の花崗岩レンガ
+Cracked Black Granite Brick=ひび割れた黒色の花崗岩レンガ
+Cobbled Black Granite=石畳にした黒色の花崗岩
+
+Blue Granite=青色の花崗岩
+Blue Granite Block=青色の花崗岩ブロック
+Blue Granite Brick=青色の花崗岩レンガ
+Cracked Blue Granite Brick=ひび割れた青色の花崗岩レンガ
+Cobbled Blue Granite=石畳にした青色の花崗岩
+
+Gray Granite=灰色の花崗岩
+Gray Granite Block=灰色の花崗岩ブロック
+Gray Granite Brick=灰色の花崗岩レンガ
+Cracked Gray Granite Brick=ひび割れた灰色の花崗岩レンガ
+Cobbled Gray Granite=石畳にした灰色の花崗岩
+
+Green Granite=緑色の花崗岩
+Green Granite Block=緑色の花崗岩ブロック
+Green Granite Brick=緑色の花崗岩レンガ
+Cracked Green Granite Brick=ひび割れた緑色の花崗岩レンガ
+Cobbled Green Granite=石畳にした緑色の花崗岩
+
+Pink Granite=桃色の花崗岩
+Pink Granite Block=桃色の花崗岩ブロック
+Pink Granite Brick=桃色の花崗岩レンガ
+Cracked Pink Granite Brick=ひび割れた桃色の花崗岩レンガ
+Cobbled Pink Granite=石畳にした桃色の花崗岩
+
+Red Granite=赤色の花崗岩
+Red Granite Block=赤色の花崗岩ブロック
+Red Granite Brick=赤色の花崗岩レンガ
+Cracked Red Granite Brick=ひび割れた赤色の花崗岩レンガ
+Cobbled Red Granite=石畳にした赤色の花崗岩
+
+White Granite=白色の花崗岩
+White Granite Block=白色の花崗岩ブロック
+White Granite Brick=白色の花崗岩レンガ
+Cracked White Granite Brick=ひび割れた白色の花崗岩レンガ
+Cobbled White Granite=石畳にした白色の花崗岩
+
+Yellow Granite=黄色の花崗岩
+Yellow Granite Block=黄色の花崗岩ブロック
+Yellow Granite Brick=黄色の花崗岩レンガ
+Cracked Yellow Granite Brick=ひび割れた黄色の花崗岩レンガ
+Cobbled Yellow Granite=石畳にした黄色の花崗岩
+
+Heliodor=ヘリオドール
+Heliodor Block=ヘリオドールブロック
+Heliodor Brick=ヘリオドールレンガ
+Cracked Heliodor Brick=ひび割れたヘリオドールレンガ
+
+Howlite=ハウライト
+Howlite Block=ハウライトブロック
+Howlite Brick=ハウライトレンガ
+Cracked Howlite Brick=ひび割れたハウライトレンガ
+Cobbled Howlite=石畳にしたハウライト
+
+Ilvaite=イルヴァイト
+Ilvaite Block=イルヴァイトブロック
+Ilvaite Brick=イルヴァイトレンガ
+Cracked Ilvaite Brick=ひび割れたイルヴァイトレンガ
+Cobbled Ilvaite=石畳にしたイルヴァイト
+
+Jade=翡翠
+Jade Block=翡翠ブロック
+Jade Brick=翡翠レンガ
+Cracked Jade Brick=ひび割れた翡翠レンガ
+Cobbled Jade=石畳にした翡翠
+
+Red Jasper=赤色のジャスパー
+Red Jasper Block=赤色のジャスパーブロック
+Red Jasper Brick=赤色のジャスパーレンガ
+Cracked Red Jasper Brick=ひび割れた赤色のジャスパーレンガ
+Cobbled Red Jasper=石畳にした赤色のジャスパー
+
+Kyanite=カイヤナイト
+Kyanite Block=カイヤナイトブロック
+Kyanite Brick=カイヤナイトレンガ
+Cracked Kyanite Brick=ひび割れたカイヤナイトレンガ
+Cobbled Kyanite=石畳にしたカイヤナイト
+
+Lapis Lazuli=ラピスラズリ
+Lapis Lazuli Block=ラピスラズリブロック
+Lapis Lazuli Brick=ラピスラズリレンガ
+Cracked Lapis Lazuli Brick=ひび割れたラピスラズリレンガ
+
+Lepidolite=レピドライト
+Lepidolite Block=レピドライトブロック
+Lepidolite Brick=レピドライトレンガ
+Cracked Lepidolite Brick=ひび割れたレピドライトレンガ
+Cobbled Lepidolite=石畳にしたレピドライト
+
+Blue Limestone=青色の石灰岩
+Blue Limestone Block=青色の石灰岩ブロック
+Blue Limestone Brick=青色の石灰岩レンガ
+Cracked Blue Limestone Brick=ひび割れた青色の石灰岩レンガ
+Cobbled Blue Limestone=石畳にした青色の石灰岩
+
+White Limestone=白色の石灰岩
+White Limestone Block=白色の石灰岩ブロック
+White Limestone Brick=白色の石灰岩レンガ
+Cracked White Limestone Brick=ひび割れた白色の石灰岩レンガ
+Cobbled White Limestone=石畳にした白色の石灰岩
+
+Marble=大理石
+Marble Block=大理石ブロック
+Marble Brick=大理石レンガ
+Cracked Marble Brick=ひび割れた大理石レンガ
+Cobbled Marble=石畳にした大理石
+
+Moonstone=ムーンストーン
+Moonstone Block=ムーンストーンブロック
+Moonstone Brick=ムーンストーンレンガ
+Cracked Moonstone Brick=ひび割れたムーンストーンレンガ
+
+Morion Quartz=黒水晶
+Morion Quartz Block=黒水晶ブロック
+Morion Quartz Brick=黒水晶レンガ
+Cracked Morion Quartz Brick=ひび割れた黒水晶レンガ
+
+Mudstone=泥岩
+Mudstone Block=泥岩ブロック
+Cobbled Mudstone=石畳にした泥岩
+Mudstone Brick=泥岩レンガ
+Cracked Mudstone Brick=ひび割れた泥岩レンガ
+
+Opal=オパール
+
+Prasiolite=プラジオライト
+Prasiolite Block=プラジオライトブロック
+Prasiolite Brick=プラジオライトレンガ
+Cracked Prasiolite Brick=ひび割れたプラジオライトレンガ
+
+Pumice=軽石
+Pumice Block=軽石ブロック
+Pumice Brick=軽石レンガ
+Cracked Pumice Brick=ひび割れた軽石レンガ
+
+Pyrite=パイライト
+Pyrite Block=パイライトブロック
+Cobbled Pyrite=石畳にしたパイライト
+Pyrite Brick=パイライトレンガ
+Cracked Pyrite Brick=ひび割れたパイライトレンガ
+
+Quartz=クォーツ
+Quartz Block=クォーツブロック
+Quartz Brick=クォーツレンガ
+Cracked Quartz Brick=ひび割れたクォーツレンガ
+
+Rhodonite=ロードナイト
+Rhodonite Block=ロードナイトブロック
+Rhodonite Brick=ロードナイトレンガ
+Cracked Rhodonite Brick=ひび割れたロードナイトレンガ
+Cobbled Rhodonite=石畳にしたロードナイト
+
+Rose Quartz=紅水晶
+Rose Quartz Block=紅水晶ブロック
+Rose Quartz Brick=紅水晶レンガ
+Cracked Rose Quartz Brick=ひび割れた紅水晶レンガ
+
+Scoria=スコリア
+Scoria Block=スコリアブロック
+Scoria Brick=スコリアレンガ
+Cracked Scoria Brick=ひび割れたスコリアレンガ
+Cobbled Scoria=石畳にしたスコリア
+
+Serpentine=蛇紋石
+Serpentine Block=蛇紋石ブロック
+Cobbled Serpentine=石畳にした蛇紋石
+Serpentine Brick=蛇紋石レンガ
+Cracked Serpentine Brick=ひび割れた蛇紋石レンガ
+
+Shale=泥板岩
+Shale Block=泥板岩ブロック
+Shale Brick=泥板岩レンガ
+Cracked Shale Brick=ひび割れた泥板岩レンガ
+Cobbled Shale=石畳にした泥板岩
+
+Slate=粘板岩
+Slate Block=粘板岩ブロック
+Slate Brick=粘板岩レンガ
+Cracked Slate Brick=ひび割れた粘板岩レンガ
+Cobbled Slate=石畳にした粘板岩
+Slate Tile=粘板岩タイル
+
+Smokey Quartz=煙水晶
+Smokey Quartz Block=煙水晶ブロック
+Smokey Quartz Brick=煙水晶レンガ
+Cracked Smokey Quartz Brick=ひび割れた煙水晶レンガ
+
+Soapstone=石鹸石
+Soapstone Block=石鹸石ブロック
+Soapstone Brick=石鹸石レンガ
+Cracked Soapstone Brick=ひび割れた石鹸石レンガ
+
+Sodalite=ソーダライト
+Sodalite Block=ソーダライトブロック
+Cobbled Sodalite=石畳にしたソーダライト
+Sodalite Brick=ソーダライトレンガ
+Cracked Sodalite Brick=ひび割れたソーダライトレンガ
+
+Sugilite=スギライト
+Sugilite Block=スギライトブロック
+Sugilite Brick=スギライトレンガ
+Cracked Sugilite Brick=ひび割れたスギライトレンガ
+Cobbled Sugilite=石畳にしたスギライト
+
+Green Tourmaline=緑色のトルマリン
+Green Tourmaline Block=緑色のトルマリンブロック
+Green Tourmaline Brick=緑色のトルマリンレンガ
+Cracked Green Tourmaline Brick=ひび割れた緑色のトルマリンレンガ
+
+Paraiba Tourmaline=パライバトルマリン
+Paraiba Tourmaline Block=パライバトルマリンブロック
+Paraiba Tourmaline Brick=パライバトルマリンレンガ
+Cracked Paraiba Tourmaline Brick=ひび割れたパライバトルマリンレンガ
+
+Pink Tourmaline=桃色のトルマリン
+Pink Tourmaline Block=桃色のトルマリンブロック
+Pink Tourmaline Brick=桃色のトルマリンレンガ
+Cracked Pink Tourmaline Brick=ひび割れた桃色のトルマリンレンガ
+
+Travertine=トラバティン
+Travertine Block=トラバティンブロック
+Cobbled Travertine=石畳にしたトラバティン
+Travertine Brick=トラバティンレンガ
+Cracked Travertine Brick=ひび割れたトラバティンレンガ
+
+Yellow Travertine=黄色のトラバティン
+Yellow Travertine Block=黄色のトラバティンブロック
+Cobbled Yellow Travertine=石畳にした黄色のトラバティン
+Yellow Travertine Brick=黄色のトラバティンレンガ
+Cracked Yellow Travertine Brick=ひび割れた黄色のトラバティンレンガ
+
+Beige Tuff=ベージュ色の凝灰岩
+Beige Tuff Block=ベージュ色の凝灰岩ブロック
+Cobbled Beige Tuff=石畳にしたベージュ色の凝灰岩
+Beige Tuff Brick=ベージュ色の凝灰岩レンガ
+Cracked Beige Tuff=ひび割れたベージュ色の凝灰岩
+
+Grey Tuff=灰色の凝灰岩
+Grey Tuff Block=灰色の凝灰岩ブロック
+Cobbled Grey Tuff=石畳にした灰色の凝灰岩
+Grey Tuff Brick=灰色の凝灰岩レンガ
+Cracked Grey Tuff=ひび割れた灰色の凝灰岩
+
+Red Tuff=赤色の凝灰岩
+Red Tuff Block=赤色の凝灰岩ブロック
+Cobbled Red Tuff=石畳にした赤色の凝灰岩
+Red Tuff Brick=赤色の凝灰岩レンガ
+Cracked Red Tuff=ひび割れた赤色の凝灰岩
+
+Turquoise=ターコイズ
+Turquoise Block=ターコイズブロック
+Turquoise Brick=ターコイズレンガ
+Cracked Turquoise Brick=ひび割れたターコイズレンガ
+Cobbled Turquoise=石畳にしたターコイズ
+Turquoise Pebble=ターコイズの小石
+
+Vivianite=ビビアナイト
+Vivianite Block=ビビアナイトブロック
+Vivianite Brick=ビビアナイトレンガ
+Cracked Vivianite Brick=ひび割れたビビアナイトレンガ
+
+### wall.lua ###
+
+Blue Agate Wall=青色の瑪瑙の塀
+Gray Agate Wall=灰色の瑪瑙の塀
+Green Agate Wall=緑色の瑪瑙の塀
+Moss Agate Wall=苔むした瑪瑙の塀
+Orange Agate Wall=橙色の色の瑪瑙の塀
+Purple Agate Wall=紫色の瑪瑙の塀
+Red Agate Wall=赤色の瑪瑙の塀
+
+Amazonite Wall=アマゾナイトの塀
+Cobbled Amazonite Wall=石畳にしたアマゾナイトの塀
+Amazonite Brick Wall=アマゾナイトレンガの塀
+Amazonite Block Wall=アマゾナイトブロックの塀
+Cracked Amazonite Brick Wall=ひび割れたアマゾナイトレンガの塀
+
+Amber Wall=琥珀の塀
+Amber Brick Wall=琥珀レンガの塀
+Amber Block Wall=琥珀ブロックの塀
+Cracked Amber Brick Wall=ひび割れた琥珀レンガの塀
+
+Amethyst Wall=アメジストの塀
+Amethyst Brick Wall=アメジストレンガの塀
+Amethyst Block Wall=アメジストブロックの塀
+Cracked Amethyst Brick Wall=ひび割れたアメジストレンガの塀
+
+Ammolite=アンモライト
+
+Andesite Wall=安山岩の塀
+Andesite Block Wall=安山岩ブロックの塀
+Andesite Brick Wall=安山岩レンガの塀
+Cracked Andesite Brick Wall=ひび割れた安山岩レンガの塀
+Cobbled Andesite Wall=石畳にした安山岩の塀
+
+Basalt Wall=玄武岩の塀
+Basalt Block Wall=玄武岩ブロックの塀
+Basalt Brick Wall=玄武岩レンガの塀
+Cracked Basalt Brick Wall=ひび割れた玄武岩レンガの塀
+Cobbled Basalt Wall=石畳にした玄武岩の塀
+Basalt Tile Wall=玄武岩タイルの塀
+
+Black Moonstone Wall=黒色のムーンストーンの塀
+Black Moonstone Brick Wall=黒色のムーンストーンレンガの塀
+Black Moonstone Block Wall=黒色のムーンストーンブロックの塀
+Cracked Black Moonstone Brick Wall=ひび割れた黒色のムーンストーンレンガの塀
+
+Calcite Wall=方解石の塀
+Calcite Brick Wall=方解石レンガの塀
+Calcite Block Wall=方解石ブロックの塀
+Cracked Calcite Brick Wall=ひび割れた方解石レンガの塀
+
+Grey Calcite Wall=灰色の方解石の塀
+Grey Calcite Brick Wall=灰色の方解石レンガの塀
+Grey Calcite Block Wall=灰色の方解石ブロックの塀
+Cracked Grey Calcite Brick Wall=ひび割れた灰色の方解石レンガの塀
+
+Orange Calcite Wall=橙色の色の方解石の塀
+Orange Calcite Brick Wall=橙色の色の方解石レンガの塀
+Orange Calcite Block Wall=橙色の色の方解石ブロックの塀
+Cracked Orange Calcite Brick Wall=ひび割れた橙色の色の方解石レンガの塀
+
+Carnotite Wall=カルノタイトの塀
+Carnotite Brick Wall=カルノタイトレンガの塀
+Carnotite Block Wall=カルノタイトブロックの塀
+Cracked Carnotite Brick Wall=ひび割れたカルノタイトレンガの塀
+Cobbled Carnotite Wall=石畳にしたカルノタイトの塀
+
+Celestine Wall=天青石の塀
+Celestine Brick Wall=天青石レンガの塀
+Celestine Block Wall=天青石ブロックの塀
+Cracked Celestine Brick Wall=ひび割れた天青石レンガの塀
+
+Chalcanthite Wall=カルカンサイトの塀
+Chalcanthite Brick Wall=カルカンサイトレンガの塀
+Chalcanthite Block Wall=カルカンサイトブロックの塀
+Cracked Chalcanthite Brick Wall=ひび割れたカルカンサイトレンガの塀
+Cobbled Chalcanthite Wall=石畳にしたカルカンサイトの塀
+
+Chrysoprase Wall=クリソプレーズの塀
+Chrysoprase Brick Wall=クリソプレーズレンガの塀
+Chrysoprase Block Wall=クリソプレーズブロックの塀
+Cracked Chrysoprase Brick Wall=ひび割れたクリソプレーズレンガの塀
+
+Citrine Wall=シトリンの塀
+Citrine Brick Wall=シトリンレンガの塀
+Citrine Block Wall=シトリンブロックの塀
+Cracked Citrine Brick Wall=ひび割れたシトリンレンガの塀
+
+Covellite Wall=コベライトの塀
+Covellite Brick Wall=コベライトレンガの塀
+Covellite Block Wall=コベライトブロックの塀
+Cracked Covellite Brick Wall=ひび割れたコベライトレンガの塀
+Cobbled Covellite Wall=石畳にしたコベライトの塀
+
+Crocoite Wall=クロコアイトの塀
+Crocoite Brick Wall=クロコアイトレンガの塀
+Crocoite Block Wall=クロコアイトブロックの塀
+Cracked Crocoite Brick Wall=ひび割れたクロコアイトレンガの塀
+
+Diorite Wall=閃緑岩の塀
+Diorite Brick Wall=閃緑岩レンガの塀
+Diorite Block Wall=閃緑岩ブロックの塀
+Cracked Diorite Brick Wall=ひび割れた閃緑岩レンガの塀
+Cobbled Diorite Wall=石畳にした閃緑岩の塀
+
+Erythrite Wall=エリスライトの塀
+Erythrite Brick Wall=エリスライトレンガの塀
+Erythrite Block Wall=エリスライトブロックの塀
+Cracked Erythrite Brick Wall=ひび割れたエリスライトレンガの塀
+
+Eudialite Wall=ユーディアライトの塀
+Eudialite Brick Wall=ユーディアライトレンガの塀
+Eudialite Block Wall=ユーディアライトブロックの塀
+Cracked Eudialite Brick Wall=ひび割れたユーディアライトレンガの塀
+
+Fluorite Wall=蛍石の塀
+Fluorite Brick Wall=蛍石レンガの塀
+Fluorite Block Wall=蛍石ブロックの塀
+Cracked Fluorite Brick Wall=ひび割れた蛍石レンガの塀
+
+Gabbro Wall=斑れい岩の塀
+Cobbled Gabbro Wall=石畳にした斑れい岩の塀
+Gabbro Brick Wall=斑れい岩レンガの塀
+Gabbro Block Wall=斑れい岩ブロックの塀
+Cracked Gabbro Brick Wall=ひび割れた斑れい岩レンガの塀
+
+Galena Wall=方鉛鉱の塀
+Galena Brick Wall=方鉛鉱レンガの塀
+Galena Block Wall=方鉛鉱ブロックの塀
+Cracked Galena Brick Wall=ひび割れた方鉛鉱レンガの塀
+
+Black Granite Wall=黒色の花崗岩の塀
+Black Granite Brick Wall=黒色の花崗岩レンガの塀
+Black Granite Block Wall=黒色の花崗岩ブロックの塀
+Cracked Black Granite Brick Wall=ひび割れた黒色の花崗岩レンガの塀
+Cobbled Black Granite Wall=石畳にした黒色の花崗岩の塀
+
+Blue Granite Wall=青色の花崗岩の塀
+Blue Granite Brick Wall=青色の花崗岩レンガの塀
+Blue Granite Block Wall=青色の花崗岩ブロックの塀
+Cracked Blue Granite Brick Wall=ひび割れた青色の花崗岩レンガの塀
+Cobbled Blue Granite Wall=石畳にした青色の花崗岩の塀
+
+Gray Granite Wall=灰色の花崗岩の塀
+Gray Granite Brick Wall=灰色の花崗岩レンガの塀
+Gray Granite Block Wall=灰色の花崗岩ブロックの塀
+Cracked Gray Granite Brick Wall=ひび割れた灰色の花崗岩レンガの塀
+Cobble Gray Granite Wall=石畳にした灰色の花崗岩の塀
+
+Green Granite Wall=緑色の花崗岩の塀
+Green Granite Brick Wall=緑色の花崗岩レンガの塀
+Green Granite Block Wall=緑色の花崗岩ブロックの塀
+Cracked Green Granite Brick Wall=ひび割れた緑色の花崗岩レンガの塀
+Cobbled Green Granite Wall=石畳にした緑色の花崗岩の塀
+
+Pink Granite Wall=桃色の花崗岩の塀
+Pink Granite Brick Wall=桃色の花崗岩レンガの塀
+Pink Granite Block Wall=桃色の花崗岩ブロックの塀
+Cracked Pink Granite Brick Wall=ひび割れた桃色の花崗岩レンガの塀
+Cobbled Pink Granite Wall=石畳にした桃色の花崗岩の塀
+
+Red Granite Wall=赤色の花崗岩の塀
+Red Granite Brick Wall=赤色の花崗岩レンガの塀
+Red Granite Block Wall=赤色の花崗岩ブロックの塀
+Cracked Red Granite Brick Wall=ひび割れた赤色の花崗岩レンガの塀
+Cobbled Red Granite Wall=石畳にした赤色の花崗岩の塀
+
+White Granite Wall=白色の花崗岩の塀
+White Granite Brick Wall=白色の花崗岩レンガの塀
+White Granite Block Wall=白色の花崗岩ブロックの塀
+Cracked White Granite Brick Wall=ひび割れた白色の花崗岩レンガの塀
+Cobbled White Granite Wall=石畳にした白色の花崗岩の塀
+
+Yellow Granite Wall=黄色の花崗岩の塀
+Yellow Granite Brick Wall=黄色の花崗岩レンガの塀
+Yellow Granite Block Wall=黄色の花崗岩ブロックの塀
+Cracked Yellow Granite Brick Wall=ひび割れた黄色の花崗岩レンガの塀
+Cobbled Yellow Granite Wall=石畳にした黄色の花崗岩の塀
+
+Heliodor Wall=ヘリオドールの塀
+Heliodor Brick Wall=ヘリオドールレンガの塀
+Heliodor Block Wall=ヘリオドールブロックの塀
+Cracked Heliodor Brick Wall=ひび割れたヘリオドールレンガの塀
+
+Howlite Wall=ハウライトの塀
+Howlite Brick Wall=ハウライトレンガの塀
+Howlite Block Wall=ハウライトブロックの塀
+Cracked Howlite Brick Wall=ひび割れたハウライトレンガの塀
+Cobbled Howlite Wall=石畳にしたハウライトの塀
+
+Ilvaite Wall=イルヴァイトの塀
+Ilvaite Brick Wall=イルヴァイトレンガの塀
+Ilvaite Block Wall=イルヴァイトブロックの塀
+Cracked Ilvaite Brick Wall=ひび割れたイルヴァイトレンガの塀
+Cobbled Ilvaite Wall=石畳にしたイルヴァイトの塀
+
+Jade Wall=翡翠の塀
+Jade Brick Wall=翡翠レンガの塀
+Jade Block Wall=翡翠ブロックの塀
+Cracked Jade Brick Wall=ひび割れた翡翠レンガの塀
+Cobbled Jade Wall=石畳にした翡翠の塀
+
+Red Jasper Wall=赤色のジャスパーの塀
+Red Jasper Brick Wall=赤色のジャスパーレンガの塀
+Red Jasper Block Wall=赤色のジャスパーブロックの塀
+Cracked Red Jasper Brick Wall=ひび割れた赤色のジャスパーレンガの塀
+Cobbled Red Jasper Wall=石畳にした赤色のジャスパーの塀
+
+Kyanite Wall=カイヤナイトの塀
+Kyanite Brick Wall=カイヤナイトレンガの塀
+Kyanite Block Wall=カイヤナイトブロックの塀
+Cracked Kyanite Brick Wall=ひび割れたカイヤナイトレンガの塀
+Cobbled Kyanite Wall=石畳にしたカイヤナイトの塀
+
+Lapis Lazuli Wall=ラピスラズリの塀
+Lapis Lazuli Brick Wall=ラピスラズリレンガの塀
+Lapis Lazuli Block Wall=ラピスラズリブロックの塀
+Cracked Lapis Lazuli Brick Wall=ひび割れたラピスラズリレンガの塀
+
+Lepidolite Wall=レピドライトの塀
+Lepidolite Brick Wall=レピドライトレンガの塀
+Lepidolite Block Wall=レピドライトブロックの塀
+Cracked Lepidolite Brick Wall=ひび割れたレピドライトレンガの塀
+Cobbled Lepidolite Wall=石畳にしたレピドライトの塀
+
+Blue Limestone Wall=青色の石灰岩の塀
+Blue Limestone Brick Wall=青色の石灰岩レンガの塀
+Blue Limestone Block Wall=青色の石灰岩ブロックの塀
+Cracked Blue Limestone Brick Wall=ひび割れた青色の石灰岩レンガの塀
+Cobbled Blue Limestone Wall=石畳にした青色の石灰岩の塀
+
+White Limestone Wall=白色の石灰岩の塀
+White Limestone Brick Wall=白色の石灰岩レンガの塀
+White Limestone Block Wall=白色の石灰岩ブロックの塀
+Cracked White Limestone Brick Wall=ひび割れた白色の石灰岩レンガの塀
+Cobbled White Limestone Wall=石畳にした白色の石灰岩の塀
+
+Marble Wall=大理石の塀
+Marble Brick Wall=大理石レンガの塀
+Marble Block Wall=大理石ブロックの塀
+Cracked Marble Brick Wall=ひび割れた大理石レンガの塀
+Cobbled Marble Wall=石畳にした大理石の塀
+
+Moonstone Wall=ムーンストーンの塀
+Moonstone Brick Wall=ムーンストーンレンガの塀
+Moonstone Block Wall=ムーンストーンブロックの塀
+Cracked Moonstone Brick Wall=ひび割れたムーンストーンレンガの塀
+
+Morion Quartz Wall=黒水晶の塀
+Morion Quartz Brick Wall=黒水晶レンガの塀
+Morion Quartz Block Wall=黒水晶ブロックの塀
+Cracked Morion Quartz Brick Wall=ひび割れた黒水晶レンガの塀
+
+Mudstone Wall=泥岩の塀
+Cobbled Mudstone Wall=石畳にした泥岩の塀
+Mudstone Brick Wall=泥岩レンガの塀
+Mudstone Block Wall=泥岩ブロックの塀
+Cracked Mudstone Brick Wall=ひび割れた泥岩レンガの塀
+
+Prasiolite Wall=プラジオライトの塀
+Prasiolite Brick Wall=プラジオライトレンガの塀
+Prasiolite Block Wall=プラジオライトブロックの塀
+Cracked Prasiolite Brick Wall=ひび割れたプラジオライトレンガの塀
+
+Pumice Wall=軽石の塀
+Pumice Brick Wall=軽石レンガの塀
+Pumice Block Wall=軽石ブロックの塀
+Cracked Pumice Brick Wall=ひび割れた軽石レンガの塀
+
+Pyrite Wall=パイライトの塀
+Pyrite Brick Wall=パイライトレンガの塀
+Pyrite Block Wall=パイライトブロックの塀
+Cracked Pyrite Brick Wall=ひび割れたパイライトレンガの塀
+
+Quartz Wall=水晶の塀
+Quartz Brick Wall=水晶レンガの塀
+Quartz Block Wall=水晶ブロックの塀
+Cracked Quartz Brick Wall=ひび割れた水晶レンガの塀
+
+Rhodonite Wall=ロードナイトの塀
+Rhodonite Brick Wall=ロードナイトレンガの塀
+Rhodonite Block Wall=ロードナイトブロックの塀
+Cracked Rhodonite Brick Wall=ひび割れたロードナイトレンガの塀
+Cobbled Rhodonite Wall=石畳にしたロードナイトの塀
+
+Rose Quartz Wall=紅水晶の塀
+Rose Quartz Brick Wall=紅水晶レンガの塀
+Rose Quartz Block Wall=紅水晶ブロックの塀
+Cracked Rose Quartz Brick Wall=ひび割れた紅水晶レンガの塀
+
+Scoria Wall=スコリアの塀
+Scoria Brick Wall=スコリアレンガの塀
+Scoria Block Wall=スコリアブロックの塀
+Cracked Scoria Brick Wall=ひび割れたスコリアレンガの塀
+Cobbled Scoria Wall=石畳にしたスコリアの塀
+
+Serpentine Wall=蛇紋石の塀
+Cobbled Serpentine Wall=石畳にした蛇紋石の塀
+Serpentine Brick Wall=蛇紋石レンガの塀
+Serpentine Block Wall=蛇紋石ブロックの塀
+Cracked Serpentine Brick Wall=ひび割れた蛇紋石レンガの塀
+
+Shale Wall=泥板岩の塀
+Shale Brick Wall=泥板岩レンガの塀
+Shale Block Wall=泥板岩ブロックの塀
+Cracked Shale Brick Wall=ひび割れた泥板岩レンガの塀
+Cobbled Shale Wall=石畳にした泥板岩の塀
+
+Slate Wall=粘板岩の塀
+Slate Brick Wall=粘板岩レンガの塀
+Slate Block Wall=粘板岩ブロックの塀
+Cracked Slate Brick Wall=ひび割れた粘板岩レンガの塀
+Cobbled Slate Wall=石畳にした粘板岩の塀
+Slate Tile Wall=粘板岩タイルの塀
+
+Smokey Quartz Wall=煙水晶の塀
+Smokey Quartz Brick Wall=煙水晶レンガの塀
+Smokey Quartz Block Wall=煙水晶ブロックの塀
+Cracked Smokey Quartz Brick Wall=ひび割れた煙水晶レンガの塀
+
+Soapstone Wall=石鹸石の塀
+Soapstone Brick Wall=石鹸石レンガの塀
+Soapstone Block Wall=石鹸石ブロックの塀
+Cracked Soapstone Brick Wall=ひび割れた石鹸石レンガの塀
+
+Sodalite Wall=ソーダライトの塀
+Cobbled Sodalite Wall=石畳にしたソーダライトの塀
+Sodalite Brick Wall=ソーダライトレンガの塀
+Sodalite Block Wall=ソーダライトブロックの塀
+Cracked Sodalite Brick Wall=ひび割れたソーダライトレンガの塀
+
+Sugilite Wall=スギライトの塀
+Sugilite Brick Wall=スギライトレンガの塀
+Sugilite Block Wall=スギライトブロックの塀
+Cracked Sugilite Brick Wall=ひび割れたスギライトレンガの塀
+Cobbled Sugilite Wall=石畳にしたスギライトの塀
+
+Green Tourmaline Wall=緑色のトルマリンの塀
+Green Tourmaline Brick Wall=緑色のトルマリンレンガの塀
+Green Tourmaline Block Wall=緑色のトルマリンブロックの塀
+Cracked Green Tourmaline Brick Wall=ひび割れた緑色のトルマリンレンガの塀
+
+Paraiba Tourmaline Wall=パライバトルマリンの塀
+Paraiba Tourmaline Brick Wall=パライバトルマリンレンガの塀
+Paraiba Tourmaline Block Wall=パライバトルマリンブロックの塀
+Cracked Paraiba Tourmaline Brick Wall=ひび割れたパライバトルマリンレンガの塀
+
+Pink Tourmaline Wall=桃色のトルマリンの塀
+Pink Tourmaline Brick Wall=桃色のトルマリンレンガの塀
+Pink Tourmaline Block Wall=桃色のトルマリンブロックの塀
+Cracked Pink Tourmaline Brick Wall=ひび割れた桃色のトルマリンレンガの塀
+
+Travertine Wall=トラバティンの塀
+Cobbled Travertine Wall=石畳にしたトラバティンの塀
+Travertine Brick Wall=トラバティンレンガの塀
+Travertine Block Wall=トラバティンブロックの塀
+Cracked Travertine Brick Wall=ひび割れたトラバティンレンガの塀
+
+Yellow Travertine Wall=黄色のトラバティンの塀
+Cobbled Yellow Travertine Wall=石畳にした黄色のトラバティンの塀
+Yellow Travertine Brick Wall=黄色のトラバティンレンガの塀
+Yellow Travertine Block Wall=黄色のトラバティンブロックの塀
+Cracked Yellow Travertine Brick Wall=ひび割れた黄色のトラバティンレンガの塀
+
+Beige Tuff Wall=ベージュ色の色の凝灰岩の塀
+Cobbled Beige Tuff Wall=石畳にしたベージュ色の色の凝灰岩の塀
+Beige Tuff Block Wall=ベージュ色の色の凝灰岩ブロックの塀
+Beige Tuff Brick Wall=ベージュ色の色の凝灰岩レンガの塀
+Cracked Beige Tuff Brick Wall=ひび割れたベージュ色の色の凝灰岩レンガの塀
+
+Grey Tuff Wall=灰色の凝灰岩の塀
+Cobbled Grey Tuff Wall=石畳にした灰色の凝灰岩の塀
+Grey Tuff Block Wall=灰色の凝灰岩ブロックの塀
+Grey Tuff Brick Wall=灰色の凝灰岩レンガの塀
+Cracked Grey Tuff Brick Wall=ひび割れた灰色の凝灰岩レンガの塀
+
+Red Tuff Wall=赤色の凝灰岩の塀
+Cobbled Red Tuff Wall=石畳にした赤色の凝灰岩の塀
+Red Tuff Block Wall=赤色の凝灰岩ブロックの塀
+Red Tuff Brick Wall=赤色の凝灰岩レンガの塀
+Cracked Red Tuff Brick Wall=ひび割れた赤色の凝灰岩レンガの塀
+
+Turquoise Wall=ターコイズの塀
+Turquoise Brick Wall=ターコイズレンガの塀
+Turquoise Block Wall=ターコイズブロックの塀
+Cracked Turquoise Brick Wall=ひび割れたターコイズレンガの塀
+Cobbled Turquoise Wall=石畳にしたターコイズの塀
+
+Vivianite Wall=ビビアナイトの塀
+Vivianite Brick Wall=ビビアナイトレンガの塀
+Vivianite Block Wall=ビビアナイトブロックの塀
+Cracked Vivianite Brick Wall=ひび割れたビビアナイトレンガの塀
+
+### stairs.lua ###
+
+Blue Agate Slab=青瑪瑙スラブ
+Gray Agate Slab=灰色の瑪瑙スラブ
+Green Agate Slab=緑色の瑪瑙スラブ
+Moss Agate Slab=苔むした瑪瑙スラブ
+Orange Agate Slab=橙色の色の瑪瑙スラブ
+Purple Agate Slab=紫色の瑪瑙スラブ
+Red Agate Slab=赤色の瑪瑙スラブ
+
+Amazonite Slab=アマゾナイトスラブ
+Cobbled Amazonite Slab=石畳にしたアマゾナイトスラブ
+Amazonite Brick Slab=アマゾナイトレンガのスラブ
+Amazonite Block Slab=アマゾナイトブロックのスラブ
+Cracked Amazonite Brick Slab=ひび割れたアマゾナイトレンガのスラブ
+
+Amber Slab=琥珀スラブ
+Amber Brick Slab=琥珀レンガのスラブ
+Amber Block Slab=琥珀ブロックのスラブ
+Cracked Amber Brick Slab=ひび割れた琥珀レンガのスラブ
+
+Amethyst Slab=アメジストスラブ
+Amethyst Brick Slab=アメジストレンガのスラブ
+Amethyst Block Slab=アメジストブロックのスラブ
+Cracked Amethyst Brick Slab=ひび割れたアメジストレンガのスラブ
+
+Andesite Slab=安山岩スラブ
+Andesite Block Slab=安山岩ブロックのスラブ
+Cobbled Andesite Slab=石畳にした安山岩スラブ
+Andesite Brick Slab=安山岩レンガのスラブ
+Cobbled Andesite Brick Slab=石畳にした安山岩レンガのスラブ
+
+Basalt Slab=玄武岩スラブ
+Basalt Block Slab=玄武岩ブロックのスラブ
+Basalt Brick Slab=玄武岩レンガのスラブ
+Cracked Basalt Brick Slab=ひび割れた玄武岩レンガのスラブ
+Cobbled Basalt Slab=石畳にした玄武岩スラブ
+Basalt Tile Slab=タイルの玄武岩スラブ
+
+Black Moonstone Slab=黒色のムーンストーンスラブ
+Black Moonstone Brick Slab=黒色のムーンストーンレンガのスラブ
+Black Moonstone Block Slab=黒色のムーンストーンブロックのスラブ
+Cracked Black Moonstone Brick Slab=ひび割れた黒色のムーンストーンレンガのスラブ
+
+Calcite Slab=方解石スラブ
+Calcite Brick Slab=方解石レンガのスラブ
+Calcite Block Slab=方解石ブロックのスラブ
+Cracked Calcite Brick Slab=ひび割れた方解石レンガのスラブ
+
+Grey Calcite Slab=灰色の方解石スラブ
+Grey Calcite Brick Slab=灰色の方解石レンガのスラブ
+Grey Calcite Block Slab=灰色の方解石ブロックのスラブ
+Cracked Grey Calcite Brick Slab=ひび割れた灰色の方解石レンガのスラブ
+
+Orange Calcite Slab=橙色の色の方解石スラブ
+Orange Calcite Brick Slab=橙色の色の方解石レンガのスラブ
+Orange Calcite Block Slab=橙色の色の方解石ブロックのスラブ
+Cracked Orange Calcite Brick Slab=ひび割れた橙色の色の方解石レンガのスラブ
+
+Carnotite Slab=カルノタイトスラブ
+Carnotite Brick Slab=カルノタイトレンガのスラブ
+Carnotite Block Slab=カルノタイトブロックのスラブ
+Cracked Carnotite Brick Slab=ひび割れたカルノタイトレンガのスラブ
+Cobbled Carnotite Slab=石畳にしたカルノタイトスラブ
+
+Celestine Slab=天青石スラブ
+Celestine Brick Slab=天青石レンガのスラブ
+Celestine Block Slab=天青石ブロックのスラブ
+Cracked Celestine Brick Slab=ひび割れた天青石レンガのスラブ
+
+Chalcanthite Slab=カルカンサイトスラブ
+Chalcanthite Brick Slab=カルカンサイトレンガのスラブ
+Chalcanthite Block Slab=カルカンサイトブロックのスラブ
+Cracked Chalcanthite Brick Slab=ひび割れたカルカンサイトレンガのスラブ
+Cobbled Chalcanthite Slab=石畳にしたカルカンサイトスラブ
+
+Chrysoprase Slab=クリソプレーズスラブ
+Chrysoprase Brick Slab=クリソプレーズレンガのスラブ
+Chrysoprase Block Slab=クリソプレーズブロックのスラブ
+Cracked Chrysoprase Brick Slab=ひび割れたクリソプレーズレンガのスラブ
+
+Citrine Slab=シトリンスラブ
+Citrine Brick Slab=シトリンレンガのスラブ
+Citrine Block Slab=シトリンブロックのスラブ
+Cracked Citrine Brick Slab=ひび割れたシトリンレンガのスラブ
+
+Covellite Slab=コベライトスラブ
+Covellite Brick Slab=コベライトレンガのスラブ
+Covellite Block Slab=コベライトブロックのスラブ
+Cracked Covellite Brick Slab=ひび割れたコベライトレンガのスラブ
+Cobbled Covellite Slab=石畳にしたコベライトスラブ
+
+Crocoite Slab=クロコアイトスラブ
+Crocoite Brick Slab=クロコアイトレンガのスラブ
+Crocoite Block Slab=クロコアイトブロックのスラブ
+Cracked Crocoite Brick Slab=ひび割れたクロコアイトレンガのスラブ
+
+Diorite Slab=閃緑岩スラブ
+Diorite Brick Slab=閃緑岩レンガのスラブ
+Diorite Block Slab=閃緑岩ブロックのスラブ
+Cracked Diorite Brick Slab=ひび割れた閃緑岩レンガのスラブ
+Cobbled Diorite Slab=石畳にした閃緑岩スラブ
+
+Erythrite Slab=エリスライトスラブ
+Erythrite Brick Slab=エリスライトレンガのスラブ
+Erythrite Block Slab=エリスライトブロックのスラブ
+Cracked Erythrite Brick Slab=ひび割れたエリスライトレンガのスラブ
+
+Eudialite Slab=ユーディアライトスラブ
+Eudialite Brick Slab=ユーディアライトレンガのスラブ
+Eudialite Block Slab=ユーディアライトブロックのスラブ
+Cracked Eudialite Brick Slab=ひび割れたユーディアライトレンガのスラブ
+
+Fluorite Slab=蛍石スラブ
+Fluorite Brick Slab=蛍石レンガのスラブ
+Fluorite Block Slab=蛍石ブロックのスラブ
+Cracked Fluorite Brick Slab=ひび割れた蛍石レンガのスラブ
+
+Gabbro Slab=斑れい岩スラブ
+Cobbled Gabbro Slab=石畳にした斑れい岩スラブ
+Gabbro Brick Slab=斑れい岩レンガのスラブ
+Gabbro Block Slab=斑れい岩ブロックのスラブ
+Cracked Gabbro Brick Slab=ひび割れた斑れい岩レンガのスラブ
+
+Galena Slab=方鉛鉱スラブ
+Galena Brick Slab=方鉛鉱レンガのスラブ
+Galena Block Slab=方鉛鉱ブロックのスラブ
+Cracked Galena Brick Slab=ひび割れた方鉛鉱レンガのスラブ
+
+Black Granite Slab=黒色の花崗岩スラブ
+Black Granite Brick Slab=黒色の花崗岩レンガのスラブ
+Black Granite Block Slab=黒色の花崗岩ブロックのスラブ
+Cracked Black Granite Brick Slab=ひび割れた黒色の花崗岩レンガのスラブ
+Cobbled Black Granite Slab=石畳にした黒色の花崗岩スラブ
+
+Blue Granite Slab=青色の花崗岩スラブ
+Blue Granite Brick Slab=青色の花崗岩レンガのスラブ
+Blue Granite Block Slab=青色の花崗岩ブロックのスラブ
+Cracked Blue Granite Brick Slab=ひび割れた青色の花崗岩レンガのスラブ
+Cobbled Blue Granite Slab=石畳にした青色の花崗岩スラブ
+
+Gray Granite Slab=灰色の花崗岩スラブ
+Gray Granite Brick Slab=灰色の花崗岩レンガのスラブ
+Gray Granite Block Slab=灰色の花崗岩ブロックのスラブ
+Cracked Gray Granite Brick Slab=ひび割れた灰色の花崗岩レンガのスラブ
+Cobbled Gray Granite Slab=石畳にした灰色の花崗岩スラブ
+
+Green Granite Slab=緑色の花崗岩スラブ
+Green Granite Brick Slab=緑色の花崗岩レンガのスラブ
+Green Granite Block Slab=緑色の花崗岩ブロックのスラブ
+Cracked Green Granite Brick Slab=ひび割れた緑色の花崗岩レンガのスラブ
+Cobbled Green Granite Slab=石畳にした緑色の花崗岩スラブ
+
+Pink Granite Slab=桃色の花崗岩スラブ
+Pink Granite Brick Slab=桃色の花崗岩レンガのスラブ
+Pink Granite Block Slab=桃色の花崗岩ブロックのスラブ
+Cracked Pink Granite Brick Slab=ひび割れた桃色の花崗岩レンガのスラブ
+Cobbled Pink Granite Slab=石畳にした桃色の花崗岩スラブ
+
+Red Granite Slab=赤色の花崗岩スラブ
+Red Granite Brick Slab=赤色の花崗岩レンガのスラブ
+Red Granite Block Slab=赤色の花崗岩ブロックのスラブ
+Cracked Red Granite Brick Slab=ひび割れた赤色の花崗岩レンガのスラブ
+Cobbled Red Granite Slab=石畳にした赤色の花崗岩スラブ
+
+White Granite Slab=白色の花崗岩スラブ
+White Granite Brick Slab=白色の花崗岩レンガのスラブ
+White Granite Block Slab=白色の花崗岩ブロックのスラブ
+Cracked White Granite Brick Slab=ひび割れた白色の花崗岩レンガのスラブ
+Cobbled White Granite Slab=石畳にした白色の花崗岩スラブ
+
+Yellow Granite Slab=黄色の花崗岩スラブ
+Yellow Granite Brick Slab=黄色の花崗岩レンガのスラブ
+Yellow Granite Block Slab=黄色の花崗岩ブロックのスラブ
+Cracked Yellow Granite Brick Slab=ひび割れた黄色の花崗岩レンガのスラブ
+Cobbled Yellow Granite Slab=石畳にした黄色の花崗岩スラブ
+
+Heliodor Slab=ヘリオドールスラブ
+Heliodor Brick Slab=ヘリオドールレンガのスラブ
+Heliodor Block Slab=ヘリオドールブロックのスラブ
+Cracked Heliodor Brick Slab=ひび割れたヘリオドールレンガのスラブ
+
+Howlite Slab=ハウライトスラブ
+Howlite Brick Slab=ハウライトレンガのスラブ
+Howlite Block Slab=ハウライトブロックのスラブ
+Cracked Howlite Brick Slab=ひび割れたハウライトレンガのスラブ
+Cobbled Howlite Slab=石畳にしたハウライトスラブ
+
+Ilvaite Slab=イルヴァイトのスラブ
+Ilvaite Brick Slab=イルヴァイトレンガのスラブ
+Ilvaite Block Slab=イルヴァイトブロックのスラブ
+Cracked Ilvaite Brick Slab=ひび割れたイルヴァイトレンガのスラブ
+Cobbled Ilvaite Slab=石畳にしたイルヴァイトのスラブ
+
+Jade Slab=翡翠のスラブ
+Jade Brick Slab=翡翠レンガのスラブ
+Jade Block Slab=翡翠ブロックのスラブ
+Cracked Jade Brick Slab=ひび割れた翡翠レンガのスラブ
+Cobbled Jade Slab=石畳にした翡翠のスラブ
+
+Red Jasper Slab=赤色のジャスパーのスラブ
+Red Jasper Brick Slab=赤色のジャスパーレンガのスラブ
+Red Jasper Block Slab=赤色のジャスパーブロックのスラブ
+Cracked Red Jasper Brick Slab=ひび割れた赤色のジャスパーレンガのスラブ
+Cobbled Red Jasper Slab=石畳にした赤色のジャスパーのスラブ
+
+Kyanite Slab=カイヤナイトのスラブ
+Kyanite Brick Slab=カイヤナイトレンガのスラブ
+Kyanite Block Slab=カイヤナイトブロックのスラブ
+Cracked Kyanite Brick Slab=ひび割れたカイヤナイトレンガのスラブ
+Cobbled Kyanite Slab=石畳にしたカイヤナイトのスラブ
+
+Lapis Lazuli Slab=ラピスラズリのスラブ
+Lapis Lazuli Brick Slab=ラピスラズリレンガのスラブ
+Lapis Lazuli Block Slab=ラピスラズリブロックのスラブ
+Cracked Lapis Lazuli Brick Slab=ひび割れたラピスラズリレンガのスラブ
+
+Lepidolite Slab=レピドライトのスラブ
+Lepidolite Brick Slab=レピドライトレンガのスラブ
+Lepidolite Block Slab=レピドライトブロックのスラブ
+Cracked Lepidolite Brick Slab=ひび割れたレピドライトレンガのスラブ
+Cobbled Lepidolite Slab=石畳にしたレピドライトのスラブ
+
+Blue Limestone Slab=青色の石灰岩のスラブ
+Blue Limestone Brick Slab=青色の石灰岩レンガのスラブ
+Blue Limestone Block Slab=青色の石灰岩ブロックのスラブ
+Cracked Blue Limestone Brick Slab=ひび割れた青色の石灰岩レンガのスラブ
+Cobbled Blue Limestone Slab=石畳にした青色の石灰岩のスラブ
+
+White Limestone Slab=白色の石灰岩のスラブ
+White Limestone Brick Slab=白色の石灰岩レンガのスラブ
+White Limestone Block Slab=白色の石灰岩ブロックのスラブ
+Cracked White Limestone Brick Slab=ひび割れた白色の石灰岩レンガのスラブ
+Cobbled White Limestone Slab=石畳にした白色の石灰岩のスラブ
+
+Marble Slab=大理石のスラブ
+Marble Brick Slab=大理石レンガのスラブ
+Marble Block Slab=大理石ブロックのスラブ
+Cracked Marble Brick Slab=ひび割れた大理石レンガのスラブ
+Cobbled Marble Slab=石畳にした大理石のスラブ
+
+Moonstone Slab=ムーンストーンのスラブ
+Moonstone Brick Slab=ムーンストーンレンガのスラブ
+Moonstone Block Slab=ムーンストーンブロックのスラブ
+Cracked Moonstone Brick Slab=ひび割れたムーンストーンレンガのスラブ
+
+Morion Quartz Slab=黒水晶のスラブ
+Morion Quartz Brick Slab=黒水晶レンガのスラブ
+Morion Quartz Block Slab=黒水晶ブロックのスラブ
+Cracked Morion Quartz Brick Slab=ひび割れた黒水晶レンガのスラブ
+
+Mudstone Slab=泥岩のスラブ
+Cobbled Mudstone Slab=石畳にした泥岩のスラブ
+Mudstone Brick Slab=泥岩レンガのスラブ
+Mudstone Block Slab=泥岩ブロックのスラブ
+Cracked Mudstone Brick Slab=ひび割れた泥岩レンガのスラブ
+
+Prasiolite Slab=プラジオライトのスラブ
+Cobbled Prasiolite Slab=石畳にしたプラジオライトのスラブ
+Prasiolite Brick Slab=プラジオライトレンガのスラブ
+Prasiolite Block Slab=プラジオライトブロックのスラブ
+Cracked Prasiolite Brick Slab=ひび割れたプラジオライトレンガのスラブ
+
+Pumice Slab=軽石のスラブ
+Pumice Brick Slab=軽石レンガのスラブ
+Pumice Block Slab=軽石ブロックのスラブ
+Cracked Pumice Brick Slab=ひび割れた軽石レンガのスラブ
+
+Pyrite Slab=パイライトのスラブ
+Pyrite Brick Slab=パイライトレンガのスラブ
+Pyrite Block Slab=パイライトブロックのスラブ
+Cracked Pyrite Brick Slab=ひび割れたパイライトレンガのスラブ
+
+Quartz Slab=クォーツのスラブ
+Cobbled Quartz Slab=石畳にしたクォーツのスラブ
+Quartz Brick Slab=クォーツレンガのスラブ
+Quartz Block Slab=クォーツブロックのスラブ
+Cracked Quartz Brick Slab=ひび割れたクォーツレンガのスラブ
+
+Rhodonite Slab=ロードナイトのスラブ
+Rhodonite Brick Slab=ロードナイトレンガのスラブ
+Rhodonite Block Slab=ロードナイトブロックのスラブ
+Cracked Rhodonite Brick Slab=ひび割れたロードナイトレンガのスラブ
+Cobbled Rhodonite Slab=石畳にしたロードナイトのスラブ
+
+Rose Quartz Slab=紅水晶のスラブ
+Rose Quartz Brick Slab=紅水晶レンガのスラブ
+Rose Quartz Block Slab=紅水晶ブロックのスラブ
+Cracked Rose Quartz Brick Slab=ひび割れた紅水晶レンガのスラブ
+
+Scoria Slab=スコリアのスラブ
+Scoria Brick Slab=スコリアレンガのスラブ
+Scoria Block Slab=スコリアブロックのスラブ
+Cracked Scoria Brick Slab=ひび割れたスコリアレンガのスラブ
+Cobbled Scoria Slab=石畳にしたスコリアのスラブ
+
+Serpentine Slab=蛇紋石のスラブ
+Cobbled Serpentine Slab=石畳にした蛇紋石のスラブ
+Serpentine Brick Slab=蛇紋石レンガのスラブ
+Serpentine Block Slab=蛇紋石ブロックのスラブ
+Cracked Serpentine Brick Slab=ひび割れた蛇紋石レンガのスラブ
+
+Shale Slab=泥板岩のスラブ
+Shale Brick Slab=泥板岩レンガのスラブ
+Shale Block Slab=泥板岩ブロックのスラブ
+Cracked Shale Brick Slab=ひび割れた泥板岩レンガのスラブ
+Cobbled Shale Slab=石畳にした泥板岩のスラブ
+
+Slate Slab=粘板岩のスラブ
+Slate Brick Slab=粘板岩レンガのスラブ
+Slate Block Slab=粘板岩ブロックのスラブ
+Cracked Slate Brick Slab=ひび割れた粘板岩レンガのスラブ
+Cobbled Slate Slab=石畳にした粘板岩のスラブ
+Slate Tile Slab=粘板岩タイルのスラブ
+
+Smokey Quartz Slab=煙水晶のスラブ
+Smokey Quartz Brick Slab=煙水晶レンガのスラブ
+Smokey Quartz Block Slab=煙水晶ブロックのスラブ
+Cracked Smokey Quartz Brick Slab=ひび割れた煙水晶レンガのスラブ
+
+Soapstone Slab=石鹸石のスラブ
+Soapstone Brick Slab=石鹸石レンガのスラブ
+Soapstone Block Slab=石鹸石ブロックのスラブ
+Cracked Soapstone Brick Slab=ひび割れた石鹸石レンガのスラブ
+
+Sodalite Slab=ソーダライトのスラブ
+Cobbled Sodalite Slab=石畳にしたソーダライトのスラブ
+Sodalite Brick Slab=ソーダライトレンガのスラブ
+Sodalite Block Slab=ソーダライトブロックのスラブ
+Cracked Sodalite Brick Slab=ひび割れたソーダライトレンガのスラブ
+
+Sugilite Slab=スギライトのスラブ
+Sugilite Brick Slab=スギライトレンガのスラブ
+Sugilite Block Slab=スギライトブロックのスラブ
+Cracked Sugilite Brick Slab=ひび割れたスギライトレンガのスラブ
+Cobbled Sugilite Slab=石畳にしたスギライトのスラブ
+
+Green Tourmaline Slab=緑色のトルマリンのスラブ
+Green Tourmaline Brick Slab=緑色のトルマリンレンガのスラブ
+Green Tourmaline Block Slab=緑色のトルマリンブロックのスラブ
+Cracked Green Tourmaline Brick Slab=ひび割れた緑色のトルマリンレンガのスラブ
+
+Paraiba Tourmaline Slab=パライバトルマリンのスラブ
+Paraiba Tourmaline Brick Slab=パライバトルマリンレンガのスラブ
+Paraiba Tourmaline Block Slab=パライバトルマリンブロックのスラブ
+Cracked Paraiba Tourmaline Brick Slab=ひび割れたパライバトルマリンレンガのスラブ
+
+Pink Tourmaline Slab=桃色のトルマリンのスラブ
+Pink Tourmaline Brick Slab=桃色のトルマリンレンガのスラブ
+Pink Tourmaline Block Slab=桃色のトルマリンブロックのスラブ
+Cracked Pink Tourmaline Brick Slab=ひび割れた桃色のトルマリンレンガのスラブ
+
+Travertine Slab=トラバティンのスラブ
+Cobbled Travertine Slab=石畳にしたトラバティンのスラブ
+Travertine Brick Slab=トラバティンレンガのスラブ
+Travertine Block Slab=トラバティンブロックのスラブ
+Cracked Travertine Brick Slab=ひび割れたトラバティンレンガのスラブ
+
+Yellow Travertine Slab=黄色のトラバティンのスラブ
+Cobbled Yellow Travertine Slab=石畳にした黄色のトラバティンのスラブ
+Yellow Travertine Brick Slab=黄色のトラバティンレンガのスラブ
+Yellow Travertine Block Slab=黄色のトラバティンブロックのスラブ
+Cracked Yellow Travertine Brick Slab=ひび割れた黄色のトラバティンレンガのスラブ
+
+Beige Tuff Slab=ベージュ色の凝灰岩のスラブ
+Cobbled Beige Tuff Slab=石畳にしたベージュ色の凝灰岩のスラブ
+Beige Tuff Block Slab=ベージュ色の凝灰岩ブロックのスラブ
+Beige Tuff Brick Slab=ベージュ色の凝灰岩レンガのスラブ
+Cracked Beige Tuff Brick Slab=ひび割れたベージュ色の凝灰岩レンガのスラブ
+
+Grey Tuff Slab=灰色の凝灰岩のスラブ
+Cobbled Grey Tuff Slab=石畳にした灰色の凝灰岩のスラブ
+Grey Tuff Block Slab=灰色の凝灰岩ブロックのスラブ
+Grey Tuff Brick Slab=灰色の凝灰岩レンガのスラブ
+Cracked Grey Tuff Brick Slab=ひび割れた灰色の凝灰岩レンガのスラブ
+
+Red Tuff Slab=赤色の凝灰岩のスラブ
+Cobbled Red Tuff Slab=石畳にした赤色の凝灰岩のスラブ
+Red Tuff Block Slab=赤色の凝灰岩ブロックのスラブ
+Red Tuff Brick Slab=赤色の凝灰岩レンガのスラブ
+Cracked Red Tuff Brick Slab=ひび割れた赤色の凝灰岩レンガのスラブ
+
+Turquoise Slab=ターコイズのスラブ
+Turquoise Brick Slab=ターコイズレンガのスラブ
+Turquoise Block Slab=ターコイズブロックのスラブ
+Cracked Turquoise Brick Slab=ひび割れたターコイズレンガのスラブ
+Cobbled Turquoise Slab=石畳にしたターコイズのスラブ
+
+Vivianite Slab=ビビアナイトのスラブ
+Cobbled Vivianite Slab=石畳にしたビビアナイトのスラブ
+Vivianite Brick Slab=ビビアナイトレンガのスラブ
+Vivianite Block Slab=ビビアナイトブロックのスラブ
+Cracked Vivianite Brick Slab=ひび割れたビビアナイトレンガのスラブ
+
+
+
+Blue Agate Stair=青色の瑪瑙の階段
+Gray Agate Stair=灰色の瑪瑙の階段
+Green Agate Stair=緑色の瑪瑙の階段
+Moss Agate Stair=苔むした瑪瑙の階段
+Orange Agate Stair=橙色の瑪瑙の階段
+Purple Agate Stair=紫色の瑪瑙の階段
+Red Agate Stair=赤色の瑪瑙の階段
+
+Amazonite Stair=アマゾナイトの階段
+Cobbled Amazonite Stair=石畳にしたアマゾナイトの階段
+Amazonite Brick Stair=アマゾナイトレンガの階段
+Amazonite Block Stair=アマゾナイトブロックの階段
+Cracked Amazonite Brick Stair=ひび割れたアマゾナイトレンガの階段
+
+Amber Stair=琥珀の階段
+Amber Brick Stair=琥珀レンガの階段
+Amber Block Stair=琥珀ブロックの階段
+Cracked Amber Brick Stair=ひび割れた琥珀レンガの階段
+
+Amethyst Stair=アメジストの階段
+Amethyst Brick Stair=アメジストレンガの階段
+Amethyst Block Stair=アメジストブロックの階段
+Cracked Amethyst Brick Stair=ひび割れたアメジストレンガの階段
+
+Andesite Stair=安山岩の階段
+Andesite Block Stair=安山岩ブロックの階段
+Cobbled Andesite Stair=石畳にした安山岩の階段
+Andesite Brick Stair=安山岩レンガの階段
+Cobbled Andesite Brick Stair=石畳にした安山岩レンガの階段
+
+Basalt Stair=玄武岩の階段
+Basalt Block Stair=玄武岩ブロックの階段
+Basalt Brick Stair=玄武岩レンガの階段
+Cracked Basalt Brick Stair=ひび割れた玄武岩レンガの階段
+Cobbled Basalt Stair=石畳にした玄武岩の階段
+Basalt Tile Stair=玄武岩のタイル階段
+
+Black Moonstone Stair=黒色のムーンストーンの階段
+Black Moonstone Brick Stair=黒色のムーンストーンレンガの階段
+Black Moonstone Block Stair=黒色のムーンストーンブロックの階段
+Cracked Black Moonstone Brick Stair=ひび割れた黒色のムーンストーンレンガの階段
+
+Calcite Stair=方解石の階段
+Calcite Brick Stair=方解石レンガの階段
+Calcite Block Stair=方解石ブロックの階段
+Cracked Calcite Brick Stair=ひび割れた方解石レンガの階段
+
+Grey Calcite Stair=灰色の方解石の階段
+Grey Calcite Brick Stair=灰色の方解石レンガの階段
+Grey Calcite Block Stair=灰色の方解石ブロックの階段
+Cracked Grey Calcite Brick Stair=ひび割れた灰色の方解石レンガの階段
+
+Orange Calcite Stair=橙色の方解石の階段
+Orange Calcite Brick Stair=橙色の方解石レンガの階段
+Orange Calcite Block Stair=橙色の方解石ブロックの階段
+Cracked Orange Calcite Brick Stair=ひび割れた橙色の方解石レンガの階段
+
+Carnotite Stair=カルノタイトの階段
+Carnotite Brick Stair=カルノタイトレンガの階段
+Carnotite Block Stair=カルノタイトブロックの階段
+Cracked Carnotite Brick Stair=ひび割れたカルノタイトレンガの階段
+Cobbled Carnotite Stair=石畳にしたカルノタイトの階段
+
+Celestine Stair=天青石の階段
+Celestine Brick Stair=天青石レンガの階段
+Celestine Block Stair=天青石ブロックの階段
+Cracked Celestine Brick Stair=ひび割れた天青石レンガの階段
+
+Chalcanthite Stair=カルカンサイトの階段
+Chalcanthite Brick Stair=カルカンサイトレンガの階段
+Chalcanthite Block Stair=カルカンサイトブロックの階段
+Cracked Chalcanthite Brick Stair=ひび割れたカルカンサイトレンガの階段
+Cobbled Chalcanthite Stair=石畳にしたカルカンサイトの階段
+
+Chrysoprase Stair=クリソプレーズの階段
+Chrysoprase Brick Stair=クリソプレーズレンガの階段
+Chrysoprase Block Stair=クリソプレーズブロックの階段
+Cracked Chrysoprase Brick Stair=ひび割れたクリソプレーズレンガの階段
+
+Citrine Stair=シトリンの階段
+Citrine Brick Stair=シトリンレンガの階段
+Citrine Block Stair=シトリンブロックの階段
+Cracked Citrine Brick Stair=ひび割れたシトリンレンガの階段
+
+Covellite Stair=コベライトの階段
+Covellite Brick Stair=コベライトレンガの階段
+Covellite Block Stair=コベライトブロックの階段
+Cracked Covellite Brick Stair=ひび割れたコベライトレンガの階段
+Cobbled Covellite Stair=石畳にしたコベライトの階段
+
+Crocoite Stair=クロコアイトの階段
+Crocoite Brick Stair=クロコアイトレンガの階段
+Crocoite Block Stair=クロコアイトブロックの階段
+Cracked Crocoite Brick Stair=ひび割れたクロコアイトレンガの階段
+
+Diorite Stair=閃緑岩の階段
+Diorite Brick Stair=閃緑岩レンガの階段
+Diorite Block Stair=閃緑岩ブロックの階段
+Cracked Diorite Brick Stair=ひび割れた閃緑岩レンガの階段
+Cobbled Diorite Stair=石畳にした閃緑岩の階段
+
+Erythrite Stair=エリスライトの階段
+Erythrite Brick Stair=エリスライトレンガの階段
+Erythrite Block Stair=エリスライトブロックの階段
+Cracked Erythrite Brick Stair=ひび割れたエリスライトレンガの階段
+
+Eudialite Stair=ユーディアライトの階段
+Eudialite Brick Stair=ユーディアライトレンガの階段
+Eudialite Block Stair=ユーディアライトブロックの階段
+Cracked Eudialite Brick Stair=ひび割れたユーディアライトレンガの階段
+
+Fluorite Stair=蛍石の階段
+Fluorite Brick Stair=蛍石レンガの階段
+Fluorite Block Stair=蛍石ブロックの階段
+Cracked Fluorite Brick Stair=ひび割れた蛍石レンガの階段
+
+Gabbro Stair=斑れい岩の階段
+Cobbled Gabbro Stair=石畳にした斑れい岩の階段
+Gabbro Brick Stair=斑れい岩レンガの階段
+Gabbro Block Stair=斑れい岩ブロックの階段
+Cracked Gabbro Brick Stair=ひび割れた斑れい岩レンガの階段
+
+Galena Stair=方鉛鉱の階段
+Galena Brick Stair=方鉛鉱レンガの階段
+Galena Block Stair=方鉛鉱ブロックの階段
+Cracked Galena Brick Stair=ひび割れた方鉛鉱レンガの階段
+
+Black Granite Stair=黒色の花崗岩の階段
+Black Granite Brick Stair=黒色の花崗岩レンガの階段
+Black Granite Block Stair=黒色の花崗岩ブロックの階段
+Cracked Black Granite Brick Stair=ひび割れた黒色の花崗岩レンガの階段
+Cobbled Black Granite Stair=石畳にした黒色の花崗岩の階段
+
+Blue Granite Stair=青色の花崗岩の階段
+Blue Granite Brick Stair=青色の花崗岩レンガの階段
+Blue Granite Block Stair=青色の花崗岩ブロックの階段
+Cracked Blue Granite Brick Stair=ひび割れた青色の花崗岩レンガの階段
+Cobbled Blue Granite Stair=石畳にした青色の花崗岩の階段
+
+Gray Granite Stair=灰色の花崗岩の階段
+Gray Granite Brick Stair=灰色の花崗岩レンガの階段
+Gray Granite Block Stair=灰色の花崗岩ブロックの階段
+Cracked Gray Granite Brick Stair=ひび割れた灰色の花崗岩レンガの階段
+Cobbled Gray Granite Stair=石畳にした灰色の花崗岩の階段
+
+Green Granite Stair=緑色の花崗岩の階段
+Green Granite Brick Stair=緑色の花崗岩レンガの階段
+Green Granite Block Stair=緑色の花崗岩ブロックの階段
+Cracked Green Granite Brick Stair=ひび割れた緑色の花崗岩レンガの階段
+Cobbled Green Granite Stair=石畳にした緑色の花崗岩の階段
+
+Pink Granite Stair=桃色の花崗岩の階段
+Pink Granite Brick Stair=桃色の花崗岩レンガの階段
+Pink Granite Block Stair=桃色の花崗岩ブロックの階段
+Cracked Pink Granite Brick Stair=ひび割れた桃色の花崗岩レンガの階段
+Cobbled Pink Granite Stair=石畳にした桃色の花崗岩の階段
+
+Red Granite Stair=赤色の花崗岩の階段
+Red Granite Brick Stair=赤色の花崗岩レンガの階段
+Red Granite Block Stair=赤色の花崗岩ブロックの階段
+Cracked Red Granite Brick Stair=ひび割れた赤色の花崗岩レンガの階段
+Cobbled Red Granite Stair=石畳にした赤色の花崗岩の階段
+
+White Granite Stair=白色の花崗岩の階段
+White Granite Brick Stair=白色の花崗岩レンガの階段
+White Granite Block Stair=白色の花崗岩ブロックの階段
+Cracked White Granite Brick Stair=ひび割れた白色の花崗岩レンガの階段
+Cobbled White Granite Stair=石畳にした白色の花崗岩の階段
+
+Yellow Granite Stair=黄色の花崗岩の階段
+Yellow Granite Brick Stair=黄色の花崗岩レンガの階段
+Yellow Granite Block Stair=黄色の花崗岩ブロックの階段
+Cracked Yellow Granite Brick Stair=ひび割れた黄色の花崗岩レンガの階段
+Cobbled Yellow Granite Stair=石畳にした黄色の花崗岩の階段
+
+Heliodor Stair=ヘリオドールの階段
+Heliodor Brick Stair=ヘリオドールレンガの階段
+Heliodor Block Stair=ヘリオドールブロックの階段
+Cracked Heliodor Brick Stair=ひび割れたヘリオドールレンガの階段
+
+Howlite Stair=ハウライトの階段
+Howlite Brick Stair=ハウライトレンガの階段
+Howlite Block Stair=ハウライトブロックの階段
+Cracked Howlite Brick Stair=ひび割れたハウライトレンガの階段
+Cobbled Howlite Stair=石畳にしたハウライトの階段
+
+Ilvaite Stair=イルヴァイトの階段
+Ilvaite Brick Stair=イルヴァイトレンガの階段
+Ilvaite Block Stair=イルヴァイトブロックの階段
+Cracked Ilvaite Brick Stair=ひび割れたイルヴァイトレンガの階段
+Cobbled Ilvaite Stair=石畳にしたイルヴァイトの階段
+
+Jade Stair=翡翠の階段
+Jade Brick Stair=翡翠レンガの階段
+Jade Block Stair=翡翠ブロックの階段
+Cracked Jade Brick Stair=ひび割れた翡翠レンガの階段
+Cobbled Jade Stair=石畳にした翡翠の階段
+
+Red Jasper Stair=赤色のジャスパーの階段
+Red Jasper Brick Stair=赤色のジャスパーレンガの階段
+Red Jasper Block Stair=赤色のジャスパーブロックの階段
+Cracked Red Jasper Brick Stair=ひび割れた赤色のジャスパーレンガの階段
+Cobbled Red Jasper Stair=石畳にした赤色のジャスパーの階段
+
+Kyanite Stair=カイヤナイトの階段
+Kyanite Brick Stair=カイヤナイトレンガの階段
+Kyanite Block Stair=カイヤナイトブロックの階段
+Cracked Kyanite Brick Stair=ひび割れたカイヤナイトレンガの階段
+Cobbled Kyanite Stair=石畳にしたカイヤナイトの階段
+
+Lapis Lazuli Stair=ラピスラズリの階段
+Lapis Lazuli Brick Stair=ラピスラズリレンガの階段
+Lapis Lazuli Block Stair=ラピスラズリブロックの階段
+Cracked Lapis Lazuli Brick Stair=ひび割れたラピスラズリレンガの階段
+
+Lepidolite Stair=レピドライトの階段
+Lepidolite Brick Stair=レピドライトレンガの階段
+Lepidolite Block Stair=レピドライトブロックの階段
+Cracked Lepidolite Brick Stair=ひび割れたレピドライトレンガの階段
+Cobbled Lepidolite Stair=石畳にしたレピドライトの階段
+
+Blue Limestone Stair=青色の石灰岩の階段
+Blue Limestone Brick Stair=青色の石灰岩レンガの階段
+Blue Limestone Block Stair=青色の石灰岩ブロックの階段
+Cracked Blue Limestone Brick Stair=ひび割れた青色の石灰岩レンガの階段
+Cobbled Blue Limestone Stair=石畳にした青色の石灰岩の階段
+
+White Limestone Stair=白色の石灰岩の階段
+White Limestone Brick Stair=白色の石灰岩レンガの階段
+White Limestone Block Stair=白色の石灰岩ブロックの階段
+Cracked White Limestone Brick Stair=ひび割れた白色の石灰岩レンガの階段
+Cobbled White Limestone Stair=石畳にした白色の石灰岩の階段
+
+Marble Stair=大理石の階段
+Marble Brick Stair=大理石レンガの階段
+Marble Block Stair=大理石ブロックの階段
+Cracked Marble Brick Stair=ひび割れた大理石レンガの階段
+Cobbled Marble Stair=石畳にした大理石の階段
+
+Moonstone Stair=ムーンストーンの階段
+Moonstone Brick Stair=ムーンストーンレンガの階段
+Moonstone Block Stair=ムーンストーンブロックの階段
+Cracked Moonstone Brick Stair=ひび割れたムーンストーンレンガの階段
+
+Morion Quartz Stair=黒水晶の階段
+Morion Quartz Brick Stair=黒水晶レンガの階段
+Morion Quartz Block Stair=黒水晶ブロックの階段
+Cracked Morion Quartz Brick Stair=ひび割れた黒水晶レンガの階段
+
+Mudstone Stair=泥岩の階段
+Cobbled Mudstone Stair=石畳にした泥岩の階段
+Mudstone Brick Stair=泥岩レンガの階段
+Mudstone Block Stair=泥岩ブロックの階段
+Cracked Mudstone Brick Stair=ひび割れた泥岩レンガの階段
+
+Prasiolite Stair=プラジオライトの階段
+Prasiolite Brick Stair=プラジオライトレンガの階段
+Prasiolite Block Stair=プラジオライトブロックの階段
+Cracked Prasiolite Brick Stair=ひび割れたプラジオライトレンガの階段
+
+Pumice Stair=軽石の階段
+Pumice Brick Stair=軽石レンガの階段
+Pumice Block Stair=軽石ブロックの階段
+Cracked Pumice Brick Stair=ひび割れた軽石レンガの階段
+
+Pyrite Stair=パイライトの階段
+Pyrite Brick Stair=パイライトレンガの階段
+Pyrite Block Stair=パイライトブロックの階段
+Cracked Pyrite Brick Stair=ひび割れたパイライトレンガの階段
+
+Quartz Stair=クォーツの階段
+Cobbled Quartz Stair=石畳にしたクォーツの階段
+Quartz Brick Stair=クォーツレンガの階段
+Quartz Block Stair=クォーツブロックの階段
+Cracked Quartz Brick Stair=ひび割れたクォーツレンガの階段
+
+Rhodonite Stair=ロードナイトの階段
+Rhodonite Brick Stair=ロードナイトレンガの階段
+Rhodonite Block Stair=ロードナイトブロックの階段
+Cracked Rhodonite Brick Stair=ひび割れたロードナイトレンガの階段
+Cobbled Rhodonite Stair=石畳にしたロードナイトの階段
+
+Rose Quartz Stair=紅水晶の階段
+Rose Quartz Brick Stair=紅水晶レンガの階段
+Rose Quartz Block Stair=紅水晶ブロックの階段
+Cracked Rose Quartz Brick Stair=ひび割れた紅水晶レンガの階段
+
+Scoria Stair=スコリアの階段
+Scoria Brick Stair=スコリアレンガの階段
+Scoria Block Stair=スコリアブロックの階段
+Cracked Scoria Brick Stair=ひび割れたスコリアレンガの階段
+Cobbled Scoria Stair=石畳にしたスコリアの階段
+
+Serpentine Stair=蛇紋石の階段
+Cobbled Serpentine Stair=石畳にした蛇紋石の階段
+Serpentine Brick Stair=蛇紋石レンガの階段
+Serpentine Block Stair=蛇紋石ブロックの階段
+Cracked Serpentine Brick Stair=ひび割れた蛇紋石レンガの階段
+
+Shale Stair=泥板岩の階段
+Shale Brick Stair=泥板岩レンガの階段
+Shale Block Stair=泥板岩ブロックの階段
+Cracked Shale Brick Stair=ひび割れた泥板岩レンガの階段
+Cobbled Shale Stair=石畳にした泥板岩の階段
+
+Slate Stair=粘板岩の階段
+Slate Brick Stair=粘板岩レンガの階段
+Slate Block Stair=粘板岩ブロックの階段
+Cracked Slate Brick Stair=ひび割れた粘板岩レンガの階段
+Cobbled Slate Stair=石畳にした粘板岩の階段
+Slate Tile Stair=粘板岩タイルの階段
+
+Smokey Quartz Stair=煙水晶の階段
+Smokey Quartz Brick Stair=煙水晶レンガの階段
+Smokey Quartz Block Stair=煙水晶ブロックの階段
+Cracked Smokey Quartz Brick Stair=ひび割れた煙水晶レンガの階段
+
+Soapstone Stair=石鹸石の階段
+Soapstone Brick Stair=石鹸石レンガの階段
+Soapstone Block Stair=石鹸石ブロックの階段
+Cracked Soapstone Brick Stair=ひび割れた石鹸石レンガの階段
+
+Sodalite Stair=ソーダライトの階段
+Cobbled Sodalite Stair=石畳にしたソーダライトの階段
+Sodalite Brick Stair=ソーダライトレンガの階段
+Sodalite Block Stair=ソーダライトブロックの階段
+Cracked Sodalite Brick Stair=ひび割れたソーダライトレンガの階段
+
+Sugilite Stair=スギライトの階段
+Sugilite Brick Stair=スギライトレンガの階段
+Sugilite Block Stair=スギライトブロックの階段
+Cracked Sugilite Brick Stair=ひび割れたスギライトレンガの階段
+Cobbled Sugilite Stair=石畳にしたスギライトの階段
+
+Green Tourmaline Stair=緑色のトルマリンの階段
+Green Tourmaline Brick Stair=緑色のトルマリンレンガの階段
+Green Tourmaline Block Stair=緑色のトルマリンブロックの階段
+Cracked Green Tourmaline Brick Stair=ひび割れた緑色のトルマリンレンガの階段
+
+Paraiba Tourmaline Stair=パライバトルマリンの階段
+Paraiba Tourmaline Brick Stair=パライバトルマリンレンガの階段
+Paraiba Tourmaline Block Stair=パライバトルマリンブロックの階段
+Cracked Paraiba Tourmaline Brick Stair=ひび割れたパライバトルマリンレンガの階段
+
+Pink Tourmaline Stair=桃色のトルマリンの階段
+Pink Tourmaline Brick Stair=桃色のトルマリンレンガの階段
+Pink Tourmaline Block Stair=桃色のトルマリンブロックの階段
+Cracked Pink Tourmaline Brick Stair=ひび割れた桃色のトルマリンレンガの階段
+
+Travertine Stair=トラバティンの階段
+Cobbled Travertine Stair=石畳にしたトラバティンの階段
+Travertine Brick Stair=トラバティンレンガの階段
+Travertine Block Stair=トラバティンブロックの階段
+Cracked Travertine Brick Stair=ひび割れたトラバティンレンガの階段
+
+Yellow Travertine Stair=黄色のトラバティンの階段
+Cobbled Yellow Travertine Stair=石畳にした黄色のトラバティンの階段
+Yellow Travertine Brick Stair=黄色のトラバティンレンガの階段
+Yellow Travertine Block Stair=黄色のトラバティンブロックの階段
+Cracked Yellow Travertine Brick Stair=ひび割れた黄色のトラバティンレンガの階段
+
+Beige Tuff Stair=ベージュ色の凝灰岩の階段
+Cobbled Beige Tuff Stair=石畳にしたベージュ色の凝灰岩の階段
+Beige Tuff Brick Stair=ベージュ色の凝灰岩レンガの階段
+Beige Tuff Block Stair=ベージュ色の凝灰岩ブロックの階段
+Cracked Beige Tuff Brick Stair=ひび割れたベージュ色の凝灰岩レンガの階段
+
+Grey Tuff Stair=灰色の凝灰岩の階段
+Grey Tuff Brick Stair=灰色の凝灰岩レンガの階段
+Grey Tuff Block Stair=灰色の凝灰岩ブロックの階段
+Cracked Grey Tuff Brick Stair=ひび割れた灰色の凝灰岩レンガの階段
+Cobbled Grey Tuff Stair=石畳にした灰色の凝灰岩の階段
+
+Red Tuff Stair=赤色の凝灰岩の階段
+Red Tuff Brick Stair=赤色の凝灰岩レンガの階段
+Red Tuff Block Stair=赤色の凝灰岩ブロックの階段
+Cracked Red Tuff Brick Stair=ひび割れた赤色の凝灰岩レンガの階段
+
+Turquoise Stair=ターコイズの階段
+Turquoise Brick Stair=ターコイズレンガの階段
+Turquoise Block Stair=ターコイズブロックの階段
+Cracked Turquoise Brick Stair=ひび割れたターコイズレンガの階段
+Cobbled Turquoise Stair=石畳にしたターコイズの階段
+
+Vivianite Stair=ビビアナイトの階段
+Vivianite Brick Stair=ビビアナイトレンガの階段
+Vivianite Block Stair=ビビアナイトブロックの階段
+Cracked Vivianite Brick Stair=ひび割れたビビアナイトレンガの階段
+
+
+
+Inner Blue Agate Stair=青色の瑪瑙の凹階段
+Inner Gray Agate Stair=灰色の瑪瑙の凹階段
+Inner Green Agate Stair=緑色の瑪瑙の凹階段
+Inner Moss Agate Stair=苔むした瑪瑙の凹階段
+Inner Orange Agate Stair=橙色の瑪瑙の凹階段
+Inner Purple Agate Stair=紫色の瑪瑙の凹階段
+Inner Red Agate Stair=赤瑪瑙の凹階段
+
+Inner Amazonite Stair=アマゾナイトの凹階段
+Inner Cobbled Amazonite Stair=石畳にしたアマゾナイトの凹階段
+Inner Amazonite Brick Stair=アマゾナイトレンガの凹階段
+Inner Amazonite Block Stair=アマゾナイトブロックの凹階段
+Inner Cracked Amazonite Brick Stair=ひび割れたアマゾナイトレンガの凹階段
+
+Inner Amber Stair=琥珀の凹階段
+Inner Amber Brick Stair=琥珀レンガの凹階段
+Inner Amber Block Stair=琥珀ブロックの凹階段
+Inner Cracked Amber Brick Stair=ひび割れた琥珀レンガの凹階段
+
+Inner Amethyst Stair=アメジストの凹階段
+Inner Amethyst Brick Stair=アメジストレンガの凹階段
+Inner Amethyst Block Stair=アメジストブロックの凹階段
+Inner Cracked Amethyst Brick Stair=ひび割れたアメジストレンガの凹階段
+
+Inner Andesite Stair=安山岩の凹階段
+Inner Andesite Block Stair=安山岩ブロックの凹階段
+Inner Andesite Brick Stair=安山岩レンガの凹階段
+Inner Cracked Andesite Brick Stair=ひび割れた安山岩レンガの凹階段
+Inner Cobbled Andesite Stair=石畳にした安山岩レンガの凹階段
+
+Inner Basalt Stair=玄武岩の凹階段
+Inner Basalt Block Stair=玄武岩ブロックの凹階段
+Inner Basalt Brick Stair=玄武岩レンガの凹階段
+Inner Cracked Basalt Brick Stair=ひび割れた玄武岩レンガの凹階段
+Inner Cobbled Basalt Stair=石畳にした玄武岩の凹階段
+Inner Basalt Tile Stair=玄武岩タイルの凹階段
+
+Inner Black Moonstone Stair=黒色のムーンストーンの凹階段
+Inner Black Moonstone Brick Stair=黒色のムーンストーンレンガの凹階段
+Inner Black Moonstone Block Stair=黒色のムーンストーンブロックの凹階段
+Inner Cracked Black Moonstone Brick Stair=ひび割れた黒色のムーンストーンレンガの凹階段
+
+Inner Calcite Stair=方解石の凹階段
+Inner Calcite Brick Stair=方解石レンガの凹階段
+Inner Calcite Block Stair=方解石ブロックの凹階段
+Inner Cracked Calcite Brick Stair=ひび割れた方解石レンガの凹階段
+
+Inner Grey Calcite Stair=灰色の方解石の凹階段
+Inner Grey Calcite Brick Stair=灰色の方解石レンガの凹階段
+Inner Grey Calcite Block Stair=灰色の方解石ブロックの凹階段
+Inner Cracked Grey Calcite Brick Stair=ひび割れた灰色の方解石レンガの凹階段
+
+Inner Orange Calcite Stair=橙色の方解石の凹階段
+Inner Orange Calcite Brick Stair=橙色の方解石レンガの凹階段
+Inner Orange Calcite Block Stair=橙色の方解石ブロックの凹階段
+Inner Cracked Orange Calcite Brick Stair=ひび割れた橙色の方解石レンガの凹階段
+
+Inner Carnotite Stair=カルノタイトの凹階段
+Inner Carnotite Brick Stair=カルノタイトレンガの凹階段
+Inner Carnotite Block Stair=カルノタイトブロックの凹階段
+Inner Cracked Carnotite Brick Stair=ひび割れたカルノタイトレンガの凹階段
+Inner Cobbled Carnotite Stair=石畳にしたカルノタイトの凹階段
+
+Inner Celestine Stair=天青石の凹階段
+Inner Celestine Brick Stair=天青石レンガの凹階段
+Inner Celestine Block Stair=天青石ブロックの凹階段
+Inner Cracked Celestine Brick Stair=ひび割れた天青石レンガの凹階段
+
+Inner Chalcanthite Stair=カルカンサイトの凹階段
+Inner Chalcanthite Brick Stair=カルカンサイトレンガの凹階段
+Inner Chalcanthite Block Stair=カルカンサイトブロックの凹階段
+Inner Cracked Chalcanthite Brick Stair=ひび割れたカルカンサイトレンガの凹階段
+Inner Cobbled Chalcanthite Stair=石畳にしたカルカンサイトの凹階段
+
+Inner Chrysoprase Stair=クリソプレーズの凹階段
+Inner Chrysoprase Brick Stair=クリソプレーズレンガの凹階段
+Inner Chrysoprase Block Stair=クリソプレーズブロックの凹階段
+Inner Cracked Chrysoprase Brick Stair=ひび割れたクリソプレーズレンガの凹階段
+
+Inner Citrine Stair=シトリンの凹階段
+Inner Citrine Brick Stair=シトリンレンガの凹階段
+Inner Citrine Block Stair=シトリンブロックの凹階段
+Inner Cracked Citrine Brick Stair=ひび割れたシトリンレンガの凹階段
+
+Inner Covellite Stair=コベライトの凹階段
+Inner Covellite Brick Stair=コベライトレンガの凹階段
+Inner Covellite Block Stair=コベライトブロックの凹階段
+Inner Cracked Covellite Brick Stair=ひび割れたコベライトレンガの凹階段
+Inner Cobbled Covellite Stair=石畳にしたコベライトの凹階段
+
+Inner Crocoite Stair=クロコアイトの凹階段
+Inner Crocoite Brick Stair=クロコアイトレンガの凹階段
+Inner Crocoite Block Stair=クロコアイトブロックの凹階段
+Inner Cracked Crocoite Brick Stair=ひび割れたクロコアイトレンガの凹階段
+
+Inner Diorite Stair=閃緑岩の凹階段
+Inner Diorite Brick Stair=閃緑岩レンガの凹階段
+Inner Diorite Block Stair=閃緑岩ブロックの凹階段
+Inner Cracked Diorite Brick Stair=ひび割れた閃緑岩レンガの凹階段
+Inner Cobbled Diorite Stair=石畳にした閃緑岩の凹階段
+
+Inner Erythrite Stair=エリスライトの凹階段
+Inner Erythrite Brick Stair=エリスライトレンガの凹階段
+Inner Erythrite Block Stair=エリスライトブロックの凹階段
+Inner Cracked Erythrite Brick Stair=ひび割れたエリスライトレンガの凹階段
+
+Inner Eudialite Stair=ユーディアライトの凹階段
+Inner Eudialite Brick Stair=ユーディアライトレンガの凹階段
+Inner Eudialite Block Stair=ユーディアライトブロックの凹階段
+Inner Cracked Eudialite Brick Stair=ひび割れたユーディアライトレンガの凹階段
+
+Inner Fluorite Stair=蛍石の凹階段
+Inner Fluorite Brick Stair=蛍石レンガの凹階段
+Inner Fluorite Block Stair=蛍石ブロックの凹階段
+Inner Cracked Fluorite Brick Stair=ひび割れた蛍石レンガの凹階段
+
+Inner Gabbro Stair=斑れい岩の凹階段
+Inner Cobbled Gabbro Stair=石畳にした斑れい岩の凹階段
+Inner Gabbro Brick Stair=斑れい岩レンガの凹階段
+Inner Gabbro Block Stair=斑れい岩ブロックの凹階段
+Inner Cracked Gabbro Brick Stair=ひび割れた斑れい岩レンガの凹階段
+
+Inner Galena Stair=方鉛鉱の凹階段
+Inner Galena Brick Stair=方鉛鉱レンガの凹階段
+Inner Galena Block Stair=方鉛鉱ブロックの凹階段
+Inner Cracked Galena Brick Stair=ひび割れた方鉛鉱レンガの凹階段
+
+Inner Black Granite Stair=黒色の花崗岩の凹階段
+Inner Black Granite Brick Stair=黒色の花崗岩レンガの凹階段
+Inner Black Granite Block Stair=黒色の花崗岩ブロックの凹階段
+Inner Cracked Black Granite Brick Stair=ひび割れた黒色の花崗岩レンガの凹階段
+Inner Cobbled Black Granite Stair=石畳にした黒色の花崗岩の凹階段
+
+Inner Blue Granite Stair=青色の花崗岩の凹階段
+Inner Blue Granite Brick Stair=青色の花崗岩レンガの凹階段
+Inner Blue Granite Block Stair=青色の花崗岩ブロックの凹階段
+Inner Cracked Blue Granite Brick Stair=ひび割れた青色の花崗岩レンガの凹階段
+Inner Cobbled Blue Granite Stair=石畳にした青色の花崗岩の凹階段
+
+Inner Gray Granite Stair=灰色の花崗岩の凹階段
+Inner Gray Granite Brick Stair=灰色の花崗岩レンガの凹階段
+Inner Gray Granite Block Stair=灰色の花崗岩ブロックの凹階段
+Inner Cracked Gray Granite Brick Stair=ひび割れた灰色の花崗岩レンガの凹階段
+Inner Cobbled Gray Granite Stair=石畳にした灰色の花崗岩の凹階段
+
+Inner Green Granite Stair=緑色の花崗岩の凹階段
+Inner Green Granite Brick Stair=緑色の花崗岩レンガの凹階段
+Inner Green Granite Block Stair=緑色の花崗岩ブロックの凹階段
+Inner Cracked Green Granite Brick Stair=ひび割れた緑色の花崗岩レンガの凹階段
+Inner Cobbled Green Granite Stair=石畳にした緑色の花崗岩の凹階段
+
+Inner Pink Granite Stair=桃色の花崗岩の凹階段
+Inner Pink Granite Brick Stair=桃色の花崗岩レンガの凹階段
+Inner Pink Granite Block Stair=桃色の花崗岩ブロックの凹階段
+Inner Cracked Pink Granite Brick Stair=ひび割れた桃色の花崗岩レンガの凹階段
+Inner Cobbled Pink Granite Stair=石畳にした桃色の花崗岩の凹階段
+
+Inner Red Granite Stair=赤色の花崗岩の凹階段
+Inner Red Granite Brick Stair=赤色の花崗岩レンガの凹階段
+Inner Red Granite Block Stair=赤色の花崗岩ブロックの凹階段
+Inner Cracked Red Granite Brick Stair=ひび割れた赤色の花崗岩レンガの凹階段
+Inner Cobbled Red Granite Stair=石畳にした赤色の花崗岩の凹階段
+
+Inner White Granite Stair=白色の花崗岩の凹階段
+Inner White Granite Brick Stair=白色の花崗岩レンガの凹階段
+Inner White Granite Block Stair=白色の花崗岩ブロックの凹階段
+Inner Cracked White Granite Brick Stair=ひび割れた白色の花崗岩レンガの凹階段
+Inner Cobbled White Granite Stair=石畳にした白色の花崗岩の凹階段
+
+Inner Yellow Granite Stair=黄色の花崗岩の凹階段
+Inner Yellow Granite Brick Stair=黄色の花崗岩レンガの凹階段
+Inner Yellow Granite Block Stair=黄色の花崗岩ブロックの凹階段
+Inner Cracked Yellow Granite Brick Stair=ひび割れた黄色の花崗岩レンガの凹階段
+Inner Cobbled Yellow Granite Stair=石畳にした黄色の花崗岩の凹階段
+
+Inner Heliodor Stair=ヘリオドールの凹階段
+Inner Heliodor Brick Stair=ヘリオドールレンガの凹階段
+Inner Heliodor Block Stair=ヘリオドールブロックの凹階段
+Inner Cracked Heliodor Brick Stair=ひび割れたヘリオドールレンガの凹階段
+
+Inner Howlite Stair=ハウライトの凹階段
+Inner Howlite Brick Stair=ハウライトレンガの凹階段
+Inner Howlite Block Stair=ハウライトブロックの凹階段
+Inner Cracked Howlite Brick Stair=ひび割れたハウライトレンガの凹階段
+Inner Cobbled Howlite Stair=石畳にしたハウライトの凹階段
+
+Inner Ilvaite Stair=イルヴァイトの凹階段
+Inner Ilvaite Brick Stair=イルヴァイトレンガの凹階段
+Inner Ilvaite Block Stair=イルヴァイトブロックの凹階段
+Inner Cracked Ilvaite Brick Stair=ひび割れたイルヴァイトレンガの凹階段
+Inner Cobbled Ilvaite Stair=石畳にしたイルヴァイトの凹階段
+
+Inner Jade Stair=翡翠の凹階段
+Inner Jade Brick Stair=翡翠レンガの凹階段
+Inner Jade Block Stair=翡翠ブロックの凹階段
+Inner Cracked Jade Brick Stair=ひび割れた翡翠レンガの凹階段
+Inner Cobbled Jade Stair=石畳にした翡翠の凹階段
+
+Inner Red Jasper Stair=赤色のジャスパーの凹階段
+Inner Red Jasper Brick Stair=赤色のジャスパーレンガの凹階段
+Inner Red Jasper Block Stair=赤色のジャスパーブロックの凹階段
+Inner Cracked Red Jasper Brick Stair=ひび割れた赤色のジャスパーレンガの凹階段
+Inner Cobbled Red Jasper Stair=石畳にした赤色のジャスパーの凹階段
+
+Inner Kyanite Stair=カイヤナイトの凹階段
+Inner Kyanite Brick Stair=カイヤナイトレンガの凹階段
+Inner Kyanite Block Stair=カイヤナイトブロックの凹階段
+Inner Cracked Kyanite Brick Stair=ひび割れたカイヤナイトレンガの凹階段
+Inner Cobbled Kyanite Stair=石畳にしたカイヤナイトの凹階段
+
+Inner Lapis Lazuli Stair=ラピスラズリの凹階段
+Inner Lapis Lazuli Brick Stair=ラピスラズリレンガの凹階段
+Inner Lapis Lazuli Block Stair=ラピスラズリブロックの凹階段
+Inner Cracked Lapis Lazuli Brick Stair=ひび割れたラピスラズリレンガの凹階段
+
+Inner Lepidolite Stair=レピドライトの凹階段
+Inner Lepidolite Brick Stair=レピドライトレンガの凹階段
+Inner Lepidolite Block Stair=レピドライトブロックの凹階段
+Inner Cracked Lepidolite Brick Stair=ひび割れたレピドライトレンガの凹階段
+Inner Cobbled Lepidolite Stair=石畳にしたレピドライトの凹階段
+
+Inner Blue Limestone Stair=青色の石灰岩の凹階段
+Inner Blue Limestone Brick Stair=青色の石灰岩レンガの凹階段
+Inner Blue Limestone Block Stair=青色の石灰岩ブロックの凹階段
+Inner Cracked Blue Limestone Brick Stair=ひび割れた青色の石灰岩レンガの凹階段
+Inner Cobbled Blue Limestone Stair=石畳にした青色の石灰岩の凹階段
+
+Inner White Limestone Stair=白色の石灰岩の凹階段
+Inner White Limestone Brick Stair=白色の石灰岩レンガの凹階段
+Inner White Limestone Block Stair=白色の石灰岩ブロックの凹階段
+Inner Cracked White Limestone Brick Stair=ひび割れた白色の石灰岩レンガの凹階段
+Inner Cobbled White Limestone Stair=石畳にした白色の石灰岩の凹階段
+
+Inner Marble Stair=大理石の凹階段
+Inner Marble Brick Stair=大理石レンガの凹階段
+Inner Marble Block Stair=大理石ブロックの凹階段
+Inner Cracked Marble Brick Stair=ひび割れた大理石レンガの凹階段
+Inner Cobbled Marble Stair=石畳にした大理石の凹階段
+
+Inner Moonstone Stair=ムーンストーンの凹階段
+Inner Moonstone Brick Stair=ムーンストーンレンガの凹階段
+Inner Moonstone Block Stair=ムーンストーンブロックの凹階段
+Inner Cracked Moonstone Brick Stair=ひび割れたムーンストーンレンガの凹階段
+
+Inner Morion Quartz Stair=黒水晶の凹階段
+Inner Morion Quartz Brick Stair=黒水晶レンガの凹階段
+Inner Morion Quartz Block Stair=黒水晶ブロックの凹階段
+Inner Cracked Morion Quartz Brick Stair=ひび割れた黒水晶レンガの凹階段
+
+Inner Mudstone Stair=泥岩の凹階段
+Inner Cobbled Mudstone Stair=石畳にした泥岩の凹階段
+Inner Mudstone Brick Stair=泥岩レンガの凹階段
+Inner Mudstone Block Stair=泥岩ブロックの凹階段
+Inner Cracked Mudstone Brick Stair=ひび割れた泥岩レンガの凹階段
+
+Inner Prasiolite Stair=プラジオライトの凹階段
+Inner Prasiolite Brick Stair=プラジオライトレンガの凹階段
+Inner Prasiolite Block Stair=プラジオライトブロックの凹階段
+Inner Cracked Prasiolite Brick Stair=ひび割れたプラジオライトレンガの凹階段
+
+Inner Pumice Stair=軽石の凹階段
+Inner Pumice Brick Stair=軽石レンガの凹階段
+Inner Pumice Block Stair=軽石ブロックの凹階段
+Inner Cracked Pumice Brick Stair=ひび割れた軽石レンガの凹階段
+
+Inner Pyrite Stair=パイライトの凹階段
+Inner Pyrite Brick Stair=パイライトレンガの凹階段
+Inner Pyrite Block Stair=パイライトブロックの凹階段
+Inner Cracked Pyrite Brick Stair=ひび割れたパイライトレンガの凹階段
+
+Inner Quartz Stair=石英の凹階段
+Inner Quartz Brick Stair=石英レンガの凹階段
+Inner Quartz Block Stair=石英ブロックの凹階段
+Inner Cracked Quartz Brick Stair=ひび割れた石英レンガの凹階段
+
+Inner Rhodonite Stair=ロードナイトの凹階段
+Inner Rhodonite Brick Stair=ロードナイトレンガの凹階段
+Inner Rhodonite Block Stair=ロードナイトブロックの凹階段
+Inner Cracked Rhodonite Brick Stair=ひび割れたロードナイトレンガの凹階段
+Inner Cobbled Rhodonite Stair=石畳にしたロードナイトの凹階段
+
+Inner Rose Quartz Stair=紅水晶の凹階段
+Inner Rose Quartz Brick Stair=紅水晶レンガの凹階段
+Inner Rose Quartz Block Stair=紅水晶ブロックの凹階段
+Inner Cracked Rose Quartz Brick Stair=ひび割れた紅水晶レンガの凹階段
+
+Inner Scoria Stair=スコリアの凹階段
+Inner Scoria Brick Stair=スコリアレンガの凹階段
+Inner Scoria Block Stair=スコリアブロックの凹階段
+Inner Cracked Scoria Brick Stair=ひび割れたスコリアレンガの凹階段
+Inner Cobbled Scoria Stair=石畳にしたスコリアの凹階段
+
+Inner Serpentine Stair=蛇紋石の凹階段
+Inner Cobbled Serpentine Stair=石畳にした蛇紋石の凹階段
+Inner Serpentine Brick Stair=蛇紋石レンガの凹階段
+Inner Serpentine Block Stair=ブロックの蛇紋石の凹階段
+Inner Cracked Serpentine Brick Stair=ひび割れた蛇紋石レンガの凹階段
+
+Inner Shale Stair=泥板岩の凹階段
+Inner Shale Brick Stair=泥板岩の凹階段
+Inner Shale Block Stair=ブロックの泥板岩の凹階段
+Inner Cracked Shale Brick Stair=ひび割れた泥板岩レンガの凹階段
+Inner Cobbled Shale Stair=石畳にした泥板岩の凹階段
+
+Inner Slate Stair=粘板岩の凹階段
+Inner Slate Brick Stair=粘板岩レンガの凹階段
+Inner Slate Block Stair=ブロックの粘板岩の凹階段
+Inner Cracked Slate Brick Stair=ひび割れた粘板岩レンガの凹階段
+Inner Cobbled Slate Stair=石畳にした粘板岩の凹階段
+Inner Slate Tile Stair=粘板岩タイルの凹階段
+
+Inner Smokey Quartz Stair=煙水晶の凹階段
+Inner Smokey Quartz Brick Stair=煙水晶レンガの凹階段
+Inner Smokey Quartz Block Stair=ブロックの煙水晶の凹階段
+Inner Cracked Smokey Quartz Brick Stair=ひび割れた煙水晶レンガの凹階段
+
+Inner Soapstone Stair=石鹸石の凹階段
+Inner Soapstone Brick Stair=石鹸石レンガの凹階段
+Inner Soapstone Block Stair=ブロックの石鹸石の凹階段
+Inner Cracked Soapstone Brick Stair=ひび割れた石鹸石レンガの凹階段
+
+Inner Sodalite Stair=ソーダライトの凹階段
+Inner Cobbled Sodalite Stair=石畳にしたソーダライトの凹階段
+Inner Sodalite Brick Stair=ソーダライトレンガの凹階段
+Inner Sodalite Block Stair=ブロックのソーダライトの凹階段
+Inner Cracked Sodalite Brick Stair=ひび割れたソーダライトレンガの凹階段
+
+Inner Sugilite Stair=スギライトの凹階段
+Inner Sugilite Brick Stair=スギライトレンガの凹階段
+Inner Sugilite Block Stair=ブロックのスギライトの凹階段
+Inner Cracked Sugilite Brick Stair=ひび割れたスギライトレンガの凹階段
+Inner Cobbled Sugilite Stair=石畳にしたスギライトの凹階段
+
+Inner Green Tourmaline Stair=緑色のトルマリンの凹階段
+Inner Green Tourmaline Brick Stair=緑色のトルマリンレンガの凹階段
+Inner Green Tourmaline Block Stair=ブロックの緑色のトルマリンの凹階段
+Inner Cracked Green Tourmaline Brick Stair=ひび割れた緑色のトルマリンレンガの凹階段
+
+Inner Paraiba Tourmaline Stair=パライバトルマリンの凹階段
+Inner Paraiba Tourmaline Brick Stair=パライバトルマリンレンガの凹階段
+Inner Paraiba Tourmaline Block Stair=ブロックのパライバトルマリンの凹階段
+Inner Cracked Paraiba Tourmaline Brick Stair=ひび割れたパライバトルマリンレンガの凹階段
+
+Inner Pink Tourmaline Stair=桃色のトルマリンの凹階段
+Inner Pink Tourmaline Brick Stair=桃色のトルマリンレンガの凹階段
+Inner Pink Tourmaline Block Stair=ブロックの桃色のトルマリンの凹階段
+Inner Cracked Pink Tourmaline Brick Stair=ひび割れた桃色のトルマリンレンガの凹階段
+
+Inner Travertine Stair=トラバティンの凹階段
+Inner Cobbled Travertine Stair=石畳にしたトラバティンの凹階段
+Inner Travertine Brick Stair=トラバティンレンガの凹階段
+Inner Travertine Block Stair=ブロックのトラバティンの凹階段
+Inner Cracked Travertine Brick Stair=ひび割れたトラバティンレンガの凹階段
+
+Inner Yellow Travertine Stair=黄色のトラバティンの凹階段
+Inner Cobbled Yellow Travertine Stair=石畳にした黄色のトラバティンの凹階段
+Inner Yellow Travertine Brick Stair=黄色のトラバティンレンガの凹階段
+Inner Yellow Travertine Block Stair=ブロックの黄色のトラバティンの凹階段
+Inner Cracked Yellow Travertine Brick Stair=ひび割れた黄色のトラバティンレンガの凹階段
+
+Inner Beige Tuff Stair=ベージュ色の凝灰岩の凹階段
+Inner Cobbled Beige Tuff Stair=石畳にしたベージュ色の凝灰岩の凹階段
+Inner Beige Tuff Brick Stair=ベージュ色の凝灰岩レンガの凹階段
+Inner Beige Tuff Block Stair=ブロックのベージュ色の凝灰岩の凹階段
+Inner Cracked Beige Tuff Brick Stair=ひび割れたベージュ色の凝灰岩レンガの凹階段
+
+Inner Grey Tuff Stair=灰色の凝灰岩の凹階段
+Inner Cobbled Grey Tuff Stair=石畳にした灰色の凝灰岩の凹階段
+Inner Grey Tuff Brick Stair=灰色の凝灰岩レンガの凹階段
+Inner Grey Tuff Block Stair=ブロックの灰色の凝灰岩の凹階段
+Inner Cracked Grey Tuff Brick Stair=ひび割れた灰色の凝灰岩レンガの凹階段
+
+Inner Red Tuff Stair=赤色の凝灰岩の凹階段
+Inner Cobbled Red Tuff Stair=石畳にした赤色の凝灰岩の凹階段
+Inner Red Tuff Brick Stair=赤色の凝灰岩レンガの凹階段
+Inner Red Tuff Block Stair=ブロックの赤色の凝灰岩の凹階段
+Inner Cracked Red Tuff Brick Stair=ひび割れた赤色の凝灰岩レンガの凹階段
+
+Inner Turquoise Stair=ターコイズの凹階段
+Inner Turquoise Brick Stair=ターコイズレンガの凹階段
+Inner Turquoise Block Stair=ブロックのターコイズの凹階段
+Inner Cracked Turquoise Brick Stair=ひび割れたターコイズレンガの凹階段
+Inner Cobbled Turquoise Stair=石畳にしたターコイズの凹階段
+
+Inner Vivianite Stair=ビビアナイトの凹階段
+Inner Vivianite Brick Stair=ビビアナイトレンガの凹階段
+Inner Vivianite Block Stair=ブロックのビビアナイトの凹階段
+Inner Cracked Vivianite Brick Stair=ひび割れたビビアナイトレンガの凹階段
+
+
+
+Outer Blue Agate Stair=青色の瑪瑙の凸階段
+Outer Gray Agate Stair=灰色の瑪瑙の凸階段
+Outer Green Agate Stair=緑色の瑪瑙の凸階段
+Outer Moss Agate Stair=苔むした瑪瑙の凸階段
+Outer Orange Agate Stair=橙色の瑪瑙の凸階段
+Outer Purple Agate Stair=紫色の瑪瑙の凸階段
+Outer Red Agate Stair=赤色の瑪瑙の凸階段
+
+Outer Amazonite Stair=アマゾナイトの凸階段
+Outer Cobbled Amazonite Stair=石畳にしたアマゾナイトの凸階段
+Outer Amazonite Brick Stair=アマゾナイトレンガの凸階段
+Outer Amazonite Block Stair=ブロックのアマゾナイトの凸階段
+Outer Cracked Amazonite Brick Stair=ひび割れたアマゾナイトレンガの凸階段
+
+Outer Amber Stair=琥珀の凸階段
+Outer Amber Brick Stair=琥珀レンガの凸階段
+Outer Amber Block Stair=ブロックの琥珀の凸階段
+Outer Cracked Amber Brick Stair=ひび割れた琥珀レンガの凸階段
+
+Outer Amethyst Stair=アメジストの凸階段
+Outer Amethyst Brick Stair=アメジストレンガの凸階段
+Outer Amethyst Block Stair=ブロックのアメジストの凸階段
+Outer Cracked Amethyst Brick Stair=ひび割れたアメジストレンガの凸階段
+
+Outer Andesite Stair=安山岩の凸階段
+Outer Andesite Block Stair=ブロックの安山岩の凸階段
+Outer Andesite Brick Stair=安山岩レンガの凸階段
+Outer Cracked Andesite Brick Stair=ひび割れた安山岩レンガの凸階段
+Outer Cobbled Andesite Stair=石畳にした安山岩の凸階段
+
+Outer Basalt Stair=玄武岩の凸階段
+Outer Basalt Block Stair=ブロックの玄武岩の凸階段
+Outer Basalt Brick Stair=玄武岩レンガの凸階段
+Outer Cracked Basalt Brick Stair=ひび割れた玄武岩レンガの凸階段
+Outer Cobbled Basalt Stair=石畳にした玄武岩の凸階段
+Outer Basalt Tile Stair=玄武岩タイルの凸階段
+
+Outer Black Moonstone Stair=黒色のムーンストーンの凸階段
+Outer Black Moonstone Brick Stair=黒色のムーンストーンレンガの凸階段
+Outer Black Moonstone Block Stair=ブロックの黒色のムーンストーンの凸階段
+Outer Cracked Black Moonstone Brick Stair=ひび割れた黒色のムーンストーンレンガの凸階段
+
+Outer Calcite Stair=方解石の凸階段
+Outer Calcite Brick Stair=方解石レンガの凸階段
+Outer Calcite Block Stair=ブロックの方解石の凸階段
+Outer Cracked Calcite Brick Stair=ひび割れた方解石レンガの凸階段
+
+Outer Grey Calcite Stair=灰色の方解石の凸階段
+Outer Grey Calcite Brick Stair=灰色の方解石レンガの凸階段
+Outer Grey Calcite Block Stair=ブロックの灰色の方解石の凸階段
+Outer Cracked Grey Calcite Brick Stair=ひび割れた灰色の方解石レンガの凸階段
+
+Outer Orange Calcite Stair=橙色の方解石の凸階段
+Outer Orange Calcite Brick Stair=橙色の方解石レンガの凸階段
+Outer Orange Calcite Block Stair=ブロックの橙色の方解石の凸階段
+Outer Cracked Orange Calcite Brick Stair=ひび割れた橙色の方解石レンガの凸階段
+
+Outer Carnotite Stair=カルノタイトの凸階段
+Outer Carnotite Brick Stair=カルノタイトレンガの凸階段
+Outer Carnotite Block Stair=ブロックのカルノタイトの凸階段
+Outer Cracked Carnotite Brick Stair=ひび割れたカルノタイトレンガの凸階段
+Outer Cobbled Carnotite Stair=石畳にしたカルノタイトの凸階段
+
+Outer Celestine Stair=天青石の凸階段
+Outer Celestine Brick Stair=天青石レンガの凸階段
+Outer Celestine Block Stair=ブロックの天青石の凸階段
+Outer Cracked Celestine Brick Stair=ひび割れた天青石レンガの凸階段
+
+Outer Chalcanthite Stair=カルカンサイトの凸階段
+Outer Chalcanthite Brick Stair=カルカンサイトレンガの凸階段
+Outer Chalcanthite Block Stair=ブロックのカルカンサイトの凸階段
+Outer Cracked Chalcanthite Brick Stair=ひび割れたカルカンサイトレンガの凸階段
+Outer Cobbled Chalcanthite Stair=石畳にしたカルカンサイトの凸階段
+
+Outer Chrysoprase Stair=クリソプレーズの凸階段
+Outer Chrysoprase Brick Stair=クリソプレーズレンガの凸階段
+Outer Chrysoprase Block Stair=ブロックのクリソプレーズの凸階段
+Outer Cracked Chrysoprase Brick Stair=ひび割れたクリソプレーズレンガの凸階段
+
+Outer Citrine Stair=シトリンの凸階段
+Outer Citrine Brick Stair=シトリンレンガの凸階段
+Outer Citrine Block Stair=ブロックのシトリンの凸階段
+Outer Cracked Citrine Brick Stair=ひび割れたシトリンレンガの凸階段
+
+Outer Covellite Stair=コベライトの凸階段
+Outer Covellite Brick Stair=コベライトレンガの凸階段
+Outer Covellite Block Stair=ブロックのコベライトの凸階段
+Outer Cracked Covellite Brick Stair=ひび割れたコベライトレンガの凸階段
+Outer Cobbled Covellite Stair=石畳にしたコベライトの凸階段
+
+Outer Crocoite Stair=クロコアイトの凸階段
+Outer Crocoite Brick Stair=クロコアイトレンガの凸階段
+Outer Crocoite Block Stair=ブロックのクロコアイトの凸階段
+Outer Cracked Crocoite Brick Stair=ひび割れたクロコアイトレンガの凸階段
+
+Outer Diorite Stair=閃緑岩の凸階段
+Outer Diorite Brick Stair=閃緑岩レンガの凸階段
+Outer Diorite Block Stair=ブロックの閃緑岩の凸階段
+Outer Cracked Diorite Brick Stair=ひび割れた閃緑岩レンガの凸階段
+Outer Cobbled Diorite Stair=石畳にした閃緑岩の凸階段
+
+Outer Erythrite Stair=エリスライトの凸階段
+Outer Erythrite Brick Stair=エリスライトレンガの凸階段
+Outer Erythrite Block Stair=ブロックのエリスライトの凸階段
+Outer Cracked Erythrite Brick Stair=ひび割れたエリスライトレンガの凸階段
+
+Outer Eudialite Stair=ユーディアライトの凸階段
+Outer Eudialite Brick Stair=ユーディアライトレンガの凸階段
+Outer Eudialite Block Stair=ブロックのユーディアライトの凸階段
+Outer Cracked Eudialite Brick Stair=ひび割れたユーディアライトレンガの凸階段
+
+Outer Fluorite Stair=蛍石の凸階段
+Outer Fluorite Brick Stair=蛍石レンガの凸階段
+Outer Fluorite Block Stair=ブロックの蛍石の凸階段
+Outer Cracked Fluorite Brick Stair=ひび割れた蛍石レンガの凸階段
+
+Outer Gabbro Stair=斑れい岩の凸階段
+Outer Cobbled Gabbro Stair=石畳にした斑れい岩の凸階段
+Outer Gabbro Brick Stair=斑れい岩レンガの凸階段
+Outer Gabbro Block Stair=ブロックの斑れい岩の凸階段
+Outer Cracked Gabbro Brick Stair=ひび割れた斑れい岩レンガの凸階段
+
+Outer Galena Stair=方鉛鉱の凸階段
+Outer Galena Brick Stair=方鉛鉱レンガの凸階段
+Outer Galena Block Stair=ブロックの方鉛鉱の凸階段
+Outer Cracked Galena Brick Stair=ひび割れた方鉛鉱レンガの凸階段
+
+Outer Black Granite Stair=黒色の花崗岩の凸階段
+Outer Black Granite Brick Stair=黒色の花崗岩レンガの凸階段
+Outer Black Granite Block Stair=ブロックの黒色の花崗岩の凸階段
+Outer Cracked Black Granite Brick Stair=ひび割れた黒色の花崗岩レンガの凸階段
+Outer Cobbled Black Granite Stair=石畳にした黒色の花崗岩の凸階段
+
+Outer Blue Granite Stair=青色の花崗岩の凸階段
+Outer Blue Granite Brick Stair=青色の花崗岩レンガの凸階段
+Outer Blue Granite Block Stair=ブロックの青色の花崗岩の凸階段
+Outer Cracked Blue Granite Brick Stair=ひび割れた青色の花崗岩レンガの凸階段
+Outer Cobbled Blue Granite Stair=石畳にした青色の花崗岩の凸階段
+
+Outer Gray Granite Stair=灰色の花崗岩の凸階段
+Outer Gray Granite Brick Stair=灰色の花崗岩レンガの凸階段
+Outer Gray Granite Block Stair=ブロックの灰色の花崗岩の凸階段
+Outer Cracked Gray Granite Brick Stair=ひび割れた灰色の花崗岩レンガの凸階段
+Outer Cobbled Gray Granite Stair=石畳にした灰色の花崗岩の凸階段
+
+Outer Green Granite Stair=緑色の花崗岩の凸階段
+Outer Green Granite Brick Stair=緑色の花崗岩レンガの凸階段
+Outer Green Granite Block Stair=ブロックの緑色の花崗岩の凸階段
+Outer Cracked Green Granite Brick Stair=ひび割れた緑色の花崗岩レンガの凸階段
+Outer Cobbled Green Granite Stair=石畳にした緑色の花崗岩の凸階段
+
+Outer Pink Granite Stair=桃色の花崗岩の凸階段
+Outer Pink Granite Brick Stair=桃色の花崗岩レンガの凸階段
+Outer Pink Granite Block Stair=ブロックの桃色の花崗岩の凸階段
+Outer Cracked Pink Granite Brick Stair=ひび割れた桃色の花崗岩レンガの凸階段
+Outer Cobbled Pink Granite Stair=石畳にした桃色の花崗岩の凸階段
+
+Outer Red Granite Stair=赤色の花崗岩の凸階段
+Outer Red Granite Brick Stair=赤色の花崗岩レンガの凸階段
+Outer Red Granite Block Stair=ブロックの赤色の花崗岩の凸階段
+Outer Cracked Red Granite Brick Stair=ひび割れた赤色の花崗岩レンガの凸階段
+Outer Cobbled Red Granite Stair=石畳にした赤色の花崗岩の凸階段
+
+Outer White Granite Stair=白色の花崗岩の凸階段
+Outer White Granite Brick Stair=白色の花崗岩レンガの凸階段
+Outer White Granite Block Stair=ブロックの白色の花崗岩の凸階段
+Outer Cracked White Granite Brick Stair=ひび割れた白色の花崗岩レンガの凸階段
+Outer Cobbled White Granite Stair=石畳にした白色の花崗岩の凸階段
+
+Outer Yellow Granite Stair=黄色の花崗岩の凸階段
+Outer Yellow Granite Brick Stair=黄色の花崗岩レンガの凸階段
+Outer Yellow Granite Block Stair=ブロックの黄色の花崗岩の凸階段
+Outer Cracked Yellow Granite Brick Stair=ひび割れた黄色の花崗岩レンガの凸階段
+Outer Cobbled Yellow Granite Stair=石畳にした黄色の花崗岩の凸階段
+
+Outer Heliodor Stair=ヘリオドールの凸階段
+Outer Heliodor Brick Stair=ヘリオドールレンガの凸階段
+Outer Heliodor Block Stair=ブロックのヘリオドールの凸階段
+Outer Cracked Heliodor Brick Stair=ひび割れたヘリオドールレンガの凸階段
+
+Outer Howlite Stair=ハウライトの凸階段
+Outer Howlite Brick Stair=ハウライトレンガの凸階段
+Outer Howlite Block Stair=ブロックのハウライトの凸階段
+Outer Cracked Howlite Brick Stair=ひび割れたハウライトレンガの凸階段
+Outer Cobbled Howlite Stair=石畳にしたハウライトの凸階段
+
+Outer Ilvaite Stair=イルヴァイトの凸階段
+Outer Ilvaite Brick Stair=イルヴァイトレンガの凸階段
+Outer Ilvaite Block Stair=イルヴァイトブロックの凸階段
+Outer Cracked Ilvaite Brick Stair=ひび割れたイルヴァイトレンガの凸階段
+Outer Cobbled Ilvaite Stair=石畳にしたイルヴァイトの凸階段
+
+Outer Jade Stair=翡翠の凸階段
+Outer Jade Brick Stair=翡翠レンガの凸階段
+Outer Jade Block Stair=翡翠ブロックの凸階段
+Outer Cracked Jade Brick Stair=ひび割れた翡翠レンガの凸階段
+Outer Cobbled Jade Stair=石畳にした翡翠の凸階段
+
+Outer Red Jasper Stair=赤色のジャスパーの凸階段
+Outer Red Jasper Brick Stair=赤色のジャスパーレンガの凸階段
+Outer Red Jasper Block Stair=赤色のジャスパーブロックの凸階段
+Outer Cracked Red Jasper Brick Stair=ひび割れた赤色のジャスパーレンガの凸階段
+Outer Cobbled Red Jasper Stair=石畳にした赤色のジャスパーの凸階段
+
+Outer Kyanite Stair=カイヤナイトの凸階段
+Outer Kyanite Brick Stair=カイヤナイトレンガの凸階段
+Outer Kyanite Block Stair=カイヤナイトブロックの凸階段
+Outer Cracked Kyanite Brick Stair=ひび割れたカイヤナイトレンガの凸階段
+Outer Cobbled Kyanite Stair=石畳にしたカイヤナイトの凸階段
+
+Outer Lapis Lazuli Stair=ラピスラズリの凸階段
+Outer Lapis Lazuli Brick Stair=ラピスラズリレンガの凸階段
+Outer Lapis Lazuli Block Stair=ラピスラズリブロックの凸階段
+Outer Cracked Lapis Lazuli Brick Stair=ひび割れたラピスラズリレンガの凸階段
+
+Outer Lepidolite Stair=レピドライトの凸階段
+Outer Lepidolite Brick Stair=レピドライトレンガの凸階段
+Outer Lepidolite Block Stair=レピドライトブロックの凸階段
+Outer Cracked Lepidolite Brick Stair=ひび割れたレピドライトレンガの凸階段
+Outer Cobbled Lepidolite Stair=石畳にしたレピドライトの凸階段
+
+Outer Blue Limestone Stair=青色の石灰岩の凸階段
+Outer Blue Limestone Brick Stair=青色の石灰岩レンガの凸階段
+Outer Blue Limestone Block Stair=青色の石灰岩ブロックの凸階段
+Outer Cracked Blue Limestone Brick Stair=ひび割れた青色の石灰岩レンガの凸階段
+Outer Cobbled Blue Limestone Stair=石畳にした青色の石灰岩の凸階段
+
+Outer White Limestone Stair=白色の石灰岩の凸階段
+Outer White Limestone Brick Stair=白色の石灰岩レンガの凸階段
+Outer White Limestone Block Stair=白色の石灰岩ブロックの凸階段
+Outer Cracked White Limestone Brick Stair=ひび割れた白色の石灰岩レンガの凸階段
+Outer Cobbled White Limestone Stair=石畳にした白色の石灰岩の凸階段
+
+Outer Marble Stair=大理石の凸階段
+Outer Marble Brick Stair=大理石レンガの凸階段
+Outer Marble Block Stair=大理石ブロックの凸階段
+Outer Cracked Marble Brick Stair=ひび割れた大理石レンガの凸階段
+Outer Cobbled Marble Stair=石畳にした大理石の凸階段
+
+Outer Moonstone Stair=ムーンストーンの凸階段
+Outer Moonstone Brick Stair=ムーンストーンレンガの凸階段
+Outer Moonstone Block Stair=ムーンストーンブロックの凸階段
+Outer Cracked Moonstone Brick Stair=ひび割れたムーンストーンレンガの凸階段
+
+Outer Morion Quartz Stair=黒水晶の凸階段
+Outer Morion Quartz Brick Stair=黒水晶レンガの凸階段
+Outer Morion Quartz Block Stair=黒水晶ブロックの凸階段
+Outer Cracked Morion Quartz Brick Stair=ひび割れた黒水晶レンガの凸階段
+
+Outer Mudstone Stair=泥岩の凸階段
+Outer Cobbled Mudstone Stair=石畳にした泥岩の凸階段
+Outer Mudstone Brick Stair=泥岩レンガの凸階段
+Outer Mudstone Block Stair=泥岩ブロックの凸階段
+Outer Cracked Mudstone Brick Stair=ひび割れた泥岩レンガの凸階段
+
+Outer Prasiolite Stair=プラジオライトの凸階段
+Outer Prasiolite Brick Stair=プラジオライトレンガの凸階段
+Outer Prasiolite Block Stair=プラジオライトブロックの凸階段
+Outer Cracked Prasiolite Brick Stair=ひび割れたプラジオライトレンガの凸階段
+
+Outer Pumice Stair=軽石の凸階段
+Outer Pumice Brick Stair=軽石レンガの凸階段
+Outer Pumice Block Stair=軽石ブロックの凸階段
+Outer Cracked Pumice Brick Stair=ひび割れた軽石レンガの凸階段
+
+Outer Pyrite Stair=パイライトの凸階段
+Outer Pyrite Brick Stair=パイライトレンガの凸階段
+Outer Pyrite Block Stair=パイライトブロックの凸階段
+Outer Cracked Pyrite Brick Stair=ひび割れたパイライトレンガの凸階段
+
+Outer Quartz Stair=クォーツの凸階段
+Outer Quartz Brick Stair=クォーツレンガの凸階段
+Outer Quartz Block Stair=クォーツブロックの凸階段
+Outer Cracked Quartz Brick Stair=ひび割れたクォーツレンガの凸階段
+
+Outer Rhodonite Stair=ロードナイトの凸階段
+Outer Rhodonite Brick Stair=ロードナイトレンガの凸階段
+Outer Rhodonite Block Stair=ロードナイトブロックの凸階段
+Outer Cracked Rhodonite Brick Stair=ひび割れたロードナイトレンガの凸階段
+Outer Cobbled Rhodonite Stair=石畳にしたロードナイトの凸階段
+
+Outer Rose Quartz Stair=紅水晶の凸階段
+Outer Rose Quartz Brick Stair=紅水晶レンガの凸階段
+Outer Rose Quartz Block Stair=紅水晶ブロックの凸階段
+Outer Cracked Rose Quartz Brick Stair=ひび割れた紅水晶レンガの凸階段
+
+Outer Scoria Stair=スコリアの凸階段
+Outer Scoria Brick Stair=スコリアレンガの凸階段
+Outer Scoria Block Stair=スコリアブロックの凸階段
+Outer Cracked Scoria Brick Stair=ひび割れたスコリアレンガの凸階段
+Outer Cobbled Scoria Stair=石畳にしたスコリアの凸階段
+
+Outer Serpentine Stair=蛇紋石の凸階段
+Outer Cobbled Serpentine Stair=石畳にした蛇紋石の凸階段
+Outer Serpentine Brick Stair=蛇紋石レンガの凸階段
+Outer Serpentine Block Stair=蛇紋石ブロックの凸階段
+Outer Cracked Serpentine Brick Stair=ひび割れた蛇紋石レンガの凸階段
+
+Outer Shale Stair=泥板岩の凸階段
+Outer Shale Brick Stair=泥板岩レンガの凸階段
+Outer Shale Block Stair=泥板岩ブロックの凸階段
+Outer Cracked Shale Brick Stair=ひび割れた泥板岩レンガの凸階段
+Outer Cobbled Shale Stair=石畳にした泥板岩の凸階段
+
+Outer Slate Stair=粘板岩の凸階段
+Outer Slate Brick Stair=粘板岩レンガの凸階段
+Outer Slate Block Stair=粘板岩ブロックの凸階段
+Outer Cracked Slate Brick Stair=ひび割れた粘板岩レンガの凸階段
+Outer Cobbled Slate Stair=石畳にした粘板岩の凸階段
+Outer Slate Tile Stair=粘板岩タイルの凸階段
+
+Outer Smokey Quartz Stair=煙水晶の凸階段
+Outer Smokey Quartz Brick Stair=煙水晶レンガの凸階段
+Outer Smokey Quartz Block Stair=煙水晶ブロックの凸階段
+Outer Cracked Smokey Quartz Brick Stair=ひび割れた煙水晶レンガの凸階段
+
+Outer Soapstone Stair=石鹸石の凸階段
+Outer Soapstone Brick Stair=石鹸石レンガの凸階段
+Outer Soapstone Block Stair=石鹸石ブロックの凸階段
+Outer Cracked Soapstone Brick Stair=ひび割れた石鹸石レンガの凸階段
+
+Outer Sodalite Stair=ソーダライトの凸階段
+Outer Cobbled Sodalite Stair=石畳にしたソーダライトの凸階段
+Outer Sodalite Brick Stair=ソーダライトレンガの凸階段
+Outer Sodalite Block Stair=ソーダライトブロックの凸階段
+Outer Cracked Sodalite Brick Stair=ひび割れたソーダライトレンガの凸階段
+
+Outer Sugilite Stair=スギライトの凸階段
+Outer Sugilite Brick Stair=スギライトレンガの凸階段
+Outer Sugilite Block Stair=スギライトブロックの凸階段
+Outer Cracked Sugilite Brick Stair=ひび割れたスギライトレンガの凸階段
+Outer Cobbled Sugilite Stair=石畳にしたスギライトの凸階段
+
+Outer Green Tourmaline Stair=緑色のトルマリンの凸階段
+Outer Green Tourmaline Brick Stair=緑色のトルマリンレンガの凸階段
+Outer Green Tourmaline Block Stair=緑色のトルマリンブロックの凸階段
+Outer Cracked Green Tourmaline Brick Stair=ひび割れた緑色のトルマリンレンガの凸階段
+
+Outer Paraiba Tourmaline Stair=パライバトルマリンの凸階段
+Outer Paraiba Tourmaline Brick Stair=パライバトルマリンレンガの凸階段
+Outer Paraiba Tourmaline Block Stair=パライバトルマリンブロックの凸階段
+Outer Cracked Paraiba Tourmaline Brick Stair=ひび割れたパライバトルマリンレンガの凸階段
+
+Outer Pink Tourmaline Stair=桃色のトルマリンの凸階段
+Outer Pink Tourmaline Brick Stair=桃色のトルマリンレンガの凸階段
+Outer Pink Tourmaline Block Stair=桃色のトルマリンブロックの凸階段
+Outer Cracked Pink Tourmaline Brick Stair=ひび割れた桃色のトルマリンレンガの凸階段
+
+Outer Travertine Stair=トラバティンの凸階段
+Outer Cobbled Travertine Stair=石畳にしたトラバティンの凸階段
+Outer Travertine Brick Stair=トラバティンレンガの凸階段
+Outer Travertine Block Stair=トラバティンブロックの凸階段
+Outer Cracked Travertine Brick Stair=ひび割れたトラバティンレンガの凸階段
+
+Outer Yellow Travertine Stair=黄色のトラバティンの凸階段
+Outer Cobbled Yellow Travertine Stair=石畳にした黄色のトラバティンの凸階段
+Outer Yellow Travertine Brick Stair=黄色のトラバティンレンガの凸階段
+Outer Yellow Travertine Block Stair=黄色のトラバティンブロックの凸階段
+Outer Cracked Yellow Travertine Brick Stair=ひび割れた黄色のトラバティンレンガの凸階段
+
+Outer Beige Tuff Stair=ベージュ色の凝灰岩の凸階段
+Outer Cobbled Beige Tuff Stair=石畳にしたベージュ色の凝灰岩の凸階段
+Outer Beige Tuff Brick Stair=ベージュ色の凝灰岩レンガの凸階段
+Outer Beige Tuff Block Stair=ベージュ色の凝灰岩ブロックの凸階段
+Outer Cracked Beige Tuff Brick Stair=ひび割れたベージュ色の凝灰岩レンガの凸階段
+
+Outer Grey Tuff Stair=灰色の凝灰岩の凸階段
+Outer Cobbled Grey Tuff Stair=石畳にした灰色の凝灰岩の凸階段
+Outer Grey Tuff Brick Stair=灰色の凝灰岩レンガの凸階段
+Outer Grey Tuff Block Stair=灰色の凝灰岩ブロックの凸階段
+Outer Cracked Grey Tuff Brick Stair=ひび割れた灰色の凝灰岩レンガの凸階段
+
+Outer Red Tuff Stair=赤色の凝灰岩の凸階段
+Outer Cobbled Red Tuff Stair=石畳にした赤色の凝灰岩の凸階段
+Outer Red Tuff Brick Stair=赤色の凝灰岩レンガの凸階段
+Outer Red Tuff Block Stair=赤色の凝灰岩ブロックの凸階段
+Outer Cracked Red Tuff Brick Stair=ひび割れた赤色の凝灰岩レンガの凸階段
+
+Outer Turquoise Stair=ターコイズの凸階段
+Outer Turquoise Brick Stair=ターコイズレンガの凸階段
+Outer Turquoise Block Stair=ターコイズブロックの凸階段
+Outer Cracked Turquoise Brick Stair=ひび割れたターコイズレンガの凸階段
+Outer Cobbled Turquoise Stair=石畳にしたターコイズの凸階段
+
+Outer Vivianite Stair=ビビアナイトの凸階段
+Outer Vivianite Brick Stair=ビビアナイトレンガの凸階段
+Outer Vivianite Block Stair=ビビアナイトブロックの凸階段
+Outer Cracked Vivianite Brick Stair=ひび割れたビビアナイトレンガの凸階段
+
+### nodes_glowing.lua ###
+
+Glowing Apatite=発光する燐灰石
+Glowing Apatite Block=発光する燐灰石ブロック
+Cobbled Glowing Apatite=石畳にした発光する燐灰石
+Glowing Apatite Brick=発光する燐灰石レンガ
+Cracked Glowing Apatite Brick=ひび割れた発光する燐灰石レンガ
+
+Glowing Calcite=発光する方解石
+Glowing Calcite Block=発光する方解石ブロック
+Cobbled Glowing Calcite=石畳にした発光する方解石
+Glowing Calcite Brick=発光する方解石レンガ
+Cracked Glowing Calcite Brick=ひび割れた発光する方解石レンガ
+
+Glowing Esperite=発光するエスペライト
+Glowing Esperite Block=発光するエスペライトブロック
+Cobbled Glowing Esperite=石畳にした発光するエスペライト
+Glowing Esperite Brick=発光するエスペライトレンガ
+Cracked Glowing Esperite Brick=ひび割れた発光するエスペライトレンガ
+
+Glowing Fluorite=発光する蛍石
+Glowing Fluorite Block=発光する蛍石ブロック
+Cobbled Glowing Fluorite=石畳にした発光する蛍石
+Glowing Fluorite Brick=発光する蛍石レンガ
+Cracked Glowing Fluorite Brick=ひび割れた発光する蛍石レンガ
+
+Glowing Selenite=発光するセレナイト
+Glowing Selenite Block=発光するセレナイトブロック
+Cobbled Glowing Selenite=石畳にした発光するセレナイト
+Glowing Selenite Brick=発光するセレナイトレンガ
+Cracked Glowing Selenite Brick=ひび割れた発光するセレナイトレンガ
+
+Glowing Sodalite=発光するソーダライト
+Glowing Sodalite Block=発光するソーダライトブロック
+Cobbled Glowing Sodalite=石畳にした発光するソーダライト
+Glowing Sodalite Brick=発光するソーダライトレンガ
+Cracked Glowing Sodalite Brick=ひび割れた発光するソーダライトレンガ
+
+Glowing Willemite=発光するウィレマイト
+Glowing Willemite Block=発光するウィレマイトブロック
+Cobbled Glowing Willemite=石畳にした発光するウィレマイト
+Glowing Willemite Brick=発光するウィレマイトレンガ
+Cracked Glowing Willemite Brick=ひび割れた発光するウィレマイトレンガ
+
+### nodes_crystal.lua ###
+
+Budding Amazonite=新芽アマゾナイト
+Amazonite Crystal=アマゾナイトの結晶
+
+Budding Amber=新芽の琥珀
+Amber Crystal=琥珀の結晶
+
+Budding Amethyst=新芽アメジスト
+Amethyst Crystal=アメジストの結晶
+
+Budding Celestine=新芽のセレスタイン
+Celestine Crystal=セレスタインの結晶
+
+Budding Chalcanthite=新芽のカルカンサイト
+Chalcanthite Crystal=カルカンサイトの結晶
+
+Budding Citrine=新芽のシトリン
+Citrine Crystal=シトリンの結晶
+
+Budding Crocoite=新芽のクロコアイト
+Crocoite Crystal=クロコアイトの結晶
+
+Budding Eudialite=新芽のユーディアライト
+Eudialite Crystal=ユーディアライトの結晶
+
+Budding Heliodor=新芽ヘリオドール
+Heliodor Crystal=ヘリオドールの結晶
+
+Budding Kyanite=新芽カイアナイト
+Kyanite Crystal=カイアナイトの結晶
+
+Budding Moonstone=新芽ムーンストーン
+Moonstone Crystal=ムーンストーンの結晶
+
+Budding Morion Quartz=新芽のモリオン水晶
+Morion Quartz Crystal=モリオン水晶の結晶
+
+Budding Prasiolite=新芽プラシオライト
+Prasiolite Crystal=プラシオライトの結晶
+
+Budding Quartz=新芽クォーツ
+Quartz Crystal=クォーツの結晶
+
+Budding Rose Quartz=新芽ローズクォーツ
+Rose Quartz Crystal=ローズクォーツの結晶
+
+Budding Smokey Quartz=新芽スモーキークォーツ
+Smokey Quartz Crystal=スモーキークォーツの結晶
+
+Budding Green Tourmaline=新芽のグリーントルマリン
+Green Tourmaline Crystal=グリーントルマリンの結晶
+
+Budding Paraiba Tourmaline=新芽のパライバトルマリン
+Paraiba Tourmaline Crystal=パライバトルマリンの結晶
+
+Budding Pink Tourmaline=新芽のピンクトルマリン
+Pink Tourmaline Crystal=ピンクトルマリンの結晶
+
+Budding Vivianite=新芽のビビアナイト
+Vivianite Crystal=ビビアナイトの結晶

@@ -1,0 +1,2 @@
+cloudcraft.clouds.y_min (Minimum cloud height) int 250 -31000 31000
+cloudcraft.clouds.y_max (Maximum cloud height) int 31000 -31000 31000

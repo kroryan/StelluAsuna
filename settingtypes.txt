@@ -1,0 +1,190 @@
+# This file contains settings for Asuna
+
+[Content Pack: Nutrition]
+
+#    Grants players movement speed, sprinting, healing over time, and poison
+#    resistance when they have eaten enough food. The effects of not eating food
+#    cannot harm players and cannot cause starvation unless specifically enabled
+#    by the starvation setting.
+asuna.content.nutrition.enabled (Enable Nutrition?) bool true
+
+#    The amount of exhaustion points that a player must accumulate before their
+#    food nutrition is reduced by one point. Higher values cause players to
+#    remain satiated for longer while lower values cause players to become
+#    hungry more quickly.
+#
+#    Requires: asuna.content.nutrition.enabled
+asuna.content.nutrition.exhaustion_level (Exhaustion Level) float 160
+
+#    Enabling this setting will cause players to lose health over time when
+#    their food meter is empty. Disabling this setting will prevent players
+#    from suffering health loss due to hunger.
+#
+#    Requires: asuna.content.nutrition.enabled
+asuna.content.nutrition.starvation (Starvation) bool false
+
+[Content Pack: Wayfarer]
+
+#    Provides a rich variety of special resources in your world such as loot
+#    chests and teleportation gates.
+asuna.content.wayfarer.enabled (Enable Wayfarer?) bool true
+
+#    Provides an array of awards that can be unlocked by fulfilling certain
+#    conditions. Awards exist for various types of crafting, collecting, and
+#    exploring.
+#
+#    Requires: asuna.content.wayfarer.enabled
+asuna.content.wayfarer.awards (Awards) bool true
+
+#    Enable loot chests which causes chests and other loot containers to
+#    generate randomly throughout the world. These chests contain many useful
+#    items and materials.
+#
+#    Requires: asuna.content.wayfarer.enabled
+asuna.content.wayfarer.loot_chests (Loot Chests) bool true
+
+#    Enable Worldgate, a randomly generated teleportation network that spawns
+#    linked teleportation beacons throughout your world.
+#
+#    Requires: asuna.content.wayfarer.enabled
+asuna.content.wayfarer.worldgate (Worldgates) bool true
+
+[Content Pack: Menagerie]
+
+#    Provides a variety of mobs and monsters in your world.
+asuna.content.menagerie.enabled (Enable Menagerie?) bool true
+
+#    Spawns animals such as birds, sheep, cows, and other familiar animals in
+#    the wild. Animals can be tamed, and many animals will drop useful resources
+#    such as meat and bones.
+#
+#    Requires: asuna.content.menagerie.enabled
+asuna.content.menagerie.animals (Animals) bool true
+
+#    Spawns living slimes throughout the world. Some slimes are docile while
+#    others are aggressive. Their slime can be used to create slime blocks.
+#
+#    Requires: asuna.content.menagerie.enabled
+asuna.content.menagerie.slimes (Slimes) bool true
+
+[Content Pack: Research]
+
+#    Enables an earned creative mode for your world whereby items can be
+#    permanently destroyed in order to earn infinite duplication of those items.
+asuna.content.research.enabled (Enable Research?) bool true
+
+[Content Pack: Stratosphere]
+
+#    Enables sky islands and supporting content for your world.
+asuna.content.stratosphere.enabled (Enable Stratosphere?) bool true
+
+#    Generate sky islands? Note that sky islands will only generate in mapgen v7
+#    and this setting only takes effect for ungenerated terrain.
+asuna.content.stratosphere.floatlands (Enable sky islands?) bool true
+
+#    Enable Astralcraft? Enabling this setting will cause shooting stars to
+#    shower your world at night which will allow you to craft helpful items for
+#    exploration.
+asuna.content.stratosphere.astralcraft (Enable Astralcraft?) bool true
+
+#    Enable Cloudcraft? Enabling this setting will cause tangible clouds to
+#    generate in your world which can be harvested and used to craft
+#    cloud-related items.
+asuna.content.stratosphere.cloudcraft (Enable Cloudcraft?) bool true
+
+[General Settings]
+
+#    The amount of decorative particles to show. These particles are only a
+#    visual feature; this setting not affect gameplay. More particles may cause
+#    performance issues.
+asuna.settings.particles.amount (Particles amount) enum less maximum,more,less,none
+
+#    Installed mods that Asuna already bundles will override Asuna's version of
+#    those mods, and because this can cause issues, Asuna will generate warnings
+#    when this happens. These warnings can be disabled if you're absolutely sure
+#    that you want to override Asuna's mods.
+asuna.settings.mod_override_warnings.enabled (Enable mod override warnings) bool true
+
+#    Asuna only officially supports the mgv7 mapgen. Other mapgens can be used
+#    at your own risk; doing so may cause crashes and unpredictable game
+#    behavior. This warning can be disabled if you're absolutely sure that you
+#    want to use a different mapgen.
+asuna.settings.mapgen_warning.enabled (Enable mapgen warning) bool true
+
+#    In creative mode players are able to dig all kind of blocks nearly
+#    instantly, and have access to unlimited resources.
+#    Some of the functionality is only available if this setting is present
+#    at startup.
+creative_mode (Creative mode) bool false
+
+#    Flammable nodes will be ignited by nearby igniters. Spreading fire may
+#    cause severe destruction.
+#    Spreading fire nodes will disappear when fire is disabled, but
+#    'permanent_flame' nodes are unaffected.
+enable_fire (Fire) bool true
+
+#    Enable flame sound.
+flame_sound (Flame sound) bool true
+
+#    Enable lavacooling.
+enable_lavacooling (Lavacooling) bool true
+
+#    If enabled, steel tools, torches and cobblestone will be given to new
+#    players.
+give_initial_stuff (Give initial items) bool false
+
+#    If enabled, players respawn at the bed they last lay on instead of normal
+#    spawn.
+#    This setting is only read at startup.
+enable_bed_respawn (Respawn at bed) bool true
+
+#    If enabled, the night can be skipped if more than half of the players are
+#    in beds.
+enable_bed_night_skip (Skip night when sleeping) bool true
+
+#    If enabled, fences and walls cannot be jumped over.
+enable_fence_tall (Tall fences and walls) bool false
+
+#    When TNT explodes, it destroys nearby nodes and damages nearby players.
+#    This setting is disabled by default on servers.
+enable_tnt (TNT) bool true
+
+#    The radius in which nodes will be destroyed by a TNT explosion.
+tnt_radius (TNT radius) int 3 0
+
+#    Sets the behaviour of the inventory items when a player dies.
+#    bones: Store items in a bone node but drop items if inside protected area.
+#    drop: Drop items on the ground.
+#    keep: Player keeps items.
+bones_mode (Bones mode) enum bones bones,drop,keep
+
+#    The time in seconds after which the bones of a dead player can be looted
+#    by everyone.
+#    Setting this to 0 will disable sharing of bones completely.
+share_bones_time (Bones share time) int 1200 0
+
+#    How much earlier the bones of a dead player can be looted by
+#    everyone if the player dies in a protected area they don't own.
+#    0 to disable. By default it is "share_bones_time" divide by four.
+share_bones_time_early (Earlier bones share time) int 300 0
+
+#    Inform player of condition and location of new bones.
+bones_position_message (Inform player about bones) bool false
+
+#    Replaces old stairs with new ones. Only required for older worlds.
+enable_stairs_replace_abm (Replace old stairs) bool false
+
+#    If enabled, use the engine's spawn search which does not check for a
+#    suitable starting biome.
+engine_spawn (Use engine spawn search) bool false
+
+#    Whether river water source nodes create flowing sounds.
+#    Helps rivers create more sound, especially on level sections.
+river_source_sounds (River source node sounds) bool false
+
+#    Enable cloud and shadow intensity variation by the 'weather' mod.
+#    Non-functional in V6 or Singlenode mapgens.
+enable_weather (Enable weather) bool true
+
+#    If enabled, non-player actions are logged
+log_non_player_actions (Log non-player action) bool false

@@ -1,0 +1,28 @@
+
+logistica_wap_max_range (Max range for the Wirless Access Pad, in nodes.) int 64000 1 64000
+logistica_wap_upgrade_step (How much distance each upgrade to the WAP adds) int 250 10 5000
+logistica_wifi_upgrader_hard_mode (Make Wireless Upgrader's minigame harder) bool false
+logistica_cable_size (Changes the visual/hitbox size of cables) enum Medium Small,Medium,Large,XLarge
+logistica_enable_large_liquid_tank (Enable the Large Liquid Tank) bool true
+logistica_pump_max_range (Sets from how far sideways from the Liquid Pump it can take liquids from) int 5 1 10
+logistica_pump_max_depth (Sets how far below the Liquid Pump it can take liquids from) int 5 1 32
+logistica_network_node_limit (Sets how many nodes, including cables, a Network can consist of) int 4000 100 1000000
+logistica_max_receivers_per_transmitter (Sets how many wirless receivers can be linked to a single wirless transmitter) int 100 1 1000
+logistica_enable_wireless_antennas (Enable the Wireless Transmitter and Wireless Receiver) bool true
+logistica_enable_wireless_access_pad (Enable the Wireless Access Pad and its Wireless Upgrader) bool true
+logistica_enable_digiline_machines (Enable the Digiline Signal Sender and Digiline to Signal Converter) bool true
+logistica_enable_digiline_sender_api (Enable the Digiline Sender API programming feature) bool true
+logistica_enable_node_digger (Enable the Signal Node Digger) bool true
+logistica_enable_node_placer (Enable the Signal Node Placer) bool true
+logistica_enable_requester_programmer (Enable the Requester Programmer) bool true
+logistica_enable_cobblestone_supplier (Enable the Cobble Generator Supplier) bool true
+logistica_enable_cooking_supplier (Enable the Cooking Supplier) bool true
+logistica_cooking_supplier_max_charge_seconds (Max Time Charge, in seconds, a Cooking Supplier can accumulate) int 10 1 60
+logistica_node_detector_max_distance (Max distance the Signal Node Detector can reach) int 16 1 32
+logistica_node_digger_max_distance (Max distance the Signal Node Digger can reach) int 16 1 32
+logistica_node_placer_max_distance (Max distance the Signal Node Placer can reach) int 16 1 32
+logistica_farming_supplier_max_radius (Max radius the Farming Supplier can cover) int 3 1 10
+logistica_vaccuum_chest_max_radius (Max radius the Vacuum Chest can pick up items from) int 3 1 10
+logistica_woodcutter_max_trunk_height (Max trunk height the Woodcutter will process) int 30 5 200
+logistica_woodcutter_max_nodes (Max total nodes the Woodcutter will process per tree) int 500 50 5000
+logistica_max_network_depth_search (Max recursive depth when searching crafting suppliers in a network) int 4 1 8

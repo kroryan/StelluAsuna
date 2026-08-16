@@ -1,0 +1,41 @@
+
+License for Code
+----------------
+
+Copyright (C) 2015 DOOMED <heiselong@gmx.com>
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU Lesser General Public License as published by
+the Free Software Foundation; either version 2.1 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Lesser General Public License for more details.
+
+You should have received a copy of the GNU Lesser General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+License for Textures, Models and Sounds
+---------------------------------------
+
+CC-BY-SA 3.0 UNPORTED. Created by DOOMED
+
+bucket_blood.png derived from bucket_water.png from buckets mod, license:
+--------------------------------------
+Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)                                 
+http://creativecommons.org/licenses/by-sa/3.0/
+
+Authors of media files
+---Copyright (C) 2010-2012 celeron55, Perttu Ahola <celeron55@gmail.com>
+
+
+
+
+Undersea_Garden.ogg by Podington Bear CC BY-NC 3.0 http://freemusicarchive.org/music/Podington_Bear/Fathomless_-_Ambient/Undersea_Garden
+
+1.ogg(Panic), 2.ogg(Horror ambiance), 3.ogg(Scary ambiance), 4.ogg(hell), 5.ogg(spooky drone), 6.ogg(Zombie Demon spawn), 7.ogg(demon zombie ambiance) - by Mike Keonig Attribution 3.0
+
+clock_strikes_twelve.ogg by Clock Man Public Domain

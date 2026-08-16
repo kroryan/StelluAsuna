@@ -1,0 +1,78 @@
+        License
+------------------------------------------------------------------------------------------------------------------------
+Copyright (C) 2021-2022: Atlante - AFL-1.1 
+License for code: AFL-1.1
+
+Attribution — You must give appropriate credit, provide a link to the license, and
+indicate if changes were made. You may do so in any reasonable manner, but not in any way
+that suggests the licensor endorses you or your use.
+
+ShareAlike — If you remix, transform, or build upon the material, you must distribute
+your contributions under the same license as the original.
+
+Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+Anyone can fix the mod. My Discord "Atlante#1952" And my Mail Address "AtlanteEtDocteur@gmail.com"
+
+Licenses for specific textures:
+
+- Derived from [Minetest Game](https://content.minetest.net/packages/Minetest/minetest_game/) textures by celeron55, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)
+  - badland_grass_1.png
+  - badland_grass_2.png
+  - badland_grass_3.png
+  - badland_grass_4.png
+  - badland_grass_5.png
+  - frost_land_blue_firefly.png
+  - frost_land_blue_firefly_animated.png
+  - frost_land_cyan_firefly.png
+  - frost_land_cyan_firefly_animated.png
+  - japaneseforest_black_firefly.png
+  - japaneseforest_black_firefly_animated.png
+  - japaneseforest_blue_firefly.png
+  - japaneseforest_blue_firefly_animated.png
+  - japaneseforest_cyan_firefly.png
+  - japaneseforest_cyan_firefly_animated.png
+  - japaneseforest_green_firefly.png
+  - japaneseforest_green_firefly_animated.png
+  - japaneseforest_orange_firefly.png
+  - japaneseforest_orange_firefly_animated.png
+  - japaneseforest_pink_firefly.png
+  - japaneseforest_pink_firefly_animated.png
+  - japaneseforest_red_firefly.png
+  - japaneseforest_red_firefly_animated.png
+  - japaneseforest_violet_firefly.png
+  - japaneseforest_violet_firefly_animated.png
+  - japaneseforest_white_firefly.png
+  - japaneseforest_white_firefly_animated.png
+
+- Derived from the [RPG16 texture pack](https://content.minetest.net/packages/Hugues%20Ross/rpg16/) by Hughes Ross, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+  - badland_grass_side.png
+  - badland_grass.png
+  - badland_sapling.png
+  - badland_sapling_1.png
+  - badland_sapling_2.png
+  - badland_sapling_3.png
+  - bambooforest_bamboo_grass.png
+  - bambooforest_bamboo_grass_side.png
+  - bambooforest_bamboo_tree.png
+  - dorwinion_grass.png
+  - dorwinion_grass_side.png
+  - frost_land_grass.png
+  - frost_land_grass_side.png
+  - doors_item_japanese.png
+  - doors_japanese_door.png
+  - japanese_sapling.png
+  - japanese_sapling_1.png
+  - japanese_sapling_2.png
+  - japanese_sapling_3.png
+  - japanese_trapdoor.png
+  - japaneseforest_japanese_grass.png
+  - japaneseforest_japanese_grass_side.png
+  - tatami.png
+  - nightshade_nightshade_grass.png
+  - nightshade_nightshade_grass_side.png
+  - prairie_grass.png
+  - prairie_grass_side.png
+  - prairie_sapling_1.png
+  - prairie_sapling_2.png

@@ -1,0 +1,39 @@
+[Behaviors]
+
+# Allow slimes to attack? If disabled, all slimes will be passive and will not attack even if attacked. Attacking is automatically disabled on worlds where damage is disabled.
+livingslimes.allow_attack (Allow slimes to attack?) bool true
+
+# Allow slimes to eat items? If enabled, slimes will eat items left on the ground and, if given enough time, will permanently digest the items.
+livingslimes.allow_eat (Allow slimes to eat items?) bool true
+
+# Allow slimes to dig nodes? If enabled, slimes will forage in their local environment for food, a process which is destructive to landscapes and structures.
+livingslimes.allow_dig (Allow slimes to dig nodes?) bool true
+
+# The total number of nodes that can be dug by slimes per mapblock. 4096 represents an entire 16x16x16 mapblock. Set to 0 for no limit.
+livingslimes.dig_limit (Allowed nodes per mapblock slimes can dig) int 8 0 4096
+
+# Allow slimes to steal items from player hotbar? If enabled, a successful slime attack has a chance that the attacking slime will steal/eat an item from the target player's hotbar.
+livingslimes.allow_steal (Allow slimes to steal items on attack?) bool true
+
+# The percentage chance that a slime will steal an item from a player on a successful attack.
+livingslimes.steal_chance (Chance that slimes will steal an item on attack) int 36 1 100
+
+# Allow slimes to digest the contents of their stomach? If enabled, items that slimes eat can be permanently destroyed.
+livingslimes.allow_digest (Allow slimes to digest?) bool true
+
+# How many seconds must pass before a slime will digest an item in its stomach.
+livingslimes.digest_timer (How many seconds between slime digestions) int 240 30 3600
+
+# Allow slimes to spread poison? If enabled, poisonous slimes will leave behind harmful but temporary poison on the ground.
+livingslimes.allow_poison (Allow slimes to spread poison?) bool true
+
+# Allow slimes to spread fire? If enabled, slimes that are able to spread fire may create fires in their local environment when provoked. Fire may cause serious damage to flora and flammable structures.
+livingslimes.allow_fire (Allow slimes to spread fire?) bool true
+
+[Spawning]
+
+# The chance that a docile slime can spawn. Affects algae slimes, ocean slimes, and mineral slimes. Set to -1 to disable spawning for docile slimes.
+livingslimes.spawn_chance_docile (Spawn chance of docile slimes) int 8500 -1 50000
+
+# The chance that an aggressive slime can spawn. Affects grass slimes, poison slimes, savanna slimes, ice slimes, dark slimes, and lava slimes. Set to -1 to disable spawning for aggressive slimes.
+livingslimes.spawn_chance_hostile (Spawn chance of hostile slimes) int 12750 -1 50000

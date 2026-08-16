@@ -1,0 +1,215 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the tt_base package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tt_base 1.1.0\n"
+"Report-Msgid-Bugs-To: Wuzzy@disroot.org\n"
+"POT-Creation-Date: 2025-02-12 14:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#. ~ Description for tool with digging group 'dig_immediate'
+#: groups.lua:14
+msgid "Breaks easy-to-break blocks"
+msgstr ""
+
+#. ~ Description for tool with digging group 'cracky'
+#: groups.lua:21
+msgid "Breaks tough, crackable blocks like stone"
+msgstr ""
+
+#. ~ Description for tool with digging group 'crumbly'
+#: groups.lua:25
+msgid "Digs dirt- and sandlike blocks"
+msgstr ""
+
+#. ~ Description for tool with digging group 'snappy'
+#: groups.lua:29
+msgid "Cuts blocks with fine filaments like leaves or plants"
+msgstr ""
+
+#. ~ Description for tool with digging group 'choppy'
+#: groups.lua:33
+msgid "Chops woodlike blocks"
+msgstr ""
+
+#. ~ Description for tool with digging group 'oddly_breakable_by_hand'
+#: groups.lua:37
+msgid "Breaks hand-breakable blocks"
+msgstr ""
+
+#. ~ Description for tool with digging group 'catchable' (used by Minetest Game)
+#: groups.lua:43
+msgid "Catches insects"
+msgstr ""
+
+#. ~ @1 = technical group name
+#: init.lua:69
+msgid "Digs @1 blocks"
+msgstr ""
+
+#: init.lua:71
+msgid "• Minimum dig time: @1s"
+msgstr ""
+
+#. ~ Description for when a tool can something instantly. @1 is the general dig description
+#: init.lua:77
+msgid "@1 (instantly)"
+msgstr ""
+
+#. ~ @1 = technical group name
+#: init.lua:80
+msgid "Digs @1 blocks (instantly)"
+msgstr ""
+
+#: init.lua:97
+msgid "Damage: @1"
+msgstr ""
+
+#: init.lua:99
+msgid "Healing: @1"
+msgstr ""
+
+#: init.lua:109
+msgid "Damage (@1): @2"
+msgstr ""
+
+#: init.lua:111
+msgid "Healing (@1): @2"
+msgstr ""
+
+#: init.lua:122
+msgid "• Full punch interval: @1s"
+msgstr ""
+
+#: init.lua:139
+msgid "Food item"
+msgstr ""
+
+#: init.lua:143
+msgid "+@1 food point"
+msgid_plural "+@1 food points"
+msgstr[0] ""
+msgstr[1] ""
+
+#: init.lua:146
+msgid "+@1 food points"
+msgstr ""
+
+#: init.lua:166
+msgid "Contact damage: @1 per second"
+msgstr ""
+
+#: init.lua:169
+msgid "Contact healing: @1 per second"
+msgstr ""
+
+#: init.lua:174
+msgid "Drowning damage: @1"
+msgstr ""
+
+#: init.lua:179
+msgid "Fall damage: +@1%"
+msgstr ""
+
+#: init.lua:182
+msgid "No fall damage"
+msgstr ""
+
+#: init.lua:185
+msgid "Fall damage: @1%"
+msgstr ""
+
+#: init.lua:195
+msgid "No jumping"
+msgstr ""
+
+#: init.lua:201
+msgid "No swimming upwards or downwards"
+msgstr ""
+
+#: init.lua:204
+msgid "No swimming upwards"
+msgstr ""
+
+#: init.lua:207
+msgid "No swimming downwards"
+msgstr ""
+
+#: init.lua:212
+msgid "No rising or sinking"
+msgstr ""
+
+#: init.lua:215
+msgid "No rising"
+msgstr ""
+
+#: init.lua:218
+msgid "No sinking"
+msgstr ""
+
+#: init.lua:226
+msgid "Climbable (only horizontally)"
+msgstr ""
+
+#: init.lua:229
+msgid "Climbable (only downwards)"
+msgstr ""
+
+#: init.lua:232
+msgid "Climbable (only upwards)"
+msgstr ""
+
+#: init.lua:235
+msgid "Climbable"
+msgstr ""
+
+#: init.lua:240
+msgid "Slippery"
+msgstr ""
+
+#: init.lua:248
+msgid "Bouncy (@1%)"
+msgstr ""
+
+#: init.lua:255
+msgid "Luminance: @1"
+msgstr ""
+
+#. ~ symbol representing infinity
+#: localize.lua:9
+msgid "∞"
+msgstr ""
+
+#. ~ a negative whole number. @1 will be replaced by digits
+#: localize.lua:25 localize.lua:46
+msgid "−@1"
+msgstr ""
+
+#. ~ a negative number with some decimal places. @1 is the part before the decimal point, @2 is the part after it. Replace the minus sign and decimal point with whatever is appropriate for your language.
+#: localize.lua:39
+msgid "−@1.@2"
+msgstr ""
+
+#. ~ a non-negative number with some decimal places. @1 is the part before the decimal point, @2 is the part after it. Replace the decimal point with whatever is appropriate for your language.
+#: localize.lua:42
+msgid "@1.@2"
+msgstr ""
+
+#: mod.conf:2
+msgid "Extended Tooltips: Base"
+msgstr ""
+
+#: mod.conf:3
+msgid "Adds generic tooltip extensions to items"
+msgstr ""

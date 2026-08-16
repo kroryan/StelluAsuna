@@ -1,0 +1,30 @@
+[Environmental Particles]
+
+# Enable environmental particles? If enabled, newly generated terrain will be decorated with particles that players will see as they explore the world.
+effervescence.environmental.enabled (Enable environmental particles?) bool true
+
+# The interval at which environmental particles will generate, every X seconds. A smaller interval will trigger particles more often but will use more system resources and vice-versa.
+effervescence.environmental.interval (Particle trigger interval) float 5.25 1.0 60.0
+
+# The percentage chance of environmental particles to generate per node every interval. Lower numbers generate fewer particles and vice-versa.
+effervescence.environmental.chance (Chance of particles) int 29 1 100
+
+# The x radius around each player in which effervescent nodes are checked for at each interval.
+effervescence.environmental.radius_x (Search radius x) int 16 8 32
+
+# The y radius around each player in which effervescent nodes are checked for at each interval.
+effervescence.environmental.radius_y (Search radius y) int 8 4 32
+
+# The z radius around each player in which effervescent nodes are checked for at each interval.
+effervescence.environmental.radius_z (Search radius z) int 16 8 32
+
+# The number of nodes to shift a player's search box for effervescent nodes in the environment based on the direction they're looking. This causes more particles to spawn in the direction a player is looking which creates more particles in view at the expense of fewer particles further away in the opposite direction. This number is halved for the y axis.
+effervescence.environmental.look_dir_bias (Look direction bias) int 4 0 32
+
+[Player Particles]
+
+# Show particles at player locations? If true, player-based particles will appear near players.
+effervescence.player.enabled (Use player particles?) bool true
+
+# How often to show player walk particles, in seconds.
+effervescence.player.interval (Player particles interval) float 0.5 0.1 5.0

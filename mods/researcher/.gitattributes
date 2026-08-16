@@ -1,0 +1,4 @@
+*.xcf export-ignore
+*.blend export-ignore
+*.bbmodel export-ignore
+*.json export-ignore

@@ -1,0 +1,5 @@
+The following textures are derived from textures created by [Mirtilo](https://content.luanti.org/users/Mirtilo/) as part of the [Baunilha](https://content.luanti.org/packages/Mirtilo/baunilha/) texture pack for Luanti, licensed [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/):
+
+- textures/cloudcraft_cloud_axe.png (derived from [default_tool_steelaxe.png](https://codeberg.org/mirtilo/Baunilha/src/branch/main/minetest_game/default_tool_steelaxe.png))
+- textures/cloudcraft_cloud_pickaxe.png (derived from [default_tool_steelpick.png](https://codeberg.org/mirtilo/Baunilha/src/branch/main/minetest_game/default_tool_steelpick.png))
+- textures/cloudcraft_cloud_shovel.png (derived from [default_tool_steelshovel.png](https://codeberg.org/mirtilo/Baunilha/src/branch/main/minetest_game/default_tool_steelshovel.png))

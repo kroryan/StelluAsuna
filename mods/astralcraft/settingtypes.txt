@@ -1,0 +1,53 @@
+[Shooting Stars]
+
+# The number of shooting star spawners in play
+astralcraft.shooting_star.spawners (Number of spawners) int 2 0 10
+
+# The minimum Y value at which a player can see shooting stars
+astralcraft.shooting_star.y_min (Minimum Y Spawn) int 1 -31000 31000
+
+# The maximum Y value at which a player can see shooting stars
+astralcraft.shooting_star.y_max (Maximum Y Spawn) int 31000 -31000 31000
+
+# The minimum time between shooting stars from a single spawner, in seconds
+astralcraft.shooting_star.interval_min (Minimum spawn interval, seconds) int 60 0 600
+
+# The maximum time between shooting stars from a single spawner, in seconds
+astralcraft.shooting_star.interval_max (Maximum spawn interval, seconds) int 100 0 600
+
+# The minimum chance for a spawner to spawn a shooting star, as a percentage
+astralcraft.shooting_star.chance_min (Minimum spawn chance, percentage) int 40 0 100
+
+# The maximum chance for a spawner to spawn a shooting star, as a percentage
+astralcraft.shooting_star.chance_max (Maximum spawn chance, percentage) int 100 0 100
+
+# The increase in percentage chance that a spawner will get when it fails to spawn a shooting star
+astralcraft.shooting_star.chance_step (Failed spawn chance increase) int 10 0 100
+
+# The radius in nodes around a player that a spawner will check to spawn a shooting star
+astralcraft.shooting_star.node_radius (Spawn node radius) int 64 0 128
+
+# The number of shooting star fragments that a shooting star will produce when broken down via crafting
+astralcraft.shooting_star.fragments_per_star (Fragments per star) int 5 1 99
+
+[Warp Stars]
+
+# The amount of wear that a warp star will receive when thrown; larger values cause warp stars to break faster
+astralcraft.warp_star.wear_per_distance (Wear per distance) int 50 0 65535
+
+# The amount of wear that a warp star will receive when it times out or goes off the map; larger values cause warp stars to break faster
+astralcraft.warp_star.wear_per_failure (Wear per failure) int 50 0 65535
+
+# The velocity at which players throw warp stars; higher values allow players to throw a warp star further
+astralcraft.warp_star.throw_velocity (Throw velocity) int 30 10 100
+
+# The amount of time after which a thrown warp star will consider itself to be a failed throw, in seconds
+astralcraft.warp_star.timeout (Timeout, seconds) int 6 1 60
+
+[Astralite]
+
+# The interval at which a player's position is checked for astralite logic, in milliseconds; modify this value only if you understand the consequences of changing it!
+astralcraft.astralite.state_interval (State check interval, milliseconds) int 200 100 1000
+
+# The interval at which a player's astralite state is saved, in seconds; modify this value only if you understand the consequences of changing it!
+astralcraft.astralite.save_interval (State check interval, seconds) int 2 1 10
