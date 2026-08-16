@@ -36,8 +36,8 @@ local function spawn_player_ship(player)
 		"label[3,5.5;Preparing your arrival craft...]"
 	)
 	
-	local pmin = {x = offset_x - 16, y = -32, z = offset_z - 16}
-	local pmax = {x = offset_x + 16, y = 100, z = offset_z + 16}
+	local pmin = {x = offset_x - 16, y = 6480, z = offset_z - 16}
+	local pmax = {x = offset_x + 16, y = 6520, z = offset_z + 16}
 	
 	minetest.emerge_area(pmin, pmax,
 		function(_, _, remaining)
@@ -46,17 +46,8 @@ local function spawn_player_ship(player)
 				local p = minetest.get_player_by_name(name)
 				if not p then return end
 				
-				-- Find ground level
-				local ground_y = 100
-				while ground_y > -30 do
-					local node = minetest.get_node({x=offset_x, y=ground_y, z=offset_z}).name
-					if node ~= "air" and node ~= "ignore" then
-						break
-					end
-					ground_y = ground_y - 1
-				end
-				
-				local base = {x=offset_x, y=ground_y + 1, z=offset_z}
+				-- Put the ship floating in space (orbit) as requested
+				local base = {x=offset_x, y=6500, z=offset_z}
 				
 				minetest.place_schematic(base,
 					minetest.get_modpath("stl_core").."/schems/starter_rocket.mts",
