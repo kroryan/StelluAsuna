@@ -308,6 +308,7 @@ aliveai.on_spoken_to=function(self,name,speaker,msg)
 					return
 				end
 			end
+			end
 			local pp=player:get_pos()
 			if pp then
 				local nn=minetest.get_node({x=pp.x,y=pp.y-1,z=pp.z}).name
