@@ -103,3 +103,21 @@ mg_villages.inhabitants.spawn_one_mob = function(bed, village_id, plot_nr, bed_n
 end
 
 minetest.log("action", "[stl_village_bridge] mg_villages -> working_villages population bridge active")
+
+minetest.register_on_mods_loaded(function()
+	for _, gender in ipairs({"male", "female"}) do
+		local entity_name = "working_villages:villager_" .. gender
+		local def = minetest.registered_entities[entity_name]
+		if def then
+			local old_on_activate = def.on_activate
+			def.on_activate = function(self, staticdata, dtime_s)
+				if old_on_activate then old_on_activate(self, staticdata, dtime_s) end
+				-- Hotfix: Unpause residents who were permanently stuck by a previous job_thread crash
+				if self.pause and self.get_job_name and self:get_job_name() == RESIDENT_JOB then
+					self.pause = false
+					minetest.log("action", "[stl_village_bridge] Recovered and unpaused resident " .. tostring(self.nametag) .. " on load.")
+				end
+			end
+		end
+	end
+end)
