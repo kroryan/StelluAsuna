@@ -131,26 +131,23 @@ minetest.register_on_mods_loaded(function()
 					minetest.log("action", "[stl_village_bridge] Recovered and unpaused resident " .. tostring(self.nametag) .. " on load.")
 				end
 			end
+			
+			def.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
+				if not damage or damage <= 0 then
+					if tool_capabilities and tool_capabilities.damage_groups then
+						damage = tool_capabilities.damage_groups.fleshy or 1
+					else
+						damage = 1
+					end
+				end
+				local hp = self.object:get_hp() - damage
+				self.object:set_hp(hp)
+				-- Play damage sound/animation here if we want
+				if hp <= 0 then
+					self.object:remove()
+				end
+				return true -- Completely cancel the engine's default damage handling
+			end
 		end
-	end
-end)
-
-minetest.after(5, function()
-	local def = minetest.registered_entities["working_villages:villager_female"]
-	if def then
-		minetest.log("action", "===== DEBUG VILLAGER =====")
-		if def.on_punch then
-			local info = debug.getinfo(def.on_punch)
-			minetest.log("action", "on_punch: " .. tostring(info.short_src) .. ":" .. tostring(info.linedefined))
-		else
-			minetest.log("action", "on_punch: nil")
-		end
-		if def.on_step then
-			local info = debug.getinfo(def.on_step)
-			minetest.log("action", "on_step: " .. tostring(info.short_src) .. ":" .. tostring(info.linedefined))
-		else
-			minetest.log("action", "on_step: nil")
-		end
-		minetest.log("action", "==========================")
 	end
 end)
