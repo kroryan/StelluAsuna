@@ -66,9 +66,30 @@ local function spawn_player_ship(player)
 end
 
 minetest.register_on_joinplayer(function(player)
+	-- Automatic one-time fix for lykac
+	if player:get_player_name() == "lykac" and player:get_meta():get_int("lykac_fixed") ~= 1 then
+		player:get_meta():set_int("stelluasuna_arrived", 0)
+		player:get_meta():set_int("lykac_fixed", 1)
+	end
+	
 	if player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
 	minetest.after(1, function() spawn_player_ship(player) end)
 end)
+
+minetest.register_chatcommand("force_arrival", {
+	params = "<player_name>",
+	description = "Force a player to restart their spaceship arrival sequence",
+	privs = {server = true},
+	func = function(name, param)
+		local target = minetest.get_player_by_name(param)
+		if not target then
+			return false, "Player " .. param .. " is not online."
+		end
+		target:get_meta():set_int("stelluasuna_arrived", 0)
+		spawn_player_ship(target)
+		return true, "Initiated arrival sequence for " .. param
+	end,
+})
 
 minetest.register_on_mods_loaded(function()
 	minetest.log("action", "[stl_asuna_bridge] Hybrid active: Asuna mapgen=" ..
