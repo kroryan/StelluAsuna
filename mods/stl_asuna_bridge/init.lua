@@ -8,7 +8,6 @@ local arrival_in_progress = false
 
 -- StelluAsuna starts on the Asuna homeworld, but keeps Stellua's original
 -- arrival fantasy: new players wake up inside a landed starter spacecraft.
--- One shared craft is generated per world so the public spawn stays tidy.
 local function put_player_in_arrival_ship(player, base)
 	if not player or not player:is_player() then return end
 	local inside = vector.add(base, {x=0, y=1.5, z=0})
@@ -18,70 +17,54 @@ local function put_player_in_arrival_ship(player, base)
 	player:set_physics_override({speed=1, jump=1, gravity=1})
 end
 
--- Players whose first connection happened while the shared ship was still
--- emerging get their arrival completed on the next join. Hold movement for
--- the short hand-off so they never see themselves spawn on the bare ground.
+local function spawn_player_ship(player)
+	if not player or not player:is_player() then return end
+	if player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
+	
+	local name = player:get_player_name()
+	local spawn_pos = vector.round(player:get_pos())
+	-- Offset randomly so players don't spawn on top of each other
+	local offset_x = math.random(-150, 150)
+	local offset_z = math.random(-150, 150)
+	local base = {x=spawn_pos.x + offset_x, y=spawn_pos.y + 25, z=spawn_pos.z + offset_z}
+	
+	-- Suspend player in the sky
+	player:set_physics_override({speed=0, jump=0, gravity=0})
+	player:set_pos(vector.add(base, {x=0, y=1.5, z=0}))
+	minetest.chat_send_player(name, "Preparing your Asuna arrival craft...")
+	
+	minetest.emerge_area(vector.subtract(base, 12), vector.add(base, 12),
+		function(_, _, remaining)
+			if remaining ~= 0 then return end
+			minetest.after(0, function()
+				minetest.place_schematic(base,
+					minetest.get_modpath("stl_core").."/schems/starter_rocket.mts",
+					"0", {}, true, "place_center_x, place_center_z")
+				local tank = minetest.registered_nodes["stl_vehicles:tank"]
+				if tank and tank.on_construct then
+					tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
+				end
+				
+				-- Ensure they are still online
+				local p = minetest.get_player_by_name(name)
+				if p then
+					put_player_in_arrival_ship(p, base)
+				else
+					-- If they disconnected, save the ship coordinates to their meta so they can be put in it when they return
+					local auth = minetest.get_auth_handler()
+					if auth and auth.get_auth then
+						-- In minetest we can't easily write to offline player meta.
+						-- But on_joinplayer will just generate a NEW ship for them anyway since stelluasuna_arrived != 1
+					end
+				end
+				minetest.log("action", "[stl_asuna_bridge] Asuna arrival ship placed for " .. name .. " at " .. minetest.pos_to_string(base))
+			end)
+		end)
+end
+
 minetest.register_on_joinplayer(function(player)
 	if player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
-	player:set_physics_override({speed=0, jump=0, gravity=0})
-	minetest.chat_send_player(player:get_player_name(), "Preparing Asuna arrival craft...")
-	local attempts = 0
-	local function finish_arrival()
-		if not player or not player:is_player() then return end
-		local saved = minetest.deserialize(storage:get_string("asuna_arrival_ship"))
-		if saved then
-			put_player_in_arrival_ship(player, saved)
-		elseif attempts < 60 then
-			attempts = attempts + 1
-			minetest.after(0.5, finish_arrival)
-		else
-			player:set_physics_override({speed=1, jump=1, gravity=1})
-		end
-	end
-	minetest.after(0.5, finish_arrival)
-end)
-
-minetest.register_on_newplayer(function(player)
-	minetest.after(1, function()
-		if not player or not player:is_player() then return end
-		local saved = minetest.deserialize(storage:get_string("asuna_arrival_ship"))
-		if saved then
-			put_player_in_arrival_ship(player, saved)
-			return
-		end
-		if arrival_in_progress then
-			minetest.after(2, function()
-				local retry = minetest.deserialize(storage:get_string("asuna_arrival_ship"))
-				if retry then put_player_in_arrival_ship(player, retry) end
-			end)
-			return
-		end
-
-		arrival_in_progress = true
-		local spawn_pos = vector.round(player:get_pos())
-		local base = {x=spawn_pos.x, y=spawn_pos.y + 25, z=spawn_pos.z}
-		
-		-- Teleport player to the sky immediately so they don't see the ground waiting
-		player:set_pos(vector.add(base, {x=0, y=1.5, z=0}))
-		
-		minetest.emerge_area(vector.subtract(base, 12), vector.add(base, 12),
-			function(_, _, remaining)
-				if remaining ~= 0 then return end
-				minetest.after(0, function()
-					minetest.place_schematic(base,
-						minetest.get_modpath("stl_core").."/schems/starter_rocket.mts",
-						"0", {}, true, "place_center_x, place_center_z")
-					local tank = minetest.registered_nodes["stl_vehicles:tank"]
-					if tank and tank.on_construct then
-						tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
-					end
-					storage:set_string("asuna_arrival_ship", minetest.serialize(base))
-					arrival_in_progress = false
-					put_player_in_arrival_ship(player, base)
-					minetest.log("action", "[stl_asuna_bridge] Asuna arrival ship placed at " .. minetest.pos_to_string(base))
-				end)
-			end)
-	end)
+	minetest.after(1, function() spawn_player_ship(player) end)
 end)
 
 minetest.register_on_mods_loaded(function()
