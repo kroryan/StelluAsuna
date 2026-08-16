@@ -960,6 +960,7 @@ aliveai.pickup=function(self,rnd)
 		end
 	end
 	local pos=self.object:get_pos()
+	if not pos then return self end
 	for _, ob in ipairs(minetest.get_objects_inside_radius(pos, self.arm)) do
 		if ob and ob:get_luaentity() and ob:get_luaentity().name=="__builtin:item" then
 			local item=ob:get_luaentity().itemstring
