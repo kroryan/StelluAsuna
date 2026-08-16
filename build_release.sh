@@ -26,12 +26,12 @@ fi
 
 echo "[3/4] Optimizing ALL heavy music and sound files..."
 if command -v ffmpeg >/dev/null 2>&1; then
-    # Find all .ogg files larger than 500KB and compress them
-    find "$STAGING_DIR/$GAME_NAME" -type f -name "*.ogg" -size +500k | while read -r ogg; do
+    # Find all .ogg files larger than 200KB and compress them
+    find "$STAGING_DIR/$GAME_NAME" -type f -name "*.ogg" -size +200k | while read -r ogg; do
         echo "  -> Compressing $ogg"
         tmp_ogg="${ogg}.tmp.ogg"
-        # Convert to a lower bitrate (-q:a 0 is ~64kbps). Downmix to mono (-ac 1) if it's a huge sound effect
-        ffmpeg -y -i "$ogg" -c:a libvorbis -q:a 0 "$tmp_ogg" </dev/null 2>/dev/null
+        # Convert to mono 32kbps for extreme compression
+        ffmpeg -y -i "$ogg" -ac 1 -b:a 32k "$tmp_ogg" </dev/null 2>/dev/null
         mv "$tmp_ogg" "$ogg"
     done
 else
