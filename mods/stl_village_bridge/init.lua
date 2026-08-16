@@ -131,67 +131,6 @@ minetest.register_on_mods_loaded(function()
 					minetest.log("action", "[stl_village_bridge] Recovered and unpaused resident " .. tostring(self.nametag) .. " on load.")
 				end
 			end
-			
-			local old_on_punch = def.on_punch
-			def.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
-				if old_on_punch then old_on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir, damage) end
-				
-				if puncher and puncher:get_pos() then
-					local mypos = self.object:get_pos()
-					local ppos = puncher:get_pos()
-					if mypos and ppos then
-						local vec = vector.subtract(mypos, ppos)
-						vec.y = 0
-						if vector.length(vec) < 0.1 then vec = {x=math.random()-0.5, y=0, z=math.random()-0.5} end
-						
-						self.fight_target = puncher
-						self.fight_timer = 0
-					end
-				end
-			end
-
-			local old_on_step = def.on_step
-			def.on_step = function(self, dtime, moveresult)
-				if self.fight_target then
-					if not self.fight_target:is_valid() or (self.fight_target.get_hp and self.fight_target:get_hp() <= 0) then
-						self.fight_target = nil
-						self.fight_timer = nil
-					else
-						local mypos = self.object:get_pos()
-						local tpos = self.fight_target:get_pos()
-						if vector.distance(mypos, tpos) > 20 then
-							self.fight_target = nil
-							self.fight_timer = nil
-						else
-							self.destination = tpos
-							self.state = "walk"
-							self.path = {}
-							if self.set_timer then self:set_timer("delay", 9999) end
-							
-							self.fight_timer = (self.fight_timer or 0) + dtime
-							if vector.distance(mypos, tpos) <= 2.5 and self.fight_timer > 1.5 then
-								self.fight_timer = 0
-								
-								-- Visual feedback so it doesn't feel like Thorns
-								if self.set_animation and working_villages and working_villages.animation_frames then
-									self:set_animation(working_villages.animation_frames.MINE)
-								end
-								if self.fight_target:is_player() then
-									minetest.chat_send_player(self.fight_target:get_player_name(), "<" .. tostring(self.nametag or "Villager") .. "> Stop hitting me!")
-								end
-								
-								self.fight_target:punch(self.object, 1.0, {
-									full_punch_interval = 1.0,
-									damage_groups = {fleshy = 2}
-								}, nil)
-							end
-						end
-					end
-				end
-				if old_on_step then old_on_step(self, dtime, moveresult) end
-					end
-				end
-			end
 		end
 	end
 end)
