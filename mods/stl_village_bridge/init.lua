@@ -23,7 +23,12 @@ working_villages.register_job(RESIDENT_JOB, {
 				-- Find ground so they don't try to fly
 				local ok, gpos = pcall(working_villages.require("jobs/util").find_ground_below, target)
 				if ok and gpos then target = gpos end
-				self:go_to(target)
+				
+				minetest.log("action", "[stl_village_bridge] " .. tostring(self.nametag) .. " moving from " .. minetest.pos_to_string(vector.round(pos)) .. " to " .. minetest.pos_to_string(vector.round(target)))
+				local status, err = self:go_to(target)
+				if status == false then
+					minetest.log("warning", "[stl_village_bridge] " .. tostring(self.nametag) .. " failed to reach target: " .. tostring(err))
+				end
 			end
 			
 			self:delay(math.random(3, 10))
