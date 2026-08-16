@@ -26,7 +26,7 @@ working_villages.register_job(RESIDENT_JOB, {
 				self:go_to(target)
 			end
 			
-			self:delay(math.random(30, 80))
+			self:delay(math.random(3, 10))
 		end
 	end,
 })
