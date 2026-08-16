@@ -1219,14 +1219,19 @@ mg_villages.inhabitants.spawn_mobs_for_one_house = function( bpos, minp, maxp, v
 	end
 	for bed_nr,bed in ipairs( bpos.beds ) do
 		-- only for beds that exist, have a mob assigned and fit into minp/maxp
-		if( bed
-		  and bed.first_name
-		  and (not( minp )
-		    or (   bed.x>=minp.x and bed.x<=maxp.x
-		       and bed.y>=minp.y and bed.y<=maxp.y
-		       and bed.z>=minp.z and bed.z<=maxp.z))) then
-
+		local in_bounds = true
+		if minp then
+			in_bounds = (bed.x>=minp.x and bed.x<=maxp.x and bed.y>=minp.y and bed.y<=maxp.y and bed.z>=minp.z and bed.z<=maxp.z)
+		end
+		
+		if( bed and bed.first_name and in_bounds ) then
 			bed.mob_id = mg_villages.inhabitants.spawn_one_mob( bed, village_id, plot_nr, bed_nr, bpos );
+			minetest.log("action", "[mg_villages] spawn_one_mob returned " .. tostring(bed.mob_id) .. " for bed " .. bed.first_name)
+		else
+			if not bed then minetest.log("action", "[mg_villages] bed is nil")
+			elseif not bed.first_name then minetest.log("action", "[mg_villages] bed.first_name is nil")
+			elseif not in_bounds then minetest.log("action", "[mg_villages] bed is out of bounds")
+			end
 		end
 	end
 end
