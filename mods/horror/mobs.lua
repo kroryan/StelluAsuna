@@ -927,7 +927,7 @@ mobs:register_mob("horror:shadow", {
    light_damage = 0,
    view_range = 30,
    do_custom = function(self)
-   local apos = self.object:getpos()
+   local apos = self.object:get_pos()
 		minetest.add_particlespawner({
 			amount = 1,
 			time = 0.3,
