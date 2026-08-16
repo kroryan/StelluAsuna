@@ -1,4 +1,5 @@
 aliveai.folowing=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.folow then
 		local p=self.folow:get_pos()
 		if math.random(1,10)==1 or self.mood<0 or not (p and aliveai.visiable(self,p) and aliveai.distance(self,p)<self.distance) then
@@ -21,6 +22,7 @@ aliveai.folowing=function(self)
 end
 
 aliveai.sleep=function(self,set)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.type~="npc" then return end
 
 	if self.sleeptimer then
@@ -123,6 +125,7 @@ end
 
 
 aliveai.dying=function(self,set)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if set and set==1 then
 		if self.drop_dead_body==0 or self.hp_max>100 then return end
 		aliveai.exitpath(self)
@@ -222,6 +225,7 @@ aliveai.dying=function(self,set)
 end
 
 aliveai.rndgoal=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if not self.isrnd or self.build or math.random(1,50)~=1 then return end
 	if self.rndgoal and self.path then
 		aliveai.path(self)
@@ -253,6 +257,7 @@ end
 
 
 aliveai.node_handler=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	local keep
 	if self.nodehandler and self.path then
 		aliveai.path(self)
@@ -325,6 +330,7 @@ aliveai.node_handler=function(self)
 end
 
 aliveai.stuckinblock=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	local posl=self.object:get_pos()
 	local n=minetest.get_node({x=posl.x,y=posl.y,z=posl.z})
 	local stuck=1
@@ -365,6 +371,7 @@ end
 
 
 aliveai.need_helper=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.mood>0 and self.help_need then
 		if self.done=="come" then
 			self.done=""
@@ -446,6 +453,7 @@ aliveai.steal=function(self,ste)
 end
 
 aliveai.light=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.gotolight and self.path then
 		aliveai.path(self)
 		if self.done~="" then
@@ -553,6 +561,7 @@ aliveai.light=function(self)
 end
 
 aliveai.searchhelp=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.coming==1 then
 		aliveai.showstatus(self,"search help")
 		local pos=self.object:get_pos()
@@ -699,6 +708,7 @@ aliveai.getknown=function(self,ob,typ)
 end
 
 aliveai.come=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.zeal and self.zeal>0 then
 		self.zeal=self.zeal-0.02
 		if self.zeal<=0 then self.zeal=nil self.come=nil end
@@ -818,6 +828,7 @@ aliveai.flee_from=function(self,ob)
 end
 
 aliveai.fly=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 
 	if self.fly and self.fly_path and self.path then
 		aliveai.path(self)
@@ -924,6 +935,7 @@ aliveai.fly=function(self)
 end
 
 aliveai.fight=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.temper>0 then
 		self.temper=self.temper-0.02
 		if self.temper<=0 or (self.fight and aliveai.gethp(self.fight)<=0) then
@@ -1082,6 +1094,7 @@ aliveai.fight=function(self)
 end
 
 aliveai.findspace=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if self.task=="build" then
 		if self.path then
 			aliveai.path(self)
@@ -1122,6 +1135,7 @@ aliveai.findspace=function(self)
 end
 
 aliveai.build=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if not self.build then
 		return self
 	end
@@ -1303,6 +1317,7 @@ aliveai.mineproblem=function(self)
 end
 
 aliveai.mine=function(self)
+	if not self or not self.object or not self.object:get_pos() then return end
 	if not self.need then
 		self.mine.target=self.object:get_pos()
 		self.mine.status="dig"

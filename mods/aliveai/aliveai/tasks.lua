@@ -45,7 +45,9 @@ aliveai.task_farming=function(self)
 					aliveai.add_mine(self,v.dig,c,v.seed)
 				end
 			end
-			local p=aliveai.roundpos(self.object:get_pos())
+			local pos1 = self.object:get_pos()
+			if not pos1 then return end
+			local p=aliveai.roundpos(pos1)
 			if not name or minetest.get_item_group(minetest.get_node({x=p.x,y=p.y-2,z=p.z}).name, aliveai.farming[name].ground_group)==0 then return end
 			c=math.floor(c/2)*-1
 			local a=aliveai.farming[name].area
@@ -77,7 +79,9 @@ aliveai.task_farming=function(self)
 			if p then
 				local place=aliveai.farming[self.farming_name].seed
 				local set=aliveai.farming[self.farming_name].ground
-				local w=aliveai.roundpos(self.object:get_pos())
+				local pos1 = self.object:get_pos()
+				if not pos1 then return end
+				local w=aliveai.roundpos(pos1)
 				aliveai.lookat(self,p)
 				if aliveai.samepos(p,{x=w.x,y=w.y-1,z=w.z}) then
 					set=aliveai.farming[self.farming_name].source
@@ -117,6 +121,7 @@ aliveai.task_stay_at_home=function(self)
 				return self
 			elseif d>self.distance*1.5 then
 				local pos=self.object:get_pos()
+				if not pos then return self end
 				local p=aliveai.creatpath(self,pos,aliveai.roundpos(self.home))
 				if p~=nil then
 					self.path=p
@@ -164,6 +169,7 @@ aliveai.task_build=function(self)
 				self.done=""
 				if self.resources then
 					local pos=self.object:get_pos()
+					if not pos then return self end
 					pos.y=pos.y+1
 					local p=aliveai.creatpath(self,pos,self.resources,20)
 					if p then
@@ -195,6 +201,7 @@ aliveai.task_build=function(self)
 		if self.taskstep==3 then			-- build building done, clear status
 			if not self.home then		-- set home if it was a house
 				local pos=self.object:get_pos()
+				if not pos then return self end
 				pos.y=pos.y+1
 				self.home=pos
 				aliveai.showstatus(self,"home set, build done",3)

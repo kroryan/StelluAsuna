@@ -13,6 +13,7 @@ aliveai.newpos=function(pos,a)
 	elseif pos:get_pos() then
 		pos=pos:get_pos()
 	end
+	if not pos then return end
 	if a and type(a)~="table" then
 		return pos
 	elseif a then
@@ -358,7 +359,9 @@ aliveai.lookaround=function(self)
 						aliveai.lookat(self,nodepos)
 					elseif self.attention_nodes[n]>1 and (self.attention_nodes[n]==3 or math.random(1,3)==1) then
 						local upos={x=nodepos.x,y=nodepos.y+1,z=nodepos.z}
-						local pa=aliveai.neartarget(self,aliveai.roundpos(self.object:get_pos()))
+						local pos=self.object:get_pos()
+						if not pos then return self end
+						local pa=aliveai.neartarget(self,aliveai.roundpos(pos))
 						if pa then
 							local p=aliveai.creatpath(self,pa,upos)
 							if p then
@@ -410,9 +413,10 @@ aliveai.get_nodes=function(self,radio,dencity,filter)
 	local filter2={}
 	if not self.object and self.x and self.y and self.z then
 		pos=self
-	else
+	elseif self.object then
 		pos=self.object:get_pos()
 	end
+	if not pos then return end
 	pos=aliveai.roundpos(pos)
 	for _, nod in ipairs(filter) do
 		table.insert(filter2,minetest.get_content_id(nod))
@@ -457,9 +461,10 @@ aliveai.random_pos=function(self,Min,Max)
 	
 	if not self.object and self.x and self.y and self.z then
 		pos=self
-	else
+	elseif self.object then
 		pos=self.object:get_pos()
 	end
+	if not pos then return end
 	pos=aliveai.roundpos(pos)
 
 	local air=minetest.get_content_id("air")
@@ -538,6 +543,7 @@ aliveai.get_dir=function(self,pos2)
 	else
 		return {x=0,y=0,z=0}
 	end
+	if not pos1 then return {x=0,y=0,z=0} end
 	if pos2 and not (pos2.x and pos2.y and pos2.z) then
 		pos2=pos2:get_pos()
 	end
@@ -553,7 +559,9 @@ aliveai.timer=function(self)
 	if not self.lifetimer or self.fly or self.come or self.fight then self.lifetimer=aliveai.lifetimer end
 	self.lifetimer=self.lifetimer-1
 	if self.lifetimer>0 then return end
-	for _, ob in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), self.distance)) do
+	local pos = self.object:get_pos()
+	if not pos then return end
+	for _, ob in ipairs(minetest.get_objects_inside_radius(pos, self.distance)) do
 		local en=ob:get_luaentity() 
 		if ob:is_player() or (en and en.type and en.type~="" and ((en.type~=self.type) or en.team and en.team~=self.team)) then
 			self.lifetimer=nil
@@ -870,6 +878,7 @@ aliveai.buildpath=function(self,need)
 	if self.build_pos and self.build_pos~="" then
 		pos=self.build_pos
 	end
+	if not pos then return nil end
 
 	aliveai.showstatus(self,"create (house) build path")
 	for y=0,build.y,1 do
@@ -963,6 +972,7 @@ aliveai.rndwalk=function(self,toogle)
 				aliveai.stand(self)
 			elseif rnd==2 then
 				local pos=self.object:get_pos()
+				if not pos then return self end
 				local rndpos
 				for _, ob in ipairs(minetest.get_objects_inside_radius(pos, self.distance)) do
 					local en = ob:get_luaentity()
@@ -998,6 +1008,7 @@ aliveai.rndwalk=function(self,toogle)
 		aliveai.stand(self)
 	elseif rnd==2 then
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		if self.staring then
 			for _, ob in ipairs(minetest.get_objects_inside_radius(pos, self.arm)) do
 				if math.random(1,2)==1 and ob and ob:get_pos() and aliveai.visiable(self,ob:get_pos()) and ((aliveai.get_bot_name(ob)==self.staring.name) or (ob:is_player() and self.staring.name==ob:get_player_name())) then
@@ -1065,7 +1076,9 @@ aliveai.rndwalk=function(self,toogle)
 		local rndpos
 		local obb
 		local d=99
-		for _, ob in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), self.distance/2)) do
+		local pos = self.object:get_pos()
+		if not pos then return self end
+		for _, ob in ipairs(minetest.get_objects_inside_radius(pos, self.distance/2)) do
 			if ob and ob:get_pos() and aliveai.visiable(self,ob) then
 				if d>aliveai.distance(self,ob:get_pos()) and not aliveai.same_bot(self,ob) then
 					rndpos=ob:get_pos()
@@ -1079,7 +1092,9 @@ aliveai.rndwalk=function(self,toogle)
 		aliveai.rnd_talk_to(self,obb)
 	elseif rnd==6 and not self.folow then
 		local ob2
-		for _, ob in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), self.distance)) do
+		local pos = self.object:get_pos()
+		if not pos then return self end
+		for _, ob in ipairs(minetest.get_objects_inside_radius(pos, self.distance)) do
 			if aliveai.visiable(self,ob:get_pos()) and aliveai.viewfield(self,ob) and aliveai.get_bot_name(ob)~=self.botname then
 			ob2=ob
 			if math.random(1,2)==1 then
@@ -1116,6 +1131,7 @@ end
 aliveai.dmgbynode=function(self)
 	if self.damage_by_blocks~=1 then return self end
 	local pos=aliveai.newpos(self)
+	if not pos then return self end
 	local d1=aliveai.def(pos:yy(0),"damage_per_second")
 	local d2=aliveai.def(pos:yy(-1),"damage_per_second")
 	if d1 and d1>0 then
@@ -1159,6 +1175,7 @@ aliveai.falling=function(self)
 
 	self.object:set_acceleration({x=0,y=-aliveai.gravity,z =0})
 	local pos=self.object:get_pos()
+	if not pos then return self end
 	local node2=minetest.get_node(pos)
 	pos.y=pos.y-1
 	local node=minetest.get_node(pos)
@@ -1428,7 +1445,9 @@ aliveai.neartarget=function(self,p,starty,endy,stepy)
 	{x=p.x-1,z=p.z+1},
 	{x=p.x+1,z=p.z-1}}
 	local n=8
-	local o=aliveai.roundpos(self.object:get_pos())
+	local o=self.object:get_pos()
+	if not o then return nil end
+	o=aliveai.roundpos(o)
 	local last_p=nil
 	local last_able=nil
 	starty=starty or 1
@@ -1467,6 +1486,7 @@ end
 aliveai.findnode=function(self,node_name,ignores)
 	aliveai.showstatus(self,"find node")
 	local pos=self.object:get_pos()
+	if not pos then return nil end
 	pos.y=pos.y-1
 	local re={pos={},path={}}
 	local np=minetest.find_node_near(pos, self.distance,{node_name})
@@ -1586,6 +1606,7 @@ end
 
 aliveai.walk=function(self,sp)
 	local pos=self.object:get_pos()
+	if not pos then return self end
 	local yaw=aliveai.nan(self.object:get_yaw())
 	sp=sp or 1
 	local x =math.sin(yaw) * -1

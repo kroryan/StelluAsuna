@@ -108,6 +108,7 @@ if minetest.get_modpath("3d_armor") then
 		end
 	end
 	aliveai.loaddata.armor=function(self,r)
+		if not self.object then return self end
 		if r.armor then
 			self.skin_texture=r.skin_texture or self.object:get_properties().textures[1]
 			self.armor_textures=r.armor_textures
@@ -155,6 +156,7 @@ if minetest.get_modpath("3d_armor") then
 	end
 	aliveai.armor=function(self,a)
 		if self.usearmor~=1 then return self end
+		if not self.object then return self end
 		if a.dmg and self.armor and self.object:get_hp()>0 and self.armor.heal>0 then
 			local hp=self.object:get_hp()
 			local l_hp=math.floor(((self.armor.hp-hp)*(self.armor.heal*0.05))+0.5)

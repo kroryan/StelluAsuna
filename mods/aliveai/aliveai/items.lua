@@ -396,7 +396,9 @@ aliveai.give_to_bot=function(self,clicker)
 		aliveai.say(self,"ok, im a guard")
 		self.namecolor="0000ff55"
 		aliveai.showtext(self,"Guard")
-		self.home=aliveai.roundpos(self.object:get_pos())
+		local pos = self.object:get_pos()
+		if not pos then return self end
+		self.home=aliveai.roundpos(pos)
 		aliveai.showstatus(self,"guard")
 		inv:set_stack("main", i,nil)
 		return self
@@ -911,6 +913,7 @@ end
 
 aliveai.invdropall=function(self)
 	local pos=self.object:get_pos()
+	if not pos then return self end
 	local c=0
 	local max
 	aliveai.showstatus(self,"drop all items")
@@ -944,6 +947,7 @@ aliveai.pickup=function(self,rnd)
 	self.pickupgoto=nil
 	if self.isrnd and not rnd then
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		pos.y=pos.y-1
 		for _, ob in ipairs(minetest.get_objects_inside_radius(pos, self.distance)) do
 			if ob and ob:get_luaentity() and ob:get_luaentity().name=="__builtin:item" then
@@ -1017,7 +1021,7 @@ end
 
 aliveai.clearinventory=function(self)
 	local pos
-	if self then pos=self.object:get_pos() end
+	if self and self.object then pos=self.object:get_pos() end
 	local inv = minetest.get_inventory({type="detached", name="main"})
 	for i=1,inv:get_size("main"),1 do
 		local it=inv:get_stack("main",i):get_name()
@@ -1052,6 +1056,7 @@ aliveai.use=function(self)
 	local tool=""
 	local pointed_thing={type="nothing"}
 	local pos=self.object:get_pos()
+	if not pos then return self end
 	for i, name in pairs(self.tools) do
 		n=n+1
 		if n==self.tool_index then
@@ -1099,8 +1104,9 @@ aliveai.use=function(self)
 end
 
 aliveai.spawnbones=function(self)
-	if not self and self.object then return end
+	if not self or not self.object then return end
 	local pos=self.object:get_pos()
+	if not pos then return end
 	pos={x=pos.x,y=pos.y+0.5,z=pos.z}
 	if self.dropbones==1 and aliveai.set_bones and aliveai.bones and aliveai.def(pos,"buildable_to") and not minetest.is_protected(pos,"") then
 		minetest.set_node(pos,{name="bones:bones"})
@@ -1132,10 +1138,12 @@ end
 
 aliveai.createuser=function(self,index)
 	index=index or 1
+	if not self or not self.object then return end
 	local yaw=self.object:get_yaw()
 	if type(yaw)~="number" then yaw=0 end
 	yaw=yaw+1.575
 	local pos=self.object:get_pos()
+	if not pos then return end
 	local inv=minetest.get_inventory({type="detached", name="main"})
 	return {
 		get_player_control=aliveai.re({sneak=false,up=false,down=false,left=false,right=false}),

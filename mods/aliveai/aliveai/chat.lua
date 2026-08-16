@@ -88,11 +88,13 @@ aliveai.on_spoken_to=function(self,name,speaker,msg)
 				self.fight=player
 			elseif self.temper>1 then
 				self.staring={name=name,step=1}
-				aliveai.lookat(self,player:get_pos(),true)
+				local ppos = player:get_pos()
+				if ppos then aliveai.lookat(self,ppos,true) end
 			end
 			return self
 		end
 		local pos=player:get_pos()
+		if not pos then return self end
 		if aliveai.distance(self,pos)>self.distance*2 then
 			aliveai.sayrnd(self,"no, too far")
 			return self
@@ -127,26 +129,37 @@ aliveai.on_spoken_to=function(self,name,speaker,msg)
 		aliveai.find(msg,{"your","favorite","color"},self,self.namecolor)
 		aliveai.find(msg,{"your","team"},self,self.team)
 		aliveai.find(msg,{"what","you","doing"},self,self.task .." step " .. self.taskstep)
-		aliveai.find(msg,{"where are you"},self,aliveai.strpos(self.object:get_pos()))
+		local pos=self.object:get_pos()
+		if pos then
+			aliveai.find(msg,{"where are you"},self,aliveai.strpos(pos))
+		end
 
 		if aliveai.find(msg,{"kill","help"},self) then
-			for _, ob in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), self.distance)) do
+			local pos1 = self.object:get_pos()
+			if pos1 then
+			for _, ob in ipairs(minetest.get_objects_inside_radius(pos1, self.distance)) do
 				if aliveai.team(ob)~=self.team then
 					self.fight=ob
 					self.temper=self.temper+1
-					aliveai.lookat(self,ob:get_pos())
+					local obp = ob:get_pos()
+					if obp then aliveai.lookat(self,obp) end
 					aliveai.say(self,"ok")
 					return
 				end
 			end
+			end
 		end
 
 		if aliveai.find(msg,{"run","ahh","no"},self) then
-			for _, ob in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), self.distance)) do
-				if aliveai.visiable(self,ob:get_pos()) and ob:get_luaentity() and ob:get_luaentity().type=="monster" then
+			local pos1 = self.object:get_pos()
+			if pos1 then
+			for _, ob in ipairs(minetest.get_objects_inside_radius(pos1, self.distance)) do
+				local obp = ob:get_pos()
+				if obp and aliveai.visiable(self,obp) and ob:get_luaentity() and ob:get_luaentity().type=="monster" then
 					aliveai.flee_from(self,ob)
 					return
 				end
+			end
 			end
 		end
 
@@ -272,7 +285,9 @@ aliveai.on_spoken_to=function(self,name,speaker,msg)
 			if minetest.get_player_by_name(speaker) then
 				name=speaker
 			end
-			for _, ob in ipairs(minetest.get_objects_inside_radius(player:get_pos(), 5)) do
+			local ppos = player:get_pos()
+			if ppos then
+			for _, ob in ipairs(minetest.get_objects_inside_radius(ppos, 5)) do
 				local en=ob:get_luaentity()
 				if not (ob:is_player() and ob:get_player_name()==name)
 				and not aliveai.same_bot(self,ob) then
@@ -294,9 +309,11 @@ aliveai.on_spoken_to=function(self,name,speaker,msg)
 				end
 			end
 			local pp=player:get_pos()
-			local nn=minetest.get_node({x=pp.x,y=pp.y-1,z=pp.z}).name
-			if minetest.registered_items[nn] then
-				aliveai.say(self,minetest.registered_items[nn].description or nn)
+			if pp then
+				local nn=minetest.get_node({x=pp.x,y=pp.y-1,z=pp.z}).name
+				if minetest.registered_items[nn] then
+					aliveai.say(self,minetest.registered_items[nn].description or nn)
+				end
 			end
 		end
 
@@ -455,16 +472,19 @@ aliveai.sayrnd=function(self,t,t2,nmood)
 	table.insert(a, t)
 	local say=a[aliveai.random(1,#a)]
 	aliveai.say(self,say)
-	aliveai.on_chat(self.object:get_pos(),self.botname,say)	
+	local pos = self.object:get_pos()
+	if pos then aliveai.on_chat(pos,self.botname,say) end
 end
 
 aliveai.say=function(self,text)
 	if self.talking==0 then return self end
 	local pos1=self.object:get_pos()
+	if not pos1 then return self end
 	aliveai.last_spoken_to=text
 	aliveai.on_chat(pos1,self.botname,text)
 	for _,player in ipairs(minetest.get_connected_players()) do
-		if aliveai.distance(pos1,player:get_pos())<aliveai.max_chat_distance then
+		local pp = player:get_pos()
+		if pp and aliveai.distance(pos1,pp)<aliveai.max_chat_distance then
 			 minetest.chat_send_player(player:get_player_name(), "<" .. self.botname .."> " .. text)
 		end
 	end
@@ -491,7 +511,7 @@ minetest.register_on_chat_message(function(name, message)
 	local pl=minetest.get_player_by_name(name)
 	if not pl then return end
 	local p=pl:get_pos()
-	aliveai.on_chat(p,name,message)
+	if p then aliveai.on_chat(p,name,message) end
 end)
 
 aliveai.on_chat=function(pos,name,message)
@@ -499,7 +519,8 @@ aliveai.on_chat=function(pos,name,message)
 	local en2
 	for i,v in pairs(aliveai.active) do
 		local en=v:get_luaentity()
-		if en and aliveai.visiable(pos,v:get_pos()) and aliveai.get_bot_name(en.object)~=name then
+		local vp = v:get_pos()
+		if en and vp and aliveai.visiable(pos,vp) and aliveai.get_bot_name(en.object)~=name then
 			local d2=aliveai.distance(en,pos)
 			if d1>d2 then
 				d1=d2

@@ -14,11 +14,13 @@ aliveai.main=function(self, dtime)
 	end
 
 	if aliveai.botdelay(self,1) then return self end
+	if not self.object or not self.object:get_pos() then return self end
 	aliveai.bot(self, dtime)
 	aliveai.botdelay(self)
 end
 
 aliveai.bot=function(self, dtime)
+	if not self.object or not self.object:get_pos() then return self end
 	aliveai.bots_delay=aliveai.bots_delay+dtime
 	self.timer=self.timer+dtime
 	self.timerfalling=self.timerfalling+dtime
@@ -47,7 +49,7 @@ aliveai.bot=function(self, dtime)
 	
 	aliveai.msghandler(self)
 	
-
+	if not self.object or not self.object:get_pos() then return self end
 	aliveai.pickup(self)-- if can pick up items
 
 	if aliveai.lookaround(self) then return self end

@@ -131,20 +131,23 @@ if minetest.get_modpath("carts") then
 						aliveai.invadd(self,"carts:cart",1)
 						self.object:set_acceleration({x=0,y=-10,z =0})
 						local cpos=cart:get_pos()
-						self.object:set_pos({x=cpos.x,y=cpos.y+2,z =cpos.z})
+						if cpos then self.object:set_pos({x=cpos.x,y=cpos.y+2,z =cpos.z}) end
 						en.on_step=nil
 						if en.sound_handle then minetest.sound_stop(en.sound_handle) end
 						cart:remove()
 					else
-						local p1=aliveai.roundpos(cart:get_pos())
-						if en.velocity.x>-1 and minetest.get_item_group(minetest.get_node({x=p1.x+1,y=p1.y,z=p1.z}).name, "connect_to_raillike")>0 then
-							en.velocity={x=10,y=0,z=0}
-						elseif en.velocity.x<1 and minetest.get_item_group(minetest.get_node({x=p1.x-1,y=p1.y,z=p1.z}).name, "connect_to_raillike")>0 then
-							en.velocity={x=-10,y=0,z=0}
-						elseif en.velocity.z>-1 and  minetest.get_item_group(minetest.get_node({x=p1.x,y=p1.y,z=p1.z+1}).name, "connect_to_raillike")>0 then
-							en.velocity={x=0,y=0,z=10}
-						elseif en.velocity.z<1 and minetest.get_item_group(minetest.get_node({x=p1.x,y=p1.y,z=p1.z-1}).name, "connect_to_raillike")>0 then
-							en.velocity={x=0,y=0,z=-10}
+						local cpos = cart:get_pos()
+						if cpos then
+							local p1=aliveai.roundpos(cpos)
+							if en.velocity.x>-1 and minetest.get_item_group(minetest.get_node({x=p1.x+1,y=p1.y,z=p1.z}).name, "connect_to_raillike")>0 then
+								en.velocity={x=10,y=0,z=0}
+							elseif en.velocity.x<1 and minetest.get_item_group(minetest.get_node({x=p1.x-1,y=p1.y,z=p1.z}).name, "connect_to_raillike")>0 then
+								en.velocity={x=-10,y=0,z=0}
+							elseif en.velocity.z>-1 and  minetest.get_item_group(minetest.get_node({x=p1.x,y=p1.y,z=p1.z+1}).name, "connect_to_raillike")>0 then
+								en.velocity={x=0,y=0,z=10}
+							elseif en.velocity.z<1 and minetest.get_item_group(minetest.get_node({x=p1.x,y=p1.y,z=p1.z-1}).name, "connect_to_raillike")>0 then
+								en.velocity={x=0,y=0,z=-10}
+							end
 						end
 						en.punched=true
 					end
@@ -252,7 +255,9 @@ aliveai.use_smartshop=function(self)
 		return self
 	end
 	if math.random(1,50)~=1 or self.smartshop then return end
-	local np1=minetest.find_node_near(self.object:get_pos(), self.distance,{"smartshop:shop"})
+	local pos = self.object:get_pos()
+	if not pos then return end
+	local np1=minetest.find_node_near(pos, self.distance,{"smartshop:shop"})
 	if np1 then
 		local walkto
 		local offer=smartshop.get_offer(np1)
@@ -276,7 +281,9 @@ aliveai.use_smartshop=function(self)
 			aliveai.showstatus(self,"go to smartshop")
 			local np2=aliveai.neartarget(self,np1,0)
 			if np2 then
-				local path=aliveai.creatpath(self,self.object:get_pos(),np2)
+				local pos = self.object:get_pos()
+				if not pos then return end
+				local path=aliveai.creatpath(self,pos,np2)
 				if path then
 					self.path=path
 					self.smartshop=walkto

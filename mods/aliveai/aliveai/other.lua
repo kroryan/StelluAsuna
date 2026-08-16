@@ -116,7 +116,9 @@ aliveai.show_terminal=function(user,a)
 		self.terminal_user=name
 		aliveai.terminal_users[name].botname=self.botname
 		aliveai.terminal_users[name].bot=self.object
-		for _, ob in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(),50)) do
+		local pos = self.object:get_pos()
+		if not pos then return end
+		for _, ob in ipairs(minetest.get_objects_inside_radius(pos,50)) do
 			if ob and aliveai.visiable(self,ob) and not aliveai.same_bot(self,ob) and not (ob:get_luaentity() and ob:get_luaentity().type==nil) then
 				local na=""
 				if ob:is_player() then
@@ -274,13 +276,15 @@ minetest.register_on_player_receive_fields(function(user, form, pressed)
 			elseif e=="setTeam" and pressed.text~="" then
 				self.team=pressed.text
 			elseif e=="gotoBed" then
-				local n=minetest.find_node_near(self.object:get_pos(), self.distance,aliveai.beds)
+				local pos = self.object:get_pos()
+				if not pos then return end
+				local n=minetest.find_node_near(pos, self.distance,aliveai.beds)
 				if n then
 					n.y=n.y+1
 					for ob, ob in ipairs(minetest.get_objects_inside_radius(n, 1)) do
 						if (aliveai.is_bot(ob) and ob:get_luaentity().sleeping) or ob:is_player() then return end
 					end
-					local p=aliveai.creatpath(self,self.object:get_pos(),n)
+					local p=aliveai.creatpath(self,pos,n)
 					if p then
 						self.path=p
 						self.bedpath=n
@@ -347,11 +351,13 @@ minetest.register_on_player_receive_fields(function(user, form, pressed)
 			elseif e=="exit Mine" then
 				aliveai.exit_mine(self)
 			elseif e=="Farming" then
-				self.home=aliveai.roundpos(self.object:get_pos())
+				local pos = self.object:get_pos()
+				if pos then self.home=aliveai.roundpos(pos) end
 				self.need=nil
 				aliveai.task_farming(self)
 			elseif e=="setHome" then
-				self.home=aliveai.roundpos(self.object:get_pos())
+				local pos = self.object:get_pos()
+				if pos then self.home=aliveai.roundpos(pos) end
 			elseif e=="StayAt Home" then
 				aliveai.task_stay_at_home(self)
 			elseif e=="rndGoal" then
@@ -363,7 +369,8 @@ minetest.register_on_player_receive_fields(function(user, form, pressed)
 			end
 		elseif pressed.teleport then
 			if aliveai.terminal_users[name].bot then
-				user:set_pos(aliveai.terminal_users[name].bot:get_pos())
+				local pos = aliveai.terminal_users[name].bot:get_pos()
+				if pos then user:set_pos(pos) end
 			end
 		elseif pressed.status then
 			if aliveai.terminal_users[name].live_status then
@@ -450,6 +457,7 @@ aliveai.generate_house=function(self,v)
 -- random materials or from near stuff
 		if gen then
 			pos=self.object:get_pos()
+			if not pos then return end
 		else
 			pos=self
 			self.distance=15
@@ -1463,6 +1471,7 @@ aliveai.open_door=function(self,pos)
 	if (self.openddoor and aliveai.samepos(self.openddoor,aliveai.roundpos(pos)) )or not pos or aliveai.group(pos,"aliveai_door")==0 then return end
 	local p=minetest.get_node(pos).param2
 	local bot=self.object:get_pos()
+	if not bot then return end
 	if ((p==0 or p==2) and (bot.x<pos.x or bot.x>pos.x))
 	or ((p==1 or p==3) and (bot.z<pos.z or bot.z>pos.z)) 
 	or aliveai.samepos(aliveai.roundpos(bot),aliveai.roundpos({x=pos.x,y=pos.y+1,z=pos.z})) then	
@@ -1679,9 +1688,11 @@ minetest.register_node("aliveai:protector", {
 		for _, ob in ipairs(minetest.get_objects_inside_radius(pos, 15)) do
 			if aliveai.is_bot(ob) then
 				local pos2=ob:get_pos()
-				local d=math.max(1,vector.distance(pos,pos2))
-				local r=(8/d)*2
-				ob:set_velocity({x=(pos2.x-pos.x)*r, y=(pos2.y-pos.y+0.1)*r, z=(pos2.z-pos.z)*r})
+				if pos2 then
+					local d=math.max(1,vector.distance(pos,pos2))
+					local r=(8/d)*2
+					ob:set_velocity({x=(pos2.x-pos.x)*r, y=(pos2.y-pos.y+0.1)*r, z=(pos2.z-pos.z)*r})
+				end
 			end
 		end
 		return true
