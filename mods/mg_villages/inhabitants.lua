@@ -1230,7 +1230,7 @@ mg_villages.inhabitants.spawn_mobs_for_one_house = function( bpos, minp, maxp, v
 		else
 			if not bed then minetest.log("action", "[mg_villages] bed is nil")
 			elseif not bed.first_name then minetest.log("action", "[mg_villages] bed.first_name is nil")
-			elseif not in_bounds then minetest.log("action", "[mg_villages] bed is out of bounds")
+			elseif not in_bounds then -- minetest.log("action", "[mg_villages] bed is out of bounds")
 			end
 		end
 	end

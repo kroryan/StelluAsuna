@@ -49,7 +49,7 @@ minetest.register_abm({
     nodenames = herb_names,
     neighbors = "air",
     interval = 60,
-    chance = 2048,
+    chance = 6144,
     catch_up = false,
     action = spawner("working_villages:job_herbcollector"),
 })
@@ -59,7 +59,7 @@ minetest.register_abm({
     nodenames = "group:tree",
     neighbors = "air",
     interval = 60,
-    chance = 2048,
+    chance = 6144,
     catch_up = false,
     action = spawner("working_villages:job_woodcutter"),
 })
