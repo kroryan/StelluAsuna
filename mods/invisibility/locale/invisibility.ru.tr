@@ -1,0 +1,16 @@
+# textdomain: invisibility
+
+# Items
+Invisibility Potion=Зелье Невидимости
+
+# Messages
+>>> You are already invisible!=>>> Вы уже невидимы!
+>>> You have 10 seconds before invisibility wears off!=>>> У вас 10 секунд, до того как невидимость спадёт!
+
+# Command
+Make player invisible=Делает игрока невидимым
+Player @1 is offline!=Игрок @1 не в сети!
+Player @1 is now @2!=Теперь игрок @1 @2!
+
+visible=видимый
+invisible=невидимый

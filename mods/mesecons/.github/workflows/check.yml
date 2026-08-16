@@ -1,0 +1,45 @@
+on: [push, pull_request]
+name: "Check"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    name: "Luacheck"
+    steps:
+    - uses: actions/checkout@main
+    - name: apt
+      run: sudo apt-get install -y luarocks
+    - name: install luacheck
+      run: luarocks install --local luacheck
+    - name: run luacheck
+      run: $HOME/.luarocks/bin/luacheck ./
+
+  mineunit:
+    runs-on: ubuntu-latest
+    name: "Mineunit tests"
+    steps:
+    - uses: actions/checkout@main
+    - name: run mesecons tests
+      uses: mt-mods/mineunit-actions@master
+      with:
+        coverage: false
+        mineunit-args: -q
+        working-directory: ./mesecons
+    - name: run mesecons_mvps tests
+      uses: mt-mods/mineunit-actions@master
+      with:
+        coverage: false
+        mineunit-args: -q
+        working-directory: ./mesecons_mvps
+    - name: run mesecons_fpga tests
+      uses: mt-mods/mineunit-actions@master
+      with:
+        coverage: false
+        mineunit-args: -q
+        working-directory: ./mesecons_fpga
+    - name: run mesecons_luacontroller tests
+      uses: mt-mods/mineunit-actions@master
+      with:
+        coverage: false
+        mineunit-args: -q
+        working-directory: ./mesecons_luacontroller

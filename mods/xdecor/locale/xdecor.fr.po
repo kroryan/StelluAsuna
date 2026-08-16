@@ -1,0 +1,1067 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Luanti textdomain xdecor\n"
+"Report-Msgid-Bugs-To: Wuzzy@disroot.org\n"
+"POT-Creation-Date: 2025-10-18 11:01+0200\n"
+"PO-Revision-Date: 2025-08-18 06:34+0200\n"
+"Last-Translator: Louis Royer\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Poedit 3.6\n"
+
+#. ~ Block name of a 'traditional' stair-shaped block. (@1 = base block name, e.g. "Stone")
+#: handlers/registration.lua:75 handlers/registration.lua:91
+#: src/workbench.lua:80 src/workbench.lua:470
+msgid "@1 Stair"
+msgstr ""
+
+#: handlers/registration.lua:78 handlers/registration.lua:94
+#: src/workbench.lua:471
+msgid "Inner @1 Stair"
+msgstr ""
+
+#: handlers/registration.lua:80 handlers/registration.lua:95
+#: src/workbench.lua:472
+msgid "Outer @1 Stair"
+msgstr ""
+
+#. ~ Block name of a block with 1/2 the height of a full block. (@1 = base block name, e.g. "Stone")
+#: handlers/registration.lua:84 handlers/registration.lua:92
+#: src/workbench.lua:63 src/workbench.lua:473
+msgid "@1 Slab"
+msgstr ""
+
+#: src/chessbot_random.lua:51
+msgid "Random Computer"
+msgstr ""
+
+#: src/chessbot_weak.lua:125
+msgid "Weak Computer"
+msgstr ""
+
+#: src/chess.lua:196
+msgid "Chess"
+msgstr "Echecs"
+
+#: src/chess.lua:197
+msgid "Chess Debug"
+msgstr ""
+
+#. ~ Chess: Game mode selection prompt
+#: src/chess.lua:1284 src/chess.lua:1285
+msgid "Select a game mode"
+msgstr ""
+
+#. ~ Chess: Game mode selection prompt
+#: src/chess.lua:1287
+msgid "Select a mode:"
+msgstr "Sélectionnez un mode de jeu:"
+
+#. ~ Chess game mode (player vs bot)
+#: src/chess.lua:1289
+msgid "Singleplayer"
+msgstr "Solo"
+
+#. ~ Chess game mode (player vs player)
+#: src/chess.lua:1291
+msgid "Multiplayer"
+msgstr "Multijoueur"
+
+#. ~ Chess game mode
+#: src/chess.lua:1294
+msgid "Bot vs Bot"
+msgstr ""
+
+#. ~ Chess: player is in check
+#: src/chess.lua:1814
+msgid "check"
+msgstr "échec"
+
+#. ~ Chess: player has been checkmated
+#: src/chess.lua:1816
+msgid "checkmate"
+msgstr ""
+
+#. ~ Chess: player has resigned
+#: src/chess.lua:1818
+msgid "resigned"
+msgstr ""
+
+#. ~ Chess: player has won
+#: src/chess.lua:1820
+msgid "winner"
+msgstr ""
+
+#. ~ Chess: player has lost
+#: src/chess.lua:1822
+msgid "loser"
+msgstr ""
+
+#. ~ Chess: player has a draw
+#: src/chess.lua:1824
+msgid "draw"
+msgstr ""
+
+#. ~ Chess: Shown when black player can promote a pawn. Space for text is limited.
+#: src/chess.lua:1869
+msgid ""
+"PROMOTION\n"
+"FOR BLACK!"
+msgstr ""
+
+#. ~ Chess: Prompt for player who must select to which piece to promote their pawn. Space for text is limited.
+#: src/chess.lua:1875 src/chess.lua:1891
+msgid "Promote pawn to:"
+msgstr ""
+
+#. ~ Chess: Shown when white player can promote a pawn. Space for text is limited.
+#: src/chess.lua:1886
+msgid ""
+"PROMOTION\n"
+"FOR WHITE!"
+msgstr ""
+
+#. ~ Chess: Shown when white player wants to use the 50-move rule or threefold-repetition rule to claim a draw. Space for text is limited.
+#: src/chess.lua:1904
+msgid ""
+"DRAW CLAIM\n"
+"BY WHITE!"
+msgstr ""
+
+#. ~ Chess: Shown when black player wants to use the 50-move rule or threefold-repetition rule to claim a draw. Space for text is limited.
+#: src/chess.lua:1907
+msgid ""
+"DRAW CLAIM\n"
+"BY BLACK!"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:1914
+msgid ""
+"The player has invoked the 50-move rule for the next move. The next move "
+"might draw the game."
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:1920
+msgid ""
+"The player has invoked the threefold-repetition rule for the next move. The "
+"next move might draw the game."
+msgstr ""
+
+#. ~ Chess button
+#: src/chess.lua:1927
+msgid "New game"
+msgstr "Nouvelle partie"
+
+#. ~ Resign (give up) in Chess
+#: src/chess.lua:1934
+msgid "Resign"
+msgstr ""
+
+#. ~ Chess: Prompt to select a player color
+#: src/chess.lua:1940
+msgid "Select a color:"
+msgstr ""
+
+#. ~ White Chess player
+#: src/chess.lua:1944
+msgid "White"
+msgstr ""
+
+#. ~ Black Chess player
+#: src/chess.lua:1946
+msgid "Black"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:1958
+msgid "Invoke the 50-move rule for your next move"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:1965
+msgid "Invoke the 50-move rule and draw the game"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:1978
+msgid "Invoke the threefold repetition rule and draw the game"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:1985
+msgid "Invoke the threefold repetition rule for your next move"
+msgstr ""
+
+#. ~ Chess message. @1 = opponent name
+#: src/chess.lua:2116 src/chess.lua:2141
+msgid "You have checkmated @1. You win!"
+msgstr ""
+
+#. ~ Chess message. @1 = opponent name
+#: src/chess.lua:2118 src/chess.lua:2143
+msgid "You were checkmated by @1. You lose!"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:2128 src/chess.lua:2153
+msgid "The game ended up in a stalemate! It's a draw!"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:2166
+msgid "The game ended up in a dead position! It's a draw!"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:2180
+msgid ""
+"No piece was captured and no pawn was moved for 75 consecutive moves of each "
+"player. It's a draw!"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:2203 src/chess.lua:3187
+msgid "You have drawn the game by invoking the 50-move rule."
+msgstr ""
+
+#. ~ Chess message. @1 = player name
+#: src/chess.lua:2206 src/chess.lua:3190
+msgid "@1 has drawn the game by invoking the 50-move rule."
+msgstr ""
+
+#. ~ Chess message shown when player has invoked a rule to claim a draw and had to make a game-drawing move but instead made a different move
+#: src/chess.lua:2221 src/chess.lua:2334
+msgid "You have failed to make a game-drawing move. The game continues."
+msgstr ""
+
+#. ~ Chess message shown when player (name = @1) has invoked the 50-move rule to claim a draw and had to make a game-drawing move but instead made a different move
+#: src/chess.lua:2224
+msgid ""
+"@1 made a draw claim using the 50-move rule but it was false. The game "
+"continues."
+msgstr ""
+
+#. ~ Chess message when a fivefold repetition has happened
+#: src/chess.lua:2294
+msgid "The exact same position has occured 5 times. It's a draw!"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:2317 src/chess.lua:3235
+msgid "You have drawn the game by invoking the threefold repetition rule."
+msgstr ""
+
+#. ~ Chess message. @1 = player name
+#: src/chess.lua:2320 src/chess.lua:3238
+msgid "@1 has drawn the game by invoking the threefold repetition rule."
+msgstr ""
+
+#. ~ Chess message shown when player (name = @1) has invoked the threefold repetition rule to claim a draw and had to make a game-drawing move but instead made a different move
+#: src/chess.lua:2337
+msgid ""
+"@1 made a draw claim using the threefold repetition rule but it was false. "
+"The game continues."
+msgstr ""
+
+#: src/chess.lua:2350 src/chess.lua:3479
+msgid "Chess Board"
+msgstr "Echiquier"
+
+#. ~ Chess message when player tries to move with someone else's pieces
+#: src/chess.lua:2444
+msgid "Someone else plays white pieces!"
+msgstr "Quelqu’un d’autre joue les pièces blanches !"
+
+#. ~ Chess message
+#: src/chess.lua:2455 src/chess.lua:2475
+msgid "It's not your turn!"
+msgstr ""
+
+#. ~ Chess message when player tries to move with someone else's pieces
+#: src/chess.lua:2465
+msgid "Someone else plays black pieces!"
+msgstr "Quelqu’un d’autre joue les pièces noires !"
+
+#. ~ Chess message
+#: src/chess.lua:2482
+msgid "Black cannot move first!"
+msgstr ""
+
+#. ~ number of seconds
+#: src/chess.lua:3019
+msgid "@1 s"
+msgstr ""
+
+#. ~ number of minutes and seconds
+#: src/chess.lua:3023
+msgid "@1 min @2 s"
+msgstr ""
+
+#: src/chess.lua:3096
+msgid ""
+"You can't reset the chessboard, a game has been started. Try again in @1."
+msgstr ""
+
+#. ~ Chess message when player tried to resign too early
+#: src/chess.lua:3108
+msgid "Resigning is not possible yet."
+msgstr ""
+
+#. ~ Chess message when player resigned (gave up)
+#: src/chess.lua:3139
+msgid "You have resigned."
+msgstr ""
+
+#. ~ Chess message when player resigned (gave up). @1 = opponent name
+#: src/chess.lua:3142
+msgid "@1 has resigned. You win!"
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:3148
+msgid "You can't resign, you're not playing in this game."
+msgstr ""
+
+#. ~ Chess message
+#: src/chess.lua:3176 src/chess.lua:3223
+msgid "You can't claim a draw, it's not your turn!"
+msgstr ""
+
+#: src/chess.lua:3260
+msgid "You're only a spectator in this game of Chess."
+msgstr ""
+
+#. ~ Chess message when player tried to promote a pawn when it's not legal
+#: src/chess.lua:3267
+msgid "This isn't the time for promotion."
+msgstr ""
+
+#. ~ Chess message when player tried to promote a pawn when it's not their turn
+#: src/chess.lua:3271 src/chess.lua:3278
+msgid "It's not your turn! This promotion is meant for the other player."
+msgstr ""
+
+#. ~ Shown when player tried to dig a chessboard but is not allowed to. @1 = time
+#: src/chess.lua:3326
+msgid ""
+"You can't dig the chessboard, a game has been started. Reset it first or dig "
+"it again in @1."
+msgstr ""
+
+#. ~ Shown when player tried to dig a chessboard but is not allowed to. @1 = time
+#: src/chess.lua:3332
+msgid ""
+"You can't dig the chessboard, a game has been started. Try it again in @1."
+msgstr ""
+
+#. ~ Chess board tooltip
+#: src/chess.lua:3497
+msgid "Play a game of Chess against another player or the computer"
+msgstr ""
+
+#. ~ chess piece
+#: src/chess.lua:3606
+msgid "White Pawn"
+msgstr "Pion blanc"
+
+#. ~ chess piece
+#: src/chess.lua:3608
+msgid "Black Pawn"
+msgstr "Pion noir"
+
+#. ~ chess piece
+#: src/chess.lua:3611
+msgid "White Rook"
+msgstr "Tour blanche"
+
+#. ~ chess piece
+#: src/chess.lua:3613
+msgid "Black Rook"
+msgstr "Tour noire"
+
+#. ~ chess piece
+#: src/chess.lua:3616
+msgid "White Knight"
+msgstr "Cavalier blanc"
+
+#. ~ chess piece
+#: src/chess.lua:3618
+msgid "Black Knight"
+msgstr "Cavalier noir"
+
+#. ~ chess piece
+#: src/chess.lua:3621
+msgid "White Bishop"
+msgstr "Fou blanc"
+
+#. ~ chess piece
+#: src/chess.lua:3623
+msgid "Black Bishop"
+msgstr "Fou noir"
+
+#. ~ chess piece
+#: src/chess.lua:3626
+msgid "White Queen"
+msgstr "Reine blanche"
+
+#. ~ chess piece
+#: src/chess.lua:3628
+msgid "Black Queen"
+msgstr "Reine noire"
+
+#. ~ chess piece
+#: src/chess.lua:3631
+msgid "White King"
+msgstr "Roi blanc"
+
+#. ~ chess piece
+#: src/chess.lua:3633
+msgid "Black King"
+msgstr "Roi noir"
+
+#: src/chess.lua:3899
+msgid "Computer"
+msgstr ""
+
+#. ~ cauldron hint
+#: src/cooking.lua:8
+msgid "Light a fire below to heat it up"
+msgstr ""
+
+#. ~ cauldron hint
+#: src/cooking.lua:10
+msgid "Use a bowl to eat the soup"
+msgstr "Utilisez un bol pour boire la soupe"
+
+#. ~ cauldron hint
+#: src/cooking.lua:12
+msgid "Drop foods inside to make a soup"
+msgstr "Placez des ingrédients à l’intérieur pour faire une soupe"
+
+#: src/cooking.lua:15
+msgid "Cauldron (empty)"
+msgstr "Chaudron (vide)"
+
+#: src/cooking.lua:16
+msgid "Cauldron (cold water)"
+msgstr ""
+
+#: src/cooking.lua:17
+msgid "Cauldron (cold river water)"
+msgstr ""
+
+#: src/cooking.lua:18
+msgid "Cauldron (cold soup)"
+msgstr ""
+
+#: src/cooking.lua:19
+msgid "Cauldron (boiling water)"
+msgstr ""
+
+#: src/cooking.lua:20
+msgid "Cauldron (boiling river water)"
+msgstr ""
+
+#: src/cooking.lua:21
+msgid "Cauldron (boiling soup)"
+msgstr ""
+
+#: src/cooking.lua:335
+msgid "Cauldron"
+msgstr "Chaudron"
+
+#. ~ Cauldron tooltip
+#: src/cooking.lua:337
+msgid "For storing water and cooking soup"
+msgstr ""
+
+#: src/cooking.lua:354
+msgid "Cauldron with Water (cold)"
+msgstr ""
+
+#: src/cooking.lua:368
+msgid "Cauldron with River Water (cold)"
+msgstr ""
+
+#: src/cooking.lua:382
+msgid "Cauldron with Soup (cold)"
+msgstr ""
+
+#: src/cooking.lua:403
+msgid "Cauldron with Water (boiling)"
+msgstr ""
+
+#: src/cooking.lua:428
+msgid "Cauldron with River Water (boiling)"
+msgstr ""
+
+#: src/cooking.lua:455
+msgid "Cauldron with Soup (boiling)"
+msgstr ""
+
+#. ~ Item that can hold soup
+#: src/cooking.lua:491
+msgid "Bowl"
+msgstr "Bol"
+
+#: src/cooking.lua:498
+msgid "Bowl of soup"
+msgstr "Bol de soupe"
+
+#. ~ Enchantment
+#: src/enchanting.lua:32 src/enchanting.lua:76
+msgid "Efficiency"
+msgstr "Efficacité"
+
+#. ~ Enchantment
+#: src/enchanting.lua:34 src/enchanting.lua:77
+msgid "Durability"
+msgstr "Durabilité"
+
+#. ~ Enchantment
+#: src/enchanting.lua:36 src/enchanting.lua:78
+msgid "Sharpness"
+msgstr "Tranchant"
+
+#. ~ Tooltip for enchantment, in format "<enchantment name> (+<bonus>%)", e.g. "Efficiency (+5%)"
+#: src/enchanting.lua:41 src/enchanting.lua:43
+msgid "@1 (+@2%)"
+msgstr ""
+
+#. ~ Sharpness enchantment
+#: src/enchanting.lua:99
+msgid "Your weapon inflicts more damage"
+msgstr "Votre arme inflige plus de dégâts"
+
+#. ~ Durability enchantment
+#: src/enchanting.lua:101
+msgid "Your tool lasts longer"
+msgstr "Votre outil dure plus longtemps"
+
+#. ~ Efficiency enchantment
+#: src/enchanting.lua:103
+msgid "Your tool digs faster"
+msgstr "Votre outil creuse plus vite"
+
+#: src/enchanting.lua:189 src/enchanting.lua:241
+msgid "Enchantment Table"
+msgstr "Table d’enchantements"
+
+#. ~ Enchantment table tooltip
+#: src/enchanting.lua:243
+msgid "Enchant your tools with mese crystals"
+msgstr ""
+
+#. ~ Enchanted tool description, e.g. "Enchanted Diamond Sword". @1 is the original tool name, @2 is the enchantment text, e.g. "Durability (+20%)"
+#: src/enchanting.lua:388 src/enchanting.lua:516
+msgid ""
+"Enchanted @1\n"
+"@2"
+msgstr ""
+
+#. ~ Enchanted tool description, e.g. "Enchanted Diamond Sword"
+#: src/enchanting.lua:390 src/enchanting.lua:517
+msgid "Enchanted @1"
+msgstr ""
+
+#: src/hive.lua:9
+msgid "The bees are busy making honey."
+msgstr ""
+
+#: src/hive.lua:10
+msgid "The bees are looking for flowers."
+msgstr ""
+
+#: src/hive.lua:11
+msgid "The bees want to pollinate more flowers."
+msgstr ""
+
+#: src/hive.lua:12
+msgid "The bees are idle."
+msgstr ""
+
+#: src/hive.lua:13
+msgid "The bees are resting."
+msgstr ""
+
+#. ~ Beehive
+#: src/hive.lua:74 src/hive.lua:124
+msgid "Artificial Hive"
+msgstr "Ruche artificielle"
+
+#. ~ Tooltip of artificial hive
+#: src/hive.lua:126
+msgid "Bees live here and produce honey"
+msgstr ""
+
+#: src/hive.lua:168
+msgid "Honey"
+msgstr "Miel"
+
+#. ~ Tooltip for honey in crafting guide of the Unified Inventory mod
+#: src/hive.lua:194
+msgid "Made by bees"
+msgstr ""
+
+#: src/itemframe.lua:13
+msgid "Item Frame"
+msgstr "Cadre"
+
+#. ~ Item frame infotext. @1 = item frame name, @2 = owner name (player)
+#: src/itemframe.lua:81 src/itemframe.lua:97
+msgid "@1 (owned by @2)"
+msgstr "@1 (propriété de @2)"
+
+#. ~ Item frame tooltip
+#: src/itemframe.lua:169
+msgid "For presenting a single item"
+msgstr ""
+
+#. ~ Used in the mailbox donor list. Will be displayed as item icon followed by this string. @1 = item count
+#: src/mailbox.lua:65
+msgid "× @1"
+msgstr ""
+
+#: src/mailbox.lua:73 src/mailbox.lua:185
+msgid "Mailbox"
+msgstr "Boite aux lettres"
+
+#. ~ Caption of the list of players who gave items in a mailbox
+#: src/mailbox.lua:75
+msgid "Last donators"
+msgstr "Derniers donateurs"
+
+#. ~ Mailbox menu title. @1 = player name
+#: src/mailbox.lua:90
+msgid ""
+"Send your goods to\n"
+"@1"
+msgstr ""
+"Envoyer vos biens à\n"
+"@1"
+
+#. ~ Mailbox infotext. @1 = owner name
+#: src/mailbox.lua:117
+msgid "@1's Mailbox"
+msgstr "Boite aux lettres de @1"
+
+#: src/mailbox.lua:142
+msgid "The mailbox is full."
+msgstr "La boite aux lettres est pleine."
+
+#. ~ Mailbox tooltip
+#: src/mailbox.lua:187
+msgid "Lets other players give you things"
+msgstr ""
+
+#. ~ Pressure plate tooltip
+#: src/mechanisms.lua:180
+msgid "Opens doors when stepped on"
+msgstr ""
+
+#: src/mechanisms.lua:219
+msgid "Wooden Pressure Plate"
+msgstr "Plaque de pression en bois"
+
+#: src/mechanisms.lua:225
+msgid "Stone Pressure Plate"
+msgstr "Plaque de pression en pierre"
+
+#: src/mechanisms.lua:229
+msgid "Lever"
+msgstr "Levier"
+
+#. ~ Lever tooltip
+#: src/mechanisms.lua:231
+msgid "Opens doors when pulled"
+msgstr ""
+
+#: src/nodes.lua:21
+msgid "Bamboo Frame"
+msgstr "Cadre en bambou"
+
+#: src/nodes.lua:31
+msgid "Chainlink"
+msgstr "Maillon de chaîne"
+
+#: src/nodes.lua:40
+msgid "Rusty Iron Bars"
+msgstr "Barreaux en fer rouillé"
+
+#: src/nodes.lua:52
+msgid "Wood Frame"
+msgstr "Cadre en bois"
+
+#: src/nodes.lua:64
+msgid "Barricade"
+msgstr "Barricade"
+
+#: src/nodes.lua:77
+msgid "Barrel"
+msgstr "Tonneau"
+
+#: src/nodes.lua:109
+msgid "Wooden Cabinet"
+msgstr "Meuble en bois"
+
+#. ~ Tooltip for block that stores items
+#: src/nodes.lua:111 src/nodes.lua:139 src/nodes.lua:161
+msgid "24 inventory slots"
+msgstr ""
+
+#: src/nodes.lua:120
+msgid "Half Wooden Cabinet"
+msgstr "Demi meuble en bois"
+
+#. ~ Tooltip for block that stores items
+#: src/nodes.lua:123
+msgid "8 inventory slots"
+msgstr ""
+
+#: src/nodes.lua:138 src/nodes.lua:155
+msgid "Plain Shelf"
+msgstr ""
+
+#: src/nodes.lua:160
+msgid "Multi Shelf"
+msgstr "Étagères multiple"
+
+#: src/nodes.lua:170
+msgid "Candle"
+msgstr "Bougie"
+
+#: src/nodes.lua:202
+msgid "Chair"
+msgstr "Chaise"
+
+#: src/nodes.lua:226
+msgid "Cobweb"
+msgstr "Toile d’araignée"
+
+#: src/nodes.lua:239
+msgid "Red Curtain"
+msgstr "Rideaux rouge"
+
+#: src/nodes.lua:323
+msgid "Cushion"
+msgstr "Coussin"
+
+#: src/nodes.lua:338
+msgid "Cushion Block"
+msgstr "Bloc de coussin"
+
+#: src/nodes.lua:351
+msgid "Japanese Door"
+msgstr "Porte japonaise"
+
+#: src/nodes.lua:359
+msgid "Prison Door"
+msgstr "Porte de prison"
+
+#: src/nodes.lua:373
+msgid "Rusty Prison Door"
+msgstr "Barreaux de prison rouillés"
+
+#: src/nodes.lua:387
+msgid "Screen Door"
+msgstr "Porte avec moustiquaire"
+
+#: src/nodes.lua:395
+msgid "Paper Door"
+msgstr ""
+
+#: src/nodes.lua:403
+msgid "Woodglass Door"
+msgstr "Porte vitrée"
+
+#: src/nodes.lua:448 src/nodes.lua:469
+msgid "Ender Chest"
+msgstr "Coffre de l’End"
+
+#. ~ Ender chest tooltip
+#: src/nodes.lua:450
+msgid "Interdimensional inventory"
+msgstr ""
+
+#: src/nodes.lua:479
+msgid "Ivy"
+msgstr "Lierre"
+
+#: src/nodes.lua:493
+msgid "Weathercock"
+msgstr ""
+
+#: src/nodes.lua:506
+msgid "Lantern"
+msgstr "Lanterne"
+
+#: src/nodes.lua:581
+msgid "Hanging Lantern"
+msgstr ""
+
+#: src/nodes.lua:625
+msgid "Steel Lattice Light Box"
+msgstr ""
+
+#: src/nodes.lua:626
+msgid "Wooden Cross Light Box"
+msgstr ""
+
+#: src/nodes.lua:627
+msgid "Wooden Rhombus Light Box"
+msgstr ""
+
+#: src/nodes.lua:644
+msgid "Potted White Dandelion"
+msgstr "Pissenlit blanc en pot"
+
+#: src/nodes.lua:645
+msgid "Potted Yellow Dandelion"
+msgstr "Pissenlit jaune en pot"
+
+#: src/nodes.lua:646
+#, fuzzy
+msgid "Potted Blue Geranium"
+msgstr "Géranium en pot"
+
+#: src/nodes.lua:647
+#, fuzzy
+msgid "Potted Red Rose"
+msgstr "Rose en pot"
+
+#: src/nodes.lua:648
+#, fuzzy
+msgid "Potted Orange Tulip"
+msgstr "Tulipe en pot"
+
+#: src/nodes.lua:649
+msgid "Potted Viola"
+msgstr "Violette en pot"
+
+#: src/nodes.lua:651
+#, fuzzy
+msgid "Potted Black Tulip"
+msgstr "Tulipe en pot"
+
+#: src/nodes.lua:652
+#, fuzzy
+msgid "Potted Green Chrysanthemum"
+msgstr "Géranium en pot"
+
+#: src/nodes.lua:691
+msgid "Painting"
+msgstr "Tableau"
+
+#: src/nodes.lua:766
+msgid "Garden Stone Path"
+msgstr "Chemin de pierres de jardin"
+
+#: src/nodes.lua:796
+msgid "Cactus Brick"
+msgstr "Brique en cactus"
+
+#: src/nodes.lua:797
+msgid "Coal Stone Tile"
+msgstr "Carreau en charbon et pierre"
+
+#: src/nodes.lua:798
+msgid "Polished Desert Stone Block"
+msgstr ""
+
+#: src/nodes.lua:799
+msgid "Hardened Clay"
+msgstr "Argile durcie"
+
+#: src/nodes.lua:800
+msgid "Moon Brick"
+msgstr "Brique lunaire"
+
+#: src/nodes.lua:801
+msgid "Runestone"
+msgstr "Pierre runique"
+
+#: src/nodes.lua:805
+msgid "Polished Stone Block"
+msgstr ""
+
+#: src/nodes.lua:810
+msgid "Packed Ice"
+msgstr "Glace compactée"
+
+#: src/nodes.lua:817
+msgid "Wooden Tile"
+msgstr "Carreau en bois"
+
+#. ~ Furniture
+#: src/nodes.lua:826
+msgid "Table"
+msgstr "Table"
+
+#: src/nodes.lua:837
+msgid "Tatami"
+msgstr "Tatami"
+
+#: src/nodes.lua:847
+msgid "Trampoline"
+msgstr "Trampoline"
+
+#: src/nodes.lua:878
+msgid "Television"
+msgstr "Télévision"
+
+#: src/nodes.lua:897
+msgid "Wood Framed Glass"
+msgstr "Verre encadré par du bois"
+
+#: src/nodes.lua:957
+msgid "Radio"
+msgstr ""
+
+#. ~ as in "loudspeaker"
+#: src/nodes.lua:959
+msgid "Speaker"
+msgstr ""
+
+#: src/rope.lua:123
+msgid "Rope"
+msgstr "Corde"
+
+#. ~ Part of a block name for a tiny slab with 1/16 height and 1/4 area. E.g. "Stone Nanoslab"
+#: src/workbench.lua:31
+msgid "Nanoslab"
+msgstr ""
+
+#. ~ Block name for a tiny slab with 1/16 height and 1/4 area. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:33
+msgid "@1 Nanoslab"
+msgstr ""
+
+#. ~ Part of a block name for a tiny slab with 1/16 height and 1/2 area. E.g. "Stone Micropanel"
+#: src/workbench.lua:36
+msgid "Micropanel"
+msgstr ""
+
+#. ~ Block name for a tiny slab with 1/16 height and 1/2 area. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:38
+msgid "@1 Micropanel"
+msgstr ""
+
+#. ~ Part of a block name for a tiny slab with 1/16 height and full area. E.g. "Stone Microslab"
+#: src/workbench.lua:41
+msgid "Microslab"
+msgstr ""
+
+#. ~ Block name for a tiny slab with 1/16 height and full area. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:43
+msgid "@1 Microslab"
+msgstr ""
+
+#. ~ Part of a block name of a thin stair, a stair-like block where the "steps" are thinner. E.g. "Stone Thin Stair"
+#: src/workbench.lua:46
+msgid "Thin Stair"
+msgstr ""
+
+#. ~ Block name of a thin stair, a stair-like block where the "steps" are thinner. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:48
+msgid "@1 Thin Stair"
+msgstr ""
+
+#. ~ Part of a block name of a tiny cube-shaped block with 1/2 the side length of a full block. E.g. "Stone Cube"
+#: src/workbench.lua:51
+msgid "Cube"
+msgstr ""
+
+#. ~ Block name of a tiny cube-shaped block with 1/2 the side length of a full block. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:53
+msgid "@1 Cube"
+msgstr ""
+
+#. ~ Part of a block name of a block with 1/2 the height and 1/2 the length of a full block. It's like a slab that was cut in half. E.g. "Stone Panel"
+#: src/workbench.lua:56
+msgid "Panel"
+msgstr ""
+
+#. ~ Block name of a block with 1/2 the height and 1/2 the length of a full block. It's like a slab that was cut in half. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:58
+msgid "@1 Panel"
+msgstr ""
+
+#. ~ Part of block name of a block with 1/2 the height of a full block. E.g. "Stone Slab"
+#: src/workbench.lua:61
+msgid "Slab"
+msgstr ""
+
+#. ~ Block name of a stair-like block variant with a lower piece cut away. E.g. "Stone Double Panel"
+#: src/workbench.lua:66
+msgid "Double Panel"
+msgstr ""
+
+#. ~ Block name of a stair-like block variant with a lower piece cut away. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:68
+msgid "@1 Double Panel"
+msgstr ""
+
+#. ~ Part of a block name for a stair where 1/2 has been cut away sideways. Can be obtained by work bench. E.g. "Stone Half-Stair"
+#: src/workbench.lua:72
+msgid "Half-Stair"
+msgstr ""
+
+#. ~ Block name of a stair where 1/2 has been cut away sideways. Can be obtained by work bench. (@1 = base block name, e.g. "Stone")
+#: src/workbench.lua:74
+msgid "@1 Half-Stair"
+msgstr ""
+
+#. ~ Block name of a 'traditional' stair-shaped block. E.g. "Stone Stair"
+#: src/workbench.lua:78
+msgid "Stair"
+msgstr ""
+
+#. ~ Label shown in work bench menu where you can cut a block to create smaller versions of it
+#: src/workbench.lua:167
+msgid "Cut"
+msgstr "Couper"
+
+#. ~ Label shown in work bench menu where you can repair an item
+#: src/workbench.lua:169
+msgid "Repair"
+msgstr "Réparer"
+
+#. ~ Button in work bench menu for the crafting grid
+#: src/workbench.lua:173
+msgid "Crafting"
+msgstr "Fabrication"
+
+#. ~ Button in work bench menu for its inventory
+#: src/workbench.lua:175
+msgid "Storage"
+msgstr "Stockage"
+
+#. ~ Button to return to main page in work bench menu
+#: src/workbench.lua:196 src/workbench.lua:204
+msgid "Back"
+msgstr "Retour"
+
+#: src/workbench.lua:236 src/workbench.lua:375
+msgid "Work Bench"
+msgstr "Atelier"
+
+#. ~ Work bench tooltip
+#: src/workbench.lua:377
+msgid ""
+"For cutting blocks, repairing tools with a hammer, crafting and storing items"
+msgstr ""
+
+#. ~ Hammer tooltip
+#: src/workbench.lua:668
+msgid "Repairs tools at the work bench"
+msgstr ""
+
+#: src/workbench.lua:756
+msgid "Hammer"
+msgstr "Marteau"

@@ -1,0 +1,14 @@
+Luanti/Minetest mod: more_fire
+-----------------------------------
+
+Authors of model file:
+Nathan Salapat
+
+contained_campfire.obj
+
+License of media (models): CC BY-SA
+
+Authors of textures:
+minetest game and contributors
+
+cc-by-sa 3.0

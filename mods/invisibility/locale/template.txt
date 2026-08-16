@@ -1,0 +1,16 @@
+# textdomain: invisibility
+
+# Items
+Invisibility Potion=
+
+# Messages
+>>> You are already invisible!=
+>>> You have 10 seconds before invisibility wears off!=
+
+# Command
+Make player invisible=
+Player @1 is offline!=
+Player @1 is now @2!=
+
+visible=
+invisible=

@@ -1,0 +1,38 @@
+[Main]
+# Timeout in seconds after which fish escapes.
+simple_fishing_bob_timeout (Fish timeout) float 5.0 0.0 10000.0
+
+# Interval in seconds for all related checks.
+simple_fishing_interval (Interval) float 0.5 0.01 100.0
+
+# Default water node that's used for fishing.
+simple_fishing_water_node (Default water node) string "default:water_source"
+
+# Global multiplier for catch chance.
+simple_fishing_global_mult (Global chance multiplier) float 1.0 0.0 100.0
+
+[Effects]
+# Gain of splash sound.
+simple_fishing_splash_gain (Splash sound gain) float 1.3 0.0 50.0
+
+# Visual size of fishing hook.
+simple_fishing_hook_visual_size (Hook size) float 0.7 0.0 100.0
+
+[Defaults]
+# Minimum depth in nodes for fishing.
+simple_fishing_min_depth (Minimum water depth) int 4 0 200
+
+# Default fishing line distance if not defined.
+simple_fishing_default_distance (Default max line distance) float 24 0 200
+
+# Default min Y for fish if not defined.
+simple_fishing_default_ymin (Default min Y) int -31000 -31000 31000
+
+# Default max Y for fish if not defined.
+simple_fishing_default_ymax (Default max Y) int 31000 -31000 31000
+
+# Default min heat for fish if not defined.
+simple_fishing_default_heatmin (Default min heat) float -100.0 -100.0 100.0
+
+# Default max heat for fish if not defined.
+simple_fishing_default_heatmax (Default max heat) float 100.0 -100.0 100.0

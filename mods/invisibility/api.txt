@@ -1,0 +1,27 @@
+
+Toggling Invisibility
+---------------------
+
+Any 3rd party mods can use the invisibility.invisible function to hide a player, but only
+the potion itself adds a timer to the function with a 10 second warning before becoming
+visible once again e.g.
+
+invisibility.invisible(player, [true for invisible, false for visible])
+
+
+Mods can also check if a player is invisible by using the following function, which will
+return True if they can be seen and False when invisible.
+
+invisibility.is_visible(player_name)
+
+
+Server owners can also use the /vanish command to hide either themselves or another
+player in their worlds e.g.
+
+/vanish						-- toggle their own visibility
+
+/vanish <player name>		-- toggle the visibility of another player.
+
+
+Players can alter the 'invisibility.effect_time' setting to change the amount of time
+they remain invisible [default is 180 seconds], with 10 second warning before running out.

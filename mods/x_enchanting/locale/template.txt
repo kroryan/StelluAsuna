@@ -1,0 +1,17 @@
+# textdomain: x_enchanting
+Sharpness=
+Looting=
+Fortune=
+Unbreaking=
+Efficiency=
+Silk Touch=
+Curse of Vanishing=
+Knockback=
+Power=
+Punch=
+Infinity=
+Enchanted=
+Enchant=
+Enchanting Table=
+owned by=
+Scroll of Enchantments=

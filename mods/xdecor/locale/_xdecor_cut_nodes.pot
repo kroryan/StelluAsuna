@@ -1,0 +1,3090 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the xdecor package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: xdecor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-10-18 19:22+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/_locale_workbench.lua:18
+msgid "Barrel Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:19
+msgid "Barrel Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:20
+msgid "Inner Barrel Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:21
+msgid "Outer Barrel Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:22
+msgid "Barrel Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:23
+msgid "Barrel Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:24
+msgid "Barrel Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:25
+msgid "Barrel Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:26
+msgid "Barrel Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:27
+msgid "Barrel Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:28
+msgid "Barrel Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:29
+msgid "Barrel Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:30
+msgid "Cactus Brick Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:31
+msgid "Cactus Brick Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:32
+msgid "Inner Cactus Brick Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:33
+msgid "Outer Cactus Brick Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:34
+msgid "Cactus Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:35
+msgid "Cactus Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:36
+msgid "Cactus Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:37
+msgid "Cactus Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:38
+msgid "Cactus Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:39
+msgid "Cactus Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:40
+msgid "Cactus Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:41
+msgid "Cactus Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:42
+msgid "Coal Stone Tile Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:43
+msgid "Coal Stone Tile Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:44
+msgid "Inner Coal Stone Tile Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:45
+msgid "Outer Coal Stone Tile Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:46
+msgid "Coal Stone Tile Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:47
+msgid "Coal Stone Tile Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:48
+msgid "Coal Stone Tile Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:49
+msgid "Coal Stone Tile Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:50
+msgid "Coal Stone Tile Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:51
+msgid "Coal Stone Tile Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:52
+msgid "Coal Stone Tile Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:53
+msgid "Coal Stone Tile Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:54
+msgid "Polished Desert Stone Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:55
+msgid "Polished Desert Stone Block Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:56
+msgid "Inner Polished Desert Stone Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:57
+msgid "Outer Polished Desert Stone Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:58
+msgid "Polished Desert Stone Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:59
+msgid "Polished Desert Stone Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:60
+msgid "Polished Desert Stone Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:61
+msgid "Polished Desert Stone Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:62
+msgid "Polished Desert Stone Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:63
+msgid "Polished Desert Stone Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:64
+msgid "Polished Desert Stone Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:65
+msgid "Polished Desert Stone Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:66
+msgid "Hardened Clay Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:67
+msgid "Hardened Clay Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:68
+msgid "Inner Hardened Clay Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:69
+msgid "Outer Hardened Clay Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:70
+msgid "Hardened Clay Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:71
+msgid "Hardened Clay Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:72
+msgid "Hardened Clay Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:73
+msgid "Hardened Clay Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:74
+msgid "Hardened Clay Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:75
+msgid "Hardened Clay Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:76
+msgid "Hardened Clay Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:77
+msgid "Hardened Clay Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:78
+msgid "Moon Brick Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:79
+msgid "Moon Brick Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:80
+msgid "Inner Moon Brick Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:81
+msgid "Outer Moon Brick Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:82
+msgid "Moon Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:83
+msgid "Moon Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:84
+msgid "Moon Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:85
+msgid "Moon Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:86
+msgid "Moon Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:87
+msgid "Moon Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:88
+msgid "Moon Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:89
+msgid "Moon Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:90
+msgid "Packed Ice Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:91
+msgid "Packed Ice Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:92
+msgid "Inner Packed Ice Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:93
+msgid "Outer Packed Ice Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:94
+msgid "Packed Ice Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:95
+msgid "Packed Ice Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:96
+msgid "Packed Ice Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:97
+msgid "Packed Ice Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:98
+msgid "Packed Ice Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:99
+msgid "Packed Ice Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:100
+msgid "Packed Ice Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:101
+msgid "Packed Ice Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:102
+msgid "Runestone Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:103
+msgid "Runestone Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:104
+msgid "Inner Runestone Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:105
+msgid "Outer Runestone Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:106
+msgid "Runestone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:107
+msgid "Runestone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:108
+msgid "Runestone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:109
+msgid "Runestone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:110
+msgid "Runestone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:111
+msgid "Runestone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:112
+msgid "Runestone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:113
+msgid "Runestone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:114
+msgid "Polished Stone Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:115
+msgid "Polished Stone Block Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:116
+msgid "Inner Polished Stone Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:117
+msgid "Outer Polished Stone Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:118
+msgid "Polished Stone Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:119
+msgid "Polished Stone Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:120
+msgid "Polished Stone Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:121
+msgid "Polished Stone Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:122
+msgid "Polished Stone Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:123
+msgid "Polished Stone Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:124
+msgid "Polished Stone Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:125
+msgid "Polished Stone Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:126
+msgid "Wooden Tile Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:127
+msgid "Wooden Tile Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:128
+msgid "Inner Wooden Tile Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:129
+msgid "Outer Wooden Tile Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:130
+msgid "Wooden Tile Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:131
+msgid "Wooden Tile Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:132
+msgid "Wooden Tile Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:133
+msgid "Wooden Tile Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:134
+msgid "Wooden Tile Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:135
+msgid "Wooden Tile Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:136
+msgid "Wooden Tile Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:137
+msgid "Wooden Tile Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:138
+msgid "Wood Framed Glass Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:139
+msgid "Inner Wood Framed Glass Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:140
+msgid "Outer Wood Framed Glass Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:141
+msgid "Wood Framed Glass Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:142
+msgid "Wood Framed Glass Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:143
+msgid "Wood Framed Glass Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:144
+msgid "Wood Framed Glass Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:145
+msgid "Wood Framed Glass Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:146
+msgid "Wood Framed Glass Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:147
+msgid "Wood Framed Glass Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:148
+msgid "Wood Framed Glass Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:149
+msgid "Wood Framed Glass Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:150
+msgid "Acacia Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:151
+msgid "Acacia Tree Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:152
+msgid "Inner Acacia Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:153
+msgid "Outer Acacia Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:154
+msgid "Acacia Tree Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:155
+msgid "Acacia Tree Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:156
+msgid "Acacia Tree Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:157
+msgid "Acacia Tree Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:158
+msgid "Acacia Tree Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:159
+msgid "Acacia Tree Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:160
+msgid "Acacia Tree Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:161
+msgid "Acacia Tree Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:162
+msgid "Acacia Wood Planks Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:163
+msgid "Acacia Wood Planks Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:164
+msgid "Acacia Wood Planks Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:165
+msgid "Acacia Wood Planks Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:166
+msgid "Acacia Wood Planks Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:167
+msgid "Acacia Wood Planks Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:168
+msgid "Acacia Wood Planks Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:169
+msgid "Acacia Wood Planks Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:170
+msgid "Aspen Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:171
+msgid "Aspen Tree Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:172
+msgid "Inner Aspen Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:173
+msgid "Outer Aspen Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:174
+msgid "Aspen Tree Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:175
+msgid "Aspen Tree Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:176
+msgid "Aspen Tree Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:177
+msgid "Aspen Tree Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:178
+msgid "Aspen Tree Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:179
+msgid "Aspen Tree Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:180
+msgid "Aspen Tree Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:181
+msgid "Aspen Tree Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:182
+msgid "Aspen Wood Planks Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:183
+msgid "Aspen Wood Planks Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:184
+msgid "Aspen Wood Planks Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:185
+msgid "Aspen Wood Planks Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:186
+msgid "Aspen Wood Planks Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:187
+msgid "Aspen Wood Planks Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:188
+msgid "Aspen Wood Planks Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:189
+msgid "Aspen Wood Planks Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:190
+msgid "Brick Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:191
+msgid "Brick Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:192
+msgid "Brick Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:193
+msgid "Brick Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:194
+msgid "Brick Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:195
+msgid "Brick Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:196
+msgid "Brick Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:197
+msgid "Brick Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:198
+msgid "Bronze Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:199
+msgid "Bronze Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:200
+msgid "Bronze Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:201
+msgid "Bronze Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:202
+msgid "Bronze Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:203
+msgid "Bronze Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:204
+msgid "Bronze Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:205
+msgid "Bronze Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:206
+msgid "Cactus Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:207
+msgid "Cactus Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:208
+msgid "Inner Cactus Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:209
+msgid "Outer Cactus Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:210
+msgid "Cactus Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:211
+msgid "Cactus Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:212
+msgid "Cactus Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:213
+msgid "Cactus Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:214
+msgid "Cactus Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:215
+msgid "Cactus Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:216
+msgid "Cactus Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:217
+msgid "Cactus Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:218
+msgid "Coal Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:219
+msgid "Coal Block Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:220
+msgid "Inner Coal Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:221
+msgid "Outer Coal Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:222
+msgid "Coal Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:223
+msgid "Coal Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:224
+msgid "Coal Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:225
+msgid "Coal Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:226
+msgid "Coal Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:227
+msgid "Coal Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:228
+msgid "Coal Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:229
+msgid "Coal Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:230
+msgid "Cobblestone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:231
+msgid "Cobblestone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:232
+msgid "Cobblestone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:233
+msgid "Cobblestone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:234
+msgid "Cobblestone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:235
+msgid "Cobblestone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:236
+msgid "Cobblestone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:237
+msgid "Cobblestone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:238
+msgid "Copper Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:239
+msgid "Copper Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:240
+msgid "Copper Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:241
+msgid "Copper Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:242
+msgid "Copper Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:243
+msgid "Copper Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:244
+msgid "Copper Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:245
+msgid "Copper Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:246
+msgid "Brown Coral Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:247
+msgid "Brown Coral Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:248
+msgid "Inner Brown Coral Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:249
+msgid "Outer Brown Coral Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:250
+msgid "Brown Coral Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:251
+msgid "Brown Coral Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:252
+msgid "Brown Coral Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:253
+msgid "Brown Coral Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:254
+msgid "Brown Coral Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:255
+msgid "Brown Coral Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:256
+msgid "Brown Coral Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:257
+msgid "Brown Coral Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:258
+msgid "Orange Coral Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:259
+msgid "Orange Coral Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:260
+msgid "Inner Orange Coral Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:261
+msgid "Outer Orange Coral Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:262
+msgid "Orange Coral Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:263
+msgid "Orange Coral Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:264
+msgid "Orange Coral Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:265
+msgid "Orange Coral Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:266
+msgid "Orange Coral Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:267
+msgid "Orange Coral Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:268
+msgid "Orange Coral Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:269
+msgid "Orange Coral Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:270
+msgid "Coral Skeleton Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:271
+msgid "Coral Skeleton Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:272
+msgid "Inner Coral Skeleton Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:273
+msgid "Outer Coral Skeleton Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:274
+msgid "Coral Skeleton Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:275
+msgid "Coral Skeleton Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:276
+msgid "Coral Skeleton Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:277
+msgid "Coral Skeleton Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:278
+msgid "Coral Skeleton Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:279
+msgid "Coral Skeleton Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:280
+msgid "Coral Skeleton Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:281
+msgid "Coral Skeleton Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:282
+msgid "Desert Cobblestone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:283
+msgid "Desert Cobblestone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:284
+msgid "Desert Cobblestone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:285
+msgid "Desert Cobblestone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:286
+msgid "Desert Cobblestone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:287
+msgid "Desert Cobblestone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:288
+msgid "Desert Cobblestone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:289
+msgid "Desert Cobblestone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:290
+msgid "Desert Sandstone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:291
+msgid "Desert Sandstone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:292
+msgid "Desert Sandstone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:293
+msgid "Desert Sandstone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:294
+msgid "Desert Sandstone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:295
+msgid "Desert Sandstone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:296
+msgid "Desert Sandstone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:297
+msgid "Desert Sandstone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:298
+msgid "Desert Sandstone Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:299
+msgid "Desert Sandstone Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:300
+msgid "Desert Sandstone Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:301
+msgid "Desert Sandstone Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:302
+msgid "Desert Sandstone Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:303
+msgid "Desert Sandstone Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:304
+msgid "Desert Sandstone Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:305
+msgid "Desert Sandstone Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:306
+msgid "Desert Sandstone Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:307
+msgid "Desert Sandstone Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:308
+msgid "Desert Sandstone Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:309
+msgid "Desert Sandstone Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:310
+msgid "Desert Sandstone Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:311
+msgid "Desert Sandstone Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:312
+msgid "Desert Sandstone Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:313
+msgid "Desert Sandstone Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:314
+msgid "Desert Stone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:315
+msgid "Desert Stone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:316
+msgid "Desert Stone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:317
+msgid "Desert Stone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:318
+msgid "Desert Stone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:319
+msgid "Desert Stone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:320
+msgid "Desert Stone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:321
+msgid "Desert Stone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:322
+msgid "Desert Stone Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:323
+msgid "Desert Stone Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:324
+msgid "Desert Stone Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:325
+msgid "Desert Stone Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:326
+msgid "Desert Stone Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:327
+msgid "Desert Stone Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:328
+msgid "Desert Stone Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:329
+msgid "Desert Stone Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:330
+msgid "Desert Stone Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:331
+msgid "Desert Stone Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:332
+msgid "Desert Stone Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:333
+msgid "Desert Stone Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:334
+msgid "Desert Stone Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:335
+msgid "Desert Stone Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:336
+msgid "Desert Stone Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:337
+msgid "Desert Stone Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:338
+msgid "Diamond Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:339
+msgid "Diamond Block Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:340
+msgid "Inner Diamond Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:341
+msgid "Outer Diamond Block Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:342
+msgid "Diamond Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:343
+msgid "Diamond Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:344
+msgid "Diamond Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:345
+msgid "Diamond Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:346
+msgid "Diamond Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:347
+msgid "Diamond Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:348
+msgid "Diamond Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:349
+msgid "Diamond Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:350
+msgid "Glass Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:351
+msgid "Glass Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:352
+msgid "Glass Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:353
+msgid "Glass Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:354
+msgid "Glass Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:355
+msgid "Glass Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:356
+msgid "Glass Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:357
+msgid "Glass Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:358
+msgid "Gold Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:359
+msgid "Gold Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:360
+msgid "Gold Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:361
+msgid "Gold Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:362
+msgid "Gold Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:363
+msgid "Gold Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:364
+msgid "Gold Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:365
+msgid "Gold Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:366
+msgid "Ice Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:367
+msgid "Ice Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:368
+msgid "Ice Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:369
+msgid "Ice Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:370
+msgid "Ice Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:371
+msgid "Ice Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:372
+msgid "Ice Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:373
+msgid "Ice Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:374
+msgid "Jungle Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:375
+msgid "Jungle Tree Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:376
+msgid "Inner Jungle Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:377
+msgid "Outer Jungle Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:378
+msgid "Jungle Tree Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:379
+msgid "Jungle Tree Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:380
+msgid "Jungle Tree Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:381
+msgid "Jungle Tree Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:382
+msgid "Jungle Tree Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:383
+msgid "Jungle Tree Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:384
+msgid "Jungle Tree Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:385
+msgid "Jungle Tree Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:386
+msgid "Jungle Wood Planks Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:387
+msgid "Jungle Wood Planks Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:388
+msgid "Jungle Wood Planks Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:389
+msgid "Jungle Wood Planks Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:390
+msgid "Jungle Wood Planks Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:391
+msgid "Jungle Wood Planks Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:392
+msgid "Jungle Wood Planks Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:393
+msgid "Jungle Wood Planks Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:394
+msgid "Mossy Cobblestone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:395
+msgid "Mossy Cobblestone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:396
+msgid "Mossy Cobblestone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:397
+msgid "Mossy Cobblestone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:398
+msgid "Mossy Cobblestone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:399
+msgid "Mossy Cobblestone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:400
+msgid "Mossy Cobblestone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:401
+msgid "Mossy Cobblestone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:402
+msgid "Obsidian Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:403
+msgid "Obsidian Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:404
+msgid "Obsidian Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:405
+msgid "Obsidian Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:406
+msgid "Obsidian Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:407
+msgid "Obsidian Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:408
+msgid "Obsidian Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:409
+msgid "Obsidian Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:410
+msgid "Obsidian Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:411
+msgid "Obsidian Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:412
+msgid "Obsidian Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:413
+msgid "Obsidian Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:414
+msgid "Obsidian Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:415
+msgid "Obsidian Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:416
+msgid "Obsidian Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:417
+msgid "Obsidian Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:418
+msgid "Obsidian Glass Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:419
+msgid "Obsidian Glass Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:420
+msgid "Obsidian Glass Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:421
+msgid "Obsidian Glass Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:422
+msgid "Obsidian Glass Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:423
+msgid "Obsidian Glass Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:424
+msgid "Obsidian Glass Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:425
+msgid "Obsidian Glass Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:426
+msgid "Obsidian Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:427
+msgid "Obsidian Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:428
+msgid "Obsidian Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:429
+msgid "Obsidian Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:430
+msgid "Obsidian Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:431
+msgid "Obsidian Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:432
+msgid "Obsidian Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:433
+msgid "Obsidian Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:434
+msgid "Permafrost Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:435
+msgid "Permafrost Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:436
+msgid "Inner Permafrost Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:437
+msgid "Outer Permafrost Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:438
+msgid "Permafrost Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:439
+msgid "Permafrost Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:440
+msgid "Permafrost Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:441
+msgid "Permafrost Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:442
+msgid "Permafrost Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:443
+msgid "Permafrost Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:444
+msgid "Permafrost Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:445
+msgid "Permafrost Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:446
+msgid "Permafrost with Moss Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:447
+msgid "Inner Permafrost with Moss Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:448
+msgid "Outer Permafrost with Moss Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:449
+msgid "Permafrost with Moss Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:450
+msgid "Permafrost with Moss Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:451
+msgid "Permafrost with Moss Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:452
+msgid "Permafrost with Moss Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:453
+msgid "Permafrost with Moss Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:454
+msgid "Permafrost with Moss Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:455
+msgid "Permafrost with Moss Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:456
+msgid "Permafrost with Moss Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:457
+msgid "Permafrost with Moss Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:458
+msgid "Permafrost with Stones Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:459
+msgid "Inner Permafrost with Stones Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:460
+msgid "Outer Permafrost with Stones Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:461
+msgid "Permafrost with Stones Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:462
+msgid "Permafrost with Stones Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:463
+msgid "Permafrost with Stones Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:464
+msgid "Permafrost with Stones Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:465
+msgid "Permafrost with Stones Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:466
+msgid "Permafrost with Stones Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:467
+msgid "Permafrost with Stones Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:468
+msgid "Permafrost with Stones Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:469
+msgid "Permafrost with Stones Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:470
+msgid "Pine Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:471
+msgid "Pine Tree Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:472
+msgid "Inner Pine Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:473
+msgid "Outer Pine Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:474
+msgid "Pine Tree Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:475
+msgid "Pine Tree Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:476
+msgid "Pine Tree Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:477
+msgid "Pine Tree Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:478
+msgid "Pine Tree Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:479
+msgid "Pine Tree Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:480
+msgid "Pine Tree Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:481
+msgid "Pine Tree Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:482
+msgid "Pine Wood Planks Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:483
+msgid "Pine Wood Planks Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:484
+msgid "Pine Wood Planks Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:485
+msgid "Pine Wood Planks Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:486
+msgid "Pine Wood Planks Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:487
+msgid "Pine Wood Planks Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:488
+msgid "Pine Wood Planks Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:489
+msgid "Pine Wood Planks Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:490
+msgid "Sandstone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:491
+msgid "Sandstone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:492
+msgid "Sandstone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:493
+msgid "Sandstone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:494
+msgid "Sandstone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:495
+msgid "Sandstone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:496
+msgid "Sandstone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:497
+msgid "Sandstone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:498
+msgid "Sandstone Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:499
+msgid "Sandstone Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:500
+msgid "Sandstone Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:501
+msgid "Sandstone Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:502
+msgid "Sandstone Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:503
+msgid "Sandstone Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:504
+msgid "Sandstone Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:505
+msgid "Sandstone Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:506
+msgid "Sandstone Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:507
+msgid "Sandstone Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:508
+msgid "Sandstone Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:509
+msgid "Sandstone Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:510
+msgid "Sandstone Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:511
+msgid "Sandstone Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:512
+msgid "Sandstone Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:513
+msgid "Sandstone Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:514
+msgid "Silver Sandstone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:515
+msgid "Silver Sandstone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:516
+msgid "Silver Sandstone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:517
+msgid "Silver Sandstone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:518
+msgid "Silver Sandstone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:519
+msgid "Silver Sandstone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:520
+msgid "Silver Sandstone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:521
+msgid "Silver Sandstone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:522
+msgid "Silver Sandstone Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:523
+msgid "Silver Sandstone Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:524
+msgid "Silver Sandstone Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:525
+msgid "Silver Sandstone Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:526
+msgid "Silver Sandstone Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:527
+msgid "Silver Sandstone Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:528
+msgid "Silver Sandstone Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:529
+msgid "Silver Sandstone Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:530
+msgid "Silver Sandstone Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:531
+msgid "Silver Sandstone Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:532
+msgid "Silver Sandstone Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:533
+msgid "Silver Sandstone Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:534
+msgid "Silver Sandstone Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:535
+msgid "Silver Sandstone Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:536
+msgid "Silver Sandstone Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:537
+msgid "Silver Sandstone Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:538
+msgid "Steel Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:539
+msgid "Steel Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:540
+msgid "Steel Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:541
+msgid "Steel Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:542
+msgid "Steel Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:543
+msgid "Steel Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:544
+msgid "Steel Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:545
+msgid "Steel Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:546
+msgid "Stone Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:547
+msgid "Stone Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:548
+msgid "Stone Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:549
+msgid "Stone Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:550
+msgid "Stone Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:551
+msgid "Stone Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:552
+msgid "Stone Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:553
+msgid "Stone Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:554
+msgid "Stone Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:555
+msgid "Stone Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:556
+msgid "Stone Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:557
+msgid "Stone Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:558
+msgid "Stone Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:559
+msgid "Stone Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:560
+msgid "Stone Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:561
+msgid "Stone Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:562
+msgid "Stone Brick Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:563
+msgid "Stone Brick Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:564
+msgid "Stone Brick Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:565
+msgid "Stone Brick Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:566
+msgid "Stone Brick Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:567
+msgid "Stone Brick Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:568
+msgid "Stone Brick Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:569
+msgid "Stone Brick Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:570
+msgid "Tin Block Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:571
+msgid "Tin Block Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:572
+msgid "Tin Block Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:573
+msgid "Tin Block Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:574
+msgid "Tin Block Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:575
+msgid "Tin Block Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:576
+msgid "Tin Block Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:577
+msgid "Tin Block Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:578
+msgid "Apple Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:579
+msgid "Apple Tree Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:580
+msgid "Inner Apple Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:581
+msgid "Outer Apple Tree Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:582
+msgid "Apple Tree Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:583
+msgid "Apple Tree Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:584
+msgid "Apple Tree Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:585
+msgid "Apple Tree Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:586
+msgid "Apple Tree Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:587
+msgid "Apple Tree Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:588
+msgid "Apple Tree Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:589
+msgid "Apple Tree Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:590
+msgid "Apple Wood Planks Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:591
+msgid "Apple Wood Planks Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:592
+msgid "Apple Wood Planks Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:593
+msgid "Apple Wood Planks Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:594
+msgid "Apple Wood Planks Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:595
+msgid "Apple Wood Planks Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:596
+msgid "Apple Wood Planks Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:597
+msgid "Apple Wood Planks Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:598
+msgid "Straw Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:599
+msgid "Straw Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:600
+msgid "Straw Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:601
+msgid "Straw Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:602
+msgid "Straw Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:603
+msgid "Straw Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:604
+msgid "Straw Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:605
+msgid "Straw Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:606
+msgid "Black Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:607
+msgid "Black Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:608
+msgid "Inner Black Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:609
+msgid "Outer Black Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:610
+msgid "Black Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:611
+msgid "Black Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:612
+msgid "Black Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:613
+msgid "Black Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:614
+msgid "Black Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:615
+msgid "Black Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:616
+msgid "Black Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:617
+msgid "Black Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:618
+msgid "Blue Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:619
+msgid "Blue Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:620
+msgid "Inner Blue Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:621
+msgid "Outer Blue Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:622
+msgid "Blue Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:623
+msgid "Blue Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:624
+msgid "Blue Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:625
+msgid "Blue Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:626
+msgid "Blue Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:627
+msgid "Blue Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:628
+msgid "Blue Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:629
+msgid "Blue Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:630
+msgid "Brown Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:631
+msgid "Brown Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:632
+msgid "Inner Brown Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:633
+msgid "Outer Brown Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:634
+msgid "Brown Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:635
+msgid "Brown Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:636
+msgid "Brown Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:637
+msgid "Brown Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:638
+msgid "Brown Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:639
+msgid "Brown Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:640
+msgid "Brown Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:641
+msgid "Brown Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:642
+msgid "Cyan Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:643
+msgid "Cyan Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:644
+msgid "Inner Cyan Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:645
+msgid "Outer Cyan Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:646
+msgid "Cyan Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:647
+msgid "Cyan Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:648
+msgid "Cyan Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:649
+msgid "Cyan Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:650
+msgid "Cyan Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:651
+msgid "Cyan Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:652
+msgid "Cyan Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:653
+msgid "Cyan Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:654
+msgid "Dark Green Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:655
+msgid "Dark Green Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:656
+msgid "Inner Dark Green Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:657
+msgid "Outer Dark Green Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:658
+msgid "Dark Green Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:659
+msgid "Dark Green Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:660
+msgid "Dark Green Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:661
+msgid "Dark Green Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:662
+msgid "Dark Green Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:663
+msgid "Dark Green Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:664
+msgid "Dark Green Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:665
+msgid "Dark Green Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:666
+msgid "Dark Grey Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:667
+msgid "Dark Grey Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:668
+msgid "Inner Dark Grey Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:669
+msgid "Outer Dark Grey Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:670
+msgid "Dark Grey Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:671
+msgid "Dark Grey Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:672
+msgid "Dark Grey Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:673
+msgid "Dark Grey Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:674
+msgid "Dark Grey Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:675
+msgid "Dark Grey Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:676
+msgid "Dark Grey Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:677
+msgid "Dark Grey Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:678
+msgid "Green Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:679
+msgid "Green Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:680
+msgid "Inner Green Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:681
+msgid "Outer Green Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:682
+msgid "Green Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:683
+msgid "Green Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:684
+msgid "Green Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:685
+msgid "Green Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:686
+msgid "Green Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:687
+msgid "Green Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:688
+msgid "Green Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:689
+msgid "Green Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:690
+msgid "Grey Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:691
+msgid "Grey Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:692
+msgid "Inner Grey Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:693
+msgid "Outer Grey Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:694
+msgid "Grey Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:695
+msgid "Grey Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:696
+msgid "Grey Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:697
+msgid "Grey Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:698
+msgid "Grey Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:699
+msgid "Grey Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:700
+msgid "Grey Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:701
+msgid "Grey Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:702
+msgid "Magenta Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:703
+msgid "Magenta Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:704
+msgid "Inner Magenta Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:705
+msgid "Outer Magenta Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:706
+msgid "Magenta Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:707
+msgid "Magenta Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:708
+msgid "Magenta Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:709
+msgid "Magenta Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:710
+msgid "Magenta Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:711
+msgid "Magenta Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:712
+msgid "Magenta Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:713
+msgid "Magenta Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:714
+msgid "Orange Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:715
+msgid "Orange Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:716
+msgid "Inner Orange Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:717
+msgid "Outer Orange Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:718
+msgid "Orange Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:719
+msgid "Orange Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:720
+msgid "Orange Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:721
+msgid "Orange Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:722
+msgid "Orange Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:723
+msgid "Orange Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:724
+msgid "Orange Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:725
+msgid "Orange Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:726
+msgid "Pink Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:727
+msgid "Pink Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:728
+msgid "Inner Pink Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:729
+msgid "Outer Pink Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:730
+msgid "Pink Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:731
+msgid "Pink Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:732
+msgid "Pink Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:733
+msgid "Pink Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:734
+msgid "Pink Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:735
+msgid "Pink Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:736
+msgid "Pink Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:737
+msgid "Pink Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:738
+msgid "Red Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:739
+msgid "Red Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:740
+msgid "Inner Red Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:741
+msgid "Outer Red Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:742
+msgid "Red Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:743
+msgid "Red Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:744
+msgid "Red Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:745
+msgid "Red Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:746
+msgid "Red Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:747
+msgid "Red Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:748
+msgid "Red Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:749
+msgid "Red Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:750
+msgid "Violet Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:751
+msgid "Violet Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:752
+msgid "Inner Violet Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:753
+msgid "Outer Violet Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:754
+msgid "Violet Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:755
+msgid "Violet Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:756
+msgid "Violet Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:757
+msgid "Violet Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:758
+msgid "Violet Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:759
+msgid "Violet Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:760
+msgid "Violet Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:761
+msgid "Violet Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:762
+msgid "White Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:763
+msgid "White Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:764
+msgid "Inner White Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:765
+msgid "Outer White Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:766
+msgid "White Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:767
+msgid "White Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:768
+msgid "White Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:769
+msgid "White Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:770
+msgid "White Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:771
+msgid "White Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:772
+msgid "White Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:773
+msgid "White Wool Half-Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:774
+msgid "Yellow Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:775
+msgid "Yellow Wool Slab"
+msgstr ""
+
+#: src/_locale_workbench.lua:776
+msgid "Inner Yellow Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:777
+msgid "Outer Yellow Wool Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:778
+msgid "Yellow Wool Nanoslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:779
+msgid "Yellow Wool Micropanel"
+msgstr ""
+
+#: src/_locale_workbench.lua:780
+msgid "Yellow Wool Microslab"
+msgstr ""
+
+#: src/_locale_workbench.lua:781
+msgid "Yellow Wool Thin Stair"
+msgstr ""
+
+#: src/_locale_workbench.lua:782
+msgid "Yellow Wool Cube"
+msgstr ""
+
+#: src/_locale_workbench.lua:783
+msgid "Yellow Wool Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:784
+msgid "Yellow Wool Double Panel"
+msgstr ""
+
+#: src/_locale_workbench.lua:785
+msgid "Yellow Wool Half-Stair"
+msgstr ""

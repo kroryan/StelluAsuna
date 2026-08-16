@@ -1,0 +1,1 @@
+invisibility.effect_time (How many seconds player is invisible) int 180

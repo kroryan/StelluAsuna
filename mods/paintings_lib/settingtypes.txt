@@ -1,0 +1,2 @@
+# Number of uses for the paintbrush
+paintings_lib_paintbrush_uses (Paintbrush uses) int 32 1 1000

@@ -1,0 +1,83 @@
+
+Here's a full guide to the alchemy system. All recipes can be found in-game in the alchemy stand screen,
+so don't read this if you'd rather figure things out on your own.
+
+To brew potions, you first need to craft an alchemy stand. Then, place a tin ingot on the top-most slot
+and an empty glass bottle right below it to begin brewing your first Potion Stock - the basic building block of actual potions.
+From then on, by placing the stock into the bottom slot, you can combine it with various ingredients to create different potions.
+Each potion can also be upgraded with Mese in order to enhance their effects. Consult the recipe list in the alchemy screen for more information.
+
+Once you have your potions, you can drink them to gain all sorts of effects. All of them last for 30 seconds, with a few exceptions.
+A player can only benefit from the effects of one potion at a time - drinking another one removes the previous effect.
+
+By now you must have noticed that brewing takes a very long time. There is a solution to this, however - alchemy supplies.
+You need to craft a few of these and place them around your alchemy stands (in a 5x3 area, to be exact).
+Up to 4 of them will reduce the brewing time from 3 minutes to 1 minute. On the other hand, placing multiple alchemy stands within that area
+will cause them to stop functioning - if your potions are taking suspiciously long, check out the alchemy screens for the stands to see what's up.
+Oh, and remember never to move an alchemy stand while it's brewing - this may cause it to explode. Always remove the ingredients first!
+
+For maximum efficiency, alchemy stands must be placed at most 10 blocks beneath the water level - otherwise the lack of fresh surface air
+will interfere with the reactions, reducing the brewing speed by half and rendering alchemy supplies useless. In addition to that,
+Oerkkis are known to steal alchemy stands (and no, they do not take care to remove the ingredients first)
+so if you still plan to brew potions underground then caution is recommended.
+
+Finally, you may have also noticed that since potions stack in groups of 8, alchemy stands can only work for a very limited time
+while you're away. This can be partially worked around - if you place the alchemy stand right on top of a vessels shelf, the newly brewed potions
+will be deposited into it once the alchemy stand is full.
+
+--------------
+Basic potions:
+--------------
+
+- Potion Stock
+Ingredient - Tin Ingot (brew into an empty bottle)
+Effect - None
+
+- Water-Breathing Potion
+Ingredient - Copper Ingot
+Effect - User can breathe underwater
+
+- Invulnerability Potion
+Ingredient - Steel Ingot
+Effect - Makes the user immune to all damage
+Duration - 0.5s
+
+- Leap Potion
+Ingredient - Gold Ingot
+Effect - Increases jump height
+
+- Weightlessness Potion
+Ingredient - Obsidian Glass
+Effect - User is not affected by gravity, and also immune to fall damage
+
+- Haste Potion
+Ingredient - Diamond
+Effect - Increases speed; user can climb 1-block ledges but cannot sneak
+
+----------------------
+Mese-enhanced potions:
+----------------------
+
+All the potions in this list are made by brewing a Mese crystal into another potion.
+
+- Swimming Potion
+Base potion - Water-Breathing Potion
+Effect - The user can breathe underwater and swim much faster
+Duration - 90s
+
+- Immortality Potion
+Base potion - Invulnerability Potion
+Effect - Makes the user immune to all damage
+Duration - 5s
+
+- Agility Potion
+Base potion - Leap Potion
+Effect - Increases speed and jump height; decreases fall damage; user can climb 1-block ledges
+
+- Flight Potion
+Base potion - Weightlessness potion
+Effect - The user is able to fly (using the "Toggle fly" key)
+
+- Supersonic Potion
+Base potion - Haste potion
+Effect - Greatly increases speed; user can climb 1-block ledges but cannot sneak
