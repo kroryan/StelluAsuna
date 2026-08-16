@@ -1225,10 +1225,8 @@ mg_villages.inhabitants.spawn_mobs_for_one_house = function( bpos, minp, maxp, v
 		end
 		
 		if( bed and bed.first_name and in_bounds ) then
-			if math.random(1, 3) == 1 then
-				bed.mob_id = mg_villages.inhabitants.spawn_one_mob( bed, village_id, plot_nr, bed_nr, bpos );
-				minetest.log("action", "[mg_villages] spawn_one_mob returned " .. tostring(bed.mob_id) .. " for bed " .. bed.first_name)
-			end
+			bed.mob_id = mg_villages.inhabitants.spawn_one_mob( bed, village_id, plot_nr, bed_nr, bpos );
+			minetest.log("action", "[mg_villages] spawn_one_mob returned " .. tostring(bed.mob_id) .. " for bed " .. bed.first_name)
 		else
 			if not bed then minetest.log("action", "[mg_villages] bed is nil")
 			elseif not bed.first_name then minetest.log("action", "[mg_villages] bed.first_name is nil")
@@ -1267,11 +1265,24 @@ mg_villages.inhabitants.assign_mobs = function( village, village_id, force_repop
 	-- some types of buildings require special workers
 	village.to_add_data.bpos = mg_villages.inhabitants.assign_jobs_to_houses( village.to_add_data.bpos );
 
+	local total_assigned = 0
+
 	-- for each building in the village
 	for plot_nr,bpos in ipairs(village.to_add_data.bpos) do
-
-		-- each bed gets a mob assigned
-		bpos = mg_villages.inhabitants.assign_mobs_to_beds( bpos, plot_nr, village.to_add_data.bpos, village );
+		if total_assigned >= 7 then
+			bpos.beds = nil
+		else
+			if bpos.beds and total_assigned + #bpos.beds > 7 then
+				while #bpos.beds > (7 - total_assigned) do
+					table.remove(bpos.beds)
+				end
+			end
+			-- each bed gets a mob assigned
+			bpos = mg_villages.inhabitants.assign_mobs_to_beds( bpos, plot_nr, village.to_add_data.bpos, village );
+			if bpos.beds then
+				total_assigned = total_assigned + #bpos.beds
+			end
+		end
 	end
 	-- later versions may become incompatible
 	village.mob_data_version = 1;
