@@ -1447,6 +1447,7 @@ aliveai.path=function(self)
 		self.path_timer=self.path_timer+1
 		self.time=0.1
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		pos.y=pos.y-(self.basey)
 		if not self.path_bridge and aliveai.samepos(aliveai.roundpos(pos),self.path[self.pathn]) then
 			if self.path[self.pathn] then

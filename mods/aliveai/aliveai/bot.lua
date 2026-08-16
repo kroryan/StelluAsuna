@@ -1,4 +1,5 @@
 aliveai.main=function(self, dtime)
+	if not self.object or not self.object:get_pos() then return self end
 	if aliveai.systemfreeze==1 then
 		if self.floating==0 then
 			self.object:set_acceleration({x=0,y=0,z =0})
