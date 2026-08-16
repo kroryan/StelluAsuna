@@ -1,0 +1,1 @@
+-- shared_textures: no-op init, textures are provided via the textures/ folder
