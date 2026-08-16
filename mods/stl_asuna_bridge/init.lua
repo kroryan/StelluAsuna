@@ -14,7 +14,17 @@ local function put_player_in_arrival_ship(player, base)
 	player:set_pos(inside)
 	stellua.set_respawn(player, vector.add(base, {x=0, y=1, z=0}))
 	player:get_meta():set_int("stelluasuna_arrived", 1)
-	player:set_physics_override({speed=1, jump=1, gravity=1})
+	
+	-- Do not restore gravity immediately! The client needs time to download the ship's chunks.
+	-- If we restore gravity now, the client will fall through the floor before seeing it.
+	minetest.after(3.5, function()
+		if player and player:is_player() then
+			-- Snap them back to the exact position inside the ship just in case they sank a bit
+			player:set_pos(inside)
+			player:set_physics_override({speed=1, jump=1, gravity=1})
+			minetest.chat_send_player(player:get_player_name(), "Arrival sequence complete. Welcome to StelluAsuna!")
+		end
+	end)
 end
 
 local function spawn_player_ship(player)
@@ -67,9 +77,9 @@ end
 
 minetest.register_on_joinplayer(function(player)
 	-- Automatic one-time fix for lykac
-	if player:get_player_name() == "lykac" and player:get_meta():get_int("lykac_fixed") ~= 1 then
+	if player:get_player_name() == "lykac" and player:get_meta():get_int("lykac_fixed_2") ~= 1 then
 		player:get_meta():set_int("stelluasuna_arrived", 0)
-		player:get_meta():set_int("lykac_fixed", 1)
+		player:get_meta():set_int("lykac_fixed_2", 1)
 	end
 	
 	if player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
