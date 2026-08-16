@@ -36,12 +36,12 @@ mg_villages.spawnplayer = function(player)
 	player:set_pos(min_pos)
 end
 
-minetest.register_on_newplayer(function(player)
-	mg_villages.spawnplayer(player)
-end)
+-- minetest.register_on_newplayer(function(player)
+-- 	mg_villages.spawnplayer(player)
+-- end)
 
-minetest.register_on_respawnplayer(function(player)
-	mg_villages.spawnplayer(player)
-	return true
-end)
+-- minetest.register_on_respawnplayer(function(player)
+-- 	mg_villages.spawnplayer(player)
+-- 	return true
+-- end)
 
