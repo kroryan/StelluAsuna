@@ -144,36 +144,42 @@ minetest.register_on_mods_loaded(function()
 						vec.y = 0
 						if vector.length(vec) < 0.1 then vec = {x=math.random()-0.5, y=0, z=math.random()-0.5} end
 						
-						-- Retaliate before running!
-						if puncher.get_hp and puncher:get_hp() > 0 then
-							puncher:punch(self.object, 1.0, {
-								full_punch_interval = 1.0,
-								damage_groups = {fleshy = 2}
-							}, nil)
-						end
-						
-						local flee_dir = vector.normalize(vec)
-						local flee_target = nil
-						-- Check distances 8, 6, 4, 2 to find a point that is in line of sight
-						for _, dist in ipairs({8, 6, 4, 2}) do
-							local tgt = vector.add(mypos, vector.multiply(flee_dir, dist))
-							tgt = vector.round(tgt)
-							local ok, gp = pcall(working_villages.require("jobs/util").find_ground_below, tgt)
-							if ok and gp then
-								local p1 = {x=mypos.x, y=mypos.y+1, z=mypos.z}
-								local p2 = {x=gp.x, y=gp.y+1, z=gp.z}
-								if minetest.line_of_sight(p1, p2) then
-									flee_target = gp
-									break
-								end
-							end
-						end
-						
-						if flee_target then
-							self.flee_target = flee_target
+						self.fight_target = puncher
+						self.fight_timer = 0
+					end
+				end
+			end
+
+			local old_on_step = def.on_step
+			def.on_step = function(self, dtime, moveresult)
+				if self.fight_target then
+					if not self.fight_target:is_valid() or (self.fight_target.get_hp and self.fight_target:get_hp() <= 0) then
+						self.fight_target = nil
+						self.fight_timer = nil
+					else
+						local mypos = self.object:get_pos()
+						local tpos = self.fight_target:get_pos()
+						if vector.distance(mypos, tpos) > 20 then
+							self.fight_target = nil
+							self.fight_timer = nil
+						else
+							self.destination = tpos
+							self.state = "walk"
 							self.path = {}
 							if self.set_timer then self:set_timer("delay", 9999) end
+							
+							self.fight_timer = (self.fight_timer or 0) + dtime
+							if vector.distance(mypos, tpos) <= 2.5 and self.fight_timer > 1.5 then
+								self.fight_timer = 0
+								self.fight_target:punch(self.object, 1.0, {
+									full_punch_interval = 1.0,
+									damage_groups = {fleshy = 2}
+								}, nil)
+							end
 						end
+					end
+				end
+				if old_on_step then old_on_step(self, dtime, moveresult) end
 					end
 				end
 			end
