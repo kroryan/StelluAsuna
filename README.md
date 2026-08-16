@@ -1,117 +1,282 @@
-Asuna
-=====
+StelluAsuna 🔗
 
-Welcome to the vast and vibrant world of Asuna! Journey through a potpourri of natural wonders as you traverse beautiful and breathtaking landscapes. Forests, meadows, jungles, tundras, deserts, swamps, and more await you at every horizon.
+StelluAsuna is a massive sandbox game for Luanti, created by combining the lush, exploration-focused world of Asuna with the futuristic space sandbox gameplay of Stellua, and expanding both with a large collection of additional mods and original content.
 
-This passion project brings together some of the very best biome and world decoration mods that the Minetest community has published to date. Much of Asuna's beauty is owed to the mod authors who have openly shared the fruits of their hard work and imagination. Asuna stands to honor these authors and their works.
+The result is a huge voxel adventure where nature, exploration, survival, villages, caves, monsters, technology, portals, space and other worlds coexist in one world.
 
-[Download at ContentDB](https://content.luanti.org/packages/EmptyStar/asuna/) | [Explore at GitHub](https://github.com/asuna-mt/asuna) | [Join the Discord](https://discord.gg/DqtD9kuk2R)
+StelluAsuna is designed to feel like a complete sandbox universe rather than simply a collection of mods. Its goal is to give players a world filled with things to discover, build, automate, fight and explore.
+🌍 A World Built from Asuna 🔗
 
-Features
---------
+StelluAsuna inherits much of its natural beauty and environmental variety from Asuna.
 
-Asuna provides a wealth of biomes, flora, fauna, and a few other extras. Primary features are highlighted below with the mods they are primarily derived from:
+Explore forests, jungles, deserts, mountains, caves, mushrooms, wetlands and many other environments while discovering hundreds of plants, decorative blocks, ores and natural resources.
 
-- 60+ biomes to explore ([Everness](https://content.minetest.net/packages/SaKeL/everness/), [Biomes](https://content.minetest.net/packages/Atlante/biomes/), [Ethereal](https://content.minetest.net/packages/TenPlus1/ethereal/), [Wilhelmines Natural Biomes](https://content.minetest.net/packages/Liil/naturalbiomes/), [Wilhelmines Living Jungle](https://content.minetest.net/packages/Liil/livingjungle/), [Wilhelmines Marinara](https://content.minetest.net/packages/Liil/marinara/), [Caverealms Lite](https://content.minetest.net/packages/Shara/caverealms/))
-- 100+ flowers, plants, and mushrooms to discover ([Beautiful Flowers](https://content.minetest.net/packages/1faco/beautiflowers/), [Herbs](https://content.minetest.net/packages/Clyde/herbs/), [Plantlife](https://content.minetest.net/packages/mt-mods/plantlife_modpack/), [Baked Clay](https://content.minetest.net/packages/TenPlus1/bakedclay/), [Minetest Game](https://content.minetest.net/packages/Minetest/minetest_game/), and more from the biome mods)
-- 30+ farming crops to grow and harvest ([X Farming](https://content.minetest.net/packages/SaKeL/x_farming/), [Farming Redo](https://content.minetest.net/packages/TenPlus1/farming/))
-- 27 different animals and creatures to be found in their natural habitats ([Animalia](https://content.minetest.net/packages/ElCeejo/animalia/), [Living Slimes](https://content.luanti.org/packages/EmptyStar/livingslimes/))
-- 100+ decorative stones to unearth ([Too Many Stones](https://content.minetest.net/packages/JoeEnderman/too_many_stones/), [Baked Clay](https://content.minetest.net/packages/TenPlus1/bakedclay/), plus more from biome mods)
-- 54 unique achievements to unlock ([Awards](https://content.minetest.net/packages/rubenwardy/awards/), [Asuna Awards](https://github.com/asuna-mt/asuna_game_mods/tree/asuna/asuna_awards))
-- 31 atmospheric background music tracks (curated specifically for Asuna in [asuna_core](https://github.com/asuna-mt/asuna_game_mods/tree/asuna/asuna_core) and played via [Music Modpack](https://content.minetest.net/packages/mt-mods/music_modpack/))
+The world is designed to feel alive, varied and worth exploring.
+Features include 🔗
 
-Content
--------
+    🌿 Large variety of biomes and landscapes
+    🌱 Hundreds of plants, flowers and mushrooms
+    ⛏️ Expanded underground environments
+    💎 Additional ores and resources
+    🪨 Large selection of decorative stones and building materials
+    🐾 Wildlife and hostile creatures
+    🍄 Giant mushrooms and unusual natural formations
+    🌌 Atmospheric environments and enhanced exploration
 
-Asuna's features provide a beautiful setting for your own adventures and creations and a colorful palette with which to create. It's largely up to you to write your own story, to build your own marvels, and to find your own purpose.
+🚀 The Stellua Connection 🔗
 
-That said, Asuna provides a number of built-in gameplay features which are split up into *content packs*. Each content pack represents a certain category of gameplay features that can be enabled, disabled, and configured individually. This allows you to greatly customize your gameplay experience!
+StelluAsuna also incorporates the futuristic vision of Stellua, bringing space exploration and planetary travel into the Asuna-style sandbox.
 
-All content packs are optional and configurable via `Settings > Content: Games > Asuna`.
+The universe extends far beyond the surface of the Overworld.
 
-### Nutrition
+Stellua introduces a space-oriented gameplay layer focused on construction, spacecraft, planets, star systems and exploration.
+Space features 🔗
 
-Nutrition grants benefits to players who stay well fed. A derivative of the "hunger" concept, Asuna revamps this familiar gameplay mechanic to be strictly beneficial to players in a way that aids in exploration and survival. Players will enjoy the following effects when they have eaten:
+    🌌 Multiple star systems
+    🪐 Numerous unique planets
+    🚀 Spacecraft and space-oriented technology
+    ☄️ Astronomical environments
+    🌠 Space exploration
+    🌦️ Environmental hazards and weather
+    🛰️ A foundation for interplanetary gameplay
+    🛸 Seamless direct-to-ship orbital spawning for new players
 
-- Increased movement speed (up to +25% when full)
-- The ability to sprint (+100% movement speed while holding the `aux1` key)
-- Health regeneration (chance to recover health every five seconds)
-- Resistance to poisonous foods (chance to lose nutrition instead of health)
+StelluAsuna combines these systems with the much larger collection of survival, building and exploration mechanics provided by the rest of the game.
+🌌 Other Worlds & Dimensions 🔗
 
-These effects are most pronounced when a player is fully satiated and will diminish gradually as a player becomes hungry. Hunger will only diminish these effects and cannot hurt players unless starvation is explicitly enabled via game settings (disabled by default).
+There is much more to StelluAsuna than the normal world.
 
-This functionality is implemented using a modified version of the popular [Stamina](https://content.minetest.net/packages/sofar/stamina/) mod.
+Players can discover and travel to completely different environments through dimensions, portals and otherworldly systems.
 
-### Wayfarer
+Included content includes:
 
-From hidden treasures to teleportation gates, Wayfarer adds a number of features to Asuna that make exploration more interesting and worthwhile.
+    Nether
+    Other Worlds
+    Living Caves
+    Living Caves Mobs
+    SGJourney
+    Stargate Journey
+    Additional dimension and portal systems
 
-#### Awards
+These systems allow the world to become more than a single planet.
+🌀 Stargate Journey 🔗
 
-Awards are a set of accomplishments to strive for as you traverse the world. From simple tasks to feats of exemplary dedication, awards give you more to do in your world. Awards can also help guide you to features of Asuna that might not otherwise be obvious or intuitive.
+Stargate Journey (stargate_journey) is an original mod created specifically for StelluAsuna.
 
-Awards are implemented using a modified version of the popular [Awards](https://content.luanti.org/packages/rubenwardy/awards/) mod by Rubenwardy.
+It is not the Stargate mod from Minecraft and is not affiliated with Minecraft's Stargate mods.
 
-#### Loot Chests
+Stargate Journey provides its own portal-based travel system and is intended to become one of the main ways of connecting distant locations and worlds within StelluAsuna.
 
-You can find caches of useful items hidden throughout the caves and landscapes of Asuna. Loot chests, their contents, and their distribution are dependent on the environment in which they are found.
+The system is designed around the idea of building a network of gates that allows players to travel across an increasingly large universe.
+🗺️ Exploration 🔗
 
-- **Baskets**: Found next to hills, trees, bushes, and in shallow caves, baskets contain items such as food, grasses, wood, seeds, flowers, and leaves.
-- **Urns**: These stone vessels are found at a limited depth in caves and can contain tools, rope, stones, gems, crystals, ores, and some limited food items.
-- **Ancient Chests**: These old stone chests are found rarely in caves and contain high quality tools, rare gems, mese crystals, and many exotic items that are otherwise rare in the world.
-- **Ocean Chests**: These chests are found in deep ocean amidst dense kelp and near shipwrecks, and they contain a variety of useful items in addition to aquatic decorations.
+StelluAsuna is built around exploration.
 
-These chests are implemented by a modified version of [LootChests modpack](https://content.minetest.net/packages/mt-mods/lootchest_modpack/).
+The world contains more than just randomly generated terrain. Players can encounter structures, villages, caves, resources, creatures and other points of interest while travelling.
+Exploration systems include 🔗
 
-#### Worldgates
+    Advanced Discovery Maps
+    Handle Schematics
+    Living Caves
+    Other Worlds
+    Nether
+    Riesenpilz
+    Protector
+    MG Villages
+    Working Villages
 
-Discover the Worldgates, an ancient teleportation network that can carry you to distant lands in an instant. Despite their long abandonment, the Worldgates are still highly functional. They can be found throughout the world, some more intact than others, and each adorned in stone by the elder hands that wrought them.
+Whether travelling underground, across the surface or through other worlds, there is always something new to discover.
+🏘️ Villages & Living Worlds 🔗
 
-True to its name, this native teleportation network is implemented via the [Worldgate](https://content.luanti.org/packages/EmptyStar/worldgate/) mod.
+The world is not empty.
 
-### Menagerie
+MG Villages and Working Villages add settlements and structures to the generated world, while AliveAI, mobs and other systems help make the environment feel more dynamic.
 
-Nothing makes a world feel more alive than the creatures that inhabit it. Menagerie adds a variety of animals and creatures to Asuna.
+Villages can become useful bases, trading locations or starting points for larger adventures. Villagers have been fully integrated with dynamic AI, meaning they actively patrol and wander the town during the day, and return to their beds to sleep at night.
 
-#### Animals
+The combination of generated settlements, creatures and environmental systems gives StelluAsuna a much more populated and dynamic world.
+👾 Creatures & Survival 🔗
 
-Asuna is home to a number of wild animals which can be found roaming about their natural habitats. These animals are highly interactive and can be fed, bred, tamed, and hunted. These animals are implemented via the [Animalia](https://content.minetest.net/packages/ElCeejo/animalia/) mod which describes the animals in greater detail.
+StelluAsuna contains a large variety of creatures and dangers.
 
-#### Slimes
+From ordinary wildlife to hostile monsters and horror-themed encounters, exploration can become dangerous, particularly underground and at night.
 
-Many species of living slimes are native to Asuna. Some of these slimes are docile foragers while others are more territorial. These slimes can be found in many places under the sun, deep underground, and even in oceans and waterways. See the [Living Slimes](https://content.minetest.net/packages/EmptyStar/livingslimes/) mod for information about the various slimes and their behaviors.
+Included systems include:
 
-### Research
+    Mobs
+    AliveAI
+    Skeletons
+    Living Caves Mobs
+    Horror
+    Additional hostile and environmental threats
 
-The Research content pack adds an *earned creative* mode to Asuna. Research allows you to unlock infinite duplication of the items in your world, but you must discover and/or create the items necessary for research. This is a more interesting alternative to Asuna's true creative mode and it's most useful when applied to survival worlds.
+Survival therefore isn't simply about collecting resources — the world itself can become dangerous.
+🕳️ Living Caves 🔗
 
-This feature is implemented via the [Researcher](https://content.luanti.org/packages/EmptyStar/researcher/) mod which thoroughly describes the research process.
+The underground world has been heavily expanded.
 
-### Stratosphere
+Living Caves and Living Caves Mobs transform caves into environments with their own atmosphere, creatures and dangers.
 
-Bring the skies of your world to life with sky islands and an array of items to help you navigate this new realm of adventure.
+Instead of being simple holes filled with stone and ores, caves become places worth exploring in their own right.
 
-#### Sky Islands
+Deep underground you may encounter:
 
-Stratosphere will fill your skies with vast constellations of floating islands. These sky islands will generate starting at a height of about 250 and will continue up to the top of your world. You will find many new items to help you navigate this terrain as described in the following sections.
+    New cave environments
+    Dangerous creatures
+    New resources
+    Unusual formations
+    Dark and atmospheric areas
+    Rare discoveries
 
-NOTE: Sky islands will only generate in worlds using mapgen v7; other mapgens are not supported for this feature.
+⛏️ Resources & Progression 🔗
 
-#### Astralcraft
+StelluAsuna expands the resource system with additional ores and materials.
 
-[Astralcraft](https://content.luanti.org/packages/EmptyStar/astralcraft/) introduces shooting stars and related items to Asuna. Shooting stars that shower your world at night can be collected and used to create star armor which glows in the dark, astralite which allows you to leap high into the air, and warp stars which you can throw to teleport. The linked mod description explains these features in detail.
+MoreOres adds additional resources for mining and crafting, while other included systems provide materials used throughout construction, exploration and progression.
 
-#### Cloudcraft
+The expanded resource pool gives players more reasons to explore different environments rather than repeatedly mining the same areas.
+📦 Logistics & Building 🔗
 
-[Cloudcraft](https://content.luanti.org/packages/EmptyStar/cloudcraft/) introduces tangible clouds to Asuna. These clouds can be harvested to create cloud-related items, most notably *cloud armor* which grants players floaty physics and protection from fall damage. See the linked mod description for more information on how to harvest clouds and craft cloud items.
+For players who enjoy engineering and large-scale construction, StelluAsuna includes systems designed to make complex bases easier to manage.
 
-Mods
-----
+Logistica provides logistics and transportation mechanics that can be used to organize resources and create more advanced constructions.
 
-For even more gameplay options, check out [ContentDB](https://content.minetest.net/) to find mods that can fulfill all of your wildest dreams. Asuna aims to maintain compatibility with mods that are compatible with Minetest Game.
+Combined with schematics, protection systems and the enormous selection of blocks inherited from the included mods, StelluAsuna provides a strong foundation for building everything from small survival shelters to enormous bases.
+🍄 Giant Mushrooms & Strange Environments 🔗
 
-Notes/Caveats
--------------
+The world also contains unusual natural content such as Riesenpilz, adding giant mushroom environments and structures to the landscape.
 
-- The only officially supported mapgen for Asuna is mapgen v7; Asuna worlds with other mapgens can still be created, but these worlds will see a warning that can be disabled via settings
-- Asuna is comprised of a number of popular mods that have been adjusted for compatibility with Asuna and its overall vision; using/overriding mods that Asuna already includes will generate warnings that can be disabled via settings# StelluAsuna
+These unusual environments help make exploration less predictable and give different regions their own visual identity.
+✨ Visual & Atmospheric Enhancements 🔗
+
+StelluAsuna also includes several additions intended to improve the atmosphere and visual experience.
+Included examples 🔗
+
+    Glow Pack
+    Enhanced cave environments
+    Atmospheric horror elements
+    Additional decorative content
+    Expanded building materials
+    Environmental effects
+
+The result is a world that can range from peaceful and colorful to dark, hostile and mysterious depending on where you travel.
+🛡️ Protection & Multiplayer 🔗
+
+Protector provides protection mechanics for players who want to build and maintain their own bases.
+
+Combined with villages, logistics and the enormous amount of building content available, StelluAsuna can be used as both a personal survival sandbox and a foundation for multiplayer worlds.
+⚙️ Sandbox & RPG Mechanics (VoxeLibre Features) 🔗
+
+To make every planet and dimension feel alive and interactive, StelluAsuna has been heavily expanded with core sandbox mechanics inspired by VoxeLibre and Minecraft, ensuring these features are available across the entire universe, not just the Overworld:
+
+    🪄 Enchanting: Craft enchanting tables to upgrade your tools and armor.
+    🧪 Potions & Brewing: Brew magical effects and throw splash potions.
+    ✨ Experience System (XP): Gain XP levels for mining, farming, and fighting.
+    ⚡ Mesecons: Build complex redstone-like automated circuits and machines.
+    🛡️ Combat: Active blocking with shields, and epic boss fights (Draconis).
+    🎣 Fishing: Fully animated fishing mechanics.
+    🛠️ Anvil & Repairs: Repair and rename your favorite tools.
+    🏕️ Decorative & Utility: Item frames, wall paintings, functional campfires, and lanterns.
+    ⛏️ New Blocks: Oxidizing copper blocks and deepslate strata for mining.
+
+These systems integrate seamlessly into the space and dimension exploration, meaning you can enchant your gear on a distant planet or set up a Mesecon automated base in a Living Cave.
+
+📜 Included Content 🔗
+
+StelluAsuna currently combines content from a wide range of systems and mods, including:
+
+    advanced_discovery_maps
+    handle_schematics
+    livingcavesmobs
+    mobs
+    other_worlds
+    sgjourney
+    working_villages
+    aliveai
+    horror
+    logistica
+    moreores
+    protector
+    skeletons
+    glow_pack
+    livingcaves
+    mg_villages
+    nether
+    riesenpilz
+    stargate_journey
+    mesecons
+    x_enchanting
+    potions
+    xp_redo
+    draconis
+    shields_mtg
+    simple_fishing
+    xcopper
+    deepslate
+    anvil
+    xdecor
+    paintings_lib
+    lanterns
+
+🌎 One Huge Sandbox Universe 🔗
+
+StelluAsuna brings together several different styles of Luanti gameplay:
+
+🌿 Nature and exploration from Asuna
+
+🚀 Space and futuristic gameplay from Stellua
+
+🌀 Dimensions and portal travel
+
+🏘️ Villages and living settlements
+
+👾 Creatures and monsters
+
+🕳️ Dangerous underground environments
+
+⛏️ Mining and expanded resources
+
+📦 Logistics and large-scale construction
+
+😱 Horror and survival
+
+🗺️ Exploration and discovery
+
+All of these systems come together to create a single large sandbox experience.
+🧭 Your World. Your Adventure. 🔗
+
+StelluAsuna does not force players into a single way of playing.
+
+You can:
+
+    Build a peaceful home.
+    Explore huge biomes.
+    Search for rare resources.
+    Establish a village.
+    Build automated infrastructure.
+    Explore dangerous caves.
+    Fight monsters.
+    Construct enormous bases.
+    Discover other worlds.
+    Build portal networks.
+    Travel through the universe.
+    Explore space.
+    Or simply create your own adventure.
+
+StelluAsuna is a world designed to be explored, built upon and expanded.
+Credits & Mod Authors 🔗
+
+StelluAsuna is built upon the work of many Luanti mod developers and projects.
+
+The game would not be possible without the authors and contributors who created the mods, libraries, textures, models and systems included in this project.
+
+Please see the individual mods and their respective licenses for detailed attribution and licensing information.
+
+Special mention goes to the developers of Asuna and Stellua, whose projects form the foundation of this fusion.
+
+Stargate Journey (stargate_journey) is an original StelluAsuna component created by the StelluAsuna project and is not the Minecraft Stargate mod.
+🚀 StelluAsuna 🔗
+
+One world. Multiple dimensions. Endless possibilities.
+
+Explore. Build. Survive. Discover. Travel beyond the world.
