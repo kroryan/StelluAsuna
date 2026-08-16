@@ -11,7 +11,22 @@ working_villages.register_job(RESIDENT_JOB, {
 			self:handle_night()
 			self:set_state_info("Following my village routine.")
 			self:set_displayed_action("village resident")
-			self:delay(80)
+			
+			local pos = self.object:get_pos()
+			if pos then
+				local center = self.pos_data.job_pos or self.pos_data.home_pos or pos
+				local target = {
+					x = center.x + math.random(-10, 10),
+					y = center.y,
+					z = center.z + math.random(-10, 10)
+				}
+				-- Find ground so they don't try to fly
+				local ok, gpos = pcall(working_villages.require("core/func").find_ground_below, target)
+				if ok and gpos then target = gpos end
+				self:go_to(target)
+			end
+			
+			self:delay(math.random(30, 80))
 		end
 	end,
 })

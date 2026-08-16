@@ -59,7 +59,11 @@ minetest.register_on_newplayer(function(player)
 
 		arrival_in_progress = true
 		local spawn_pos = vector.round(player:get_pos())
-		local base = {x=spawn_pos.x, y=spawn_pos.y-1, z=spawn_pos.z}
+		local base = {x=spawn_pos.x, y=spawn_pos.y + 25, z=spawn_pos.z}
+		
+		-- Teleport player to the sky immediately so they don't see the ground waiting
+		player:set_pos(vector.add(base, {x=0, y=1.5, z=0}))
+		
 		minetest.emerge_area(vector.subtract(base, 12), vector.add(base, 12),
 			function(_, _, remaining)
 				if remaining ~= 0 then return end
