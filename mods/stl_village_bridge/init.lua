@@ -171,6 +171,15 @@ minetest.register_on_mods_loaded(function()
 							self.fight_timer = (self.fight_timer or 0) + dtime
 							if vector.distance(mypos, tpos) <= 2.5 and self.fight_timer > 1.5 then
 								self.fight_timer = 0
+								
+								-- Visual feedback so it doesn't feel like Thorns
+								if self.set_animation and working_villages and working_villages.animation_frames then
+									self:set_animation(working_villages.animation_frames.MINE)
+								end
+								if self.fight_target:is_player() then
+									minetest.chat_send_player(self.fight_target:get_player_name(), "<" .. tostring(self.nametag or "Villager") .. "> Stop hitting me!")
+								end
+								
 								self.fight_target:punch(self.object, 1.0, {
 									full_punch_interval = 1.0,
 									damage_groups = {fleshy = 2}
