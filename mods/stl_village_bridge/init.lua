@@ -79,36 +79,41 @@ end
 mg_villages.inhabitants.spawn_one_mob = function(bed, village_id, plot_nr, bed_nr, bpos)
 	local id = bridge_id(village_id, plot_nr, bed_nr)
 	local bed_pos = {x=bed.x, y=bed.y, z=bed.z}
-	local existing = find_existing(bed_pos, id)
-	if existing then return existing end
+	
+	minetest.after(2, function()
+		local existing = find_existing(bed_pos, id)
+		if existing then return end
 
-	local spawn_pos = house_entrance(bpos, bed_nr, bed)
-	spawn_pos.y = spawn_pos.y + 0.5
-	local gender = bed.gender == "f" and "female" or "male"
-	local object = minetest.add_entity(spawn_pos, "working_villages:villager_" .. gender)
-	if not object then
-		minetest.log("error", "[stl_village_bridge] Could not spawn resident for " .. id)
-		return nil
-	end
+		local spawn_pos = house_entrance(bpos, bed_nr, bed)
+		spawn_pos.y = spawn_pos.y + 0.5
+		local gender = bed.gender == "f" and "female" or "male"
+		local object = minetest.add_entity(spawn_pos, "working_villages:villager_" .. gender)
+		if not object then
+			minetest.log("error", "[stl_village_bridge] Could not spawn resident for " .. id)
+			return
+		end
 
-	local villager = object:get_luaentity()
-	villager.owner_name = "working_villages:self_employed"
-	villager.nametag = table.concat({bed.first_name or "Resident", bed.middle_name or "", bed.last_name or ""}, " ")
-	villager.pos_data.home_pos = vector.round(spawn_pos)
-	villager.pos_data.bed_pos = bed_pos
-	villager.pos_data.job_pos = workplace(village_id, bed)
-	villager.pos_data.stelluasuna_bed_id = id
-	object:set_nametag_attributes({text=villager.nametag})
+		local villager = object:get_luaentity()
+		if not villager then return end
+		villager.owner_name = "working_villages:self_employed"
+		villager.nametag = table.concat({bed.first_name or "Resident", bed.middle_name or "", bed.last_name or ""}, " ")
+		villager.pos_data.home_pos = vector.round(spawn_pos)
+		villager.pos_data.bed_pos = bed_pos
+		villager.pos_data.job_pos = workplace(village_id, bed)
+		villager.pos_data.stelluasuna_bed_id = id
+		object:set_nametag_attributes({text=villager.nametag})
 
-	local inventory = villager:get_inventory()
-	inventory:set_stack("job", 1, ItemStack(RESIDENT_JOB))
-	local job = working_villages.registered_jobs[RESIDENT_JOB]
-	villager.job_thread = coroutine.create(job.jobfunc)
-	villager:set_displayed_action("village resident")
-	villager:set_state_info("This is my home in " .. tostring(village_id) .. ".")
+		local inventory = villager:get_inventory()
+		inventory:set_stack("job", 1, ItemStack(RESIDENT_JOB))
+		local job = working_villages.registered_jobs[RESIDENT_JOB]
+		villager.job_thread = coroutine.create(job.jobfunc)
+		villager:set_displayed_action("village resident")
+		villager:set_state_info("This is my home in " .. tostring(village_id) .. ".")
 
-	minetest.log("action", "[stl_village_bridge] Resident " .. id .. " assigned to bed " .. minetest.pos_to_string(bed_pos))
-	return villager.inventory_name or id
+		minetest.log("action", "[stl_village_bridge] Resident " .. id .. " assigned to bed " .. minetest.pos_to_string(bed_pos))
+	end)
+	
+	return id
 end
 
 minetest.log("action", "[stl_village_bridge] mg_villages -> working_villages population bridge active")
