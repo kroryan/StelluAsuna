@@ -1225,8 +1225,10 @@ mg_villages.inhabitants.spawn_mobs_for_one_house = function( bpos, minp, maxp, v
 		end
 		
 		if( bed and bed.first_name and in_bounds ) then
-			bed.mob_id = mg_villages.inhabitants.spawn_one_mob( bed, village_id, plot_nr, bed_nr, bpos );
-			minetest.log("action", "[mg_villages] spawn_one_mob returned " .. tostring(bed.mob_id) .. " for bed " .. bed.first_name)
+			if math.random(1, 3) == 1 then
+				bed.mob_id = mg_villages.inhabitants.spawn_one_mob( bed, village_id, plot_nr, bed_nr, bpos );
+				minetest.log("action", "[mg_villages] spawn_one_mob returned " .. tostring(bed.mob_id) .. " for bed " .. bed.first_name)
+			end
 		else
 			if not bed then minetest.log("action", "[mg_villages] bed is nil")
 			elseif not bed.first_name then minetest.log("action", "[mg_villages] bed.first_name is nil")
