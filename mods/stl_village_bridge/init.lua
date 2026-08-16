@@ -134,3 +134,23 @@ minetest.register_on_mods_loaded(function()
 		end
 	end
 end)
+
+minetest.after(5, function()
+	local def = minetest.registered_entities["working_villages:villager_female"]
+	if def then
+		minetest.log("action", "===== DEBUG VILLAGER =====")
+		if def.on_punch then
+			local info = debug.getinfo(def.on_punch)
+			minetest.log("action", "on_punch: " .. tostring(info.short_src) .. ":" .. tostring(info.linedefined))
+		else
+			minetest.log("action", "on_punch: nil")
+		end
+		if def.on_step then
+			local info = debug.getinfo(def.on_step)
+			minetest.log("action", "on_step: " .. tostring(info.short_src) .. ":" .. tostring(info.linedefined))
+		else
+			minetest.log("action", "on_step: nil")
+		end
+		minetest.log("action", "==========================")
+	end
+end)
