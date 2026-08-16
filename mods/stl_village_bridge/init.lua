@@ -21,7 +21,7 @@ working_villages.register_job(RESIDENT_JOB, {
 					z = center.z + math.random(-10, 10)
 				}
 				-- Find ground so they don't try to fly
-				local ok, gpos = pcall(working_villages.require("core/func").find_ground_below, target)
+				local ok, gpos = pcall(working_villages.require("jobs/util").find_ground_below, target)
 				if ok and gpos then target = gpos end
 				self:go_to(target)
 			end
