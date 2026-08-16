@@ -10,6 +10,8 @@ working_villages.register_job(RESIDENT_JOB, {
 				local ft = self.flee_target
 				self.flee_target = nil
 				self:set_state_info("Fleeing in panic!")
+				self:set_animation(working_villages.animation_frames.WALK)
+				-- Flee by running to the target
 				self:go_to(ft)
 			else
 				self:handle_night()
@@ -18,17 +20,28 @@ working_villages.register_job(RESIDENT_JOB, {
 				
 				local pos = self.object:get_pos()
 				if pos then
-					local center = self.pos_data.job_pos or self.pos_data.home_pos or pos
-					local target = {
-						x = center.x + math.random(-15, 15),
-						y = center.y,
-						z = center.z + math.random(-15, 15)
-					}
-					local ok, gpos = pcall(working_villages.require("jobs/util").find_ground_below, target)
-					if ok and gpos then target = gpos end
-					self:go_to(target)
+					local gpos = nil
+					for i=1, 5 do
+						local target = {
+							x = pos.x + math.random(-6, 6),
+							y = pos.y,
+							z = pos.z + math.random(-6, 6)
+						}
+						local ok, gp = pcall(working_villages.require("jobs/util").find_ground_below, target)
+						if ok and gp then
+							local p1 = {x=pos.x, y=pos.y+1, z=pos.z}
+							local p2 = {x=gp.x, y=gp.y+1, z=gp.z}
+							if minetest.line_of_sight(p1, p2) then
+								gpos = gp
+								break
+							end
+						end
+					end
+					if gpos then
+						self:go_to(gpos)
+					end
 				end
-				self:delay(math.random(1, 3))
+				self:delay(math.random(20, 50))
 			end
 		end
 	end,
@@ -125,15 +138,37 @@ minetest.register_on_mods_loaded(function()
 						local vec = vector.subtract(mypos, ppos)
 						vec.y = 0
 						if vector.length(vec) < 0.1 then vec = {x=math.random()-0.5, y=0, z=math.random()-0.5} end
-						local flee_dir = vector.normalize(vec)
-						local flee_target = vector.add(mypos, vector.multiply(flee_dir, 15))
-						flee_target = vector.round(flee_target)
-						local ok, gpos = pcall(working_villages.require("jobs/util").find_ground_below, flee_target)
-						if ok and gpos then flee_target = gpos end
 						
-						self.flee_target = flee_target
-						self.path = {}
-						if self.set_timer then self:set_timer("delay", 9999) end
+						-- Retaliate before running!
+						if puncher.get_hp and puncher:get_hp() > 0 then
+							puncher:punch(self.object, 1.0, {
+								full_punch_interval = 1.0,
+								damage_groups = {fleshy = 2}
+							}, nil)
+						end
+						
+						local flee_dir = vector.normalize(vec)
+						local flee_target = nil
+						-- Check distances 8, 6, 4, 2 to find a point that is in line of sight
+						for _, dist in ipairs({8, 6, 4, 2}) do
+							local tgt = vector.add(mypos, vector.multiply(flee_dir, dist))
+							tgt = vector.round(tgt)
+							local ok, gp = pcall(working_villages.require("jobs/util").find_ground_below, tgt)
+							if ok and gp then
+								local p1 = {x=mypos.x, y=mypos.y+1, z=mypos.z}
+								local p2 = {x=gp.x, y=gp.y+1, z=gp.z}
+								if minetest.line_of_sight(p1, p2) then
+									flee_target = gp
+									break
+								end
+							end
+						end
+						
+						if flee_target then
+							self.flee_target = flee_target
+							self.path = {}
+							if self.set_timer then self:set_timer("delay", 9999) end
+						end
 					end
 				end
 			end
