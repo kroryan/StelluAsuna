@@ -136,17 +136,19 @@ local constructor_materials = {
 	{"default:wood", "Wood"}, {"default:stone", "Stone"},
 	{"default:cobble", "Cobblestone"}, {"default:brick", "Brick"},
 	{"default:glass", "Glass"}, {"default:steelblock", "Steel"},
-	{"wool:dark_grey", "Dark Grey Wool"}, {"bakedclay:dark_grey", "Dark Grey Glazed"},
-	{"bakedclay:red", "Red Glazed"}, {"bakedclay:orange", "Orange Glazed"},
-	{"bakedclay:yellow", "Yellow Glazed"}, {"bakedclay:green", "Green Glazed"},
-	{"bakedclay:blue", "Blue Glazed"}, {"bakedclay:violet", "Violet Glazed"},
-	{"mcl_colorblocks:glazed_terracotta_grey", "Grey Glazed Terracotta"},
-	{"mcl_colorblocks:glazed_terracotta_red", "Red Glazed Terracotta"},
-	{"mcl_colorblocks:glazed_terracotta_orange", "Orange Glazed Terracotta"},
-	{"mcl_colorblocks:glazed_terracotta_yellow", "Yellow Glazed Terracotta"},
-	{"mcl_colorblocks:glazed_terracotta_green", "Green Glazed Terracotta"},
-	{"mcl_colorblocks:glazed_terracotta_blue", "Blue Glazed Terracotta"},
-	{"mcl_colorblocks:glazed_terracotta_purple", "Purple Glazed Terracotta"},
+	{"wool:dark_grey", "Dark Grey Wool"},
+	{"bakedclay:terracotta_dark_grey", "Dark Grey Glazed"},
+	{"bakedclay:terracotta_red", "Red Glazed"},
+	{"bakedclay:terracotta_orange", "Orange Glazed"},
+	{"bakedclay:terracotta_yellow", "Yellow Glazed"},
+	{"bakedclay:terracotta_green", "Green Glazed"},
+	{"bakedclay:terracotta_cyan", "Cyan Glazed"},
+	{"bakedclay:terracotta_blue", "Blue Glazed"},
+	{"bakedclay:terracotta_violet", "Violet Glazed"},
+	{"bakedclay:terracotta_magenta", "Magenta Glazed"},
+	{"bakedclay:terracotta_brown", "Brown Glazed"},
+	{"bakedclay:terracotta_pink", "Pink Glazed"},
+	{"bakedclay:terracotta_black", "Black Glazed"},
 }
 
 local function constructor_line(itemstack, user, pointed_thing, target)
@@ -185,16 +187,18 @@ end
 
 for index, entry in ipairs(constructor_materials) do
 	local target, label = entry[1], entry[2]
-	local name = "esvanetor:constructor_" .. index
-	minetest.register_tool(name, {
-		description = "Rainbow Constructor: " .. label .. " (9x1)",
-		inventory_image = CONSTRUCTOR_TEXTURE,
-		wield_image = CONSTRUCTOR_TEXTURE,
-		tool_capabilities = {full_punch_interval = 0.15, max_drop_level = 1},
-		on_use = function(stack, user, pointed) return constructor_line(stack, user, pointed, target) end,
-	})
-	minetest.register_craft({
-		output = name,
-		recipe = {{target, "stl_core:titanium", target}, {"", "sgjourney:energy_crystal", ""}, {"", "stl_core:stick", ""}},
-	})
+	if minetest.registered_nodes[target] then
+		local name = "esvanetor:constructor_" .. index
+		minetest.register_tool(name, {
+			description = "Rainbow Constructor: " .. label .. " (9x1)",
+			inventory_image = CONSTRUCTOR_TEXTURE,
+			wield_image = CONSTRUCTOR_TEXTURE,
+			tool_capabilities = {full_punch_interval = 0.15, max_drop_level = 1},
+			on_use = function(stack, user, pointed) return constructor_line(stack, user, pointed, target) end,
+		})
+		minetest.register_craft({
+			output = name,
+			recipe = {{target, "stl_core:titanium", target}, {"", "sgjourney:energy_crystal", ""}, {"", "stl_core:stick", ""}},
+		})
+	end
 end
