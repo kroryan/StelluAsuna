@@ -214,3 +214,19 @@ minetest.register_chatcommand("asuna_home", {
 		return true, "Returning to Asuna"
 	end,
 })
+
+minetest.register_on_player_hpchange(function(player, hp_change, reason)
+	if hp_change < 0 then
+		if reason and reason.type == "punch" and reason.object and not reason.object:is_player() then
+			local ent = reason.object:get_luaentity()
+			if ent and ent.name and ent.name:find("^working_villages:villager_") then
+				minetest.log("action", "===== ABSOLUTE SHIELD: Blocked damage from villager to " .. player:get_player_name() .. " =====")
+				return 0
+			end
+		elseif reason and reason.type == "punch" and reason.object == player then
+			minetest.log("action", "===== ABSOLUTE SHIELD: Blocked player self-damage to " .. player:get_player_name() .. " =====")
+			return 0
+		end
+	end
+	return hp_change
+end, true)

@@ -1,0 +1,35 @@
+max_line_length = 240
+
+ignore = {
+	-- ignore unused self argument
+	"212/self",
+}
+
+read_globals = {
+	-- minetest
+	"AreaStore",
+	"dump",
+	"minetest",
+	"vector",
+	"VoxelManip",
+	"VoxelArea",
+	"ItemStack",
+	-- mods
+	"default", "doors",
+	-- special minetest functions
+	"table.copy",
+}
+
+globals = {
+	-- modpack mods
+	"building_sign",
+	"working_villages",
+	-- submodule mods
+	"modutil",
+	"LuaVenusCompiler"
+}
+
+exclude_files = {
+	-- bad syntax is tested here
+	"working_villagers/modutil/LuaVenusCompiler/testout"
+}

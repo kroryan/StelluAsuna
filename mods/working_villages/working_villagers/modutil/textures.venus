@@ -1,0 +1,35 @@
+local textures = {}
+
+fn textures.inventorycube(face_1, face_2, face_3) {
+	return "[inventorycube{" .. string.gsub(face_1, "%^", "&")
+	        .. "{" .. string.gsub(face_2, "%^", "&")
+	        .. "{" .. string.gsub(face_3, "%^", "&")
+}
+
+fn textures.get_node_inventory_image(nodename) {
+  local n = minetest.registered_nodes[nodename]
+  if not n {
+    return
+  }
+  local img = n.inventory_image
+  if string.len(img) ~= 0 {
+    return img
+  }
+  local tiles = {}
+  for l, tile in pairs(n.tiles or {}) {
+    tiles[l] = (type(tile) == "string" and tile) or tile.name
+  }
+  local chosen_tiles = { tiles[1], tiles[3], tiles[5] }
+  if #chosen_tiles == 0 {
+    return
+  }
+  if not chosen_tiles[2] {
+    chosen_tiles[2] = chosen_tiles[1]
+  }
+  if not chosen_tiles[3] {
+    chosen_tiles[3] = chosen_tiles[2]
+  }
+  return textures.inventorycube(chosen_tiles[1], chosen_tiles[2], chosen_tiles[3])
+}
+
+return textures
