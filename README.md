@@ -304,22 +304,21 @@ the project-level policy and preserves the GPLv3 text used by the GPL
 components. The complete upstream Stellua notice is in `LICENSE_STELLUA.txt`.
 
 `THIRD_PARTY_LICENSES.md` is the current attribution and provenance manifest,
-including the external sounds used by Stellua-derived mods, local changes and
-the exact items whose redistribution is still pending. The individual license
-and credit files inside each mod remain authoritative. No mod is removed from
-the game because of this audit.
+including the external sounds used by Stellua-derived mods and local changes.
+The individual license and credit files inside each mod remain authoritative.
+No mod is removed from the game because of this audit.
 
 The code in `admin_seed` and `sgjourney` is project-owned and now has explicit
 GPL-3.0-or-later notices. `sgjourney`'s original local assets remain CC0 as
 documented separately. `simple_fishing` remains AGPL-3.0-only for code, with
 its own media licenses preserved; it is not silently relicensed as GPL.
 
-The only remaining pending redistribution item is `shared_textures`, whose
-placeholder image origin is not demonstrated. The local `stl_seasons` and
-`stl_village_bridge` integrations are project-owned and GPL-3.0-or-later;
-their provenance notices are included beside their code. `mg_villages`,
-`deepslate` and `glow_pack` have their ContentDB release metadata and local
-preservation notices recorded in the manifest.
+The AI-created compatibility components `shared_textures`, `stl_seasons` and
+`stl_village_bridge` are project-owned and licensed with separate code/media
+notices. The historical `stl_asuna_bridge` is retired and is not packaged.
+`mg_villages`, `deepslate` and `glow_pack` have their ContentDB release
+metadata and local preservation notices recorded in the manifest. No
+unresolved package-specific license item remains in the current audit.
 Credits & Mod Authors 🔗
 
 StelluAsuna is built upon the work of many Luanti mod developers and projects.

@@ -1,0 +1,16 @@
+shared_textures
+===============
+
+Copyright (C) 2026 kroryan
+
+The no-op Lua code in this mod is released under the GNU General Public
+License version 3 or any later version (GPL-3.0-or-later).
+
+The original 1x1 placeholder images `blank.png` and `3d_armor_trans.png` are
+released under CC0 1.0 Universal. They are transparent placeholders created
+for StelluAsuna and are not copied from Asuna, Stellua or another bundled mod.
+
+The complete GPLv3 text is available at ../../LICENSE. The CC0 notice is
+available at <https://creativecommons.org/publicdomain/zero/1.0/>.
+
+SPDX-License-Identifier: GPL-3.0-or-later

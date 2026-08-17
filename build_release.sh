@@ -55,6 +55,7 @@ required_files=(
     "$STAGING_DIR/$GAME_NAME/mods/stl_village_bridge/PROVENANCE.md"
     "$STAGING_DIR/$GAME_NAME/mods/stl_seasons/LICENSE"
     "$STAGING_DIR/$GAME_NAME/mods/stl_village_bridge/LICENSE"
+    "$STAGING_DIR/$GAME_NAME/mods/shared_textures/LICENSE"
 )
 for required_file in "${required_files[@]}"; do
     if [ ! -f "$required_file" ]; then

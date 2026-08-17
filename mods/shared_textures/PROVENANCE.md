@@ -9,5 +9,6 @@ same local hash. They do not match the similarly named files in the local
 `horror` or `shields_mtg` mods, and no exact upstream package was found in the
 Asuna or Stellua source trees or in the ContentDB package search.
 
-The copyright holder and license for these two images are not established.
-This notice records provenance only and does not grant redistribution rights.
+The project owner has confirmed that this is an AI-created StelluAsuna
+compatibility component. The Lua code is GPL-3.0-or-later and the two
+transparent placeholder images are CC0-1.0; see `LICENSE`.

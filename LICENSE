@@ -16,9 +16,9 @@ here, but it does not replace a component's more specific license:
 - The project-owned admin_seed and sgjourney code: GNU GPL-3.0-or-later.
 - Other third-party mods and assets: their local license and credit files.
 
-Some bundled components still have unresolved provenance or licensing. They
-are explicitly listed as pending in THIRD_PARTY_LICENSES.md; the root GPL text
-does not grant rights to those files.
+The provenance and licensing status of bundled components is tracked in
+THIRD_PARTY_LICENSES.md. The root GPL text does not grant rights to files
+covered by a different component license.
 
 In accordance with GPL requirements to indicate changes to works, all changes
 made to the below listed works are officially made on or after 25 January 2023.
@@ -55,6 +55,10 @@ made to the below listed works are officially made on or after 25 January 2023.
   - Location: ./mods/stl_village_bridge/
   - License file: ./mods/stl_village_bridge/LICENSE
   - Provenance: ./mods/stl_village_bridge/PROVENANCE.md
+- Project-owned shared texture compatibility module
+  - Location: ./mods/shared_textures/
+  - License file: ./mods/shared_textures/LICENSE
+  - Code: GPL-3.0-or-later; placeholder images: CC0-1.0
 - Simple Fishing
   - Location: ./mods/simple_fishing/
   - License files: ./mods/simple_fishing/LICENSE-AGPL-3.0-ONLY,

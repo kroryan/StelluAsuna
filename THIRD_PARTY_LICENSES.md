@@ -79,12 +79,13 @@ or compressed by the release build:
 These are not copies of a package found in Asuna, Stellua or the exact public
 ContentDB searches performed for this audit:
 
-- `mods/shared_textures/`: introduced by project commit `674a699` and given a
+- `mods/shared_textures/`: present from project commit `674a699` and given a
   no-op init by `ce8631e`. Its two 1x1 PNGs have the same hash as each other,
   but do not match the `blank.png` files in `horror` or `shields_mtg`, and no
   ContentDB package named `shared_textures`, `3d_armor_trans` or
-  `placeholder textures` was found. The creator and license of these images
-  are therefore still unknown.
+  `placeholder textures` was found. The project owner has confirmed this is
+  an AI-created StelluAsuna compatibility component: its Lua is
+  GPL-3.0-or-later and its transparent placeholders are CC0-1.0.
 - `mods/stl_seasons/`: present from project commit `e1fb3a0` as the
   StelluAsuna seasonal integration. That commit does not establish its
   pre-repository source. It does not match the public
@@ -100,17 +101,19 @@ ContentDB searches performed for this audit:
 
 ## Pending before broad redistribution
 
-The following item still has no verified license or ownership record for the
-exact local files. It is still included in the game as requested, but should
-not be treated as cleared for redistribution until the listed evidence is
-obtained:
-
-- `mods/shared_textures/`: provenance and license of the placeholder images;
-  see the local-component section above.
+No unresolved package-specific license item remains in this audit. The
+historical `stl_asuna_bridge` is not in the active tree or release; its source
+is preserved in Git history and is documented as retired below.
 
 The `itemframes` screenshot is not pending: the exact local package matches
 the ContentDB release and its package metadata declares CC-BY-3.0 for media.
 Its textstudio.com provenance remains documented for attribution purposes.
+
+The historical `mods/stl_asuna_bridge/` was an AI-created StelluAsuna
+compatibility component. It was removed from the active tree in commit
+`6833793` because its spawn bridge was no longer used; no active mod is
+deleted by this audit. Its historical code is project-owned under
+GPL-3.0-or-later, but it is not packaged or loaded.
 
 This pending list is intentionally conservative. A missing license is not
 interpreted as permission to redistribute; see the Luanti ContentDB copyright
