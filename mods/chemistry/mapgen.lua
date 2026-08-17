@@ -1246,19 +1246,15 @@ minetest.register_craft({
 	}
 })
 
-stairs.register_stair(
+-- DungeonsPlus builds outer corners from the biome's stair node. Register the
+-- complete stair family so Chemistry's alkaline dungeon material is valid in
+-- mapgen as well as in crafting.
+stairs.register_stair_and_slab(
 	"alkaline_sandstone_brick",
 	"chemistry:alkaline_sandstone_brick",
 	{cracky = 3, alkaline = 1, alkaline_sandstone = 1},
 	{"alkaline_sandstone_brick.png"},
 	S("Alkaline Sandstone Brick Stair"),
-	default.node_sound_stone_defaults()
-)
-stairs.register_slab(
-	"alkaline_sandstone_brick",
-	"chemistry:alkaline_sandstone_brick",
-	{cracky = 3, alkaline = 1, alkaline_sandstone = 1},
-	{"alkaline_sandstone_brick.png"},
 	S("Alkaline Sandstone Brick Slab"),
 	default.node_sound_stone_defaults()
 )
