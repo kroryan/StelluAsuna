@@ -215,25 +215,18 @@ minetest.register_chatcommand("asuna_home", {
 	end,
 })
 
-minetest.register_on_punchplayer(function(player, hitter, time_from_last_punch, tool_capabilities, dir, damage)
-	minetest.log("action", "ANTI-PUNCH DEBUG: on_punchplayer called for player " .. tostring(player and player:get_player_name()))
-	if hitter then
-		minetest.log("action", "ANTI-PUNCH DEBUG: hitter exists. Is player? " .. tostring(hitter:is_player()))
-		if not hitter:is_player() then
-			local luaent = hitter:get_luaentity()
-			minetest.log("action", "ANTI-PUNCH DEBUG: luaent exists? " .. tostring(luaent ~= nil))
-			if luaent then
-				minetest.log("action", "ANTI-PUNCH DEBUG: luaent.name: " .. tostring(luaent.name))
-				if luaent.name and luaent.name:find("^working_villages:villager_") then
-					minetest.log("action", "===== BLOCKED VILLAGER PUNCHING PLAYER =====")
-					return true -- Completely prevent the engine from applying this damage
-				end
+minetest.register_on_player_hpchange(function(player, hp_change, reason)
+	if hp_change < 0 then
+		if reason and reason.type == "punch" and reason.object and not reason.object:is_player() then
+			local ent = reason.object:get_luaentity()
+			if ent and ent.name and ent.name:find("^working_villages:villager_") then
+				minetest.log("action", "===== ABSOLUTE SHIELD: Blocked damage from villager to " .. player:get_player_name() .. " =====")
+				return 0
 			end
-		elseif hitter == player then
-			minetest.log("action", "===== BLOCKED PLAYER PUNCHING THEMSELVES =====")
-			return true -- Completely prevent the engine from applying this damage
+		elseif reason and reason.type == "punch" and reason.object == player then
+			minetest.log("action", "===== ABSOLUTE SHIELD: Blocked player self-damage to " .. player:get_player_name() .. " =====")
+			return 0
 		end
-	else
-		minetest.log("action", "ANTI-PUNCH DEBUG: hitter is nil")
 	end
-end)
+	return hp_change
+end, true)
