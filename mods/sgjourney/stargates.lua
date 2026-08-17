@@ -62,7 +62,9 @@ local function save_gate(pos, variant)
 end
 
 local function clear_portal(pos)
-	for y = 1, 5 do for x = -2, 2 do
+	-- The rounded ring leaves a seven-wide by seven-high opening.  Clear the
+	-- complete opening so stale horizons cannot remain at the top or sides.
+	for y = 1, 7 do for x = -3, 3 do
 		local p = vector.add(pos, {x = x, y = y, z = 0})
 		if core.get_node(p).name == "sgjourney:event_horizon" then core.remove_node(p) end
 	end end
@@ -96,10 +98,16 @@ function S.set_iris(pos, closed)
 end
 
 local function build_portal(pos)
-	for y = 1, 5 do for x = -2, 2 do
+	-- Fill every cell inside the stepped nine-node ring.  Ring segments at
+	-- the rounded corners are left untouched, so the horizon occupies the
+	-- actual seven-by-seven aperture rather than a narrow five-by-five strip.
+	for y = 1, 7 do for x = -3, 3 do
 		local p = vector.add(pos, {x = x, y = y, z = 0})
 		local n = core.get_node(p).name
-		if n == "air" or n == "sgjourney:event_horizon" then core.set_node(p, {name = "sgjourney:event_horizon"}) end
+		if n == "air" or n == "sgjourney:event_horizon" then
+			core.set_node(p, {name = "sgjourney:event_horizon"})
+			core.get_meta(p):set_string("controller", S.pos_key(pos))
+		end
 	end end
 end
 
@@ -171,7 +179,13 @@ core.register_node("sgjourney:event_horizon", {
 core.register_abm({
 	label = "Stargate event horizon teleport", nodenames = {"sgjourney:event_horizon"}, interval = 0.2, chance = 1,
 	action = function(pos)
-		local gate = S.find_gate(pos, 7)
+		-- Use the controller recorded when the horizon was created.  A radius
+		-- search can miss the controller at the rounded top corners and can
+		-- select the wrong gate when two gates are close together.
+		local gate = core.string_to_pos(core.get_meta(pos):get_string("controller"))
+		if not gate or core.get_item_group(core.get_node(gate).name, "sgjourney_gate") == 0 then
+			gate = S.find_gate(pos, 10)
+		end
 		if not gate then return end
 		local target = S.links[S.pos_key(gate)]
 		if not target then return end
@@ -183,7 +197,8 @@ core.register_abm({
 					S.sound("iris_thud", target)
 					obj:punch(obj, 1.0, {damage_groups = {fleshy = 20}}, nil)
 				else
-					obj:set_pos(vector.add(target, {x = 0, y = 2, z = 2}))
+					local destination = vector.add(vector.round(target), {x = 0, y = 2, z = 2})
+					obj:set_pos(destination)
 					S.sound("wormhole_travel", target)
 				end
 			end
