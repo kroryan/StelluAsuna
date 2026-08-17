@@ -368,20 +368,6 @@ minetest.register_on_mods_loaded(function()
         if minetest.get_item_group(name, "spaceship") > 0 then
             local on_rightclick = defs.on_rightclick
             minetest.override_item(name, {on_rightclick = function (pos, node, user, itemstack, pointed)
-                if user and user:is_player() and show_piloted_ship_panel(user) then
-                    return itemstack
-                end
-                if user and user:is_player() and user:get_player_control().sneak then
-                    local panel_pos = vector.round(pos)
-                    local form = ship_panel_formspec(user, panel_pos)
-                    if form then
-                        ship_panels[user:get_player_name()] = panel_pos
-                        minetest.show_formspec(user:get_player_name(), "stl_vehicles:ship_panel", form)
-                    else
-                        minetest.chat_send_player(user:get_player_name(), "This ship is incomplete: add a seat and connect all parts.")
-                    end
-                    return itemstack
-                end
                 if user and user:is_player() then
                     local pname = user:get_player_name()
                     local now = minetest.get_us_time() * 0.000001
@@ -599,7 +585,7 @@ minetest.register_globalstep(function(dtime)
                         tries = tries + 1
                     end
                     player:set_pos(exit_pos + 0.5 * UP)
-                    minetest.chat_send_player(playername, "Exited ship. Press Shift + right-click on it for the ship panel.")
+                    minetest.chat_send_player(playername, "Exited ship. Re-enter it and use /ship_panel while piloting to open the panel.")
                     transferring = true
                 end
                 -- Asuna is the hybrid homeworld. A rocket launched from its

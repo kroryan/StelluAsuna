@@ -166,6 +166,11 @@ local function place_starter_ship(player, attempt)
 		tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
 	end
 	meta:set_string("stl_core:starter_ship_pos", minetest.serialize(base))
+	-- The starter ship belongs to the player who received it from the first
+	-- connection; assign it immediately so the marker and /ship_panel workflow
+	-- never require a second manual assignment.
+	meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(base)))
+	meta:set_string("stl_core:ship_marker_mode", "current")
 	meta:set_int(starter_ship_key, 1)
 	if meta:get_int("stl_core:starter_ship_found") == 0 then
 		meta:set_string("stl_core:ship_marker_mode", "starter")
@@ -249,6 +254,10 @@ local function update_ship_waypoint(player)
 			vector.subtract(p, 12), vector.add(p, 12), {"group:spaceship"})
 		if found and found[1] then
 			meta:set_string("stl_core:starter_ship_pos", minetest.serialize(vector.round(found[1])))
+			if not read_player_pos(meta, "stl_core:current_ship_pos") then
+				meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(found[1])))
+				meta:set_string("stl_core:ship_marker_mode", "current")
+			end
 			if meta:get_int("stl_core:starter_ship_found") == 0 then
 				meta:set_string("stl_core:ship_marker_mode", "starter")
 			end
@@ -261,7 +270,7 @@ local function update_ship_waypoint(player)
 		if meta:get_string("stl_core:ship_marker_mode") == "starter" then
 			meta:set_string("stl_core:ship_marker_mode", "off")
 			remove_ship_waypoint(player)
-			minetest.chat_send_player(player:get_player_name(), "Starter ship found. Use Shift + right-click on a ship to inspect and assign it.")
+			minetest.chat_send_player(player:get_player_name(), "Starter ship found. Enter it, then use /ship_panel while piloting.")
 		end
 	end
 	local pos, label = ship_marker_target(player)
@@ -270,7 +279,7 @@ local function update_ship_waypoint(player)
 		and meta:get_int("stl_core:ship_tutorial_notice") == 0 then
 			meta:set_int("stl_core:ship_tutorial_notice", 1)
 			minetest.chat_send_player(player:get_player_name(),
-				"Tutorial 1/5: Find your orange starter ship. Follow the waypoint; Shift + right-click opens its control panel. Use /ship_tutorial skip to skip this step.")
+				"Tutorial 1/5: Find your orange starter ship. Follow the waypoint, enter it, then use /ship_panel while piloting. Use /ship_tutorial skip to skip this step.")
 		end
 		set_ship_waypoint(player, pos, label)
 	else

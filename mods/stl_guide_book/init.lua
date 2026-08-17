@@ -62,7 +62,7 @@ Tutorial controls:
 - Double right-click a connected spaceship block to enter and take control.
 - Press <b>Space</b> to launch/ascend.
 - Press <b>E / Aux1</b> again to exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
-- While controlling the ship, right-click any ship block to open the ship panel. Before entering, use <b>Shift + right-click</b> on a ship block.
+- Enter the ship and take control. While piloting, type <b>/ship_panel</b> to open its control panel.
 
 If you want to skip this first tutorial step, use <b>/ship_tutorial skip</b>. Skipping only hides the arrival guidance; it does not remove your ship.
 ]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
@@ -161,7 +161,7 @@ To return to Asuna, use the Planets page's homeworld option when you have a vali
 Use <b>/ship_marker starter</b> for the starter ship, or <b>/ship_marker</b> for your assigned current ship. If you have not assigned one, stand near the ship and use <b>/ship_set_current</b>.
 
 <b>The ship panel does nothing</b>
-After taking control, point at any ship block and right-click once; no Shift is needed. Before entering, use Shift + right-click. You can also use <b>/ship_panel</b> while piloting. The ship must contain exactly one connected seat.
+You must be piloting the ship first. Then type <b>/ship_panel</b>. The panel is not opened by clicking blocks. The ship must contain exactly one connected seat.
 
 <b>Right-click does not seat me</b>
 Double right-click a spaceship block. You are not pointing at a spaceship block, the seat is not connected, or the scan found an invalid structure. Confirm exactly one connected seat.
@@ -184,7 +184,7 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>Space / Jump</b> — ascend and take control of the ship after entering.
 
-<b>Shift / Sneak</b> — descend manually. Shift is also used with right-click to open the ship panel.
+<b>Shift / Sneak</b> — descend manually.
 
 <b>E / Aux1</b> — exit the ship. On solid ground it lands and restores the ship to blocks; while airborne it performs a controlled exit.
 
@@ -194,14 +194,14 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>Double right-click</b> — enter a connected spaceship and take control.
 
-<b>Right-click while piloting</b> — open the ship control panel. Before entering, use Shift + right-click.
+<b>/ship_panel</b> — open the ship control panel while piloting.
 
 Control the ship gently. Maximum horizontal speed is limited, but a fast descent can still damage your landing position.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:assembler"}),
 
 		panel = page("Ship panel and markers", [[
 <b>Ship panel</b>
-While piloting, right-click any ship block. The panel shows position, engine power, fuel-tank count and seat status. Before entering, hold Shift/Sneak and right-click a connected spaceship block.
+Enter the ship with double right-click, take control, then type <b>/ship_panel</b>. The panel shows position, engine power, fuel-tank count and seat status. It is intentionally not opened by right-clicking blocks.
 
 From the panel you can assign that ship as your <b>current ship</b> or enable its waypoint. The command equivalents are:
 - <b>/ship_panel</b> — open the panel for the nearby/piloted ship.
