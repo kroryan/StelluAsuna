@@ -184,6 +184,21 @@ local function teleport_through_horizon(obj, horizon)
 	if not gate then return false end
 	local target = S.links[S.pos_key(gate)]
 	if not target then return false end
+	-- A live wormhole is always reciprocal. Repair older one-sided link data
+	-- instead of making travel depend on which end was dialled first.
+	local target_key = S.pos_key(target)
+	local back = S.links[target_key]
+	if not back or not vector.equals(vector.round(back), vector.round(gate)) then
+		S.links[target_key] = vector.round(gate)
+		S.save_table("links", S.links)
+	end
+	-- Recreate a missing destination horizon (for example after a map reload)
+	-- before moving the traveller.
+	local destination_horizon = core.find_nodes_in_area(
+		vector.subtract(target, {x = 3, y = 0, z = 0}),
+		vector.add(target, {x = 3, y = 8, z = 0}),
+		{"sgjourney:event_horizon"})
+	if #destination_horizon == 0 then build_portal(target) end
 	local meta = obj:get_meta()
 	local now = core.get_us_time()
 	if now - meta:get_int("sgjourney_teleport") <= 2000000 then return true end
@@ -219,10 +234,10 @@ core.register_globalstep(function(dtime)
 	if player_scan_timer < 0.1 then return end
 	player_scan_timer = 0
 	for _, player in ipairs(core.get_connected_players()) do
-		local p = player:get_pos()
+		local p = vector.round(player:get_pos())
 		local horizons = core.find_nodes_in_area(
-			vector.subtract(p, {x = 1, y = 2, z = 1}),
-			vector.add(p, {x = 1, y = 2, z = 1}),
+			vector.subtract(p, {x = 2, y = 3, z = 2}),
+			vector.add(p, {x = 2, y = 3, z = 2}),
 			{"sgjourney:event_horizon"})
 		for _, horizon in ipairs(horizons) do
 			if teleport_through_horizon(player, horizon) then break end
