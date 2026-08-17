@@ -74,7 +74,7 @@ or compressed by the release build:
   `screenshot.jpg` was created using textstudio.com; that external source
   attribution is retained but its terms are not independently documented.
 
-## Local components with unresolved ownership
+## Local components and asset provenance
 
 These are not copies of a package found in Asuna, Stellua or the exact public
 ContentDB searches performed for this audit:
@@ -98,16 +98,17 @@ ContentDB searches performed for this audit:
 
 ## Pending before broad redistribution
 
-The following items still have no verified license or ownership record for the
-exact local files. They are still included in the game as requested, but
-should not be treated as cleared for redistribution until the listed evidence
-is obtained:
+The following item still has no verified license or ownership record for the
+exact local files. It is still included in the game as requested, but should
+not be treated as cleared for redistribution until the listed evidence is
+obtained:
 
 - `mods/shared_textures/`: provenance and license of the placeholder images;
   see the local-component section above.
-- `mods/itemframes/screenshot.jpg`: the package's CC-BY-3.0 declaration and
-  source note are recorded; it is covered by the package media declaration,
-  but its textstudio.com provenance remains documented for audit purposes.
+
+The `itemframes` screenshot is not pending: the exact local package matches
+the ContentDB release and its package metadata declares CC-BY-3.0 for media.
+Its textstudio.com provenance remains documented for attribution purposes.
 
 This pending list is intentionally conservative. A missing license is not
 interpreted as permission to redistribute; see the Luanti ContentDB copyright
