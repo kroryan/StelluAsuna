@@ -199,6 +199,7 @@ local function remove_ship_waypoint(player)
 	local name = player:get_player_name()
 	local state = ship_waypoints[name]
 	if state and state.hud then player:hud_remove(state.hud) end
+	if state and state.hint then player:hud_remove(state.hint) end
 	ship_waypoints[name] = nil
 end
 
@@ -215,7 +216,13 @@ local function set_ship_waypoint(player, pos, label)
 		precision = 1,
 	})
 	if not hud then return false end
-	ship_waypoints[name] = {hud = hud, key = key}
+	local hint = player:hud_add({
+		hud_elem_type = "text", position = {x=0.5, y=0.12},
+		alignment = {x=0, y=0}, offset = {x=0, y=0},
+		text = "▼  FOLLOW THE RED ARROW TO YOUR SHIP  ▼",
+		number = 0xFF3333, size = {x=1.2, y=1.2},
+	})
+	ship_waypoints[name] = {hud = hud, hint = hint, key = key}
 	return true
 end
 

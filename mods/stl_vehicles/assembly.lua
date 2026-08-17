@@ -287,6 +287,21 @@ end
 
 --Make the player enter vehicles on rightclick
 local ship_panels = {}
+local right_clicks = {}
+
+local function enter_ship(user, pos)
+    if not user or not user:is_player() or user:get_attach() then return false end
+    local ent = stellua.detach_vehicle(vector.round(pos))
+    if not ent or not ent.object or not ent.object:is_valid() then
+        minetest.chat_send_player(user:get_player_name(), "Ship entry failed: the ship is incomplete or busy.")
+        return false
+    end
+    ent.player = user:get_player_name()
+    user:set_attach(ent.object)
+    minetest.sound_play({name="doors_door_close", gain=0.3}, {object=ent.object}, true)
+    minetest.chat_send_player(user:get_player_name(), "Ship control active. Press Space to launch; press E again to exit.")
+    return true
+end
 
 local function ship_panel_formspec(player, ship_pos)
     local ship, seat, engines, power, tanks = stellua.assemble_vehicle(ship_pos, true)
@@ -325,6 +340,18 @@ minetest.register_on_mods_loaded(function()
                     end
                     return itemstack
                 end
+                if user and user:is_player() then
+                    local pname = user:get_player_name()
+                    local now = minetest.get_us_time() * 0.000001
+                    local previous = right_clicks[pname]
+                    if previous and now - previous.time <= 0.55
+                    and vector.distance(previous.pos, pos) <= 2 then
+                        right_clicks[pname] = nil
+                        if enter_ship(user, pos) then return itemstack end
+                    else
+                        right_clicks[pname] = {time=now, pos=vector.round(pos)}
+                    end
+                end
                 if on_rightclick then on_rightclick(pos, node, user)
                 elseif (itemstack:is_empty() or not ({minetest.item_place_node(itemstack, user, pointed)})[2]) and not stellua.assemble_vehicle(vector.round(user:get_pos()), true) then
                     local ship, seat = stellua.assemble_vehicle(pos)
@@ -362,8 +389,31 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
     if fields.quit then ship_panels[name] = nil end
 end)
 
+minetest.register_chatcommand("ship_panel", {
+    description = "Open the panel for the nearby or piloted ship",
+    func = function(name)
+        local player = minetest.get_player_by_name(name)
+        if not player then return false, "Player not found" end
+        local pos
+        local attached = player:get_attach()
+        if attached and attached:is_valid() then
+            pos = attached:get_pos()
+        else
+            local _, seat = stellua.assemble_vehicle(vector.round(player:get_pos()), true)
+            pos = seat
+        end
+        if not pos then return false, "No complete ship found nearby" end
+        local form = ship_panel_formspec(player, pos)
+        if not form then return false, "The ship panel could not be created" end
+        ship_panels[name] = vector.round(pos)
+        minetest.show_formspec(name, "stl_vehicles:ship_panel", form)
+        return true, "Ship panel opened"
+    end,
+})
+
 minetest.register_on_leaveplayer(function(player)
     ship_panels[player:get_player_name()] = nil
+    right_clicks[player:get_player_name()] = nil
 end)
 
 --Detect if vehicle is on ground
@@ -466,6 +516,22 @@ minetest.register_globalstep(function(dtime)
                 stellua.set_respawn(player, pos)
 
             else
+                -- E/aux1 is also the explicit exit action while airborne or
+                -- in orbit. Never leave the player attached to a removed
+                -- vehicle entity.
+                if aux1 then
+                    player:set_detach()
+                    ent.player = nil
+                    local exit_pos = vector.round(pos + player:get_look_dir() * 2)
+                    local tries = 0
+                    while tries < 8 and stellua.assemble_vehicle(exit_pos, true) do
+                        exit_pos = exit_pos + UP
+                        tries = tries + 1
+                    end
+                    player:set_pos(exit_pos + 0.5 * UP)
+                    minetest.chat_send_player(playername, "Exited ship. Press Shift + right-click on it for the ship panel.")
+                    transferring = true
+                end
                 -- Asuna is the hybrid homeworld. A rocket launched from its
                 -- surface enters the same orbital slot system as a planet.
 				if not index and y >= 240 and y < stellua.hybrid_space_min then
