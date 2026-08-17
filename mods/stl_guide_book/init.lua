@@ -62,7 +62,7 @@ Tutorial controls:
 - Double right-click a connected spaceship block to enter and take control.
 - Press <b>Space</b> to launch/ascend.
 - Press <b>E / Aux1</b> again to exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
-- Press <b>Shift + right-click</b> on a ship block to open the ship panel.
+- While controlling the ship, right-click any ship block to open the ship panel. Before entering, use <b>Shift + right-click</b> on a ship block.
 
 If you want to skip this first tutorial step, use <b>/ship_tutorial skip</b>. Skipping only hides the arrival guidance; it does not remove your ship.
 ]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
@@ -160,8 +160,8 @@ To return to Asuna, use the Planets page's homeworld option when you have a vali
 <b>The red ship arrow is not visible</b>
 Use <b>/ship_marker starter</b> for the starter ship, or <b>/ship_marker</b> for your assigned current ship. If you have not assigned one, stand near the ship and use <b>/ship_set_current</b>.
 
-<b>Shift + right-click does nothing</b>
-Point directly at a spaceship block, keep Shift/Sneak held, and click once. You can open the same panel with <b>/ship_panel</b>. The ship must contain exactly one connected seat.
+<b>The ship panel does nothing</b>
+After taking control, point at any ship block and right-click once; no Shift is needed. Before entering, use Shift + right-click. You can also use <b>/ship_panel</b> while piloting. The ship must contain exactly one connected seat.
 
 <b>Right-click does not seat me</b>
 Double right-click a spaceship block. You are not pointing at a spaceship block, the seat is not connected, or the scan found an invalid structure. Confirm exactly one connected seat.
@@ -194,14 +194,14 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>Double right-click</b> — enter a connected spaceship and take control.
 
-<b>Shift + right-click</b> — open the ship control panel.
+<b>Right-click while piloting</b> — open the ship control panel. Before entering, use Shift + right-click.
 
 Control the ship gently. Maximum horizontal speed is limited, but a fast descent can still damage your landing position.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:assembler"}),
 
 		panel = page("Ship panel and markers", [[
 <b>Ship panel</b>
-Hold Shift/Sneak and right-click any connected spaceship block. The panel shows position, engine power, fuel-tank count and seat status.
+While piloting, right-click any ship block. The panel shows position, engine power, fuel-tank count and seat status. Before entering, hold Shift/Sneak and right-click a connected spaceship block.
 
 From the panel you can assign that ship as your <b>current ship</b> or enable its waypoint. The command equivalents are:
 - <b>/ship_panel</b> — open the panel for the nearby/piloted ship.
@@ -209,6 +209,7 @@ From the panel you can assign that ship as your <b>current ship</b> or enable it
 - <b>/ship_marker</b> — show the current ship's red waypoint.
 - <b>/ship_marker off</b> — hide it.
 - <b>/ship_marker starter</b> — show the orange starter ship waypoint again.
+- <b>/stl_transfer player x y z</b> — server-admin test command to move a connected player (for example <b>/stl_transfer krox 0 9200 0</b>).
 
 The waypoint is a HUD direction indicator, not a permanent world marker. The starter waypoint disappears once you reach the ship; current-ship waypoints remain available until disabled.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:assembler"}),

@@ -287,6 +287,7 @@ end
 
 --Make the player enter vehicles on rightclick
 local ship_panels = {}
+local ship_panel_entities = {}
 local right_clicks = {}
 
 local function enter_ship(user, pos)
@@ -326,11 +327,50 @@ local function ship_panel_formspec(player, ship_pos)
         "label[0.5,5.5;Current assignment: "..(is_current and "this ship" or "another ship").."]"
 end
 
+-- Piloted vehicles are LVAE entities, so their blocks are no longer available
+-- to assemble_vehicle().  The pilot can open this equivalent panel directly.
+local function ship_panel_entity_formspec(player, object)
+    if not object or not object:is_valid() then return nil end
+    local ent = object:get_luaentity()
+    if not ent or ent.name ~= "lvae:lvae" then return nil end
+    local ship_pos = object:get_pos()
+    if not ship_pos then return nil end
+    local tanks = type(ent.tanks) == "table" and #ent.tanks or 0
+    local assigned = minetest.deserialize(player:get_meta():get_string("stl_core:current_ship_pos"))
+    local current = assigned and type(assigned) == "table"
+        and type(assigned.x) == "number" and vector.distance(assigned, ship_pos) < 2
+    return "formspec_version[4]size[8,6]" ..
+        "label[0.4,0.35;Ship control panel (piloted)]" ..
+        "label[0.4,0.9;Position: "..minetest.formspec_escape(minetest.pos_to_string(vector.round(ship_pos))).."]" ..
+        "label[0.4,1.35;Engine power: "..tostring(tonumber(ent.power) or 0).."]" ..
+        "label[0.4,1.8;Fuel tanks: "..tostring(tanks).."]" ..
+        "label[0.4,2.25;Seat: installed]" ..
+        "button[0.5,3.0;3.2,0.9;ship_assign;Assign as current ship]" ..
+        "button[4.1,3.0;3.2,0.9;ship_marker;Show ship waypoint]" ..
+        "button_exit[2.7,4.5;2.6,0.9;close;Close]" ..
+        "label[0.5,5.5;Current assignment: "..(current and "this ship" or "another ship").."]"
+end
+
+local function show_piloted_ship_panel(user)
+    local attached = user and user:get_attach()
+    if not attached or not attached:is_valid() then return false end
+    local form = ship_panel_entity_formspec(user, attached)
+    if not form then return false end
+    local name = user:get_player_name()
+    ship_panel_entities[name] = attached
+    ship_panels[name] = nil
+    minetest.show_formspec(name, "stl_vehicles:ship_panel", form)
+    return true
+end
+
 minetest.register_on_mods_loaded(function()
     for name, defs in pairs(minetest.registered_nodes) do
         if minetest.get_item_group(name, "spaceship") > 0 then
             local on_rightclick = defs.on_rightclick
             minetest.override_item(name, {on_rightclick = function (pos, node, user, itemstack, pointed)
+                if user and user:is_player() and show_piloted_ship_panel(user) then
+                    return itemstack
+                end
                 if user and user:is_player() and user:get_player_control().sneak then
                     local panel_pos = vector.round(pos)
                     local form = ship_panel_formspec(user, panel_pos)
@@ -370,6 +410,23 @@ end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
     if formname ~= "stl_vehicles:ship_panel" or not player or not player:is_player() then return end
     local name = player:get_player_name()
+    local live_entity = ship_panel_entities[name]
+    if live_entity and live_entity:is_valid() then
+        if fields.ship_assign or fields.ship_marker then
+            local pos = live_entity:get_pos()
+            if not pos then
+                minetest.chat_send_player(name, "The piloted ship is no longer available.")
+                return
+            end
+            local meta = player:get_meta()
+            meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(pos)))
+            meta:set_string("stl_core:ship_marker_mode", "current")
+            minetest.chat_send_player(name, fields.ship_assign and "Current ship assigned." or "Ship waypoint enabled.")
+            minetest.close_formspec(name, formname)
+        end
+        if fields.quit then ship_panel_entities[name] = nil end
+        return
+    end
     local ship_pos = ship_panels[name]
     if not ship_pos then return end
     if fields.ship_assign or fields.ship_marker then
@@ -415,6 +472,7 @@ minetest.register_chatcommand("ship_panel", {
 
 minetest.register_on_leaveplayer(function(player)
     ship_panels[player:get_player_name()] = nil
+    ship_panel_entities[player:get_player_name()] = nil
     right_clicks[player:get_player_name()] = nil
 end)
 

@@ -432,6 +432,33 @@ minetest.register_chatcommand("asuna_home", {
 	end,
 })
 
+-- Administrative, in-game transfer command.  This is intentionally a chat
+-- command (rather than a hidden startup hook) so test moves never become part
+-- of world generation or player data by accident.
+minetest.register_chatcommand("stl_transfer", {
+	params = "<player> <x> <y> <z>",
+	description = "Move a player to exact coordinates (admin)",
+	privs = {server=true},
+	func = function(_, param)
+		local p = (param or ""):split(" ")
+		if #p ~= 4 then return false, "Usage: /stl_transfer <player> <x> <y> <z>" end
+		local target
+		for _, candidate in ipairs(minetest.get_connected_players()) do
+			if candidate:get_player_name():lower() == p[1]:lower() then target = candidate break end
+		end
+		if not target then return false, "Player is not connected: " .. p[1] end
+		local dest = {x=tonumber(p[2]), y=tonumber(p[3]), z=tonumber(p[4])}
+		if not dest.x or not dest.y or not dest.z then return false, "Coordinates must be numbers" end
+		local attached = target:get_attach()
+		if attached and attached:is_valid() then
+			target:set_detach()
+			attached:set_pos(dest)
+		end
+		target:set_pos(vector.add(dest, {x=0, y=1, z=0}))
+		return true, "Transferred "..target:get_player_name().." to "..minetest.pos_to_string(dest)
+	end,
+})
+
 --A few useful commands
 minetest.register_chatcommand("planet", {
     params = "",

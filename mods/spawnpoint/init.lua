@@ -5,6 +5,7 @@ spawnpoint = {}
 local storage
 local path = minetest.get_worldpath().."/spawnpoint.conf"
 local data = Settings(path)
+local player_spawns = {}
 
 if minetest.get_mod_storage then
 	storage = minetest.get_mod_storage()
@@ -74,6 +75,8 @@ function spawnpoint.load()
 		end
 
 		if storage then
+			local saved = storage:get_string("player_spawns")
+			player_spawns = minetest.deserialize(saved) or {}
 			os.remove(path)
 		end
 	elseif storage and not is_empty(storage:to_table()) then
@@ -83,6 +86,7 @@ function spawnpoint.load()
 		end
 
 		local do_not_move = storage:get_string("do_not_move")
+		player_spawns = minetest.deserialize(storage:get_string("player_spawns")) or {}
 		if do_not_move == "true" or do_not_move == true then
 			spawnpoint.do_not_move = true
 		else
@@ -119,6 +123,7 @@ function spawnpoint.save()
 	if storage then
 		storage:set_float("time", spawnpoint.time or 0)
 		storage:set_string("do_not_move", tostring(spawnpoint.do_not_move))
+		storage:set_string("player_spawns", minetest.serialize(player_spawns))
 
 		if spawnpoint.pos then
 			storage:set_string("pos", minetest.pos_to_string(spawnpoint.pos))
@@ -157,10 +162,19 @@ function spawnpoint.bring(player)
 		player = minetest.get_player_by_name(player)
 	end
 
-	if player and spawnpoint.pos then
-		local pos = spawnpoint.pos
+	if player then
+		local pos = player_spawns[player:get_player_name()] or spawnpoint.pos
+		if not pos then return end
 		player:setpos({x=pos.x, y=pos.y+0.5, z=pos.z})
 	end
+end
+
+function spawnpoint.set_player(name, pos)
+	if type(name) ~= "string" or type(pos) ~= "table" then return false end
+	player_spawns[name] = vector.round(pos)
+	spawnpoint.save()
+	spawnpoint.log("Set personal spawnpoint for "..name.." to "..minetest.pos_to_string(player_spawns[name]))
+	return true
 end
 
 -- [function] Begin Countdown
@@ -263,9 +277,11 @@ minetest.register_privilege("spawn", "Ability to teleport to spawn at will with 
 -- [register cmd] Set spawn
 minetest.register_chatcommand("setspawn", {
 	description = "Set spawn",
-	privs = {server=true},
+	privs = {},
 	func = function(name, param)
-		local pos = minetest.get_player_by_name(name):getpos()
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		local pos = player:getpos()
 		if param then
 			local ppos = minetest.string_to_pos(param)
 			if type(ppos) == "table" then
@@ -274,9 +290,25 @@ minetest.register_chatcommand("setspawn", {
 		end
 		pos = vector.round(pos)
 
-		spawnpoint.set(pos)
+		spawnpoint.set_player(name, pos)
 
-		return true, "Set spawnpoint to "..minetest.pos_to_string(pos)
+		return true, "Set your personal spawnpoint to "..minetest.pos_to_string(pos)
+	end,
+})
+
+minetest.register_chatcommand("setspawnall", {
+	description = "Set the shared spawn for every player",
+	privs = {server=true},
+	func = function(name, param)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		local pos = player:getpos()
+		if param and param ~= "" then
+			local parsed = minetest.string_to_pos(param)
+			if type(parsed) == "table" then pos = parsed end
+		end
+		spawnpoint.set(pos)
+		return true, "Shared spawnpoint set for all players to "..minetest.pos_to_string(vector.round(pos))
 	end,
 })
 
