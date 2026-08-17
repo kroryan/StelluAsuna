@@ -211,20 +211,19 @@ minetest.register_on_joinplayer(function(player)
 	minetest.after(1, function()
 		if player and player:is_player() then give_book(player) end
 	end)
-	-- The arrival ship is intentionally placed near, rather than inside, the
-	-- spawn point. Explain this once so a new player does not assume generation
-	-- failed and leave the starting area immediately.
+end)
+
+-- register_on_newplayer runs only when the account is created, never on a
+-- normal reconnect. This keeps the arrival guidance a true first-game notice.
+minetest.register_on_newplayer(function(player)
 	minetest.after(2, function()
 		if not player or not player:is_player() then return end
-		local meta = player:get_meta()
-		if meta:get_int("stelluasuna_arrival_ship_notice") == 1 then return end
 		minetest.chat_send_player(player:get_player_name(), [[
 StelluAsuna / Stellua arrival notice:
 Your arrival ship will spawn near your starting spawn, but technical limitations prevent it from appearing inside the exact spawn point. Search the surrounding area for the orange ship before travelling away.
 
 [Aviso de llegada de StelluAsuna:
 Tu nave aparecerá cerca del punto de inicio, pero por limitaciones técnicas no puede aparecer dentro del spawn exacto. Busca la nave naranja en los alrededores antes de alejarte.]])
-		meta:set_int("stelluasuna_arrival_ship_notice", 1)
 	end)
 end)
 
