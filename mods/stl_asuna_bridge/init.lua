@@ -2,9 +2,9 @@ local SPACE_MIN = stellua.hybrid_space_min or 6368
 local ASUNA_SURFACE_MIN = -128
 local ASUNA_SURFACE_MAX = 256
 local ARRIVAL_FOOTPRINT_RADIUS = 2
-local ARRIVAL_SEARCH_RADIUS = 48
+local ARRIVAL_SEARCH_RADIUS = 24
 local ARRIVAL_ECOLOGY_RADIUS = 24
-local ARRIVAL_CONTINENT_RADIUS = 48
+local ARRIVAL_CONTINENT_RADIUS = 32
 local ARRIVAL_CONTINENT_STEP = 16
 local ARRIVAL_MIN_LAND_RATIO = 0.70
 -- get_mod_storage() depends on the current mod context, which is available
@@ -205,8 +205,9 @@ local function spawn_player_ship(player, force)
 		if arrival_tokens[name] ~= token then return end
 		local offset_x = math.random(-150, 150)
 		local offset_z = math.random(-150, 150)
-		local pmin = {x = offset_x - ARRIVAL_SEARCH_RADIUS - 8, y = ASUNA_SURFACE_MIN, z = offset_z - ARRIVAL_SEARCH_RADIUS - 8}
-		local pmax = {x = offset_x + ARRIVAL_SEARCH_RADIUS + 8, y = ASUNA_SURFACE_MAX, z = offset_z + ARRIVAL_SEARCH_RADIUS + 8}
+		local area_radius = ARRIVAL_SEARCH_RADIUS + ARRIVAL_CONTINENT_RADIUS + 8
+		local pmin = {x = offset_x - area_radius, y = ASUNA_SURFACE_MIN, z = offset_z - area_radius}
+		local pmax = {x = offset_x + area_radius, y = ASUNA_SURFACE_MAX, z = offset_z + area_radius}
 		minetest.emerge_area(pmin, pmax,
 			function(_, _, remaining)
 				if remaining ~= 0 or arrival_tokens[name] ~= token then return end
