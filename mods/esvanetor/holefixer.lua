@@ -245,7 +245,7 @@ local function pointed_node(player, pointed, range)
 	for hit in core.raycast(from,to,true,false) do if hit.type=="node" then return hit end end
 end
 
-core.register_tool(TOOL,{description="Holefixer\nConfigurable terrain repair and construction",inventory_image="esvanetor.png",wield_image="esvanetor.png",
+core.register_tool(TOOL,{description="Holefixer\nRainbow terrain repair pistol",inventory_image="holefixer.png",wield_image="holefixer.png",
 	tool_capabilities={full_punch_interval=0.2,max_drop_level=100,damage_groups={fleshy=8}},
 	on_use=function(stack,user,pointed)
 		local cfg=load_config(pname(user)); pointed=pointed_node(user,pointed,clamp(cfg.range,1,64)); if not pointed then return stack end
