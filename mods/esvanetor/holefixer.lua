@@ -226,7 +226,7 @@ local function formspec(player)
 	f=f.."checkbox[0.4,4.2;surface;Surface only;"..tostring(cfg.surface).."]checkbox[2.5,4.2;preserve;Preserve important;"..tostring(cfg.preserve).."]button[4.2,4;2,0.8;preview;Preview]button[6.4,4;2,0.8;apply;Apply]button[8.6,4;2,0.8;undo;Undo]button[10.8,4;2,0.8;undo3;Undo 3]"
 	f=f.."field[0.4,5.2;3,0.8;search;Search nodes;"..core.formspec_escape(cfg.search or "").."]button[3.6,5;2,0.8;search_btn;Search]label[0.4,5.9;Available blocks / recent: ]"
 	local y=6.2; for i=1,math.min(8,#list) do f=f.."item_image_button["..(0.4+((i-1)%4)*1.9)..","..tostring(y+math.floor((i-1)/4)*1.1)..";0.8,0.8;"..list[i]..";pick_"..i..";]" end
-	f=f.."field[8.6,5.2;2.5,0.8;preset;Preset;"..core.formspec_escape(cfg.preset or "").."]button[11.2,5;1.4,0.8;save_preset;Save]button[11.2,6;1.4,0.8;load_preset;Load]"
+	f=f.."field[8.6,5.2;2.5,0.8;preset;Preset;"..core.formspec_escape(cfg.preset or "").."]button[11.2,5;1.4,0.8;save_preset;Save]button[11.2,6;1.4,0.8;load_preset;Load]button_exit[5.2,9.1;2.6,0.8;close;Close]"
 	return f
 end
 
@@ -245,6 +245,22 @@ local function pointed_node(player, pointed, range)
 	for hit in core.raycast(from,to,true,false) do if hit.type=="node" then return hit end end
 end
 
+local function open_panel(stack, user)
+	if not user or not user:is_player() then return stack end
+	core.show_formspec(pname(user), "esvanetor:holefixer", formspec(user))
+	return stack
+end
+
+core.register_chatcommand("holefixer", {
+	description = "Open the Holefixer configuration panel",
+	func = function(name)
+		local player = core.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		core.show_formspec(name, "esvanetor:holefixer", formspec(player))
+		return true, "Holefixer panel opened"
+	end,
+})
+
 core.register_tool(TOOL,{description="Holefixer\nRainbow terrain repair pistol",inventory_image="holefixer.png",wield_image="holefixer.png",
 	tool_capabilities={full_punch_interval=0.2,max_drop_level=100,damage_groups={fleshy=8}},
 	on_use=function(stack,user,pointed)
@@ -255,13 +271,18 @@ core.register_tool(TOOL,{description="Holefixer\nRainbow terrain repair pistol",
 		cfg.last_center=vector.copy(center); save_config(pname(user))
 		start_job(user,center,cfg); return stack
 	end,
-	on_place=function(stack,user) core.show_formspec(pname(user),"esvanetor:holefixer",formspec(user)); return stack end})
+	-- Explicit secondary-use handling is required for right-click in empty air;
+	-- on_place alone is not dispatched consistently for tools across clients.
+	on_place=open_panel,
+	on_secondary_use=open_panel,
+})
 
 core.register_craft({output=TOOL,recipe={{"sgjourney:naquadah_alloy","stl_core:titanium_block","sgjourney:naquadah_alloy"},{"stl_core:titanium_block","sgjourney:energy_crystal","stl_core:titanium_block"},{"","stl_core:titanium",""}}})
 
 core.register_on_player_receive_fields(function(player,form,fields)
 	if form~="esvanetor:holefixer" then return end
 	local name=pname(player); local cfg=load_config(name)
+	if fields.quit then return end
 	if fields.mode then cfg.mode=modes[tonumber(fields.mode) or 1] or cfg.mode end
 	if fields.shape then cfg.shape=shapes[tonumber(fields.shape) or 1] or cfg.shape end
 	for _,key in ipairs({"block","source","target","search","preset"}) do if fields[key] then cfg[key]=fields[key] end end

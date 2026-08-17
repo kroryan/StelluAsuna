@@ -43,12 +43,14 @@ local function spawn_planet_animal(player, planet)
 		if a and b and a.name == "air" and b.name == "air" then
 			local obj = minetest.add_entity(spawn, species)
 			if obj then
-				-- Keep Animalia's model and animation, adding only a planet-specific
-				-- colour morph after its normal activation has selected a texture.
+				-- Keep Animalia's model, animation, sounds, drops and AI. Add an
+				-- original planet-specific texture layer plus a restrained colour
+				-- morph so every world has a recognisable fauna appearance.
 				local props = obj:get_properties()
 				local texture = props and props.textures and props.textures[1]
 				if texture and morphs[planet] then
-					obj:set_properties({textures={texture .. "^[colorize:" .. morphs[planet] .. ":75"}})
+					local pattern = string.format("stl_fauna_planet_%02d.png", planet)
+					obj:set_properties({textures={texture .. "^[colorize:" .. morphs[planet] .. ":45^" .. pattern}})
 				end
 			end
 			return

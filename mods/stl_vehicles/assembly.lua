@@ -410,6 +410,11 @@ end)
 minetest.register_on_player_receive_fields(function(player, formname, fields)
     if formname ~= "stl_vehicles:ship_panel" or not player or not player:is_player() then return end
     local name = player:get_player_name()
+    if fields.quit then
+        ship_panels[name] = nil
+        ship_panel_entities[name] = nil
+        return
+    end
     local live_entity = ship_panel_entities[name]
     if live_entity and live_entity:is_valid() then
         if fields.ship_assign or fields.ship_marker then
@@ -424,7 +429,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
             minetest.chat_send_player(name, fields.ship_assign and "Current ship assigned." or "Ship waypoint enabled.")
             minetest.close_formspec(name, formname)
         end
-        if fields.quit then ship_panel_entities[name] = nil end
         return
     end
     local ship_pos = ship_panels[name]
@@ -445,7 +449,6 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
         end
         minetest.close_formspec(name, formname)
     end
-    if fields.quit then ship_panels[name] = nil end
 end)
 
 minetest.register_chatcommand("ship_panel", {
@@ -456,6 +459,13 @@ minetest.register_chatcommand("ship_panel", {
         local pos
         local attached = player:get_attach()
         if attached and attached:is_valid() then
+            local live_form = ship_panel_entity_formspec(player, attached)
+            if live_form then
+                ship_panel_entities[name] = attached
+                ship_panels[name] = nil
+                minetest.show_formspec(name, "stl_vehicles:ship_panel", live_form)
+                return true, "Ship panel opened"
+            end
             pos = attached:get_pos()
         else
             local _, seat = stellua.assemble_vehicle(vector.round(player:get_pos()), true)
