@@ -2,6 +2,8 @@ local SPACE_MIN = stellua.hybrid_space_min or 6368
 local ASUNA_SURFACE_MIN = -128
 local ASUNA_SURFACE_MAX = 256
 local ARRIVAL_FOOTPRINT_RADIUS = 2
+local ARRIVAL_SEARCH_RADIUS = 48
+local ARRIVAL_ECOLOGY_RADIUS = 24
 -- get_mod_storage() depends on the current mod context, which is available
 -- while this file is loaded but not later inside on_mods_loaded callbacks.
 local storage = minetest.get_mod_storage()
@@ -21,6 +23,8 @@ local function is_arrival_surface(node)
 	if not node or node.name == "air" or node.name == "ignore" then return false end
 	local def = minetest.registered_nodes[node.name]
 	if not def or not def.walkable then return false end
+	if minetest.get_item_group(node.name, "tree") > 0
+		or minetest.get_item_group(node.name, "leaves") > 0 then return false end
 	return minetest.get_item_group(node.name, "water") == 0
 		and minetest.get_item_group(node.name, "lava") == 0
 end
@@ -45,6 +49,74 @@ local function find_asuna_arrival_base(x, z)
 		end
 	end
 	return {x=x, y=highest_surface + 1, z=z}
+end
+
+local function is_unwanted_arrival_biome(name)
+	name = string.lower(name or "")
+	return name:find("desert", 1, true) ~= nil
+		or name:find("outback", 1, true) ~= nil
+		or name:find("badland", 1, true) ~= nil
+		or name:find("quicksand", 1, true) ~= nil
+		or name:find("fiery", 1, true) ~= nil
+		or name:find("alpine", 1, true) ~= nil
+end
+
+local function score_asuna_arrival_site(base)
+	local biome_data = minetest.get_biome_data({x=base.x, y=base.y - 1, z=base.z})
+	if not biome_data then return nil end
+	local biome_name = minetest.get_biome_name(biome_data.biome)
+	if not biome_name or is_unwanted_arrival_biome(biome_name) then return nil end
+
+	local biome = asuna and asuna.biomes and asuna.biomes[biome_name]
+	if not biome or not biome.animals or #biome.animals == 0 then return nil end
+
+	local eco_min = {
+		x = base.x - ARRIVAL_ECOLOGY_RADIUS,
+		y = math.max(ASUNA_SURFACE_MIN, base.y - 2),
+		z = base.z - ARRIVAL_ECOLOGY_RADIUS,
+	}
+	local eco_max = {
+		x = base.x + ARRIVAL_ECOLOGY_RADIUS,
+		y = math.min(ASUNA_SURFACE_MAX, base.y + 24),
+		z = base.z + ARRIVAL_ECOLOGY_RADIUS,
+	}
+	local trees = minetest.find_nodes_in_area(eco_min, eco_max, {"group:tree"})
+	local leaves = minetest.find_nodes_in_area(eco_min, eco_max, {"group:leaves"})
+	local flora = minetest.find_nodes_in_area(eco_min, eco_max, {"group:flora", "group:flower"})
+	if #trees == 0 then return nil end
+
+	local score = (#trees * 10) + math.min(#leaves, 40) + math.min(#flora, 20)
+	score = score + (#biome.animals * 5)
+	if biome_name == "grassland" or biome_name == "prairie"
+		or biome_name == "dorwinion" then
+		score = score + 25
+	end
+	return score, biome_name, #trees, #flora, #biome.animals
+end
+
+-- Select the best ecological site in the emerged area instead of accepting
+-- the first dry column, which could be a desert or empty plateau.
+local function find_asuna_arrival_site(center_x, center_z)
+	local best
+	for x = center_x - ARRIVAL_SEARCH_RADIUS, center_x + ARRIVAL_SEARCH_RADIUS, 8 do
+		for z = center_z - ARRIVAL_SEARCH_RADIUS, center_z + ARRIVAL_SEARCH_RADIUS, 8 do
+			local base = find_asuna_arrival_base(x, z)
+			if base then
+				local score, biome_name, tree_count, flora_count, animal_count = score_asuna_arrival_site(base)
+				if score and (not best or score > best.score) then
+					best = {
+						base = base,
+						score = score,
+						biome_name = biome_name,
+						tree_count = tree_count,
+						flora_count = flora_count,
+						animal_count = animal_count,
+					}
+				end
+			end
+		end
+	end
+	return best
 end
 
 -- StelluAsuna starts on the Asuna homeworld, but keeps Stellua's original
@@ -106,8 +178,8 @@ local function spawn_player_ship(player, force)
 		if arrival_tokens[name] ~= token then return end
 		local offset_x = math.random(-150, 150)
 		local offset_z = math.random(-150, 150)
-		local pmin = {x = offset_x - 16, y = ASUNA_SURFACE_MIN, z = offset_z - 16}
-		local pmax = {x = offset_x + 16, y = ASUNA_SURFACE_MAX, z = offset_z + 16}
+		local pmin = {x = offset_x - ARRIVAL_SEARCH_RADIUS - 8, y = ASUNA_SURFACE_MIN, z = offset_z - ARRIVAL_SEARCH_RADIUS - 8}
+		local pmax = {x = offset_x + ARRIVAL_SEARCH_RADIUS + 8, y = ASUNA_SURFACE_MAX, z = offset_z + ARRIVAL_SEARCH_RADIUS + 8}
 		minetest.emerge_area(pmin, pmax,
 			function(_, _, remaining)
 				if remaining ~= 0 or arrival_tokens[name] ~= token then return end
@@ -115,8 +187,8 @@ local function spawn_player_ship(player, force)
 					if arrival_tokens[name] ~= token then return end
 					local p = minetest.get_player_by_name(name)
 					if not p then return end
-					local base = find_asuna_arrival_base(offset_x, offset_z)
-					if not base then
+					local site = find_asuna_arrival_site(offset_x, offset_z)
+					if not site then
 						if retries < 20 then
 							try_arrival_area(retries + 1)
 						else
@@ -124,6 +196,7 @@ local function spawn_player_ship(player, force)
 						end
 						return
 					end
+					local base = site.base
 
 					minetest.place_schematic(base,
 						minetest.get_modpath("stl_core").."/schems/starter_rocket.mts",
@@ -149,7 +222,7 @@ local function spawn_player_ship(player, force)
 						end
 						put_player_in_arrival_ship(current, base, token)
 						minetest.close_formspec(name, "stl_asuna_bridge:loading")
-						minetest.log("action", "[stl_asuna_bridge] Asuna homeworld arrival ship placed for " .. name .. " at " .. minetest.pos_to_string(base))
+						minetest.log("action", "[stl_asuna_bridge] Asuna ecological arrival site for " .. name .. ": biome=" .. site.biome_name .. ", trees=" .. site.tree_count .. ", flora=" .. site.flora_count .. ", eligible_animals=" .. site.animal_count .. ", position=" .. minetest.pos_to_string(base))
 					end
 					finish_when_ready(0)
 				end)
