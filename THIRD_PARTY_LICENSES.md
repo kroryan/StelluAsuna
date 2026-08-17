@@ -85,16 +85,18 @@ ContentDB searches performed for this audit:
   ContentDB package named `shared_textures`, `3d_armor_trans` or
   `placeholder textures` was found. The creator and license of these images
   are therefore still unknown.
-- `mods/stl_seasons/`: introduced by project commit `e1fb3a0` as the
-  StelluAsuna seasonal integration. It does not match the public
+- `mods/stl_seasons/`: present from project commit `e1fb3a0` as the
+  StelluAsuna seasonal integration. That commit does not establish its
+  pre-repository source. It does not match the public
   `tbook/seasons` package, which is a separate biome-driven mod with a
-  different file/API layout. The code is project-owned and licensed
-  GPL-3.0-or-later.
-- `mods/stl_village_bridge/`: introduced in project commit `674a699` and
+  different file/API layout. The project owner has confirmed the code is
+  project-owned and licensed GPL-3.0-or-later.
+- `mods/stl_village_bridge/`: present in project commit `674a699` and
   restored by `e7c2007` after a temporary removal. It is the local bridge from
   `mg_villages` beds to `working_villages` residents, not an upstream Stellua
-  component or a ContentDB package with this exact name. The code is
-  project-owned and licensed GPL-3.0-or-later.
+  component or a ContentDB package with this exact name. The root commit does
+  not prove its pre-repository source; the project owner has confirmed the
+  code is project-owned and licensed GPL-3.0-or-later.
 
 ## Pending before broad redistribution
 
