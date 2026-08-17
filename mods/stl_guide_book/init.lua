@@ -26,6 +26,7 @@ logistica.GuideApi.register(GUIDE_NAME, {
 	tableOfContentWidth = 4.4,
 	tableOfContent = {
 		{name = "WARNING / READ FIRST", id = "warning"},
+		{name = "0. First minutes / starter ship", id = "starter"},
 		{name = "1. Stellua in one minute", id = "intro"},
 		{name = "2. Technology and materials", id = "materials"},
 		{name = "3. Build a starship", id = "build"},
@@ -36,6 +37,8 @@ logistica.GuideApi.register(GUIDE_NAME, {
 		{name = "8. Land and return home", id = "landing"},
 		{name = "9. Troubleshooting", id = "trouble"},
 		{name = "10. Controls reference", id = "controls"},
+		{name = "11. Ship panel and markers", id = "panel"},
+		{name = "12. Planet fauna", id = "fauna"},
 	},
 	pageText = {
 		warning = page("Important: this is a test manual", [[
@@ -47,6 +50,22 @@ This book documents Stellua's starships, fuel, planets, slots and travel system 
 
 Always land before leaving a ship unattended. Keep a spare seat, fuel and building materials at your base.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
+
+		starter = page("First minutes: find your ship", [[
+<b>Tutorial step 1 — find the orange starter ship</b>
+
+After your first connection, a red directional waypoint and the text <b>FOLLOW THE RED ARROW TO YOUR SHIP</b> point toward the starter ship near your spawn. Walk toward the arrow. The waypoint is removed permanently when you reach the ship, so it does not remain stuck on your HUD.
+
+The ship is deliberately placed beside the spawn rather than inside it. Search the immediate surroundings if the arrow is not visible. You can also use <b>/ship_marker starter</b> to show it again.
+
+Tutorial controls:
+- Double right-click a connected spaceship block to enter and take control.
+- Press <b>Space</b> to launch/ascend.
+- Press <b>E / Aux1</b> again to exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
+- Press <b>Shift + right-click</b> on a ship block to open the ship panel.
+
+If you want to skip this first tutorial step, use <b>/ship_tutorial skip</b>. Skipping only hides the arrival guidance; it does not remove your ship.
+]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
 
 		intro = page("Stellua in one minute", [[
 Stellua is a vertical space sandbox. Asuna and every generated planet occupy different altitude bands. A starship climbs out of a planet's atmosphere, enters the star system, and can then be sent to another planet.
@@ -138,8 +157,14 @@ To return to Asuna, use the Planets page's homeworld option when you have a vali
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:tank", "stl_core:uranium"}),
 
 		trouble = page("Troubleshooting", [[
+<b>The red ship arrow is not visible</b>
+Use <b>/ship_marker starter</b> for the starter ship, or <b>/ship_marker</b> for your assigned current ship. If you have not assigned one, stand near the ship and use <b>/ship_set_current</b>.
+
+<b>Shift + right-click does nothing</b>
+Point directly at a spaceship block, keep Shift/Sneak held, and click once. You can open the same panel with <b>/ship_panel</b>. The ship must contain exactly one connected seat.
+
 <b>Right-click does not seat me</b>
-You are not pointing at a spaceship block, the seat is not connected, or the scan found an invalid structure. Confirm exactly one connected seat.
+Double right-click a spaceship block. You are not pointing at a spaceship block, the seat is not connected, or the scan found an invalid structure. Confirm exactly one connected seat.
 
 <b>The ship will not launch</b>
 Stand on the seat, verify at least one Rocket Engine and fuel in a Fuel Tank, then use jump+sneak. A normal jump only gives manual vertical control.
@@ -157,18 +182,44 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 		controls = page("Controls reference", [[
 <b>W / A / S / D</b> — steer forward, left, reverse and right while flying.
 
-<b>Space / Jump</b> — ascend manually. On the ground, jump is also used to enter/launch the vehicle.
+<b>Space / Jump</b> — ascend and take control of the ship after entering.
 
-<b>Shift / Sneak</b> — descend manually. Press Aux1/Sneak while touching ground to land and exit the vehicle.
+<b>Shift / Sneak</b> — descend manually. Shift is also used with right-click to open the ship panel.
+
+<b>E / Aux1</b> — exit the ship. On solid ground it lands and restores the ship to blocks; while airborne it performs a controlled exit.
 
 <b>Jump + Sneak</b> — engage the rocket launch burn and consume ordinary Fuel Tank fuel.
 
 <b>E</b> — inventory and the Planets page for destination selection.
 
-<b>Right-click</b> — enter a connected spaceship or open a tank/assembler.
+<b>Double right-click</b> — enter a connected spaceship and take control.
+
+<b>Shift + right-click</b> — open the ship control panel.
 
 Control the ship gently. Maximum horizontal speed is limited, but a fast descent can still damage your landing position.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:assembler"}),
+
+		panel = page("Ship panel and markers", [[
+<b>Ship panel</b>
+Hold Shift/Sneak and right-click any connected spaceship block. The panel shows position, engine power, fuel-tank count and seat status.
+
+From the panel you can assign that ship as your <b>current ship</b> or enable its waypoint. The command equivalents are:
+- <b>/ship_panel</b> — open the panel for the nearby/piloted ship.
+- <b>/ship_set_current</b> — assign the nearby or currently piloted ship.
+- <b>/ship_marker</b> — show the current ship's red waypoint.
+- <b>/ship_marker off</b> — hide it.
+- <b>/ship_marker starter</b> — show the orange starter ship waypoint again.
+
+The waypoint is a HUD direction indicator, not a permanent world marker. The starter waypoint disappears once you reach the ship; current-ship waypoints remain available until disabled.
+]], nil, {"stl_vehicles:seat", "stl_vehicles:assembler"}),
+
+		fauna = page("Planet fauna", [[
+Every Stellua planet has a fauna profile. StelluAsuna uses the real Animalia/Creatura creatures already included in the game: their meshes, textures, animations, sounds, drops and behaviour are preserved.
+
+The species profile changes by planet. Examples include cows, foxes, frogs, horses, opossums, owls, pigs, rats, reindeer, sheep, song birds, turkeys, tropical fish, wolves, bats, cats, chickens and grizzly bears. Planet-specific colour morphs make the local population recognisable without replacing Animalia's models.
+
+Fauna spawns near explored planet surfaces and is capped around each player to avoid server lag. Some species flee; others are predators. If no creature appears immediately, remain near a surface area for a short time while the planet area finishes generating.
+]], nil, {"animalia:fox", "animalia:wolf", "animalia:horse", "animalia:sheep"}),
 	},
 })
 
