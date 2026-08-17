@@ -221,12 +221,15 @@ local function set_ship_waypoint(player, pos, label)
 		precision = 1,
 	})
 	if not hud then return false end
-	local hint = player:hud_add({
-		hud_elem_type = "text", position = {x=0.5, y=0.12},
-		alignment = {x=0, y=0}, offset = {x=0, y=0},
-		text = "▼  FOLLOW THE RED ARROW TO YOUR SHIP  ▼",
-		number = 0xFF3333, size = {x=1.2, y=1.2},
-	})
+	local hint
+	if label == "Starter ship" then
+		hint = player:hud_add({
+			hud_elem_type = "text", position = {x=0.5, y=0.12},
+			alignment = {x=0, y=0}, offset = {x=0, y=0},
+			text = "▼  FOLLOW THE RED ARROW TO YOUR SHIP  ▼",
+			number = 0xFF3333, size = {x=1.2, y=1.2},
+		})
+	end
 	ship_waypoints[name] = {hud = hud, hint = hint, key = key}
 	return true
 end
@@ -256,7 +259,7 @@ local function update_ship_waypoint(player)
 			meta:set_string("stl_core:starter_ship_pos", minetest.serialize(vector.round(found[1])))
 			if not read_player_pos(meta, "stl_core:current_ship_pos") then
 				meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(found[1])))
-				meta:set_string("stl_core:ship_marker_mode", "current")
+				meta:set_string("stl_core:ship_marker_mode", "starter")
 			end
 			if meta:get_int("stl_core:starter_ship_found") == 0 then
 				meta:set_string("stl_core:ship_marker_mode", "starter")
@@ -264,14 +267,20 @@ local function update_ship_waypoint(player)
 		end
 	end
 	local starter = read_player_pos(meta, "stl_core:starter_ship_pos")
+	if starter and meta:get_int("stl_core:starter_ship_found") == 0 then
+		local current = read_player_pos(meta, "stl_core:current_ship_pos")
+		if current and vector.distance(current, starter) < 2 then
+			-- Migrate older players whose starter was assigned as "current";
+			-- keep the first-arrival marker active only until the ship is found.
+			meta:set_string("stl_core:ship_marker_mode", "starter")
+		end
+	end
 	if starter and meta:get_int("stl_core:starter_ship_found") == 0
 	and vector.distance(player:get_pos(), starter) <= 9 then
 		meta:set_int("stl_core:starter_ship_found", 1)
-		if meta:get_string("stl_core:ship_marker_mode") == "starter" then
-			meta:set_string("stl_core:ship_marker_mode", "off")
-			remove_ship_waypoint(player)
-			minetest.chat_send_player(player:get_player_name(), "Starter ship found. Enter it, then use /ship_panel while piloting.")
-		end
+		meta:set_string("stl_core:ship_marker_mode", "off")
+		remove_ship_waypoint(player)
+		minetest.chat_send_player(player:get_player_name(), "Starter ship found. Enter it, then use /ship_panel while piloting.")
 	end
 	local pos, label = ship_marker_target(player)
 	if pos then
