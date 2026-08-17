@@ -295,6 +295,31 @@ space mods reviewed so far provide dimensions, asteroid layers or outposts,
 not a working station system for this vertical map. The project keeps the
 existing Stellua spacecraft and precursor outposts until a compatible station
 mod can be integrated without replacing current space content.
+
+## Licensing and redistribution
+
+StelluAsuna is a compilation of mods and assets with different licenses. It
+does not have one blanket license for every file. The root `LICENSE` explains
+the project-level policy and preserves the GPLv3 text used by the GPL
+components. The complete upstream Stellua notice is in `LICENSE_STELLUA.txt`.
+
+`THIRD_PARTY_LICENSES.md` is the current attribution and provenance manifest,
+including the external sounds used by Stellua-derived mods, local changes and
+the exact items whose redistribution is still pending. The individual license
+and credit files inside each mod remain authoritative. No mod is removed from
+the game because of this audit.
+
+The code in `admin_seed` and `sgjourney` is project-owned and now has explicit
+GPL-3.0-or-later notices. `sgjourney`'s original local assets remain CC0 as
+documented separately. `simple_fishing` remains AGPL-3.0-only for code, with
+its own media licenses preserved; it is not silently relicensed as GPL.
+
+The current pending redistribution items are `shared_textures`, the local
+`stl_seasons` and `stl_village_bridge` integration code, and the
+`itemframes` screenshot source confirmation. `mg_villages`, `deepslate` and
+`glow_pack` now have their ContentDB release metadata and local preservation
+notices recorded in the manifest. See the manifest for the evidence required
+for each remaining item.
 Credits & Mod Authors 🔗
 
 StelluAsuna is built upon the work of many Luanti mod developers and projects.

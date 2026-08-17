@@ -38,12 +38,57 @@ else
     echo "  -> ffmpeg not found, skipping audio optimization."
 fi
 
-echo "[4/4] Creating final ZIP archive..."
+echo "[4/5] Checking redistribution documents..."
+required_files=(
+    "$STAGING_DIR/$GAME_NAME/LICENSE"
+    "$STAGING_DIR/$GAME_NAME/LICENSE_STELLUA.txt"
+    "$STAGING_DIR/$GAME_NAME/THIRD_PARTY_LICENSES.md"
+    "$STAGING_DIR/$GAME_NAME/mods/admin_seed/LICENSE"
+    "$STAGING_DIR/$GAME_NAME/mods/deepslate/LICENSE.md"
+    "$STAGING_DIR/$GAME_NAME/mods/glow_pack/LICENSE.md"
+    "$STAGING_DIR/$GAME_NAME/mods/mg_villages/LICENSE"
+    "$STAGING_DIR/$GAME_NAME/mods/sgjourney/LICENSE"
+    "$STAGING_DIR/$GAME_NAME/mods/sgjourney/ASSETS_LICENSE.md"
+    "$STAGING_DIR/$GAME_NAME/mods/mg_villages/UPSTREAM_PROVENANCE.md"
+    "$STAGING_DIR/$GAME_NAME/mods/shared_textures/PROVENANCE.md"
+    "$STAGING_DIR/$GAME_NAME/mods/stl_seasons/PROVENANCE.md"
+    "$STAGING_DIR/$GAME_NAME/mods/stl_village_bridge/PROVENANCE.md"
+)
+for required_file in "${required_files[@]}"; do
+    if [ ! -f "$required_file" ]; then
+        echo "ERROR: missing required release document: $required_file" >&2
+        exit 1
+    fi
+done
+
+if find "$STAGING_DIR/$GAME_NAME" -name 'ANALISIS_PRIVADO.md' -print -quit | grep -q .; then
+    echo "ERROR: private analysis must not be included in the release" >&2
+    exit 1
+fi
+
+echo "[5/5] Creating final ZIP archive..."
 cd "$STAGING_DIR"
 # Remove any existing zip
 rm -f "$OUTPUT_ZIP"
 # Zip with maximum compression
 zip -r -9 -q "$OUTPUT_ZIP" "$GAME_NAME"
+
+zip_entries="$(unzip -Z1 "$OUTPUT_ZIP")"
+for required_entry in \
+    "$GAME_NAME/LICENSE" \
+    "$GAME_NAME/LICENSE_STELLUA.txt" \
+    "$GAME_NAME/THIRD_PARTY_LICENSES.md" \
+    "$GAME_NAME/mods/mg_villages/UPSTREAM_PROVENANCE.md"; do
+    if ! printf '%s\n' "$zip_entries" | grep -Fxq "$required_entry"; then
+        echo "ERROR: required document missing from ZIP: $required_entry" >&2
+        exit 1
+    fi
+done
+
+if printf '%s\n' "$zip_entries" | grep -Eq '(^|/)ANALISIS_PRIVADO\.md$|(^|/)\.git(/|$)|stl_asuna_bridge'; then
+    echo "ERROR: forbidden private or removed content found in ZIP" >&2
+    exit 1
+fi
 
 echo "=========================================="
 echo " SUCCESS!"

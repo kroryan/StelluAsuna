@@ -1,0 +1,21 @@
+mg_villages
+===========
+
+Copyright and authorship: Sokomine and contributors.
+
+ContentDB declares the 2023-06-11 release used as the base of this directory
+(release ID 20488, commit
+11dbd55a534dcce77235d94ba83753caba621fc0) as:
+
+- Code: GNU GPL-3.0-only
+- Media: GNU GPL-3.0-only
+
+Source: https://github.com/Sokomine/mg
+Package: https://content.luanti.org/packages/Sokomine/mg_villages/
+
+StelluAsuna contains local changes in `inhabitants.lua` and
+`spawn_player.lua`; see `UPSTREAM_PROVENANCE.md`.
+
+The complete GPLv3 license text is available at ../../LICENSE.
+
+SPDX-License-Identifier: GPL-3.0-only

@@ -1,0 +1,177 @@
+=== SOURCE CODE ===
+
+Stellua uses the following API mods by other authors, licensed as specified in their docs:
+
+- Sfinv by rubenwardy
+- LVAE by GreenXenith
+- Player API by celeron55 et al.
+- Creative by celeron55 et al.
+
+All code in other mods is under GNU GPL v3.0:
+
+Stellua
+Copyright (C) 2024 theidealist (theidealistmusic@gmail.com)
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+All three are under the MIT license, as are any modifications made to them directly by theidealist.
+
+=== MEDIA ===
+
+All textures not mentioned below are copyright (C) 2024-5 theidealist, and are under CC BY-SA 4.0
+https://creativecommons.org/licenses/by-sa/4.0/
+
+The following textures are borrowed from Minetest Game and are under CC BY-SA 3.0:
+
+- stl_core_stone1.png <- default_stone.png
+- stl_core_stone2.png <- default_cobble.png
+- stl_core_filler1.png <- default_dirt.png
+- stl_core_filler2.png <- default_dry_dirt.png
+- stl_core_filler3.png <- default_sand.png
+- stl_core_filler4.png <- default_sandstone.png
+- stl_core_filler5.png <- default_gravel.png
+- stl_core_grass(1-4).png <- default_grass_(1-4).png
+- stl_core_grass(5-8).png <- default_dry_grass_(1-4).png
+- default_water_source_animated.png
+- default_water_flowing_animated.png
+- default_river_water_source_animated.png
+- default_river_water_flowing_animated.png
+- default_ice.png
+- default_lava_source_animated.png
+- default_lava_flowing_animated.png
+- stl_core_methane_source_animated.png <- default_lava_source_animated.png
+- stl_core_methane_flowing_animated.png <- default_lava_flowing_animated.png
+- stl_core_petroleum_source_animated.png <- default_lava_source_animated.png
+- stl_core_petroleum_flowing_animated.png <- default_lava_flowing_animated.png
+- default_snow.png
+- stl_core_benzene_snow.png <- default_grass.png
+- default_coal_block.png
+- stl_core_ash.png <- default_clay.png
+- stl_core_shrub3.png <- default_fern_1.png
+- stl_core_moss4.png <- default_moss.png
+- stl_core_dirt.png <- default_dirt.png
+- stl_core_stick.png <- default_stick.png
+- stl_core_pebble.png <- default_clay_lump.png
+- default_tool_stonepick.png
+- default_tool_stoneaxe.png
+- default_tool_stoneshovel.png
+- default_mineral_copper.png
+- default_mineral_tin.png
+- default_copper_lump.png
+- default_tin_lump.png
+- default_tool_bronzepick.png
+- default_tool_bronzeaxe.png
+- default_tool_bronzeshovel.png
+- default_tool_steelpick.png
+- default_tool_steelaxe.png
+- default_tool_steelshovel.png
+- stl_decor_stone_brick.png <- default_stone_brick.png
+- stl_decor_filler_brick.png <- default_brick.png
+- default_copper_block.png
+- default_tin_block.png
+- wool_black.png
+- default_glass.png
+- stl_vehicles_rocket.png <- default_wood.png
+- stl_core_log1(_top).png <- default_tree(_top).png
+- stl_core_log2(_top).png <- default_aspen_tree(_top).png
+- stl_core_leaves1.png <- default_acacia_leaves.png
+- stl_core_leaves2.png <- default_leaves.png
+- stl_core_leaves3.png <- default_blueberry_bush_leaves.png
+- stl_core_leaves4.png <- default_aspen_leaves.png
+- stl_core_wood.png <- default_wood.png
+- stl_core_log3(_top).png <- default_pine_tree(_top).png
+- stl_core_log4(_top).png <- default_acacia_tree(_top).png
+- bucket.png
+- bucket_water.png
+- bucket_river_water.png
+- bucket_lava.png
+- stl_core_bucket_overlay.png <- bucket_lava.png
+- stl_core_bitumen.png <- default_coal_block.png
+- stl_core_acid_source_animated.png <- default_river_water_source_animated.png
+- stl_core_acid_flowing_animated.png <- default_river_water_flowing_animated.png
+- stl_decor_flower.png <- flowers_geranium.png
+- dye_white.png
+- character.png
+- default_tool_woodpick.png
+- default_tool_woodaxe.png
+- default_tool_woodshovel.png
+- default_tool_woodsword.png
+- default_tool_stonesword.png
+- default_tool_bronzesword.png
+- default_tool_steelsword.png
+- stl_moreplants_vines1.png <- default_papyrus.png
+- stl_moreplants_fruit1.png <- default_apple.png
+
+The following textures are borrowed from Mineclonia and are under CC BY-SA 3.0:
+
+- stl_core_stone3.png <- default_stone.png
+- stl_core_stone4.png <- default_cobble.png
+- stl_core_stone5.png <- mcl_deepslate.png
+- stl_core_stone6.png <- mcl_core_granite.png
+- stl_core_stone7.png <- mcl_core_diorite.png
+- stl_core_stone8.png <- mcl_deepslate_tuff.png
+- stl_core_filler6.png <- default_dirt.png
+- stl_core_filler7.png <- default_sand.png
+- stl_core_filler8.png <- default_gravel.png
+- stl_core_shrub1.png <- mcl_flowers_tallgrass.png
+- stl_core_shrub2.png <- mcl_flowers_fern.png
+- mcl_core_ice_packed.png
+- stl_core_ammonia_snow.png <- default_snow.png
+- stl_core_moss1.png <- mcl_core_grass_block_top.png
+- stl_core_shrub4.png <- default_dry_shrub.png
+- stl_core_moss2.png <- mcl_lush_caves_moss_block.png
+- stl_core_moss3.png <- mcl_lush_caves_moss.png
+- stl_core_moss.png <- mcl_core_grass_block_top.png
+- stl_core_gravel.png <- mcl_core_coarse_dirt.png
+- mcl_core_bedrock.png
+- stl_core_quartz.png <- mcl_nether_quartz_block_side.png
+- stl_core_log5(_top).png <- default_tree(_top).png
+- stl_core_log6(_top).png <- default_acacia_tree(_top).png
+- stl_core_log7(_top).png <- mcl_core_log_spruce(_top).png
+- stl_core_log8(_top).png <- mcl_core_log_big_oak(_top).png
+- stl_core_leaves5.png <- mcl_core_leaves_spruce.png
+- stl_core_leaves6.png <- mcl_core_leaves_birch.png
+- stl_core_leaves7.png <- mcl_core_leaves_big_oak.png
+- stl_core_leaves8.png <- default_leaves.png
+- mcl_blackstone_basalt_top.png
+- stl_core_sulfur.png <- mcl_amethyst_calcite_block.png
+- stl_decor_crate_top.png <- mcl_barrels_barrel_top.png
+- stl_decor_crate_bottom.png <- mcl_barrels_barrel_bottom.png
+- stl_decor_crate_side.png <- mcl_barrels_barrel_side.png
+- stl_moreplants_vines2.png <- mcl_lush_caves_cave_vines_plant.png
+- stl_moreplants_vines3.png <- twisting_vines_plant.png
+- stl_moreplants_vines4.png <- mcl_core_vine.png
+- stl_moreplants_glow_vines.png <- mcl_lush_caves_cave_vines_plant_lit.png
+
+All sounds not mentioned come directly from Minetest Game and are under CC BY-SA 3.0
+
+The following sounds are copyright (C) 2025 theidealist, and are under CC BY-SA 4.0:
+- ominous_hum.ogg
+
+The following sounds are borrowed from Mineclonia and are under CC BY-SA 3.0:
+- default_water_footstep.(1-3).ogg
+
+The following sounds are derived from sound effects from freesound.org and are under CC0:
+- 242740__marlonhj__engine.ogg
+- 534856__m_cel__jet-engine.ogg
+- 624267__iwaobisou__soft-hail-leaves-looped.ogg
+- 717995__johnny25225__heavywobblyimpacthit_06.ogg
+- 631467__adhdreaming__destroy-all-humans.ogg
+
+And from freesound.org under CC BY 3.0:
+- 212799__ayton__rain-loop-ontario.ogg
+
+And from freesound.org under CC BY 4.0:
+- 777331__matthiasflowers__101glcglitzer-teckyy-kachelhi_endonly.ogg
+- 651545__nsstudios__wind-draft-loop-3.ogg

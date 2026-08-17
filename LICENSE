@@ -1,11 +1,24 @@
-ASUNA LICENSES
-==============
+STELLUASUNA LICENSES
+====================
 
-In accordance with GPL requirements of works included in this project, this
-game as a whole is released under GPLv3. Additionally, specific works within
-the game are provided under various other licenses. These works and their
-licenses are listed below. The text of the GPLv3 license that covers this whole
-work follows the other listed works.
+This repository is a compilation of works under different licenses. It does
+not have one blanket license for every file. The license and attribution for
+each component must be checked in its own directory and in
+THIRD_PARTY_LICENSES.md.
+
+The GPLv3 text included below applies to the GPLv3 project components listed
+here, but it does not replace a component's more specific license:
+
+- Stellua-derived code and media: see LICENSE_STELLUA.txt. Local changes are
+  documented in THIRD_PARTY_LICENSES.md.
+- simple_fishing code: GNU AGPL-3.0-only. Its bundled media keeps the licenses
+  documented in mods/simple_fishing/README.md and its license files.
+- The project-owned admin_seed and sgjourney code: GNU GPL-3.0-or-later.
+- Other third-party mods and assets: their local license and credit files.
+
+Some bundled components still have unresolved provenance or licensing. They
+are explicitly listed as pending in THIRD_PARTY_LICENSES.md; the root GPL text
+does not grant rights to those files.
 
 In accordance with GPL requirements to indicate changes to works, all changes
 made to the below listed works are officially made on or after 25 January 2023.
@@ -13,6 +26,33 @@ made to the below listed works are officially made on or after 25 January 2023.
 - Main menu graphics
   - Locations: ./menu/ ./screenshot.xcf ./screenshot.png
   - License file: ./menu/LICENSE
+- Deepslate documentation and API module
+  - Location: ./mods/deepslate/
+  - License file: ./mods/deepslate/LICENSE.md
+- Glow Pack
+  - Location: ./mods/glow_pack/
+  - License file: ./mods/glow_pack/LICENSE.md
+- mg_villages
+  - Location: ./mods/mg_villages/
+  - License files: ./mods/mg_villages/LICENSE and
+    ./mods/mg_villages/UPSTREAM_PROVENANCE.md
+- Project-owned admin_seed
+  - Location: ./mods/admin_seed/
+  - License file: ./mods/admin_seed/LICENSE
+- Project-owned Stargate Journey integration
+  - Location: ./mods/sgjourney/
+  - License files: ./mods/sgjourney/LICENSE and ./mods/sgjourney/ASSETS_LICENSE.md
+- Stellua-derived integration mods
+  - Locations: ./mods/stl_core/ ./mods/stl_decor/ ./mods/stl_precursor/
+    ./mods/stl_vehicles/ ./mods/stl_weather/
+  - License file: ./LICENSE_STELLUA.txt
+  - Additional attribution and local changes: ./THIRD_PARTY_LICENSES.md
+- Simple Fishing
+  - Location: ./mods/simple_fishing/
+  - License files: ./mods/simple_fishing/LICENSE-AGPL-3.0-ONLY,
+    ./mods/simple_fishing/LICENSE-CC-BY-SA-4.0,
+    ./mods/simple_fishing/LICENSE-CC0 and ./mods/simple_fishing/LICENSE-OFL-1.1
+  - The code is AGPL-3.0-only; see README.md for the component mapping
 - 3D Armor
   - Location: ./mods/3d_armor/
   - License file: ./mods/3d_armor/LICENSE.md
