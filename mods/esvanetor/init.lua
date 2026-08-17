@@ -153,6 +153,10 @@ local function constructor_line(itemstack, user, pointed_thing, target)
 	if not user or not user:is_player() or pointed_thing.type ~= "node" then
 		return itemstack
 	end
+	if not minetest.registered_nodes[target] then
+		minetest.chat_send_player(user:get_player_name(), "This constructor material is not available in the current game pack.")
+		return itemstack
+	end
 	local look = user:get_look_dir()
 	local dx, dz = 0, 0
 	if math.abs(look.x) >= math.abs(look.z) then
@@ -179,22 +183,18 @@ local function constructor_line(itemstack, user, pointed_thing, target)
 	return itemstack
 end
 
-minetest.register_on_mods_loaded(function()
-	for index, entry in ipairs(constructor_materials) do
-		local target, label = entry[1], entry[2]
-		if minetest.registered_nodes[target] then
-			local name = "esvanetor:constructor_" .. index
-			minetest.register_tool(name, {
-				description = "Rainbow Constructor: " .. label .. " (9x1)",
-				inventory_image = CONSTRUCTOR_TEXTURE,
-				wield_image = CONSTRUCTOR_TEXTURE,
-				tool_capabilities = {full_punch_interval = 0.15, max_drop_level = 1},
-				on_use = function(stack, user, pointed) return constructor_line(stack, user, pointed, target) end,
-			})
-			minetest.register_craft({
-				output = name,
-				recipe = {{target, "stl_core:titanium", target}, {"", "sgjourney:energy_crystal", ""}, {"", "stl_core:stick", ""}},
-			})
-		end
-	end
-end)
+for index, entry in ipairs(constructor_materials) do
+	local target, label = entry[1], entry[2]
+	local name = "esvanetor:constructor_" .. index
+	minetest.register_tool(name, {
+		description = "Rainbow Constructor: " .. label .. " (9x1)",
+		inventory_image = CONSTRUCTOR_TEXTURE,
+		wield_image = CONSTRUCTOR_TEXTURE,
+		tool_capabilities = {full_punch_interval = 0.15, max_drop_level = 1},
+		on_use = function(stack, user, pointed) return constructor_line(stack, user, pointed, target) end,
+	})
+	minetest.register_craft({
+		output = name,
+		recipe = {{target, "stl_core:titanium", target}, {"", "sgjourney:energy_crystal", ""}, {"", "stl_core:stick", ""}},
+	})
+end
