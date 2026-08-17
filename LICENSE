@@ -47,6 +47,14 @@ made to the below listed works are officially made on or after 25 January 2023.
     ./mods/stl_vehicles/ ./mods/stl_weather/
   - License file: ./LICENSE_STELLUA.txt
   - Additional attribution and local changes: ./THIRD_PARTY_LICENSES.md
+- Project-owned seasonal integration
+  - Location: ./mods/stl_seasons/
+  - License file: ./mods/stl_seasons/LICENSE
+  - Provenance: ./mods/stl_seasons/PROVENANCE.md
+- Project-owned village bridge integration
+  - Location: ./mods/stl_village_bridge/
+  - License file: ./mods/stl_village_bridge/LICENSE
+  - Provenance: ./mods/stl_village_bridge/PROVENANCE.md
 - Simple Fishing
   - Location: ./mods/simple_fishing/
   - License files: ./mods/simple_fishing/LICENSE-AGPL-3.0-ONLY,

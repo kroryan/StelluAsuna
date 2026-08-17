@@ -314,12 +314,12 @@ GPL-3.0-or-later notices. `sgjourney`'s original local assets remain CC0 as
 documented separately. `simple_fishing` remains AGPL-3.0-only for code, with
 its own media licenses preserved; it is not silently relicensed as GPL.
 
-The current pending redistribution items are `shared_textures`, the local
-`stl_seasons` and `stl_village_bridge` integration code, and the
-`itemframes` screenshot source confirmation. `mg_villages`, `deepslate` and
-`glow_pack` now have their ContentDB release metadata and local preservation
-notices recorded in the manifest. See the manifest for the evidence required
-for each remaining item.
+The only remaining pending redistribution item is `shared_textures`, whose
+placeholder image origin is not demonstrated. The local `stl_seasons` and
+`stl_village_bridge` integrations are project-owned and GPL-3.0-or-later;
+their provenance notices are included beside their code. `mg_villages`,
+`deepslate` and `glow_pack` have their ContentDB release metadata and local
+preservation notices recorded in the manifest.
 Credits & Mod Authors 🔗
 
 StelluAsuna is built upon the work of many Luanti mod developers and projects.

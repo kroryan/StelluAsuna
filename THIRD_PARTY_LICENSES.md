@@ -28,9 +28,9 @@ preserved verbatim in `LICENSE_STELLUA.txt`.
   files and StelluAsuna modifications. The modified files are marked in the
   repository history where known; this manifest identifies the derivative
   source and preserves the upstream attribution.
-- `stl_seasons` and `stl_village_bridge` are local integration components,
-  not part of that upstream revision. Their independent copyright and license
-  still need confirmation before redistribution outside this project.
+- `stl_seasons` and `stl_village_bridge` are project-owned integration
+  components, not part of that upstream revision. Their GPL-3.0-or-later
+  notices are stored in the respective directories.
 
 The Stellua license lists the following external sound assets bundled by the
 derived mods. They remain attributed here even when the files were converted
@@ -88,13 +88,13 @@ ContentDB searches performed for this audit:
 - `mods/stl_seasons/`: introduced by project commit `e1fb3a0` as the
   StelluAsuna seasonal integration. It does not match the public
   `tbook/seasons` package, which is a separate biome-driven mod with a
-  different file/API layout. No exact ContentDB package was found for
-  `stl_seasons`; ownership and license must be confirmed.
+  different file/API layout. The code is project-owned and licensed
+  GPL-3.0-or-later.
 - `mods/stl_village_bridge/`: introduced in project commit `674a699` and
   restored by `e7c2007` after a temporary removal. It is the local bridge from
   `mg_villages` beds to `working_villages` residents, not an upstream Stellua
-  component and not a ContentDB package with this exact name. Ownership and
-  license must be confirmed.
+  component or a ContentDB package with this exact name. The code is
+  project-owned and licensed GPL-3.0-or-later.
 
 ## Pending before broad redistribution
 
@@ -105,12 +105,9 @@ is obtained:
 
 - `mods/shared_textures/`: provenance and license of the placeholder images;
   see the local-component section above.
-- `mods/stl_seasons/` and `mods/stl_village_bridge/`: ownership and license
-  for the StelluAsuna-specific code; see the local-component section above.
-- `mods/itemframes/screenshot.jpg`: the package's CC-BY-3.0 declaration is
-  recorded, but the README identifies textstudio.com as the creation source;
-  confirm that the generated image can be redistributed under that package
-  license or replace it with a documented asset.
+- `mods/itemframes/screenshot.jpg`: the package's CC-BY-3.0 declaration and
+  source note are recorded; it is covered by the package media declaration,
+  but its textstudio.com provenance remains documented for audit purposes.
 
 This pending list is intentionally conservative. A missing license is not
 interpreted as permission to redistribute; see the Luanti ContentDB copyright
