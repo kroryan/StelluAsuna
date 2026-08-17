@@ -272,3 +272,5 @@ for index, entry in ipairs(constructor_materials) do
 		})
 	end
 end
+
+dofile(minetest.get_modpath("esvanetor") .. "/holefixer.lua")

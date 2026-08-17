@@ -117,6 +117,9 @@ asuna.settings.mapgen_warning.enabled (Enable mapgen warning) bool true
 #    at startup.
 creative_mode (Creative mode) bool false
 
+# Maximum nodes Holefixer may change in one operation. Lower this on busy servers.
+holefixer_max_nodes (Holefixer maximum nodes per operation) int 2000 50 10000
+
 #    Flammable nodes will be ignited by nearby igniters. Spreading fire may
 #    cause severe destruction.
 #    Spreading fire nodes will disappear when fire is disabled, but
