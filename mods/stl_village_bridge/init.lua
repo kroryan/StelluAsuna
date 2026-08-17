@@ -132,41 +132,64 @@ minetest.register_on_mods_loaded(function()
 				end
 			end
 			
-			def.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
-				if not damage or damage <= 0 then
-					if tool_capabilities and tool_capabilities.damage_groups then
-						damage = tool_capabilities.damage_groups.fleshy or 1
-					else
-						damage = 1
+				local function damage_villager(self, amount)
+					amount = tonumber(amount) or 0
+					if amount <= 0 or not self.object:get_pos() then return end
+					amount = math.max(1, math.floor(amount))
+					local hp = self.object:get_hp()
+					if hp <= 0 then return end
+					local new_hp = math.max(0, hp - amount)
+					self.object:set_hp(new_hp)
+					if new_hp == 0 then
+						self.object:remove()
 					end
 				end
-				local hp = self.object:get_hp() - damage
-				self.object:set_hp(hp)
-				-- Play damage sound/animation here if we want
-				if hp <= 0 then
-					self.object:remove()
+
+				def.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
+					if not damage or damage <= 0 then
+						local groups = tool_capabilities and tool_capabilities.damage_groups
+						damage = groups and groups.fleshy or 1
+					end
+					damage_villager(self, damage)
+					return true
 				end
-				return true -- Completely cancel the engine's default damage handling
-			end
-			
-			local old_on_step = def.on_step
-			def.on_step = function(self, dtime, moveresult)
-				if old_on_step then old_on_step(self, dtime, moveresult) end
-				self.env_damage_timer = (self.env_damage_timer or 0) + dtime
-				if self.env_damage_timer >= 1.0 then
-					self.env_damage_timer = 0
-					local pos = self.object:get_pos()
-					if pos then
-						local node = minetest.get_node(pos)
-						local ndef = minetest.registered_nodes[node.name]
-						if ndef and ndef.damage_per_second and ndef.damage_per_second > 0 then
-							local hp = self.object:get_hp() - ndef.damage_per_second
-							self.object:set_hp(hp)
-							if hp <= 0 then self.object:remove() end
+
+				local function environment_damage(pos)
+					local min_x = math.floor(pos.x - 0.3)
+					local max_x = math.floor(pos.x + 0.3)
+					local min_y = math.floor(pos.y - 0.25)
+					local max_y = math.floor(pos.y + 1.75)
+					local min_z = math.floor(pos.z - 0.3)
+					local max_z = math.floor(pos.z + 0.3)
+					local dps = 0
+
+					for x = min_x, max_x do
+						for y = min_y, max_y do
+							for z = min_z, max_z do
+								local node = minetest.get_node_or_nil({x=x, y=y, z=z})
+								local defn = node and minetest.registered_nodes[node.name]
+								if defn and (defn.damage_per_second or 0) > dps then
+									dps = defn.damage_per_second
+								end
+							end
+						end
+					end
+					return dps
+				end
+
+				local old_on_step = def.on_step
+				def.on_step = function(self, dtime, moveresult)
+					if old_on_step then old_on_step(self, dtime, moveresult) end
+					self.env_damage_timer = (self.env_damage_timer or 0) + dtime
+					if self.env_damage_timer >= 1.0 then
+						local elapsed = self.env_damage_timer
+						self.env_damage_timer = 0
+						local pos = self.object:get_pos()
+						if pos then
+							damage_villager(self, environment_damage(pos) * elapsed)
 						end
 					end
 				end
-			end
 		end
 	end
 end)

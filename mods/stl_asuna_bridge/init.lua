@@ -86,23 +86,6 @@ minetest.register_on_joinplayer(function(player)
 	minetest.after(1, function() spawn_player_ship(player) end)
 end)
 
-minetest.register_on_player_hpchange(function(player, hp_change, reason)
-	if hp_change < 0 then
-		minetest.log("action", "===== DAMAGE TO " .. player:get_player_name() .. " =====")
-		minetest.log("action", "hp_change: " .. tostring(hp_change))
-		if type(reason) == "table" then
-			minetest.log("action", "reason.type: " .. tostring(reason.type))
-			if reason.object then
-				local ent = reason.object:get_luaentity()
-				minetest.log("action", "reason.object: " .. tostring(ent and ent.name or "unknown"))
-			end
-		end
-		minetest.log("action", debug.traceback())
-		minetest.log("action", "=================================")
-	end
-	return hp_change
-end, true)
-
 minetest.register_chatcommand("force_arrival", {
 	params = "<player_name>",
 	description = "Force a player to restart their spaceship arrival sequence",
@@ -214,19 +197,3 @@ minetest.register_chatcommand("asuna_home", {
 		return true, "Returning to Asuna"
 	end,
 })
-
-minetest.register_on_player_hpchange(function(player, hp_change, reason)
-	if hp_change < 0 then
-		if reason and reason.type == "punch" and reason.object and not reason.object:is_player() then
-			local ent = reason.object:get_luaentity()
-			if ent and ent.name and ent.name:find("^working_villages:villager_") then
-				minetest.log("action", "===== ABSOLUTE SHIELD: Blocked damage from villager to " .. player:get_player_name() .. " =====")
-				return 0
-			end
-		elseif reason and reason.type == "punch" and reason.object == player then
-			minetest.log("action", "===== ABSOLUTE SHIELD: Blocked player self-damage to " .. player:get_player_name() .. " =====")
-			return 0
-		end
-	end
-	return hp_change
-end, true)

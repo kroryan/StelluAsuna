@@ -6,6 +6,9 @@
 ## Editors and Development environments
 *~
 *.swp
+
+# Local engineering report; never publish server diagnostics or deployment notes.
+ANALISIS_PRIVADO.md
 *.bak*
 *.orig
 # Vim
