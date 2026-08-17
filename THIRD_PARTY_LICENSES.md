@@ -49,6 +49,11 @@ or compressed by the release build:
 
 ## Other included third-party material
 
+- `mods/spawnpoint/`: Static Spawnpoint by octacian, sourced from the public
+  `octacian/spawnpoint` repository at commit `e428ced`. Code and included
+  screenshot are distributed under the upstream MIT license; see
+  `mods/spawnpoint/LICENSE` and `UPSTREAM_PROVENANCE.md`.
+
 - Asuna and its included modpack components: see the existing per-mod
   license and credit files listed in `LICENSE`.
 - `mods/deepslate/`: the bundled LDoc documentation files match the
