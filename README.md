@@ -1,5 +1,7 @@
 StelluAsuna 🔗
 
+> **Warning:** Generating unexplored areas may slow down gameplay significantly for a few moments. Chat, movement and other actions can be delayed while terrain, structures and creatures are being generated.
+
 StelluAsuna is a massive sandbox game for Luanti, created by combining the lush, exploration-focused world of Asuna with the futuristic space sandbox gameplay of Stellua, and expanding both with a large collection of additional mods and original content.
 
 The result is a huge voxel adventure where nature, exploration, survival, villages, caves, monsters, technology, portals, space and other worlds coexist in one world.
@@ -39,7 +41,7 @@ Space features 🔗
     🌠 Space exploration
     🌦️ Environmental hazards and weather
     🛰️ A foundation for interplanetary gameplay
-    🛸 Seamless direct-to-ship orbital spawning for new players
+    🛸 Asuna ground spawning with a starter ship placed safely nearby
 
 StelluAsuna combines these systems with the much larger collection of survival, building and exploration mechanics provided by the rest of the game.
 🌌 Other Worlds & Dimensions 🔗
