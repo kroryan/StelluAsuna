@@ -225,7 +225,7 @@ local function formspec(player)
 	f=f.."field[0.4,3.4;1.8,0.8;radius;Radius;"..cfg.radius.."]field[2.3,3.4;1.8,0.8;height;Height;"..cfg.height.."]field[4.2,3.4;1.8,0.8;width;Width;"..cfg.width.."]field[6.1,3.4;1.8,0.8;depth;Depth;"..cfg.depth.."]field[8,3.4;1.8,0.8;range;Range;"..cfg.range.."]field[9.9,3.4;2.2,0.8;max_nodes;Max nodes;"..cfg.max_nodes.."]"
 	f=f.."checkbox[0.4,4.2;surface;Surface only;"..tostring(cfg.surface).."]checkbox[2.5,4.2;preserve;Preserve important;"..tostring(cfg.preserve).."]button[4.2,4;2,0.8;preview;Preview]button[6.4,4;2,0.8;apply;Apply]button[8.6,4;2,0.8;undo;Undo]button[10.8,4;2,0.8;undo3;Undo 3]"
 	f=f.."field[0.4,5.2;3,0.8;search;Search nodes;"..core.formspec_escape(cfg.search or "").."]button[3.6,5;2,0.8;search_btn;Search]label[0.4,5.9;Available blocks / recent: ]"
-	local y=6.2; for i=1,math.min(8,#list) do f=f.."item_image_button["..(0.4+((i-1)%4)*1.9)..","..y+math.floor((i-1)/4)*1.1..";0.8,0.8;"..list[i]..";pick_"..i..";]" end
+	local y=6.2; for i=1,math.min(8,#list) do f=f.."item_image_button["..(0.4+((i-1)%4)*1.9)..","..tostring(y+math.floor((i-1)/4)*1.1)..";0.8,0.8;"..list[i]..";pick_"..i..";]" end
 	f=f.."field[8.6,5.2;2.5,0.8;preset;Preset;"..core.formspec_escape(cfg.preset or "").."]button[11.2,5;1.4,0.8;save_preset;Save]button[11.2,6;1.4,0.8;load_preset;Load]"
 	return f
 end
