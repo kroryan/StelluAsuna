@@ -84,7 +84,9 @@ persistent_map.generation = {
 	min_radius = 2,
 	y_scan_step = -1,
 	tile_center_offset = 2,
-	initial_discovery_delay = 0.1,
+	-- Let the arrival ship and its first emerge finish before the expensive PNG
+	-- scan starts on the main server thread.
+	initial_discovery_delay = 15.0,
 }
 
 -- Cave Map Configuration Optimizada
@@ -283,7 +285,7 @@ function persistent_map.save_markers_for_player(player_name, markers) return sav
 function persistent_map.add_marker_for_player(player_name, pos, name, color_index) return add_marker(player_name, pos, color_index or 1, name) end
 
 -- Generador de Mapas Híbrido (Triple Búfer: Estándar, Relieve, Cueva)
-local function generate_tile(tile_x, tile_z, callback)
+local function generate_tile(tile_x, tile_z, callback, scan_min_height, scan_max_height)
     local base_id = get_tile_id(tile_x, tile_z)
     local version = persistent_map.tile_versions and persistent_map.tile_versions[base_id] or 0
     local tile_id = version > 0 and (base_id .. "_v" .. version) or base_id
@@ -293,8 +295,10 @@ local function generate_tile(tile_x, tile_z, callback)
         return base_id
     end
     
-    local minp = vector.new(tile_x * persistent_map.tile_size, persistent_map.min_height, tile_z * persistent_map.tile_size)
-    local maxp = vector.new((tile_x + 1) * persistent_map.tile_size - 1, persistent_map.max_height, (tile_z + 1) * persistent_map.tile_size - 1)
+    scan_min_height = scan_min_height or persistent_map.min_height
+    scan_max_height = scan_max_height or persistent_map.max_height
+    local minp = vector.new(tile_x * persistent_map.tile_size, scan_min_height, tile_z * persistent_map.tile_size)
+    local maxp = vector.new((tile_x + 1) * persistent_map.tile_size - 1, scan_max_height, (tile_z + 1) * persistent_map.tile_size - 1)
     
     minetest.after(0.05, function()
         local vm = minetest.get_voxel_manip()
@@ -627,6 +631,19 @@ local function add_discovered_tile(player_name, tile_x, tile_z, callback)
 	
 	tiles[tile_id] = {x = tile_x, z = tile_z}
 	save_player_tiles(player_name, tiles)
+
+	-- The old fixed -1000..2000 scan performed about 49 million vertical
+	-- iterations per 128x128 tile. Scan the vertical neighbourhood of the
+	-- player instead, preserving local terrain/cave information in every realm.
+	local scan_min_height = persistent_map.min_height
+	local scan_max_height = persistent_map.max_height
+	local player = minetest.get_player_by_name(player_name)
+	if player then
+		local player_y = math.floor(player:get_pos().y)
+		local scan_radius = 512
+		scan_min_height = math.max(-31000, player_y - scan_radius)
+		scan_max_height = math.min(31000, player_y + scan_radius)
+	end
 	
 	generate_tile(tile_x, tile_z, function(id)
 		minetest.log("action", "[persistent_map] Generated tile: " .. id .. " for " .. player_name)
@@ -637,7 +654,7 @@ local function add_discovered_tile(player_name, tile_x, tile_z, callback)
 		}, function(pname)
 			if callback then callback() end
 		end)
-	end)
+	end, scan_min_height, scan_max_height)
 	
 	return true
 end

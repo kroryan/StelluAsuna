@@ -4,6 +4,9 @@ local ASUNA_SURFACE_MAX = 256
 local ARRIVAL_FOOTPRINT_RADIUS = 2
 local ARRIVAL_SEARCH_RADIUS = 48
 local ARRIVAL_ECOLOGY_RADIUS = 24
+local ARRIVAL_CONTINENT_RADIUS = 48
+local ARRIVAL_CONTINENT_STEP = 16
+local ARRIVAL_MIN_LAND_RATIO = 0.70
 -- get_mod_storage() depends on the current mod context, which is available
 -- while this file is loaded but not later inside on_mods_loaded callbacks.
 local storage = minetest.get_mod_storage()
@@ -32,6 +35,10 @@ end
 local function find_surface_y(x, z)
 	for y = ASUNA_SURFACE_MAX, ASUNA_SURFACE_MIN, -1 do
 		local node = minetest.get_node_or_nil({x=x, y=y, z=z})
+		if node and (minetest.get_item_group(node.name, "water") > 0
+			or minetest.get_item_group(node.name, "lava") > 0) then
+			return nil
+		end
 		if is_arrival_surface(node) then return y end
 	end
 	return nil
@@ -94,6 +101,24 @@ local function score_asuna_arrival_site(base)
 	return score, biome_name, #trees, #flora, #biome.animals
 end
 
+-- Reject small islands. Sampling the surface in a broad ring keeps the ship
+-- on a substantial landmass without requiring a full terrain scan.
+local function score_continent(base)
+	local total = 0
+	local dry = 0
+	for dx = -ARRIVAL_CONTINENT_RADIUS, ARRIVAL_CONTINENT_RADIUS, ARRIVAL_CONTINENT_STEP do
+		for dz = -ARRIVAL_CONTINENT_RADIUS, ARRIVAL_CONTINENT_RADIUS, ARRIVAL_CONTINENT_STEP do
+			total = total + 1
+			if find_surface_y(base.x + dx, base.z + dz) then
+				dry = dry + 1
+			end
+		end
+	end
+	local ratio = dry / total
+	if ratio < ARRIVAL_MIN_LAND_RATIO then return nil end
+	return ratio
+end
+
 -- Select the best ecological site in the emerged area instead of accepting
 -- the first dry column, which could be a desert or empty plateau.
 local function find_asuna_arrival_site(center_x, center_z)
@@ -103,7 +128,8 @@ local function find_asuna_arrival_site(center_x, center_z)
 			local base = find_asuna_arrival_base(x, z)
 			if base then
 				local score, biome_name, tree_count, flora_count, animal_count = score_asuna_arrival_site(base)
-				if score and (not best or score > best.score) then
+				local land_ratio = score and score_continent(base)
+				if score and land_ratio and (not best or score > best.score) then
 					best = {
 						base = base,
 						score = score,
@@ -111,6 +137,7 @@ local function find_asuna_arrival_site(center_x, center_z)
 						tree_count = tree_count,
 						flora_count = flora_count,
 						animal_count = animal_count,
+						land_ratio = land_ratio,
 					}
 				end
 			end
@@ -222,7 +249,7 @@ local function spawn_player_ship(player, force)
 						end
 						put_player_in_arrival_ship(current, base, token)
 						minetest.close_formspec(name, "stl_asuna_bridge:loading")
-						minetest.log("action", "[stl_asuna_bridge] Asuna ecological arrival site for " .. name .. ": biome=" .. site.biome_name .. ", trees=" .. site.tree_count .. ", flora=" .. site.flora_count .. ", eligible_animals=" .. site.animal_count .. ", position=" .. minetest.pos_to_string(base))
+						minetest.log("action", "[stl_asuna_bridge] Asuna continental arrival site for " .. name .. ": biome=" .. site.biome_name .. ", land_ratio=" .. string.format("%.2f", site.land_ratio) .. ", trees=" .. site.tree_count .. ", flora=" .. site.flora_count .. ", eligible_animals=" .. site.animal_count .. ", position=" .. minetest.pos_to_string(base))
 					end
 					finish_when_ready(0)
 				end)
