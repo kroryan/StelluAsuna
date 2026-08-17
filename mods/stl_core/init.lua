@@ -165,7 +165,11 @@ local function place_starter_ship(player, attempt)
 	if tank and tank.on_construct then
 		tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
 	end
+	meta:set_string("stl_core:starter_ship_pos", minetest.serialize(base))
 	meta:set_int(starter_ship_key, 1)
+	if meta:get_int("stl_core:starter_ship_found") == 0 then
+		meta:set_string("stl_core:ship_marker_mode", "starter")
+	end
 	minetest.log("action", "[stl_core] Placed starter ship beside " .. player:get_player_name() .. " at " .. minetest.pos_to_string(base))
 end
 
@@ -174,6 +178,184 @@ minetest.register_on_joinplayer(function(player)
 		place_starter_ship(player, 0)
 	end)
 end)
+
+-- Safe, persistent first-ship waypoint. It is stored on the player, not as a
+-- free-floating entity, so it cannot multiply or remain stuck after discovery.
+local ship_waypoints = {}
+local ship_waypoint_timer = 0
+
+local function read_player_pos(meta, key)
+	local raw = meta:get_string(key)
+	if raw == "" then return nil end
+	local pos = minetest.deserialize(raw)
+	if type(pos) ~= "table" or type(pos.x) ~= "number"
+	or type(pos.y) ~= "number" or type(pos.z) ~= "number" then
+		return nil
+	end
+	return vector.new(pos)
+end
+
+local function remove_ship_waypoint(player)
+	local name = player:get_player_name()
+	local state = ship_waypoints[name]
+	if state and state.hud then player:hud_remove(state.hud) end
+	ship_waypoints[name] = nil
+end
+
+local function set_ship_waypoint(player, pos, label)
+	if not pos then remove_ship_waypoint(player); return false end
+	local name = player:get_player_name()
+	local state = ship_waypoints[name]
+	local key = minetest.pos_to_string(vector.round(pos))
+	if state and state.key == key then return true end
+	remove_ship_waypoint(player)
+	local hud = player:hud_add({
+		hud_elem_type = "waypoint", world_pos = vector.round(pos),
+		name = label or "Ship", text = label or "Ship", number = 0xFF9A24,
+		precision = 1,
+	})
+	if not hud then return false end
+	ship_waypoints[name] = {hud = hud, key = key}
+	return true
+end
+
+local function ship_marker_target(player)
+	local meta = player:get_meta()
+	local mode = meta:get_string("stl_core:ship_marker_mode")
+	if mode == "current" then
+		return read_player_pos(meta, "stl_core:current_ship_pos"), "Current ship"
+	elseif mode == "starter" and meta:get_int("stl_core:starter_ship_found") == 0 then
+		return read_player_pos(meta, "stl_core:starter_ship_pos"), "Starter ship"
+	end
+	return nil
+end
+
+local function update_ship_waypoint(player)
+	if not player or not player:is_player() then return end
+	local meta = player:get_meta()
+	-- Older worlds may already have the starter ship but predate the stored
+	-- position. Recover a nearby ship once instead of creating a second one.
+	if meta:get_int(starter_ship_key) == 1
+	and not read_player_pos(meta, "stl_core:starter_ship_pos") then
+		local p = player:get_pos()
+		local found = minetest.find_nodes_in_area(
+			vector.subtract(p, 12), vector.add(p, 12), {"group:spaceship"})
+		if found and found[1] then
+			meta:set_string("stl_core:starter_ship_pos", minetest.serialize(vector.round(found[1])))
+			if meta:get_int("stl_core:starter_ship_found") == 0 then
+				meta:set_string("stl_core:ship_marker_mode", "starter")
+			end
+		end
+	end
+	local starter = read_player_pos(meta, "stl_core:starter_ship_pos")
+	if starter and meta:get_int("stl_core:starter_ship_found") == 0
+	and vector.distance(player:get_pos(), starter) <= 9 then
+		meta:set_int("stl_core:starter_ship_found", 1)
+		if meta:get_string("stl_core:ship_marker_mode") == "starter" then
+			meta:set_string("stl_core:ship_marker_mode", "off")
+			remove_ship_waypoint(player)
+			minetest.chat_send_player(player:get_player_name(), "Starter ship found. Use Shift + right-click on a ship to inspect and assign it.")
+		end
+	end
+	local pos, label = ship_marker_target(player)
+	if pos then
+		if meta:get_string("stl_core:ship_marker_mode") == "starter"
+		and meta:get_int("stl_core:ship_tutorial_notice") == 0 then
+			meta:set_int("stl_core:ship_tutorial_notice", 1)
+			minetest.chat_send_player(player:get_player_name(),
+				"Tutorial 1/5: Find your orange starter ship. Follow the waypoint; Shift + right-click opens its control panel. Use /ship_tutorial skip to skip this step.")
+		end
+		set_ship_waypoint(player, pos, label)
+	else
+		remove_ship_waypoint(player)
+	end
+end
+
+minetest.register_globalstep(function(dtime)
+	ship_waypoint_timer = ship_waypoint_timer + dtime
+	if ship_waypoint_timer < 0.5 then return end
+	ship_waypoint_timer = 0
+	for _, player in ipairs(minetest.get_connected_players()) do update_ship_waypoint(player) end
+end)
+
+minetest.register_on_joinplayer(function(player)
+	minetest.after(2.5, function()
+		if player and player:is_player() then update_ship_waypoint(player) end
+	end)
+end)
+
+minetest.register_on_leaveplayer(function(player)
+	remove_ship_waypoint(player)
+end)
+
+minetest.register_chatcommand("ship_set_current", {
+	description = "Assign the nearby or currently piloted ship as your current ship",
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		local target
+		local attached = player:get_attach()
+		if attached and attached:is_valid() then
+			target = attached:get_pos()
+		else
+			local _, seat = stellua.assemble_vehicle(vector.round(player:get_pos()), true)
+			target = seat
+		end
+		if not target then return false, "No complete ship found nearby" end
+		local meta = player:get_meta()
+		meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(target)))
+		meta:set_string("stl_core:ship_marker_mode", "current")
+		update_ship_waypoint(player)
+		return true, "Current ship assigned. Use /ship_marker to show its waypoint."
+	end,
+})
+
+minetest.register_chatcommand("ship_marker", {
+	params = "[on|off|starter]",
+	description = "Show or hide the waypoint for your current ship",
+	func = function(name, param)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		local meta = player:get_meta()
+		param = (param or "on"):lower():gsub("^%s+", ""):gsub("%s+$", "")
+		if param == "off" then
+			meta:set_string("stl_core:ship_marker_mode", "off")
+			remove_ship_waypoint(player)
+			return true, "Ship waypoint disabled."
+		end
+		if param == "starter" then
+			if not read_player_pos(meta, "stl_core:starter_ship_pos") then return false, "Starter ship position is unknown" end
+			meta:set_int("stl_core:starter_ship_found", 0)
+			meta:set_string("stl_core:ship_marker_mode", "starter")
+		else
+			if not read_player_pos(meta, "stl_core:current_ship_pos") then return false, "No current ship assigned; use /ship_set_current first" end
+			meta:set_string("stl_core:ship_marker_mode", "current")
+		end
+		update_ship_waypoint(player)
+		return true, "Ship waypoint enabled."
+	end,
+})
+
+minetest.register_chatcommand("ship_tutorial", {
+	params = "skip",
+	description = "Skip or reset the starter-ship tutorial",
+	func = function(name, param)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		local meta = player:get_meta()
+		param = (param or ""):lower():gsub("^%s+", ""):gsub("%s+$", "")
+		if param == "skip" then
+			meta:set_int("stl_core:starter_ship_found", 1)
+			meta:set_int("stl_core:ship_tutorial_notice", 1)
+			if meta:get_string("stl_core:ship_marker_mode") == "starter" then
+				meta:set_string("stl_core:ship_marker_mode", "off")
+			end
+			update_ship_waypoint(player)
+			return true, "Starter-ship tutorial skipped. You can use /ship_set_current and /ship_marker later."
+		end
+		return false, "Usage: /ship_tutorial skip"
+	end,
+})
 
 minetest.register_on_mods_loaded(function()
 	minetest.log("action", "[stl_core] Hybrid active: Asuna mapgen=" ..

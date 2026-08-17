@@ -94,9 +94,16 @@ sfinv.register_page("stl_core:planets", {
     on_player_receive_fields = function (self, player, context, fields)
         if fields.homeworld then
             local slot = stellua.get_slot_index(player:get_pos())
-            if not slot then return end
-            local ent = stellua.detach_vehicle(stellua.get_slot_pos(slot))
-            if not ent then return end
+            local slot_pos = slot and stellua.get_slot_pos(slot)
+            if not slot_pos then
+                minetest.chat_send_player(player:get_player_name(), "No valid orbital ship slot found.")
+                return
+            end
+            local ent = stellua.detach_vehicle(slot_pos)
+            if not ent or not ent.object then
+                minetest.chat_send_player(player:get_player_name(), "Your ship could not be recovered from this orbit slot.")
+                return
+            end
             local pos = vector.new(0, 200, 0)
             ent.player = player:get_player_name()
             ent.object:set_pos(pos)
@@ -112,13 +119,23 @@ sfinv.register_page("stl_core:planets", {
         end
         if fields.tp then
             local slot = stellua.get_slot_index(player:get_pos())
-            local ent = stellua.detach_vehicle(stellua.get_slot_pos(slot))
             local planet = stellua.planets[context.planet]
+            local slot_pos = slot and stellua.get_slot_pos(slot)
             local star, spos = stellua.get_slot_info(slot)
+            if not slot_pos or not planet or not star or not spos
+            or not stellua.stars[planet.star] or not stellua.stars[star] then
+                minetest.chat_send_player(player:get_player_name(), "Travel unavailable: orbital slot data is invalid.")
+                return
+            end
+            local ent = stellua.detach_vehicle(slot_pos)
+            if not ent or not ent.object then
+                minetest.chat_send_player(player:get_player_name(), "Travel unavailable: your ship could not be assembled.")
+                return
+            end
             local cost = planet.star == star and vector.distance(planet.pos, spos) or 16*vector.distance(stellua.stars[planet.star].pos, stellua.stars[star].pos)
-            local fuel, ignite = stellua.get_fuel(ent.tanks, math.round(cost+0.3), "fissile")
+            local fuel, ignite = stellua.get_fuel(ent.tanks or {}, math.round(cost+0.3), "fissile")
             if not fuel and not minetest.is_creative_enabled(player:get_player_name()) then
-                stellua.land_vehicle(ent, stellua.get_slot_pos(slot))
+                stellua.land_vehicle(ent, slot_pos)
                 minetest.chat_send_player(player:get_player_name(), "Not enough impulse fuel!")
                 if ignite then minetest.sound_play({name="fire_flint_and_steel", gain=0.2}, {pos=stellua.get_slot_pos(slot)}, true) end
                 return

@@ -12,7 +12,8 @@ local old_set_node = lvae_defs.set_node
 function lvae_defs.get_staticdata(self)
     local tanks = table.copy(self.tanks or {})
     for _, t in ipairs(tanks or {}) do
-        t[2] = minetest.get_inventory({type="detached", name=t[2]}):get_lists()
+        local detached = t[2] and minetest.get_inventory({type="detached", name=t[2]})
+        if detached then t[2] = detached:get_lists() else t[2] = {} end
         for _, l in pairs(t[2]) do
             for i, item in ipairs(l) do
                 l[i] = item:to_string()
@@ -24,10 +25,15 @@ end
 
 function lvae_defs.on_activate(self, staticdata, dtime)
     if staticdata and staticdata ~= "" and not tonumber(staticdata) then
-        staticdata, self.player, self.power, self.tanks, self.collisionbox = unpack(minetest.deserialize(staticdata))
+        local decoded = minetest.deserialize(staticdata)
+        if type(decoded) == "table" then
+            staticdata, self.player, self.power, self.tanks, self.collisionbox = unpack(decoded)
+        end
         self.collisionbox = self.collisionbox or {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
         self.object:set_properties({physical=true, collisionbox=self.collisionbox})
+        self.tanks = self.tanks or {}
         for _, t in ipairs(self.tanks) do
+            if type(t) ~= "table" then break end
             if type(t[2]) == "table" then
                 minetest.create_detached_inventory("spaceship_inv"..inv_count, {}):set_lists(t[2])
                 t[2] = "spaceship_inv"..inv_count
@@ -41,7 +47,7 @@ end
 
 function lvae_defs.on_step(self, dtime)
     local player = self.player and minetest.get_player_by_name(self.player)
-    if player and not player:get_attach() then
+    if player and player:is_player() and self.object:is_valid() and not player:get_attach() then
         player:set_attach(self.object)
     end
     --return old_on_step(self, dtime)
@@ -181,9 +187,10 @@ minetest.register_node("stl_vehicles:air", {
 
 --Detach a vehicle and return the LVAE
 function stellua.detach_vehicle(pos)
-    local lvae = LVAE(pos)
     local minp, maxp
     local ship, seat, engines, power, tanks = stellua.assemble_vehicle(vector.round(pos), true)
+    if not ship or not seat then return nil end
+    local lvae = LVAE(pos)
     lvae.power = power
     lvae.tanks = {}
     for _, p in ipairs(tanks or {}) do
@@ -220,8 +227,10 @@ end
 
 --Reattach a vehicle to the node grid and destroy the LVAE
 function stellua.land_vehicle(vehicle, pos)
+    if not vehicle then return false end
     pos = pos or vehicle:get_pos()
     if vehicle.get_luaentity then vehicle = vehicle:get_luaentity() end
+    if not vehicle or type(vehicle.data) ~= "table" then return false end
     for _, node in pairs(vehicle.data) do
         if node.entity then
             if node.name == "stl_vehicles:air" then
@@ -248,6 +257,7 @@ end
 
 --Try to get fuel from the stored data on vehicle fuel tanks
 function stellua.get_fuel(tanks, amount, group)
+    if type(tanks) ~= "table" or type(amount) ~= "number" or amount < 0 then return false, false end
     if amount == 0 then return true end
     group = group or "fuel"
     local ignite = false
@@ -276,11 +286,45 @@ function stellua.get_fuel(tanks, amount, group)
 end
 
 --Make the player enter vehicles on rightclick
+local ship_panels = {}
+
+local function ship_panel_formspec(player, ship_pos)
+    local ship, seat, engines, power, tanks = stellua.assemble_vehicle(ship_pos, true)
+    if not ship or not seat then return nil end
+    local fuel_count = #(tanks or {})
+    local pname = player:get_player_name()
+    local meta = player:get_meta()
+    local assigned = minetest.deserialize(meta:get_string("stl_core:current_ship_pos"))
+    local is_current = assigned and vector.distance(assigned, ship_pos) < 2
+    local pos_text = minetest.formspec_escape(minetest.pos_to_string(vector.round(ship_pos)))
+    return "formspec_version[4]size[8,6]" ..
+        "label[0.4,0.35;Ship control panel]" ..
+        "label[0.4,0.9;Position: "..pos_text.."]" ..
+        "label[0.4,1.35;Engine power: "..tostring(power or 0).."]" ..
+        "label[0.4,1.8;Fuel tanks: "..tostring(fuel_count).."]" ..
+        "label[0.4,2.25;Seat: "..(seat and "installed" or "missing").."]" ..
+        "button[0.5,3.0;3.2,0.9;ship_assign;Assign as current ship]" ..
+        "button[4.1,3.0;3.2,0.9;ship_marker;Show ship waypoint]" ..
+        "button_exit[2.7,4.5;2.6,0.9;close;Close]" ..
+        "label[0.5,5.5;Current assignment: "..(is_current and "this ship" or "another ship").."]"
+end
+
 minetest.register_on_mods_loaded(function()
     for name, defs in pairs(minetest.registered_nodes) do
         if minetest.get_item_group(name, "spaceship") > 0 then
             local on_rightclick = defs.on_rightclick
             minetest.override_item(name, {on_rightclick = function (pos, node, user, itemstack, pointed)
+                if user and user:is_player() and user:get_player_control().sneak then
+                    local panel_pos = vector.round(pos)
+                    local form = ship_panel_formspec(user, panel_pos)
+                    if form then
+                        ship_panels[user:get_player_name()] = panel_pos
+                        minetest.show_formspec(user:get_player_name(), "stl_vehicles:ship_panel", form)
+                    else
+                        minetest.chat_send_player(user:get_player_name(), "This ship is incomplete: add a seat and connect all parts.")
+                    end
+                    return itemstack
+                end
                 if on_rightclick then on_rightclick(pos, node, user)
                 elseif (itemstack:is_empty() or not ({minetest.item_place_node(itemstack, user, pointed)})[2]) and not stellua.assemble_vehicle(vector.round(user:get_pos()), true) then
                     local ship, seat = stellua.assemble_vehicle(pos)
@@ -294,13 +338,42 @@ minetest.register_on_mods_loaded(function()
     end
 end)
 
+minetest.register_on_player_receive_fields(function(player, formname, fields)
+    if formname ~= "stl_vehicles:ship_panel" or not player or not player:is_player() then return end
+    local name = player:get_player_name()
+    local ship_pos = ship_panels[name]
+    if not ship_pos then return end
+    if fields.ship_assign or fields.ship_marker then
+        local ship, seat = stellua.assemble_vehicle(ship_pos, true)
+        if not ship or not seat then
+            minetest.chat_send_player(name, "This ship is no longer complete.")
+            return
+        end
+        local meta = player:get_meta()
+        meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(ship_pos)))
+        meta:set_string("stl_core:ship_marker_mode", "current")
+        if fields.ship_assign then
+            minetest.chat_send_player(name, "Current ship assigned.")
+        else
+            minetest.chat_send_player(name, "Ship waypoint enabled.")
+        end
+        minetest.close_formspec(name, formname)
+    end
+    if fields.quit then ship_panels[name] = nil end
+end)
+
+minetest.register_on_leaveplayer(function(player)
+    ship_panels[player:get_player_name()] = nil
+end)
+
 --Detect if vehicle is on ground
 local function on_ground(self, pos)
     pos = pos or vector.round(self.object:get_pos())
     local y = pos.y+math.round(self.collisionbox[2]-0.5)
     for x = pos.x+math.round(self.collisionbox[1]-0.5), pos.x+math.round(self.collisionbox[4]+0.5) do
         for z = pos.z+math.round(self.collisionbox[3]-0.5), pos.z+math.round(self.collisionbox[6]+0.5) do
-            if minetest.registered_nodes[minetest.get_node(vector.new(x, y, z)).name].walkable then return true end
+			local def = minetest.registered_nodes[minetest.get_node(vector.new(x, y, z)).name]
+			if def and def.walkable then return true end
         end
     end
     return false
@@ -360,10 +433,14 @@ minetest.register_globalstep(function(dtime)
                 end
 
             --make vehicle launch on jump
-            elseif control.jump and (index or (pos.y > -1000 and pos.y < 1000)) and minetest.get_item_group(minetest.get_node(pos).name, "seat") > 0 then
-                local ent = stellua.detach_vehicle(pos)
-                player:set_attach(ent.object)
-                ent.player = playername
+			elseif control.jump and (index or (pos.y > -1000 and pos.y < 1000)) and minetest.get_item_group(minetest.get_node(pos).name, "seat") > 0 then
+				local ent = stellua.detach_vehicle(pos)
+				if ent and ent.object and ent.object:is_valid() then
+					player:set_attach(ent.object)
+					ent.player = playername
+				else
+					minetest.chat_send_player(playername, "Ship launch failed: the vehicle is incomplete or busy.")
+				end
                 minetest.sound_play({name="doors_door_close", gain=0.3}, {pos=pos}, true)
             end
         end
@@ -398,9 +475,9 @@ minetest.register_globalstep(function(dtime)
 						orbit_slots[playername] = slot
 						minetest.emerge_area(slotpos, slotpos)
 					end
-					player:set_detach()
-					stellua.land_vehicle(ent, slotpos)
-					player:set_pos(slotpos)
+						player:set_pos(slotpos)
+						player:set_detach()
+						stellua.land_vehicle(ent, slotpos)
 					stellua.set_respawn(player, slotpos)
 					transferring = true
 				end
@@ -418,9 +495,9 @@ minetest.register_globalstep(function(dtime)
 
                     --move to slot if above y=250
                     if rel_y >= 750 then
-                        player:set_detach()
-						stellua.land_vehicle(ent, slotpos)
 						player:set_pos(slotpos)
+						player:set_detach()
+						stellua.land_vehicle(ent, slotpos)
 						stellua.set_respawn(player, slotpos)
 						transferring = true
 					end
