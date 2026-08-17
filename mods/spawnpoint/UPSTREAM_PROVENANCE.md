@@ -10,4 +10,6 @@ This directory incorporates the public `octacian/spawnpoint` Luanti mod:
 The source and media are retained under the upstream MIT terms. StelluAsuna
 adds `mod.conf` metadata for game packaging and fixes the upstream
 `type(player) == string` typo in the teleport helper; no upstream license text
-or copyright notice has been removed.
+or copyright notice has been removed. It also queues the configured spawn
+teleport after respawn callbacks so StelluAsuna's static point takes priority
+over optional bed-spawn integrations.

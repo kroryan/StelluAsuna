@@ -242,7 +242,14 @@ minetest.register_on_shutdown(spawnpoint.save)
 
 -- [register] On Respawn Player
 minetest.register_on_respawnplayer(function(player)
-	spawnpoint.bring(player)
+	-- Other mods (notably beds) may register a respawn callback as well. Queue
+	-- our teleport for the next tick so the configured static spawnpoint wins
+	-- instead of silently falling back to a bed position.
+	minetest.after(0, function()
+		if player and player:is_player() then
+			spawnpoint.bring(player)
+		end
+	end)
 end)
 
 -- [register] On New Player
