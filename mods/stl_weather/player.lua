@@ -43,7 +43,9 @@ end)
 function stellua.get_temperature(pos)
     -- Asuna is the inhabited homeworld. Its normal biomes, caves and houses
     -- never apply Stellua's survival-temperature damage.
-    if pos.y < (stellua.hybrid_space_min or 6368) then return 300 end
+    if pos.y < (stellua.hybrid_space_min or 6368) then
+        return 300 + (stellua.get_season_temperature_modifier and stellua.get_season_temperature_modifier() or 0)
+    end
 
     --always room temperature inside vehicles, at least for now
     if stellua.assemble_vehicle(pos, true) then return 300 end

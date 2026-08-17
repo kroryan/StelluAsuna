@@ -50,6 +50,10 @@ core.register_on_mods_loaded(function()
     for name, def in pairs(core.registered_ores) do
         local wherein = def.wherein
         local biomes = def.biomes
+        -- Chemistry still exposes some ores with the legacy height_* fields.
+        -- Normalize the range before checking overlap with Everness layers.
+        local ore_y_min = def.y_min or def.height_min or -31000
+        local ore_y_max = def.y_max or def.height_max or 31000
 
         if type(def.wherein) == 'string' then
             wherein = { wherein }
@@ -60,7 +64,7 @@ core.register_on_mods_loaded(function()
             table.indexof(wherein, mapgen_stone_itemstring) > -1
             and not biomes
             and def.clust_scarcity ~= 1 -- ignore ores that replace everything
-            and (def.y_min <= y_max or def.y_max >= y_min)
+            and (ore_y_min <= y_max or ore_y_max >= y_min)
         then
             def = table.copy(def)
             def.wherein = { 'everness:mineral_cave_stone' }

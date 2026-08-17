@@ -1,0 +1,13 @@
+Changelog for Chemistry 1.9
+1. Removed:
+- Unused textures
+2. Changes:
+- Translation system
+- Spelling mistakes fixed
+- Glowing Water Registry again
+- Fire propagation by white phosphorus and potassium permanganate
+3. Added:
+- Added Back Spanish Translation (Finally)
+- Potassium Permanganate with Glycerin (Functions like a blowtorch, can be used once)
+- Mercury (experimental, has no functions)
+- Icons for technic machinery crafting

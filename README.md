@@ -264,6 +264,34 @@ You can:
     Or simply create your own adventure.
 
 StelluAsuna is a world designed to be explored, built upon and expanded.
+
+## Current integration layer
+
+The homeworld uses Asuna's `v7` terrain generator and its biome, cave and
+decoration pipeline. Stellua's custom planets remain in the upper orbital
+layer, where their original geology and atmosphere are preserved. New worlds
+must be generated after an update to see the complete Asuna surface variety.
+
+The integration currently includes:
+
+    Seasonal climate in the Asuna homeworld (`/season` and `stl_season_days`)
+    Seasonal freezing and melting of only ice created by the season system
+    Cooling compatibility for Stellua lava and `mg_villages` tamed lava
+    Chemistry by Emiliano, with its own strong-lava and molten-metal rules
+    Logistica by ZenonSeth
+    Mobs Monster by TenPlus1, loaded through the existing Mobs Redo API
+    Verified starter-ship placement with the player inside the cabin
+
+Chemistry's material-specific cooling handlers are kept separate from the
+generic Stellua and village-lava compatibility layer. Its extra minerals and
+deep-world biomes remain available without replacing Asuna's homeworld game
+mod or its `v7` mapgen.
+
+An orbital station generator is not claimed here: the existing compatible
+space mods reviewed so far provide dimensions, asteroid layers or outposts,
+not a working station system for this vertical map. The project keeps the
+existing Stellua spacecraft and precursor outposts until a compatible station
+mod can be integrated without replacing current space content.
 Credits & Mod Authors 🔗
 
 StelluAsuna is built upon the work of many Luanti mod developers and projects.

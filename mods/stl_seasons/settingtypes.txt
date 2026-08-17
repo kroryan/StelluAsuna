@@ -1,0 +1,1 @@
+stl_season_days (Length of each season in game days) int 8 1 365

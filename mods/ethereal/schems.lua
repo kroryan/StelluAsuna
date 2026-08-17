@@ -952,6 +952,26 @@ end
 
 -- deep see fumerole / vent
 
+-- The current Nether modpack no longer provides the legacy fumarole node,
+-- although this decoration still places it in its schematic. Keep the
+-- feature available with a compatible fallback instead of leaving an
+-- unresolved node in every generated world.
+if core.get_modpath("nether") and not core.registered_nodes["nether:fumarole"] then
+	core.register_node(":nether:fumarole", {
+		description = "Nether Fumarole",
+		drawtype = "plantlike",
+		visual_scale = 1.2,
+		tiles = {"nether_netherrack.png"},
+		inventory_image = "nether_netherrack.png",
+		wield_image = "nether_netherrack.png",
+		paramtype = "light",
+		light_source = 5,
+		walkable = false,
+		groups = {cracky = 2, oddly_breakable_by_hand = 1},
+		sounds = default.node_sound_stone_defaults(),
+	})
+end
+
 register_decoration(core.get_modpath("nether") and 1, {
 	name = "nether:fumarole",
 	place_on = {"default:sand"},

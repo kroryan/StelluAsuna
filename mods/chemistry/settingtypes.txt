@@ -1,0 +1,29 @@
+
+#Nodes generate particles when reacting to other nodes or the temperature difference (Reduces lag)
+#   - All = every particle will be displayed,
+#   - Decreased = particles will be decreased,
+#   - None = no particles will be displayed
+#NOTE: this setting only afects particles that are from "Chemistry" mod
+#other particles will be displayed even if this setting is set to "None"
+chemistry_node_particles (Particles of Nodes) enum All All,Decreased,None
+
+#Acids will destroy blocks depending on their power
+chemistry_allow_corrosion (Allow Acid Corrosion) bool true
+
+#Nodes in the item group marked as "alkaline" will react with water and acids
+chemistry_allow_alkali_reaction (Allow Alkaline Nodes Reaction) bool true
+
+#Enables Nuclear Bombs
+chemistry_enable_nuke (Enable Nuclear Bombs) bool true
+
+#Enables Armor be able to protect you from Liquids with high or low pH
+chemistry_enable_corrosion_protection (Enable Corrosion Protection) bool true
+
+#Enables Nodes To Melt Near Fire or Lava (If Disabled, nodes are required to be smelt with a blowtorch)
+chemistry_allow_node_melt (Allow Node Melting) bool true
+
+#Allows Nitroglycerin, C4s, Gas Seeps, and more nodes to explode (this doesn't apply to alkaline metals and the nuclear bombs)
+chemistry_allow_explosive_nodes (Allow Explosive Nodes) bool true
+
+#Allows Nodes or getting hit by a tool to intoxicate you (Experimental)
+chemistry_allow_intoxication (Allow Intoxication) bool true

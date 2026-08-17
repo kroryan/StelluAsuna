@@ -16,11 +16,23 @@ end
 
 -- StelluAsuna starts on the Asuna homeworld, but keeps Stellua's original
 -- arrival fantasy: new players wake up inside a landed starter spacecraft.
+local function arrival_ship_ready(base)
+	local seat = minetest.get_node_or_nil(vector.add(base, {x=0, y=1, z=0}))
+	local floor = minetest.get_node_or_nil(base)
+	local feet = minetest.get_node_or_nil(vector.add(base, {x=0, y=2, z=0}))
+	local head = minetest.get_node_or_nil(vector.add(base, {x=0, y=3, z=0}))
+	if not seat or not floor or not feet or not head then return false end
+	if seat.name ~= "stl_vehicles:seat" or floor.name == "air" then return false end
+	return feet.name == "air" and head.name == "air"
+end
+
 local function put_player_in_arrival_ship(player, base, token)
 	if not player or not player:is_player() then return end
-	local inside = vector.add(base, {x=0, y=1.5, z=0})
+	-- The schematic seat occupies y=1. A player position at y=2.0 stands on
+	-- it; y=1.5 intersects the seat and caused falling/teleport corrections.
+	local inside = vector.add(base, {x=0, y=2.05, z=0})
 	player:set_pos(inside)
-	stellua.set_respawn(player, vector.add(base, {x=0, y=1, z=0}))
+	stellua.set_respawn(player, inside)
 	player:get_meta():set_int("stelluasuna_arrived", 1)
 	
 	-- Do not restore gravity immediately! The client needs time to download the ship's chunks.
@@ -80,10 +92,26 @@ local function spawn_player_ship(player, force)
 				if tank and tank.on_construct then
 					tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
 				end
-				
-					put_player_in_arrival_ship(p, base, token)
-				minetest.close_formspec(name, "stl_asuna_bridge:loading")
-				minetest.log("action", "[stl_asuna_bridge] Asuna arrival ship placed for " .. name .. " at " .. minetest.pos_to_string(base))
+
+				local function finish_when_ready(retries)
+					if arrival_tokens[name] ~= token then return end
+					local current = minetest.get_player_by_name(name)
+					if not current then return end
+					if not arrival_ship_ready(base) then
+						if retries < 20 then
+							minetest.after(0.25, function()
+								finish_when_ready(retries + 1)
+							end)
+					else
+							minetest.log("error", "[stl_asuna_bridge] Arrival ship failed readiness check for " .. name)
+						end
+						return
+					end
+					put_player_in_arrival_ship(current, base, token)
+					minetest.close_formspec(name, "stl_asuna_bridge:loading")
+					minetest.log("action", "[stl_asuna_bridge] Asuna arrival ship placed for " .. name .. " at " .. minetest.pos_to_string(base))
+				end
+				finish_when_ready(0)
 			end)
 		end
 	)

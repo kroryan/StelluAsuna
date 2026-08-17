@@ -532,6 +532,36 @@ minetest.register_on_mods_loaded(function()
         end
     end
 
+    -- Share Asuna's surface palette with the mapgen environment. Stellua's
+    -- geology remains below it, while living planets get Asuna-dominant flora.
+    local function content_ids(names)
+        local ids = {}
+        for _, name in ipairs(names) do
+            if minetest.registered_nodes[name] then
+                table.insert(ids, minetest.get_content_id(name))
+            end
+        end
+        return ids
+    end
+    stellua.asuna_mix = {
+        warm_surfaces = content_ids({
+            "default:dirt_with_grass", "prairie:prairie_dirt_with_grass",
+            "default:dirt_with_rainforest_litter", "default:dirt_with_coniferous_litter",
+            "naturalbiomes:heath_litter", "naturalbiomes:bambooforest_litter",
+        }),
+        dry_surfaces = content_ids({
+            "default:dry_dirt_with_dry_grass", "default:dirt_with_dry_grass",
+            "naturalbiomes:savannalitter", "naturalbiomes:outback_ground",
+        }),
+        cold_surfaces = content_ids({"default:dirt_with_snow", "default:snowblock"}),
+        plants = content_ids({
+            "default:grass_1", "default:grass_2", "default:grass_3", "default:grass_4",
+            "default:flower_dandelion_white", "default:flower_rose", "default:flower_tulip",
+            "naturalbiomes:heath_grass", "naturalbiomes:savannagrass",
+            "naturalbiomes:outback_grass", "naturalbiomes:bambooforest_groundgrass",
+        }),
+    }
+
     --pass it all to the mapgen env
     minetest.ipc_set("stellua", stellua)
 end)

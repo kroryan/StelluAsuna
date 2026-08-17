@@ -6,6 +6,12 @@ local store = AreaStore()
 local file_name = minetest.get_worldpath() .. "/building_sign_areas"
 
 function areas.load()
+  local file = io.open(file_name, "rb")
+  if not file then
+    -- A new world has no areas file until the first clean shutdown.
+    return
+  end
+  file:close()
   local success,err = store:from_file(file_name)
   if not success then
     log.error("error while trying to load building_sign_areas: "..err)
