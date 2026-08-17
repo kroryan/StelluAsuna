@@ -64,61 +64,184 @@ local world_version = storage:get_int("version")
 assert(world_version == 0 or world_version == VERSION, "incompatible version (world 0."..world_version..", game 0."..VERSION..")")
 storage:set_int("version", VERSION)
 
---Spawn player in a good place
-local start_planet
-
-minetest.register_on_mods_loaded(function()
-    for i, planet in ipairs(stellua.planets) do
-        if 200 < planet.heat_stat and planet.heat_stat < 350 and planet.scale < 1.1
-        and 0.5 <= planet.atmo_stat and planet.atmo_stat <= 2 and planet.life_stat > 1 and planet.crystal == "stl_core:uranium" then --more to be added later
-            start_planet = i
-        end
-    end
-    if not start_planet then --try again with less strict requirements
-        for i, planet in ipairs(stellua.planets) do
-            if 150 <= planet.heat_stat and planet.heat_stat <= 400
-            and planet.scale < 1.1 and 0.5 <= planet.atmo_stat and planet.life_stat > 0.5 then
-                start_planet = i
-            end
-        end
-    end
-    if not start_planet then --give up
-        start_planet = 1
-    end
-end)
-
-minetest.register_on_newplayer(function(player)
-    if not minetest.settings:get_bool("stellua_hybrid_spawn", false) then return end
-    local pos = vector.round(vector.new(0, stellua.get_planet_level(start_planet)+10^stellua.planets[start_planet].scale+60, 0))
-    player:set_pos(pos+vector.new(0, 1.5, 0))
-    stellua.set_respawn(player, pos+vector.new(0, 1, 0))
-    if stellua.detach_vehicle then
-        minetest.place_schematic(pos, modpath.."schems/starter_rocket.mts", "0", {}, true, "place_center_x, place_center_z")
-        minetest.registered_nodes["stl_vehicles:tank"].on_construct(pos+vector.new(0, 4, 0))
-    end
-end)
-
---Make player respawn in their spaceship on death
-function stellua.set_respawn(player, pos)
-    player:get_meta():set_string("respawn", minetest.serialize(pos))
-    minetest.chat_send_player(player:get_player_name(), "Respawn point set!")
-end
-
-minetest.register_on_respawnplayer(function(player)
-    local respawn = player:get_meta():get_string("respawn")
-    if respawn == "" then return false end
-    local pos = minetest.deserialize(respawn)
-    if not pos then return false end
-    player:set_pos(pos)
-    return true
-end)
-
 minetest.register_on_joinplayer(function(player)
 	local in_space = player:get_pos().y >= (stellua.hybrid_space_min or 6368)
 	stellua.set_space_armor(player, in_space)
 	if not in_space then return end
 	player:set_properties({use_texture_alpha=true})
 end)
+
+-- Keep respawn points created by assembled spacecraft, but do not override
+-- Asuna's initial spawn selection.
+function stellua.set_respawn(player, pos)
+	player:get_meta():set_string("respawn", minetest.serialize(pos))
+end
+
+minetest.register_on_respawnplayer(function(player)
+	local respawn = player:get_meta():get_string("respawn")
+	if respawn == "" then return false end
+	local pos = minetest.deserialize(respawn)
+	if not pos then return false end
+	player:set_pos(pos)
+	return true
+end)
+
+-- Keep the engine/Asuna spawn untouched. A starter ship is only placed beside
+-- the position selected by the engine after the player has joined.
+local starter_ship_path = modpath .. "schems/starter_rocket.mts"
+local starter_ship_key = "stl_core:starter_ship_placed"
+local starter_ship_radius = 1
+local starter_ship_height = 6
+
+local function starter_ship_ground(node)
+	if not node or node.name == "air" or node.name == "ignore" then return false end
+	local def = minetest.registered_nodes[node.name]
+	if not def or not def.walkable then return false end
+	return minetest.get_item_group(node.name, "water") == 0
+		and minetest.get_item_group(node.name, "lava") == 0
+end
+
+local function starter_ship_space(node)
+	return node and node.name == "air"
+end
+
+local function starter_ship_base_is_clear(x, y, z)
+	for dx = -starter_ship_radius, starter_ship_radius do
+		for dz = -starter_ship_radius, starter_ship_radius do
+			local ground = minetest.get_node_or_nil({x=x + dx, y=y, z=z + dz})
+			if not starter_ship_ground(ground) then return false end
+			for dy = 1, starter_ship_height - 1 do
+				local node = minetest.get_node_or_nil({x=x + dx, y=y + dy, z=z + dz})
+				if not starter_ship_space(node) then return false end
+			end
+		end
+	end
+	return true
+end
+
+local function find_starter_ship_base(player)
+	local pos = player:get_pos()
+	local px = math.floor(pos.x)
+	local pz = math.floor(pos.z)
+	local ground_y = math.floor(pos.y) - 1
+	local offsets = {
+		{x=6, z=0}, {x=-6, z=0}, {x=0, z=6}, {x=0, z=-6},
+		{x=8, z=0}, {x=-8, z=0}, {x=0, z=8}, {x=0, z=-8},
+	}
+
+	for _, offset in ipairs(offsets) do
+		local x = px + offset.x
+		local z = pz + offset.z
+		for dy = -6, 6 do
+			local y = ground_y + dy
+			if starter_ship_base_is_clear(x, y, z) then
+				return {x=x, y=y, z=z}
+			end
+		end
+	end
+	return nil
+end
+
+local function place_starter_ship(player, attempt)
+	if not player or not player:is_player() then return end
+	local meta = player:get_meta()
+	if meta:get_int(starter_ship_key) == 1 then return end
+	if player:get_pos().y >= (stellua.hybrid_space_min or 6368) then return end
+
+	local base = find_starter_ship_base(player)
+	if not base then
+		if attempt < 20 then
+			minetest.after(0.5, function()
+				place_starter_ship(player, attempt + 1)
+			end)
+		else
+			minetest.log("error", "[stl_core] No clear ground for starter ship beside " .. player:get_player_name())
+		end
+		return
+	end
+
+	minetest.place_schematic(base, starter_ship_path, "0", {}, true, "place_center_x, place_center_z")
+	local tank = minetest.registered_nodes["stl_vehicles:tank"]
+	if tank and tank.on_construct then
+		tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
+	end
+	meta:set_int(starter_ship_key, 1)
+	minetest.log("action", "[stl_core] Placed starter ship beside " .. player:get_player_name() .. " at " .. minetest.pos_to_string(base))
+end
+
+minetest.register_on_joinplayer(function(player)
+	minetest.after(1.5, function()
+		place_starter_ship(player, 0)
+	end)
+end)
+
+minetest.register_on_mods_loaded(function()
+	minetest.log("action", "[stl_core] Hybrid active: Asuna mapgen=" ..
+		tostring(minetest.get_mapgen_setting("mg_name")) .. ", Stellua planets=" ..
+		tostring(stellua.planet_count) .. ", space_min=" ..
+		tostring(stellua.hybrid_space_min or 6368))
+
+	if storage:get_int("planet_mapgen_selftest_v1") ~= 0 then return end
+	local level = stellua.get_planet_level(1)
+	local minp = {x=-8, y=level-160, z=-8}
+	local maxp = {x=8, y=level+220, z=8}
+	minetest.after(0, function()
+		minetest.emerge_area(minp, maxp, function(_, _, remaining)
+			if remaining ~= 0 then return end
+			minetest.after(1, function()
+				local names = {
+					"stl_core:stone1", "stl_core:stone2", "stl_core:stone3", "stl_core:stone4",
+					"stl_core:stone5", "stl_core:stone6", "stl_core:stone7", "stl_core:stone8",
+					"stl_core:filler1", "stl_core:filler2", "stl_core:filler3", "stl_core:filler4",
+					"stl_core:filler5", "stl_core:filler6", "stl_core:filler7", "stl_core:filler8",
+				}
+				local found = minetest.find_nodes_in_area(minp, maxp, names)
+				if #found > 0 then
+					storage:set_int("planet_mapgen_selftest_v1", 1)
+					minetest.log("action", "[stl_core] SELFTEST PASS: planet 1 generated " .. #found .. " Stellua terrain nodes")
+				else
+					minetest.log("error", "[stl_core] SELFTEST FAIL: planet 1 produced no Stellua terrain")
+				end
+			end)
+		end)
+	end)
+end)
+
+minetest.register_chatcommand("space_status", {
+	description = "Show the current hybrid realm, planet and orbital state",
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		local pos = player:get_pos()
+		local planet = stellua.get_planet_index(pos.y)
+		local slot = stellua.get_slot_index(pos)
+		if planet then return true, "Stellua planet " .. planet .. ": " .. stellua.planets[planet].name end
+		if slot then return true, "Stellua orbit slot " .. slot end
+		return true, "Asuna homeworld"
+	end,
+})
+
+minetest.register_chatcommand("space_test", {
+	description = "Teleport to the hybrid orbital layer for testing",
+	privs = {teleport=true},
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		player:set_pos({x=0, y=6500, z=0})
+		return true, "Teleported to test orbit"
+	end,
+})
+
+minetest.register_chatcommand("asuna_home", {
+	description = "Return to the Asuna homeworld test altitude",
+	privs = {teleport=true},
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		player:set_pos({x=0, y=200, z=0})
+		return true, "Returning to Asuna"
+	end,
+})
 
 --A few useful commands
 minetest.register_chatcommand("planet", {
