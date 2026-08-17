@@ -107,6 +107,76 @@ minetest.register_craft({
 	},
 })
 
+-- Escarbator hammers remove a straight horizontal line. The direction follows
+-- the player's look axis, matching the constructors, while normal digging
+-- callbacks, drops and protection checks are retained.
+local function escarbator_line(itemstack, user, pointed_thing, length)
+	if not user or not user:is_player() or pointed_thing.type ~= "node" then return itemstack end
+	local look = user:get_look_dir()
+	local axis = math.abs(look.x) >= math.abs(look.z) and "x" or "z"
+	local step = (axis == "x" and look.x or look.z) < 0 and -1 or 1
+	local player_name = user:get_player_name()
+	local dug = 0
+	for i = 0, length - 1 do
+		local pos = vector.copy(pointed_thing.under)
+		pos[axis] = pos[axis] + step * i
+		if not minetest.is_protected(pos, player_name) then
+			local node = minetest.get_node(pos)
+			if node.name ~= "air" and node.name ~= "ignore" and minetest.registered_nodes[node.name] then
+				local before = node.name
+				minetest.node_dig(pos, node, user, {type = "node", under = pos, above = pointed_thing.above})
+				if minetest.get_node(pos).name == before then
+					local drops = minetest.get_node_drops(node.name, itemstack)
+					minetest.remove_node(pos)
+					for _, drop in ipairs(drops or {}) do minetest.add_item(pos, ItemStack(drop)) end
+				end
+				if minetest.get_node(pos).name ~= before then dug = dug + 1 end
+			end
+		end
+	end
+	if dug > 0 then
+		itemstack:add_wear(math.max(1, math.floor(65535 * dug / 2500)))
+		minetest.sound_play("default_dig_cracky", {pos = pointed_thing.under, gain = 0.3}, true)
+	end
+	return itemstack
+end
+
+local escarbators = {
+	{length = 9, texture = "escarbator_9.png", name = "Escarbator 9", recipe = {
+		{"sgjourney:naquadah_alloy", "sgjourney:naquadah_alloy", "sgjourney:naquadah_alloy"},
+		{"stl_core:titanium_block", "sgjourney:energy_crystal", "stl_core:titanium_block"},
+		{"", "stl_core:titanium", ""},
+	}},
+	{length = 7, texture = "escarbator_7.png", name = "Escarbator 7", recipe = {
+		{"sgjourney:naquadah_alloy", "sgjourney:energy_crystal", "sgjourney:naquadah_alloy"},
+		{"stl_core:titanium_block", "stl_core:titanium_block", "stl_core:titanium_block"},
+		{"", "stl_core:titanium", ""},
+	}},
+	{length = 5, texture = "escarbator_5.png", name = "Escarbator 5", recipe = {
+		{"sgjourney:energy_crystal", "sgjourney:energy_crystal", "sgjourney:energy_crystal"},
+		{"stl_core:titanium_block", "sgjourney:naquadah_alloy", "stl_core:titanium_block"},
+		{"", "stl_core:titanium", ""},
+	}},
+	{length = 3, texture = "escarbator_3.png", name = "Escarbator 3", recipe = {
+		{"sgjourney:energy_crystal", "stl_core:titanium_block", "sgjourney:energy_crystal"},
+		{"", "sgjourney:naquadah_alloy", ""},
+		{"", "stl_core:titanium", ""},
+	}},
+}
+
+for _, def in ipairs(escarbators) do
+	local item = "esvanetor:escarbator_" .. def.length
+	minetest.register_tool(item, {
+		description = def.name .. "\nRainbow straight-line excavation hammer (" .. def.length .. "x1)",
+		inventory_image = def.texture, wield_image = def.texture,
+		tool_capabilities = {full_punch_interval = 0.1, max_drop_level = 100,
+			groupcaps = groupcaps, damage_groups = {fleshy = 12}},
+		sound = {breaks = "default_tool_breaks"},
+		on_use = function(stack, user, pointed) return escarbator_line(stack, user, pointed, def.length) end,
+	})
+	minetest.register_craft({output = item, recipe = def.recipe})
+end
+
 -- Prismatic Edge: an intentionally end-game, unbreakable rainbow sword.
 minetest.register_tool(SWORD, {
 	description = "Prismatic Edge (Filo Prismático)\nInfinite damage",

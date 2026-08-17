@@ -8,9 +8,10 @@ License, version 3 or later (GPL-3.0-or-later), consistent with the
 StelluAsuna game.
 
 The original rainbow tool artwork shipped in textures/ (esvanetor.png,
-prismatic_edge.png and constructor.png) is released under the Creative
-Commons CC0 1.0 Universal dedication. It may be reused, modified and
-redistributed without permission, subject to the terms of CC0.
+prismatic_edge.png, constructor.png and escarbator_*.png) is released under
+the Creative Commons CC0 1.0 Universal dedication. The Escarbator icons were
+generated for this project and then cleaned to transparent 64x64 PNGs. They
+may be reused, modified and redistributed without permission, subject to CC0.
 
 This mod is an original StelluAsuna addition and is not a copy of any
 third-party game or mod.
