@@ -66,11 +66,15 @@ for i = 1, 23 do
 		planet = i, hostile = hostile, speed = 0.5 + (i % 4) * 0.18,
 		on_activate = function(self, staticdata)
 			local data = staticdata and minetest.deserialize(staticdata)
-			if type(data) == "table" then self.age = tonumber(data.age) or 0; self.seed = tonumber(data.seed) or i end
+			if type(data) == "table" then
+				self.age = tonumber(data.age) or 0
+				self.seed = tonumber(data.seed) or i
+				self.planet = tonumber(data.planet) or self.planet
+			end
 			self.seed = self.seed or i * 17
 		end,
 		get_staticdata = function(self)
-			return minetest.serialize({age=self.age or 0, seed=self.seed or i*17})
+			return minetest.serialize({age=self.age or 0, seed=self.seed or i*17, planet=self.planet or i})
 		end,
 		on_step = on_step,
 	})
