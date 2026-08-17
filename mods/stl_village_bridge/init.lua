@@ -148,6 +148,25 @@ minetest.register_on_mods_loaded(function()
 				end
 				return true -- Completely cancel the engine's default damage handling
 			end
+			
+			local old_on_step = def.on_step
+			def.on_step = function(self, dtime, moveresult)
+				if old_on_step then old_on_step(self, dtime, moveresult) end
+				self.env_damage_timer = (self.env_damage_timer or 0) + dtime
+				if self.env_damage_timer >= 1.0 then
+					self.env_damage_timer = 0
+					local pos = self.object:get_pos()
+					if pos then
+						local node = minetest.get_node(pos)
+						local ndef = minetest.registered_nodes[node.name]
+						if ndef and ndef.damage_per_second and ndef.damage_per_second > 0 then
+							local hp = self.object:get_hp() - ndef.damage_per_second
+							self.object:set_hp(hp)
+							if hp <= 0 then self.object:remove() end
+						end
+					end
+				end
+			end
 		end
 	end
 end)
