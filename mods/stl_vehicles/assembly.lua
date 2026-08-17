@@ -310,7 +310,9 @@ local function ship_panel_formspec(player, ship_pos)
     local pname = player:get_player_name()
     local meta = player:get_meta()
     local assigned = minetest.deserialize(meta:get_string("stl_core:current_ship_pos"))
-    local is_current = assigned and vector.distance(assigned, ship_pos) < 2
+    local is_current = assigned and type(assigned) == "table"
+        and type(assigned.x) == "number" and type(assigned.y) == "number"
+        and type(assigned.z) == "number" and vector.distance(assigned, ship_pos) < 2
     local pos_text = minetest.formspec_escape(minetest.pos_to_string(vector.round(ship_pos)))
     return "formspec_version[4]size[8,6]" ..
         "label[0.4,0.35;Ship control panel]" ..
