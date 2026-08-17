@@ -14,7 +14,7 @@ rm -rf "$STAGING_DIR"
 mkdir -p "$STAGING_DIR/$GAME_NAME"
 
 # Copy all files but exclude .git and this script itself
-rsync -a --exclude='.git' --exclude='build_release.sh' /home/krox/Documents/StelluAsuna/ "$STAGING_DIR/$GAME_NAME/"
+rsync -a --exclude='.git' --exclude='build_release.sh' --exclude='ANALISIS_PRIVADO.md' /home/krox/Documents/StelluAsuna/ "$STAGING_DIR/$GAME_NAME/"
 
 echo "[2/4] Optimizing large background images (lossless resize to 720p + indexed colors)..."
 if command -v mogrify >/dev/null 2>&1; then
