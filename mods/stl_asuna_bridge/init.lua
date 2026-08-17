@@ -214,3 +214,16 @@ minetest.register_chatcommand("asuna_home", {
 		return true, "Returning to Asuna"
 	end,
 })
+
+minetest.register_on_punchplayer(function(player, hitter, time_from_last_punch, tool_capabilities, dir, damage)
+	if hitter and not hitter:is_player() then
+		local luaent = hitter:get_luaentity()
+		if luaent and luaent.name and luaent.name:find("^working_villages:villager_") then
+			minetest.log("action", "===== BLOCKED VILLAGER PUNCHING PLAYER =====")
+			return true -- Completely prevent the engine from applying this damage
+		end
+	elseif hitter == player then
+		minetest.log("action", "===== BLOCKED PLAYER PUNCHING THEMSELVES =====")
+		return true -- Completely prevent the engine from applying this damage
+	end
+end)
