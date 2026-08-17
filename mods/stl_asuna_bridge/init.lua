@@ -1,4 +1,7 @@
 local SPACE_MIN = stellua.hybrid_space_min or 6368
+local ASUNA_SURFACE_MIN = -128
+local ASUNA_SURFACE_MAX = 256
+local ARRIVAL_FOOTPRINT_RADIUS = 2
 -- get_mod_storage() depends on the current mod context, which is available
 -- while this file is loaded but not later inside on_mods_loaded callbacks.
 local storage = minetest.get_mod_storage()
@@ -12,6 +15,36 @@ local function clear_arrival_physics(player)
 	for _, attribute in ipairs({"speed", "jump", "gravity"}) do
 		playerphysics.remove_physics_factor(player, attribute, "stl_asuna_bridge:arrival")
 	end
+end
+
+local function is_arrival_surface(node)
+	if not node or node.name == "air" or node.name == "ignore" then return false end
+	local def = minetest.registered_nodes[node.name]
+	if not def or not def.walkable then return false end
+	return minetest.get_item_group(node.name, "water") == 0
+		and minetest.get_item_group(node.name, "lava") == 0
+end
+
+local function find_surface_y(x, z)
+	for y = ASUNA_SURFACE_MAX, ASUNA_SURFACE_MIN, -1 do
+		local node = minetest.get_node_or_nil({x=x, y=y, z=z})
+		if is_arrival_surface(node) then return y end
+	end
+	return nil
+end
+
+-- Find a dry, solid landing area in Asuna. The ship footprint is checked as a
+-- whole so it cannot be placed through a hill, tree or body of liquid.
+local function find_asuna_arrival_base(x, z)
+	local highest_surface
+	for dx = -ARRIVAL_FOOTPRINT_RADIUS, ARRIVAL_FOOTPRINT_RADIUS do
+		for dz = -ARRIVAL_FOOTPRINT_RADIUS, ARRIVAL_FOOTPRINT_RADIUS do
+			local surface_y = find_surface_y(x + dx, z + dz)
+			if not surface_y then return nil end
+			highest_surface = math.max(highest_surface or surface_y, surface_y)
+		end
+	end
+	return {x=x, y=highest_surface + 1, z=z}
 end
 
 -- StelluAsuna starts on the Asuna homeworld, but keeps Stellua's original
@@ -55,14 +88,12 @@ local function spawn_player_ship(player, force)
 	if not force and player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
 	arrival_tokens[name] = (arrival_tokens[name] or 0) + 1
 	local token = arrival_tokens[name]
-	local offset_x = math.random(-150, 150)
-	local offset_z = math.random(-150, 150)
 	
-	-- Suspend player in the sky so they don't fall or die while we load
+	-- Suspend the player above the Asuna surface while the arrival area loads.
 	set_arrival_physics(player, "speed", 0)
 	set_arrival_physics(player, "jump", 0)
 	set_arrival_physics(player, "gravity", 0)
-	player:set_pos({x=0, y=1000, z=0})
+	player:set_pos({x=0, y=ASUNA_SURFACE_MAX + 32, z=0})
 	
 	minetest.show_formspec(name, "stl_asuna_bridge:loading", 
 		"size[10,10,true]" ..
@@ -71,50 +102,61 @@ local function spawn_player_ship(player, force)
 		"label[3,5.5;Preparing your arrival craft...]"
 	)
 	
-	local pmin = {x = offset_x - 16, y = 6480, z = offset_z - 16}
-	local pmax = {x = offset_x + 16, y = 6520, z = offset_z + 16}
-	
-	minetest.emerge_area(pmin, pmax,
-		function(_, _, remaining)
-			if remaining ~= 0 or arrival_tokens[name] ~= token then return end
-			minetest.after(2, function()
-				if arrival_tokens[name] ~= token then return end
-				local p = minetest.get_player_by_name(name)
-				if not p then return end
-				
-				-- Put the ship floating in space (orbit) as requested
-				local base = {x=offset_x, y=6500, z=offset_z}
-				
-				minetest.place_schematic(base,
-					minetest.get_modpath("stl_core").."/schems/starter_rocket.mts",
-					"0", {}, true, "place_center_x, place_center_z")
-				local tank = minetest.registered_nodes["stl_vehicles:tank"]
-				if tank and tank.on_construct then
-					tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
-				end
-
-				local function finish_when_ready(retries)
+	local function try_arrival_area(retries)
+		if arrival_tokens[name] ~= token then return end
+		local offset_x = math.random(-150, 150)
+		local offset_z = math.random(-150, 150)
+		local pmin = {x = offset_x - 16, y = ASUNA_SURFACE_MIN, z = offset_z - 16}
+		local pmax = {x = offset_x + 16, y = ASUNA_SURFACE_MAX, z = offset_z + 16}
+		minetest.emerge_area(pmin, pmax,
+			function(_, _, remaining)
+				if remaining ~= 0 or arrival_tokens[name] ~= token then return end
+				minetest.after(2, function()
 					if arrival_tokens[name] ~= token then return end
-					local current = minetest.get_player_by_name(name)
-					if not current then return end
-					if not arrival_ship_ready(base) then
+					local p = minetest.get_player_by_name(name)
+					if not p then return end
+					local base = find_asuna_arrival_base(offset_x, offset_z)
+					if not base then
 						if retries < 20 then
-							minetest.after(0.25, function()
-								finish_when_ready(retries + 1)
-							end)
-					else
-							minetest.log("error", "[stl_asuna_bridge] Arrival ship failed readiness check for " .. name)
+							try_arrival_area(retries + 1)
+						else
+							minetest.log("error", "[stl_asuna_bridge] Could not find a dry Asuna arrival site for " .. name)
 						end
 						return
 					end
-					put_player_in_arrival_ship(current, base, token)
-					minetest.close_formspec(name, "stl_asuna_bridge:loading")
-					minetest.log("action", "[stl_asuna_bridge] Asuna arrival ship placed for " .. name .. " at " .. minetest.pos_to_string(base))
-				end
-				finish_when_ready(0)
-			end)
-		end
-	)
+
+					minetest.place_schematic(base,
+						minetest.get_modpath("stl_core").."/schems/starter_rocket.mts",
+						"0", {}, true, "place_center_x, place_center_z")
+					local tank = minetest.registered_nodes["stl_vehicles:tank"]
+					if tank and tank.on_construct then
+						tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
+					end
+
+					local function finish_when_ready(ready_retries)
+						if arrival_tokens[name] ~= token then return end
+						local current = minetest.get_player_by_name(name)
+						if not current then return end
+						if not arrival_ship_ready(base) then
+							if ready_retries < 20 then
+								minetest.after(0.25, function()
+									finish_when_ready(ready_retries + 1)
+								end)
+							else
+								minetest.log("error", "[stl_asuna_bridge] Arrival ship failed readiness check for " .. name)
+							end
+							return
+						end
+						put_player_in_arrival_ship(current, base, token)
+						minetest.close_formspec(name, "stl_asuna_bridge:loading")
+						minetest.log("action", "[stl_asuna_bridge] Asuna homeworld arrival ship placed for " .. name .. " at " .. minetest.pos_to_string(base))
+					end
+					finish_when_ready(0)
+				end)
+			end
+		)
+	end
+	try_arrival_area(0)
 end
 
 minetest.register_on_joinplayer(function(player)

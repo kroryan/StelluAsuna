@@ -281,6 +281,7 @@ The integration currently includes:
     Logistica by ZenonSeth
     Mobs Monster by TenPlus1, loaded through the existing Mobs Redo API
     Verified starter-ship placement with the player inside the cabin
+    New players arrive in that starter ship above a dry surface of the Asuna homeworld; the orbital layer is reserved for travel.
 
 Chemistry's material-specific cooling handlers are kept separate from the
 generic Stellua and village-lava compatibility layer. Its extra minerals and
