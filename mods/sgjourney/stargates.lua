@@ -176,35 +176,59 @@ core.register_node("sgjourney:event_horizon", {
 	diggable = false, buildable_to = false, light_source = 8, groups = {not_in_creative_inventory = 1},
 })
 
+local function teleport_through_horizon(obj, horizon)
+	local gate = core.string_to_pos(core.get_meta(horizon):get_string("controller"))
+	if not gate or core.get_item_group(core.get_node(gate).name, "sgjourney_gate") == 0 then
+		gate = S.find_gate(horizon, 10)
+	end
+	if not gate then return false end
+	local target = S.links[S.pos_key(gate)]
+	if not target then return false end
+	local meta = obj:get_meta()
+	local now = core.get_us_time()
+	if now - meta:get_int("sgjourney_teleport") <= 2000000 then return true end
+	meta:set_int("sgjourney_teleport", now)
+	if core.get_meta(target):get_int("iris_closed") == 1 then
+		S.sound("iris_thud", target)
+		obj:punch(obj, 1.0, {damage_groups = {fleshy = 20}}, nil)
+	else
+		-- All native variants use the same horizontal gate plane. Place the
+		-- traveller two nodes in front of the destination, safely outside its
+		-- controller and horizon nodes.
+		obj:set_pos(vector.add(vector.round(target), {x = 0, y = 2, z = 2}))
+		S.sound("wormhole_travel", target)
+	end
+	return true
+end
+
 core.register_abm({
 	label = "Stargate event horizon teleport", nodenames = {"sgjourney:event_horizon"}, interval = 0.2, chance = 1,
 	action = function(pos)
-		-- Use the controller recorded when the horizon was created.  A radius
-		-- search can miss the controller at the rounded top corners and can
-		-- select the wrong gate when two gates are close together.
-		local gate = core.string_to_pos(core.get_meta(pos):get_string("controller"))
-		if not gate or core.get_item_group(core.get_node(gate).name, "sgjourney_gate") == 0 then
-			gate = S.find_gate(pos, 10)
-		end
-		if not gate then return end
-		local target = S.links[S.pos_key(gate)]
-		if not target then return end
 		for _, obj in ipairs(core.get_objects_inside_radius(pos, 1.1)) do
-			local last = obj:get_meta():get_int("sgjourney_teleport")
-			if core.get_us_time() - last > 2000000 then
-				obj:get_meta():set_int("sgjourney_teleport", core.get_us_time())
-				if core.get_meta(target):get_int("iris_closed") == 1 then
-					S.sound("iris_thud", target)
-					obj:punch(obj, 1.0, {damage_groups = {fleshy = 20}}, nil)
-				else
-					local destination = vector.add(vector.round(target), {x = 0, y = 2, z = 2})
-					obj:set_pos(destination)
-					S.sound("wormhole_travel", target)
-				end
-			end
+			teleport_through_horizon(obj, pos)
 		end
 	end,
 })
+
+-- Player movement can cross from one mapblock to the next between ABM ticks.
+-- Sample the whole aperture around each player so walking, sprinting and
+-- falling through every Stargate variant reliably trigger wormhole travel.
+local player_scan_timer = 0
+core.register_globalstep(function(dtime)
+	player_scan_timer = player_scan_timer + dtime
+	if player_scan_timer < 0.1 then return end
+	player_scan_timer = 0
+	for _, player in ipairs(core.get_connected_players()) do
+		local p = player:get_pos()
+		local horizons = core.find_nodes_in_area(
+			vector.subtract(p, {x = 1, y = 2, z = 1}),
+			vector.add(p, {x = 1, y = 2, z = 1}),
+			{"sgjourney:event_horizon"})
+		for _, horizon in ipairs(horizons) do
+			if teleport_through_horizon(player, horizon) then break end
+		end
+	end
+end)
 
 for _, variant in ipairs(variants) do
 	local name = variant .. "_stargate"
