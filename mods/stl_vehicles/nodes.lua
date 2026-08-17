@@ -11,6 +11,10 @@ minetest.register_node("stl_vehicles:seat", {
     }},
     collision_box = {type="fixed", fixed={-0.5, -0.5, -0.5, 0.5, -0.25, 0.5}},
     paramtype = "light",
+    -- Starter ships begin in the orbital layer, where there is no sunlight.
+    -- The seat is inside the cabin, so it provides enough ambient light
+    -- without adding a visible block or changing the schematic layout.
+    light_source = 12,
     sunlight_propagates = true,
     paramtype2 = "facedir", --lvae doesn't like 4dir
     groups = {cracky=1, spaceship=1, seat=1},
