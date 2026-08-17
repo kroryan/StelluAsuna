@@ -113,6 +113,10 @@ local function nodebox_to_mesh(nodebox, filepath)
 	end
 
 	local mesh = io.open(filepath, "w")
+	if not mesh then
+		minetest.log("warning", "[lvae] Could not create generated mesh: " .. tostring(filepath))
+		return
+	end
 
 	local norms = {
 		{-1, 0, 0}, {1, 0, 0}, -- x
