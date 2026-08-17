@@ -27,6 +27,7 @@ local function spawner(initial_job)
                 local entity = new_villager:get_luaentity()
                 entity.new_job = initial_job
                 entity.owner_name = "working_villages:self_employed"
+                entity.stl_population_type = "working_villages_autonomous"
                 entity:update_infotext()
                 return
             end
@@ -63,4 +64,3 @@ minetest.register_abm({
     catch_up = false,
     action = spawner("working_villages:job_woodcutter"),
 })
-

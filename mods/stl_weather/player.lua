@@ -176,5 +176,13 @@ end)
 minetest.register_on_respawnplayer(function(player)
     local meta = player:get_meta()
     meta:set_float("temp", 0)
-    meta:set_int("vignette_op", 0)
+	meta:set_int("vignette_op", 0)
+end)
+
+minetest.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	heat_huds[name] = nil
+	cold_huds[name] = nil
+	vignette_huds[name] = nil
+	elapsed[name] = nil
 end)

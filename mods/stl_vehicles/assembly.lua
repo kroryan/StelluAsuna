@@ -310,18 +310,22 @@ local ACCEL = 0.5
 local FRICT = 0.2
 
 local aux1s = {}
+local orbit_slots = {}
 
 minetest.register_globalstep(function(dtime)
-    for _, player in ipairs(minetest.get_connected_players()) do
-        local pos = vector.round(player:get_pos())
-        local index = stellua.get_planet_index(pos.y)
-        local control = player:get_player_control()
-        local playername = player:get_player_name()
+	for _, player in ipairs(minetest.get_connected_players()) do
+		local pos = vector.round(player:get_pos())
+		local index = stellua.get_planet_index(pos.y)
+		local control = player:get_player_control()
+		local playername = player:get_player_name()
+		local attached_vehicle = player:get_attach()
 
         local aux1 = control.aux1 and not aux1s[playername]
         aux1s[playername] = control.aux1
 
-        if (aux1 or control.jump) and stellua.assemble_vehicle(pos, true) then
+		-- Once detached, never scan the whole node-built ship again while the
+		-- player is driving it. That scan is only needed to enter/launch/exit.
+		if not attached_vehicle and (aux1 or control.jump) and stellua.assemble_vehicle(pos, true) then
 
             --make player exit on aux1
             if aux1 then
@@ -365,11 +369,16 @@ minetest.register_globalstep(function(dtime)
         end
 
         --allow player to control vehicle
-        local vehicle = player:get_attach()
-        if vehicle then
-            local ent = vehicle:get_luaentity()
-            local y = vehicle:get_pos().y
-            local rel_y = (y-500)%1000
+		local vehicle = attached_vehicle or player:get_attach()
+		if vehicle then
+			local ent = vehicle:get_luaentity()
+			if not ent or ent.name ~= "lvae:lvae" then
+				vehicle = nil
+			end
+			local transferring = false
+			if vehicle then
+			local y = vehicle:get_pos().y
+			local rel_y = (y-500)%1000
 
             --land vehicle with aux1
             if aux1 and on_ground(ent, pos) then
@@ -382,34 +391,42 @@ minetest.register_globalstep(function(dtime)
             else
                 -- Asuna is the hybrid homeworld. A rocket launched from its
                 -- surface enters the same orbital slot system as a planet.
-                if not index and y >= 240 and y < stellua.hybrid_space_min then
-                    local slot = stellua.alloc_slot(playername, 1, vector.zero(), vector.zero())
-                    local slotpos = stellua.get_slot_pos(slot)
-                    minetest.emerge_area(slotpos, slotpos)
-                    player:set_detach()
-                    stellua.land_vehicle(ent, slotpos)
-                    player:set_pos(slotpos)
-                    stellua.set_respawn(player, slotpos)
-                end
+				if not index and y >= 240 and y < stellua.hybrid_space_min then
+					local slot = stellua.alloc_slot(playername, 1, vector.zero(), vector.zero())
+					local slotpos = stellua.get_slot_pos(slot)
+					if orbit_slots[playername] ~= slot then
+						orbit_slots[playername] = slot
+						minetest.emerge_area(slotpos, slotpos)
+					end
+					player:set_detach()
+					stellua.land_vehicle(ent, slotpos)
+					player:set_pos(slotpos)
+					stellua.set_respawn(player, slotpos)
+					transferring = true
+				end
 
                 --load up slot if above y=200
-                if index and rel_y >= 700 then
-                    local planet = stellua.planets[index]
-                    local rot = (minetest.get_timeofday()+0.5)*2*math.pi
-                    local slot = stellua.alloc_slot(playername, planet.star, planet.pos+0.15*planet.scale*vector.rotate_around_axis(UP, NORTH, -rot), vector.dir_to_rotation(vector.rotate_around_axis(UP, NORTH, rot)))
-                    local slotpos = stellua.get_slot_pos(slot)
-                    minetest.emerge_area(slotpos, slotpos)
+				if not transferring and index and rel_y >= 700 then
+					local planet = stellua.planets[index]
+					local rot = (minetest.get_timeofday()+0.5)*2*math.pi
+					local slot = stellua.alloc_slot(playername, planet.star, planet.pos+0.15*planet.scale*vector.rotate_around_axis(UP, NORTH, -rot), vector.dir_to_rotation(vector.rotate_around_axis(UP, NORTH, rot)))
+					local slotpos = stellua.get_slot_pos(slot)
+					if orbit_slots[playername] ~= slot then
+						orbit_slots[playername] = slot
+						minetest.emerge_area(slotpos, slotpos)
+					end
 
                     --move to slot if above y=250
                     if rel_y >= 750 then
                         player:set_detach()
-                        stellua.land_vehicle(ent, slotpos)
-                        player:set_pos(slotpos)
-                        stellua.set_respawn(player, slotpos)
-                    end
-                end
+						stellua.land_vehicle(ent, slotpos)
+						player:set_pos(slotpos)
+						stellua.set_respawn(player, slotpos)
+						transferring = true
+					end
+				end
 
-                if rel_y < 750 then
+				if not transferring and rel_y < 750 then
                     local vel = vehicle:get_velocity()
                     local power = vehicle:get_luaentity().power
 
@@ -448,8 +465,15 @@ minetest.register_globalstep(function(dtime)
                         if ent.sound then minetest.sound_fade(ent.sound, 5, 0) end
                         ent.sound = minetest.sound_play({name="242740__marlonhj__engine", gain=0.1}, {loop=true, object=vehicle, fade=5})
                     end
-                end
-            end
-        end
-    end
+				end
+			end
+		end
+		end
+	end
+end)
+
+minetest.register_on_leaveplayer(function(player)
+	local name = player:get_player_name()
+	aux1s[name] = nil
+	orbit_slots[name] = nil
 end)

@@ -1,14 +1,22 @@
 local SPACE_MIN = stellua.hybrid_space_min or 6368
-local was_in_space = {}
-local timer = 0
 -- get_mod_storage() depends on the current mod context, which is available
 -- while this file is loaded but not later inside on_mods_loaded callbacks.
 local storage = minetest.get_mod_storage()
-local arrival_in_progress = false
+local arrival_tokens = {}
+
+local function set_arrival_physics(player, attribute, value)
+	playerphysics.add_physics_factor(player, attribute, "stl_asuna_bridge:arrival", value)
+end
+
+local function clear_arrival_physics(player)
+	for _, attribute in ipairs({"speed", "jump", "gravity"}) do
+		playerphysics.remove_physics_factor(player, attribute, "stl_asuna_bridge:arrival")
+	end
+end
 
 -- StelluAsuna starts on the Asuna homeworld, but keeps Stellua's original
 -- arrival fantasy: new players wake up inside a landed starter spacecraft.
-local function put_player_in_arrival_ship(player, base)
+local function put_player_in_arrival_ship(player, base, token)
 	if not player or not player:is_player() then return end
 	local inside = vector.add(base, {x=0, y=1.5, z=0})
 	player:set_pos(inside)
@@ -18,25 +26,30 @@ local function put_player_in_arrival_ship(player, base)
 	-- Do not restore gravity immediately! The client needs time to download the ship's chunks.
 	-- If we restore gravity now, the client will fall through the floor before seeing it.
 	minetest.after(3.5, function()
-		if player and player:is_player() then
-			-- Snap them back to the exact position inside the ship just in case they sank a bit
-			player:set_pos(inside)
-			player:set_physics_override({speed=1, jump=1, gravity=1})
-			minetest.chat_send_player(player:get_player_name(), "Arrival sequence complete. Welcome to StelluAsuna!")
-		end
-	end)
+			if player and player:is_player()
+			and arrival_tokens[player:get_player_name()] == token then
+				-- Snap them back to the exact position inside the ship just in case they sank a bit
+				player:set_pos(inside)
+				clear_arrival_physics(player)
+				minetest.chat_send_player(player:get_player_name(), "Arrival sequence complete. Welcome to StelluAsuna!")
+			end
+		end)
 end
 
-local function spawn_player_ship(player)
+local function spawn_player_ship(player, force)
 	if not player or not player:is_player() then return end
-	if player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
 	
 	local name = player:get_player_name()
+	if not force and player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
+	arrival_tokens[name] = (arrival_tokens[name] or 0) + 1
+	local token = arrival_tokens[name]
 	local offset_x = math.random(-150, 150)
 	local offset_z = math.random(-150, 150)
 	
 	-- Suspend player in the sky so they don't fall or die while we load
-	player:set_physics_override({speed=0, jump=0, gravity=0})
+	set_arrival_physics(player, "speed", 0)
+	set_arrival_physics(player, "jump", 0)
+	set_arrival_physics(player, "gravity", 0)
 	player:set_pos({x=0, y=1000, z=0})
 	
 	minetest.show_formspec(name, "stl_asuna_bridge:loading", 
@@ -51,8 +64,9 @@ local function spawn_player_ship(player)
 	
 	minetest.emerge_area(pmin, pmax,
 		function(_, _, remaining)
-			if remaining ~= 0 then return end
+			if remaining ~= 0 or arrival_tokens[name] ~= token then return end
 			minetest.after(2, function()
+				if arrival_tokens[name] ~= token then return end
 				local p = minetest.get_player_by_name(name)
 				if not p then return end
 				
@@ -67,7 +81,7 @@ local function spawn_player_ship(player)
 					tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
 				end
 				
-				put_player_in_arrival_ship(p, base)
+					put_player_in_arrival_ship(p, base, token)
 				minetest.close_formspec(name, "stl_asuna_bridge:loading")
 				minetest.log("action", "[stl_asuna_bridge] Asuna arrival ship placed for " .. name .. " at " .. minetest.pos_to_string(base))
 			end)
@@ -82,7 +96,7 @@ minetest.register_on_joinplayer(function(player)
 		player:get_meta():set_int("lykac_fixed_2", 1)
 	end
 	
-	if player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
+		if player:get_meta():get_int("stelluasuna_arrived") == 1 then return end
 	minetest.after(1, function() spawn_player_ship(player) end)
 end)
 
@@ -96,7 +110,7 @@ minetest.register_chatcommand("force_arrival", {
 			return false, "Player " .. param .. " is not online."
 		end
 		target:get_meta():set_int("stelluasuna_arrived", 0)
-		spawn_player_ship(target)
+		spawn_player_ship(target, true)
 		return true, "Initiated arrival sequence for " .. param
 	end,
 })
@@ -133,32 +147,9 @@ minetest.register_on_mods_loaded(function()
 	end
 end)
 
-minetest.register_globalstep(function(dtime)
-	timer = timer + dtime
-	if timer < 0.5 then return end
-	timer = 0
-	for _, player in ipairs(minetest.get_connected_players()) do
-		local name = player:get_player_name()
-		local pos = player:get_pos()
-		local in_space = pos.y >= SPACE_MIN
-		if in_space then
-			was_in_space[name] = true
-		elseif was_in_space[name] then
-			-- Restore normal Asuna presentation once, then let Asuna's own sky
-			-- and realm mods take over normally.
-			player:set_sky({type="regular", clouds=true})
-			player:set_sun({visible=true, sunrise_visible=true, scale=1})
-			player:set_moon({visible=true})
-			player:set_stars({visible=true})
-			player:set_clouds({height=120})
-			player:set_physics_override({gravity=1, speed=1})
-			was_in_space[name] = nil
-		end
-	end
-end)
-
 minetest.register_on_leaveplayer(function(player)
-	was_in_space[player:get_player_name()] = nil
+	local name = player:get_player_name()
+	arrival_tokens[name] = (arrival_tokens[name] or 0) + 1
 end)
 
 minetest.register_chatcommand("space_status", {

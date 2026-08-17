@@ -1,4 +1,5 @@
 local RESIDENT_JOB = "stl_village_bridge:resident_routine"
+local pending_spawns = {}
 
 working_villages.register_job(RESIDENT_JOB, {
 	description = "village resident",
@@ -79,8 +80,11 @@ end
 mg_villages.inhabitants.spawn_one_mob = function(bed, village_id, plot_nr, bed_nr, bpos)
 	local id = bridge_id(village_id, plot_nr, bed_nr)
 	local bed_pos = {x=bed.x, y=bed.y, z=bed.z}
+	if pending_spawns[id] then return id end
+	pending_spawns[id] = true
 	
 	minetest.after(2, function()
+		pending_spawns[id] = nil
 		local existing = find_existing(bed_pos, id)
 		if existing then return end
 
@@ -101,6 +105,7 @@ mg_villages.inhabitants.spawn_one_mob = function(bed, village_id, plot_nr, bed_n
 		villager.pos_data.bed_pos = bed_pos
 		villager.pos_data.job_pos = workplace(village_id, bed)
 		villager.pos_data.stelluasuna_bed_id = id
+		villager.stl_population_type = "working_villages_bed_resident"
 		object:set_nametag_attributes({text=villager.nametag})
 
 		local inventory = villager:get_inventory()

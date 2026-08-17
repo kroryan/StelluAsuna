@@ -25,6 +25,36 @@ dofile(modpath.."crafts.lua")
 dofile(modpath.."inventory.lua")
 minetest.register_mapgen_script(modpath.."mapgen_env.lua")
 
+local SPACE_ARMOR_GROUPS = {thumpy = 100, slicey = 100, zappy = 100}
+
+-- Keep the space combat groups without replacing groups supplied by armor or
+-- other gameplay mods. The original non-space values are restored on exit.
+function stellua.set_space_armor(player, enabled)
+	if not player or not player:is_player() then return end
+	local meta = player:get_meta()
+	local marker = meta:get_string("stl_core:space_armor")
+	local groups = player:get_armor_groups()
+
+	if enabled then
+		if marker == "" then
+			meta:set_string("stl_core:space_armor", minetest.serialize(groups))
+		end
+		for name, value in pairs(SPACE_ARMOR_GROUPS) do
+			groups[name] = value
+		end
+		player:set_armor_groups(groups)
+		return
+	end
+
+	if marker == "" then return end
+	local saved = minetest.deserialize(marker) or {}
+	for name in pairs(SPACE_ARMOR_GROUPS) do
+		groups[name] = saved[name]
+	end
+	player:set_armor_groups(groups)
+	meta:set_string("stl_core:space_armor", "")
+end
+
 --Store what minor version this was made in, so older worlds can be made incompatible
 local VERSION = 4
 
@@ -83,9 +113,10 @@ minetest.register_on_respawnplayer(function(player)
 end)
 
 minetest.register_on_joinplayer(function(player)
-    if player:get_pos().y < (stellua.hybrid_space_min or 6368) then return end
-    player:set_properties({use_texture_alpha=true})
-    player:set_armor_groups({thumpy=100, slicey=100, zappy=100})
+	local in_space = player:get_pos().y >= (stellua.hybrid_space_min or 6368)
+	stellua.set_space_armor(player, in_space)
+	if not in_space then return end
+	player:set_properties({use_texture_alpha=true})
 end)
 
 --A few useful commands

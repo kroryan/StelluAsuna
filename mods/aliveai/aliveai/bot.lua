@@ -31,7 +31,7 @@ aliveai.bot=function(self, dtime)
 --betweens
 
 	if aliveai.dying(self) then return self end
-	if not aliveai.dmgbynode(self) then return self end
+	if not aliveai.dmgbynode(self, dtime) then return self end
 	if self.step(self,dtime) or self.controlled==1 then return self end
 	if aliveai.sleep(self) then return self end
 	aliveai.jumping(self)-- if need to jump

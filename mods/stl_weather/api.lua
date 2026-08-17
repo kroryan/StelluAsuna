@@ -1,6 +1,8 @@
 --Remember each planet's current weather in mod storage
 local storage = minetest.get_mod_storage()
 local weather = minetest.deserialize(storage:get_string("weather")) or {}
+local weather_dirty = false
+local storage_timer = 0
 
 --Register weather type
 stellua.registered_weathers = {}
@@ -39,20 +41,23 @@ minetest.register_globalstep(function(dtime)
             weather[planet] = w
             local planetdefs = stellua.planets[planet]
             local time = minetest.get_gametime()
-            if time-w.start > 420 then
-                w.start = time
-                local options = planetdefs.weathers
-                w.name = options[math.random(#options)]
+			if time-w.start > 420 then
+				w.start = time
+				local options = planetdefs.weathers
+				w.name = options[math.random(#options)]
+				weather_dirty = true
                 if w.name ~= "" then
-                    local wdefs = stellua.registered_weathers[w.name]
-                    if wdefs.on_start then wdefs.on_start(w) end
+					local wdefs = stellua.registered_weathers[w.name]
+					if wdefs and wdefs.on_start then wdefs.on_start(w) end
                 end
             end
             --stop old weather sound if no longer valid
             local on_surface = pos.y-(planetdefs.water_level or planetdefs.level) > -20 or stellua.exposed_to_sky(pos)
             local sh = sound_handles[playername]
-            if sh and (sh[1] ~= w.name or not on_surface) then
-                minetest.sound_fade(sh[2], stellua.registered_weathers[sh[1]].sound.fade or 100, 0)
+			if sh and (sh[1] ~= w.name or not on_surface) then
+				local old_defs = stellua.registered_weathers[sh[1]]
+				local fade = old_defs and old_defs.sound and old_defs.sound.fade or 100
+				minetest.sound_fade(sh[2], fade, 0)
                 sound_handles[playername] = nil
             end
             --show effects for current weather type
@@ -76,7 +81,12 @@ minetest.register_globalstep(function(dtime)
             end
         end
     end
-    storage:set_string("weather", minetest.serialize(weather))
+	storage_timer = storage_timer + dtime
+	if weather_dirty and storage_timer >= 5 then
+		storage:set_string("weather", minetest.serialize(weather))
+		weather_dirty = false
+		storage_timer = 0
+	end
 end)
 
 minetest.register_on_leaveplayer(function(player)
@@ -91,9 +101,15 @@ end
 
 --Set current weather table for planet index (unrestricted)
 function stellua.set_weather(planet, w)
-    weather[planet] = {start=minetest.get_gametime(), name=w}
-    local wdefs = stellua.registered_weathers[w.name]
-    if wdefs.on_start then wdefs.on_start(w) end
+	local name = type(w) == "table" and w.name or w
+	if type(name) ~= "string" then return false end
+	if name ~= "" and not stellua.registered_weathers[name] then return false end
+	local state = {start=minetest.get_gametime(), name=name}
+	weather[planet] = state
+	weather_dirty = true
+	local wdefs = stellua.registered_weathers[name]
+	if wdefs and wdefs.on_start then wdefs.on_start(state) end
+	return true
 end
 
 --Command to set the weather
@@ -105,9 +121,10 @@ minetest.register_chatcommand("setweather", {
         local player = minetest.get_player_by_name(playername)
         local p = stellua.get_planet_index(player:get_pos().y)
         if not p then return false, "Not on a planet!" end
-        if param == "" then
-            weather[p] = {start=minetest.get_gametime()}
-            return true, "Cleared weather"
+		if param == "" then
+			weather[p] = {start=minetest.get_gametime()}
+			weather_dirty = true
+			return true, "Cleared weather"
         end
         local planet = stellua.planets[p]
         if string.sub(param, 1, 1) == "#" then
@@ -118,12 +135,19 @@ minetest.register_chatcommand("setweather", {
         elseif table.indexof(planet.weathers, param) <= 0 then
             return false, "Weather type "..param.." does not exist"..(stellua.registered_weathers[param] and " on this planet!" or "!")
         end
-        weather[p] = {start=minetest.get_gametime(), name=param}
+		weather[p] = {start=minetest.get_gametime(), name=param}
+		weather_dirty = true
         local wdefs = stellua.registered_weathers[param]
         if wdefs.on_start then wdefs.on_start(weather[p]) end
-        return true, "Set weather to "..param
-    end
+		return true, "Set weather to "..param
+	end
 })
+
+minetest.register_on_shutdown(function()
+	if weather_dirty then
+		storage:set_string("weather", minetest.serialize(weather))
+	end
+end)
 
 local up = vector.new(0, 1, 0)
 

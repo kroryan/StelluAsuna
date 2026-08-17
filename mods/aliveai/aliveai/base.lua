@@ -1128,26 +1128,53 @@ aliveai.punch=function(self,ob,hp)
 end
 
 
-aliveai.dmgbynode=function(self)
+aliveai.dmgbynode=function(self, dtime)
 	if self.damage_by_blocks~=1 then return self end
 	local pos=aliveai.newpos(self)
 	if not pos then return self end
-	local d1=aliveai.def(pos:yy(0),"damage_per_second")
-	local d2=aliveai.def(pos:yy(-1),"damage_per_second")
-	if d1 and d1>0 then
-		aliveai.punchdmg(self.object,d1)
-		if not (self.dying or self.dead or self.sleeping) then 
-			self.object:set_yaw(math.random(0,6.28))
-			aliveai.walk(self,2)
-			aliveai.showstatus(self,"hurts by node",1)
+
+	local properties=self.object:get_properties()
+	local box=properties and properties.collisionbox or {-0.35,-1,-0.35,0.35,0.8,0.35}
+	local min_x=math.floor(pos.x+box[1])
+	local max_x=math.floor(pos.x+box[4])
+	local min_y=math.floor(pos.y+box[2])
+	local max_y=math.floor(pos.y+box[5])
+	local min_z=math.floor(pos.z+box[3])
+	local max_z=math.floor(pos.z+box[6])
+	local dps=0
+
+	for x=min_x,max_x do
+		for y=min_y,max_y do
+			for z=min_z,max_z do
+				local node=minetest.get_node_or_nil({x=x,y=y,z=z})
+				local def=node and minetest.registered_nodes[node.name]
+				if def and (def.damage_per_second or 0)>dps then
+					dps=def.damage_per_second
+				end
+			end
 		end
-	elseif d2 and d2>0 then
-		aliveai.punchdmg(self.object,d2)
-		if not (self.dying or self.dead or self.sleeping) then
-			self.object:set_yaw(math.random(0,6.28))
-			aliveai.walk(self,2)
-			aliveai.showstatus(self,"hurts by node",1)
+	end
+
+	if dps>0 then
+		local elapsed=(self.node_damage_elapsed or 0)+(dtime or 0)
+		self.node_damage_elapsed=elapsed
+		local total=dps*elapsed+(self.node_damage_remainder or 0)
+		local damage=math.floor(total)
+		self.node_damage_remainder=total-damage
+		if damage>0 then
+			self.node_damage_elapsed=0
+			-- Environmental damage must not be blocked by an NPC's minimum
+			-- punch threshold. Keep AliveAI's normal punch/death pipeline.
+			aliveai.punchdmg(self.object,math.max(damage,self.mindamage or 0))
+			if not (self.dying or self.dead or self.sleeping) then
+				self.object:set_yaw(math.random(0,6.28))
+				aliveai.walk(self,2)
+				aliveai.showstatus(self,"hurts by node",1)
+			end
 		end
+	else
+		self.node_damage_elapsed=0
+		self.node_damage_remainder=0
 	end
 	return self
 end
