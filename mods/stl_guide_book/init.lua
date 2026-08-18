@@ -50,6 +50,8 @@ This manual was written with assistance from artificial intelligence and then ad
 This book documents Stellua's starships, fuel, planets, slots and travel system only. Stargates and unrelated add-on mods are deliberately not covered here.
 
 Always land before leaving a ship unattended. Keep a spare seat, fuel and building materials at your base.
+
+<b>Luanti controls, not Minecraft controls:</b> the default inventory key is <b>I</b>. The ship uses Luanti's configurable <b>Aux1</b> action (usually <b>E</b>) for landing/exit. Check Settings → Change keys if your client uses different bindings.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
 
 		starter = page("First minutes: find your ship", [[
@@ -60,10 +62,10 @@ After your first connection, a red directional waypoint and the text <b>FOLLOW T
 The ship is deliberately placed beside the spawn rather than inside it. Search the immediate surroundings if the arrow is not visible. You can also use <b>/ship_marker starter</b> to show it again.
 
 Tutorial controls:
-- Double right-click a connected spaceship block to enter and take control.
-- Press <b>Space</b> to launch/ascend.
-- Press <b>E / Aux1</b> again to exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
-- Enter the ship and take control. While piloting, type <b>/ship_panel</b> to open its control panel.
+- Double right-click a connected spaceship block to sit on its seat.
+- Press <b>Space</b> while seated to take control and launch/ascend.
+- Press <b>Aux1</b> (usually <b>E</b>) to land or exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
+- While piloting, type <b>/ship_panel</b> to open its control panel.
 
 If you want to skip this first tutorial step, use <b>/ship_tutorial skip</b>. Skipping only hides the arrival guidance; it does not remove your ship.
 ]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
@@ -130,7 +132,7 @@ If the ship stops climbing, check rocket engines and Fuel Tank contents. If it d
 ]], nil, {"stl_vehicles:rocket", "stl_vehicles:tank", "stl_vehicles:seat"}),
 
 		destinations = page("Choose a planet", [[
-Open your inventory with <b>E</b> and select the <b>Planets</b> page. From the homeworld view, choose a star. From a star view, choose one of its planet icons.
+Open your inventory with <b>I</b> (the Luanti inventory key) and select the <b>Planets</b> page. From the homeworld view, choose a star. From a star view, choose one of its planet icons.
 
 Each planet page shows useful scouting information: average temperature, atmospheric pressure, surface liquid, biodiversity, common deposits, caves and warnings such as <b>HIGH GRAVITY</b>, <b>LOW ATMOSPHERE</b>, <b>VERY COLD</b> or <b>VERY HOT</b>.
 
@@ -139,7 +141,7 @@ The destination page may show the calculated Uranium cost and a <b>Go here</b> b
 
 		travel = page("Travel between planets", [[
 1. Launch until you are in the planet's transfer region.
-2. Open <b>E</b> and use the Planets page.
+2. Open the inventory with <b>I</b> and use the Planets page.
 3. Select the destination star, then the destination planet.
 4. Confirm that the Uranium cost is available in the Impulse Engine.
 5. Press <b>Go here</b>. The engine calculates distance, consumes the required fissile fuel and moves the ship to a safe altitude above the destination planet.
@@ -152,7 +154,7 @@ The transfer system is not a Stargate and does not use Stargate addresses. It is
 		landing = page("Land and return home", [[
 After a transfer you appear above the destination planet. Use jump to rise and sneak to descend. Use the direction keys to position the ship over a safe landing area.
 
-When the ship touches solid ground, press <b>Aux1 / Sneak</b> to land and convert the vehicle back into map blocks. The player respawn point is updated when landing. Exit through the front of the ship, then inspect the tanks and repair the hull.
+When the ship touches solid ground, press <b>Aux1</b> (usually <b>E</b>) to land and convert the vehicle back into map blocks. The player respawn point is updated when landing. Exit through the front of the ship, then inspect the tanks and repair the hull.
 
 To return to Asuna, use the Planets page's homeworld option when you have a valid slot. The ship is detached from that slot and moved to the Asuna arrival altitude. Land before leaving it.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:tank", "stl_core:uranium"}),
@@ -187,11 +189,11 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>Shift / Sneak</b> — descend manually.
 
-<b>E / Aux1</b> — exit the ship. On solid ground it lands and restores the ship to blocks; while airborne it performs a controlled exit.
+<b>Aux1</b> (usually <b>E</b>) — land or exit the ship. On solid ground it restores the ship to blocks; while airborne it performs a controlled exit.
 
 <b>Jump + Sneak</b> — engage the rocket launch burn and consume ordinary Fuel Tank fuel.
 
-<b>E</b> — inventory and the Planets page for destination selection.
+<b>I</b> — open the Luanti inventory and the Planets page for destination selection.
 
 <b>Double right-click</b> — enter a connected spaceship and take control.
 
