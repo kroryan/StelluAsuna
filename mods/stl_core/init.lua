@@ -106,6 +106,85 @@ local function starter_ship_space(node)
 	return node and node.name == "air"
 end
 
+-- Find a genuine surface spawn instead of trusting a static Y coordinate.
+-- Fresh mapgen can leave the engine spawn inside a hill or cave while the
+-- surrounding chunks are still emerging.  We choose the highest clear
+-- two-node space in a small radius so the player starts above the surface.
+local function find_safe_spawn(player)
+	local origin = player and player:get_pos()
+	if not origin then return nil end
+	local ox, oz = math.floor(origin.x), math.floor(origin.z)
+	local low_y = math.floor(origin.y) - 16
+	local high_y = math.floor(origin.y) + 192
+	local best
+	for radius = 0, 8 do
+		for dx = -radius, radius do
+			for dz = -radius, radius do
+				if math.max(math.abs(dx), math.abs(dz)) == radius then
+					for y = low_y, high_y do
+						local ground = minetest.get_node_or_nil({x=ox + dx, y=y, z=oz + dz})
+						local feet = minetest.get_node_or_nil({x=ox + dx, y=y + 1, z=oz + dz})
+						local head = minetest.get_node_or_nil({x=ox + dx, y=y + 2, z=oz + dz})
+						local gdef = ground and minetest.registered_nodes[ground.name]
+						if gdef and gdef.walkable and feet and head
+						and feet.name == "air" and head.name == "air"
+						and minetest.get_item_group(ground.name, "water") == 0
+						and minetest.get_item_group(ground.name, "lava") == 0 then
+							local candidate = {x=ox + dx, y=y + 1, z=oz + dz}
+							if not best or candidate.y > best.y then best = candidate end
+						end
+					end
+				end
+			end
+		end
+	end
+	return best
+end
+
+-- Only the first player in a newly generated world gets a tiny emergency
+-- clearance around the safe spawn.  It removes obstruction at the player's
+-- feet/head level, never the supporting ground, and respects protection.
+local first_spawn_clearance_lock = false
+local function clear_first_spawn_buffer(pos, player_name)
+	if first_spawn_clearance_lock or storage:get_int("stl_core:first_spawn_clearance") == 1 then
+		return
+	end
+	first_spawn_clearance_lock = true
+	for dx = -1, 1 do
+		for dz = -1, 1 do
+			for dy = 0, 1 do
+				local p = {x=pos.x + dx, y=pos.y + dy, z=pos.z + dz}
+				local node = minetest.get_node_or_nil(p)
+				if node and node.name ~= "air" and not minetest.is_protected(p, player_name) then
+					minetest.remove_node(p)
+				end
+			end
+		end
+	end
+	storage:set_int("stl_core:first_spawn_clearance", 1)
+end
+
+local function sanitize_spawn(player, attempt)
+	if not player or not player:is_player() then return end
+	local meta = player:get_meta()
+	local pos = player:get_pos()
+	local feet = minetest.get_node_or_nil(vector.round(pos))
+	local head = minetest.get_node_or_nil(vector.add(vector.round(pos), {x=0, y=1, z=0}))
+	local embedded = feet and head and feet.name ~= "air" and head.name ~= "air"
+	if meta:get_int("stl_core:spawn_sanitized") == 1 and not embedded then return end
+	local safe = find_safe_spawn(player)
+	if not safe then
+		if attempt < 12 then
+			minetest.after(0.5, function() sanitize_spawn(player, attempt + 1) end)
+		end
+		return
+	end
+	clear_first_spawn_buffer(safe, player:get_player_name())
+	player:set_pos(safe)
+	meta:set_int("stl_core:spawn_sanitized", 1)
+	minetest.log("action", "[stl_core] Safe spawn for " .. player:get_player_name() .. " at " .. minetest.pos_to_string(safe))
+end
+
 local function starter_ship_base_is_clear(x, y, z)
 	for dx = -starter_ship_radius, starter_ship_radius do
 		for dz = -starter_ship_radius, starter_ship_radius do
@@ -199,6 +278,9 @@ local function place_starter_ship(player, attempt)
 end
 
 minetest.register_on_joinplayer(function(player)
+	minetest.after(0.8, function()
+		sanitize_spawn(player, 0)
+	end)
 	minetest.after(1.5, function()
 		place_starter_ship(player, 0)
 	end)
