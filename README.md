@@ -94,7 +94,19 @@ The world is not empty.
 
 MG Villages and Working Villages add settlements and structures to the generated world, while AliveAI, mobs and other systems help make the environment feel more dynamic.
 
-Villages can become useful bases, trading locations or starting points for larger adventures. Villagers have been fully integrated with dynamic AI, meaning they actively patrol and wander the town during the day, and return to their beds to sleep at night.
+Villages can become useful bases, trading locations or starting points for larger adventures. StelluaAsuna uses one unified villager entity/controller: beds, professions, combat, navigation, door use and daily routines are handled by the same AI instead of spawning separate NPC systems for every feature.
+
+Unified villager AI provides:
+
+    Persistent home, bed and workplace assignments
+    State-based work, patrol, sleep, flee and defend routines
+    Shared threat and route memory between nearby villagers
+    Native Luanti pathfinding with a safe door/jump/drop fallback
+    Door detection, opening before crossing and closing after passage
+    Recovery and replanning when a route becomes blocked
+    Cooperative retaliation when a villager or nearby ally is attacked
+
+The implementation is original StelluaAsuna code. Its design was reviewed against the open-source Advanced NPC project (GPLv3) and Luanti's native `core.find_path` API, but Advanced NPC is not installed as a second NPC system and no Advanced NPC entity is spawned. This keeps all village inhabitants unified and avoids duplicate AI populations.
 
 The combination of generated settlements, creatures and environmental systems gives StelluAsuna a much more populated and dynamic world.
 👾 Creatures & Survival 🔗
