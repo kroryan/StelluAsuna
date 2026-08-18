@@ -27,7 +27,10 @@ mg_villages.VILLAGE_DETECT_RANGE = 400;
 mg_villages.REQUIRE_PRIV_FOR_TELEPORT = false;
 
 -- if set to true, players cannot modify spawned villages without buying the house from the village first
-mg_villages.ENABLE_PROTECTION = true;
+-- Generated villages are part of the public sandbox: all players may build
+-- and dig there. Claimer remains authoritative through its higher-priority
+-- protection layer, so claimed land is still protected independently.
+mg_villages.ENABLE_PROTECTION = false;
 
 -- the first village - the one the player spawns in - will be of this type
 mg_villages.FIRST_VILLAGE_TYPE = 'medieval';
