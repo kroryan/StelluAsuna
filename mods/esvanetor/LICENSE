@@ -3,6 +3,10 @@ Esvanetor / StelluAsuna tools
 
 Copyright (C) 2026 StelluAsuna contributors
 
+The original Claimer and Security Door code is licensed under the GPL-3.0-or-later.
+The original Claimer and Security Door artwork (claimer.png and
+esvanetor_security_door.png) is dedicated to the public domain under CC0 1.0.
+
 The Lua source code in this mod is licensed under the GNU General Public
 License, version 3 or later (GPL-3.0-or-later), consistent with the
 StelluAsuna game.

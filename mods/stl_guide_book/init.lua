@@ -40,6 +40,7 @@ logistica.GuideApi.register(GUIDE_NAME, {
 		{name = "11. Ship panel and markers", id = "panel"},
 		{name = "12. Planet fauna", id = "fauna"},
 		{name = "13. SpawnPoint", id = "spawnpoint"},
+		{name = "14. Claims and security doors", id = "protection"},
 	},
 	pageText = {
 		warning = page("Important: this is a test manual", [[
@@ -212,6 +213,8 @@ From the panel you can assign that ship as your <b>current ship</b> or enable it
 - <b>/revoke_ship player</b> — remove a player's ship invitation.
 - <b>/ship_set_current</b> — assign the nearby or currently piloted ship.
 - <b>/revoke_claim id player</b> — remove a player's Claimer invitation.
+- <b>/invite_door id player</b> — let a player open and close your Security Door.
+- <b>/revoke_door id player</b> — remove a player's Security Door invitation.
 - <b>/ship_marker</b> — show the current ship's red waypoint.
 - <b>/ship_marker off</b> — hide it.
 - <b>/ship_marker starter</b> — show the orange starter ship waypoint again.
@@ -243,6 +246,26 @@ Players with the <b>spawn</b> privilege can use <b>/spawn</b> to teleport to the
 
 Choose a location with solid ground, air above it and enough room for a ship. Avoid setting a spawn inside a wall, water, lava or a protected machine.
 ]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
+
+		protection = page("Claims and security doors", [[
+<b>Claimer: large-area protection</b>
+
+Craft and place a <b>Claimer</b> to protect a 1000×1000 area centred on it. Claims are independent from doors and cannot overlap another claim. The owner can edit normally; invited players can also edit.
+
+Right-click the Claimer to see its ID and owner. The owner manages access with:
+- <b>/invite_claim &lt;id&gt; &lt;player&gt;</b>
+- <b>/revoke_claim &lt;id&gt; &lt;player&gt;</b>
+
+<b>Security Door: personal access control</b>
+
+A Security Door is a separate system: it does not create or extend a claim. The player who places it becomes its owner and receives a persistent door ID. Right-click it to open or close it; sneak-right-click shows the owner and invited users. Only the owner and invited players can operate it, and only the owner can dig it up.
+
+Use the commands as the door owner:
+- <b>/invite_door &lt;id&gt; &lt;player&gt;</b> — grant that player access to this door.
+- <b>/revoke_door &lt;id&gt; &lt;player&gt;</b> — revoke access.
+
+Door IDs and invitations survive reconnects and server restarts. A door can be placed inside a claim only by someone allowed to build there, but its own owner/invitation list still controls opening and closing.
+]], recipes({"esvanetor:claimer", "esvanetor:security_door"}), {"esvanetor:claimer", "esvanetor:security_door"}),
 	},
 })
 

@@ -275,3 +275,4 @@ end
 
 dofile(minetest.get_modpath("esvanetor") .. "/holefixer.lua")
 dofile(minetest.get_modpath("esvanetor") .. "/claimer.lua")
+dofile(minetest.get_modpath("esvanetor") .. "/security_door.lua")
