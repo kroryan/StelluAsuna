@@ -209,8 +209,10 @@ function pathfinder.find_path(pos, endpos, entity)
 				end
 			end
 
-			local memory_blocked = entity and working_villages.navigation_is_blocked
-				and working_villages.navigation_is_blocked(current_values.pos, neighbor.pos)
+			local memory_blocked = false
+			if neighbor.pos and entity and working_villages.navigation_is_blocked then
+				memory_blocked = working_villages.navigation_is_blocked(current_values.pos, neighbor.pos)
+			end
 			if neighbor.hash ~= current_index and not closedSet[neighbor.hash] and neighbor.clear
 				and not cut_corner and not memory_blocked then
 				local move_cost_to_neighbor = current_values.gCost + get_distance_to_neighbor(current_values.pos, neighbor.pos)

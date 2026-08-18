@@ -33,6 +33,9 @@ function working_villages.navigation_note_blocked(a, b)
 end
 
 function working_villages.navigation_is_blocked(a, b)
+	if not a or not b or type(a.x) ~= "number" or type(b.x) ~= "number" then
+		return false
+	end
 	local key = edge_key(a, b)
 	local expiry = working_villages.navigation_memory.blocked_edges[key]
 	if expiry and expiry > minetest.get_gametime() then return true end
