@@ -310,6 +310,15 @@ local function update_ship_waypoint(player)
 	and meta:get_string("stl_core:ship_marker_mode") == "" then
 		meta:set_string("stl_core:ship_marker_mode", "current")
 	end
+	-- Migrate ships from older worlds that had no ownership metadata.  Only
+	-- the player who already had that ship assigned can claim the legacy seat.
+	local current = read_player_pos(meta, "stl_core:current_ship_pos")
+	if current and stellua.get_ship_access and stellua.set_ship_owner then
+		local seat, owner = stellua.get_ship_access(current)
+		if seat and (not owner or owner == "") then
+			stellua.set_ship_owner(current, player:get_player_name())
+		end
+	end
 	local pos, label = ship_marker_target(player)
 	if pos then
 		if meta:get_string("stl_core:ship_marker_mode") == "starter"
