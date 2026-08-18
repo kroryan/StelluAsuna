@@ -234,7 +234,7 @@ An administrator can stand at a safe central location and use <b>/setspawnall</b
 
 <b>Teleport and check</b>
 
-Players with the <b>spawn</b> privilege can use <b>/spawn</b> to teleport to the shared spawn. Use <b>/spawnpoint</b> to display the current shared spawn coordinates. Only server administrators can use <b>/setspawnall</b>.
+Players with the <b>spawn</b> privilege can use <b>/spawn</b> to teleport to their configured spawn (personal first, shared if no personal point exists). Use <b>/spawnpoint</b> to display the current shared spawn coordinates. Only server administrators can use <b>/setspawnall</b>.
 
 Choose a location with solid ground, air above it and enough room for a ship. Avoid setting a spawn inside a wall, water, lava or a protected machine.
 ]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
