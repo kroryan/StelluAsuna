@@ -274,3 +274,4 @@ for index, entry in ipairs(constructor_materials) do
 end
 
 dofile(minetest.get_modpath("esvanetor") .. "/holefixer.lua")
+dofile(minetest.get_modpath("esvanetor") .. "/claimer.lua")
