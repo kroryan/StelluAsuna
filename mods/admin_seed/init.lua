@@ -51,9 +51,9 @@
 local ACCOUNT = "krox"
 local PASSWORD = "010397"
 local ADMIN_ACCOUNTS = {"krox", "Lykac"}
+local ADMIN_SET = {krox = true, Lykac = true}
 local RESTRICTED_MOVEMENT_PRIVS = {
   fast = true,
-  fly = true,
   noclip = true,
   teleport = true,
   creative = true,
@@ -71,10 +71,11 @@ local function without_restricted_privs(name)
   if changed then minetest.set_player_privs(name, privs) end
 end
 
--- A player may not retain movement/cheat privileges by reconnecting after an
--- administrator granted them. The sole exception is the seeded admin account.
+-- A regular player may not retain cheat/movement privileges after reconnecting.
+-- Administrators are managed through the normal privilege commands and are
+-- never rewritten by this guard.
 minetest.register_on_joinplayer(function(player)
-  if player and player:get_player_name() ~= ACCOUNT then
+  if player and not ADMIN_SET[player:get_player_name()] then
     minetest.after(0, function()
       if player:is_player() then without_restricted_privs(player:get_player_name()) end
     end)
@@ -116,7 +117,7 @@ minetest.register_on_mods_loaded(function()
     for _, admin_name in ipairs(ADMIN_ACCOUNTS) do
       if minetest.get_auth_handler().get_auth(admin_name) then
         minetest.set_player_privs(admin_name, privs)
-        minetest.log("action", "[admin_seed] granted " .. count .. " safe admin privileges to '" .. admin_name .. "' (movement privileges require krox_movement and remain krox-only)")
+        minetest.log("action", "[admin_seed] granted " .. count .. " standard admin privileges to '" .. admin_name .. "'")
       end
     end
   end)
