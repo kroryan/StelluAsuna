@@ -1015,18 +1015,22 @@ aliveai.fight=function(self)
 					aliveai.lookat(self,fpos)
 					self.on_fighting(self,self.fight)
 
-					if self.type=="npc" and aliveai.is_bot(self.fight) and self.fight:get_luaentity().mindamage>self.dmg then
+					local fight_entity = self.fight and self.fight:get_luaentity()
+					local mindamage = fight_entity and tonumber(fight_entity.mindamage) or 0
+					local damage = tonumber(self.dmg) or 1
+					local temper = tonumber(self.temper) or 1
+					if self.type=="npc" and aliveai.is_bot(self.fight) and mindamage>damage then
 						aliveai.flee_from(self,self.fight)
 						return self
 					end
 
-					if aliveai.random(1,math.floor(6-self.temper)+0.5)==1 then
+					if aliveai.random(1,math.max(1,math.floor(6-temper)+0.5))==1 then
 						self.on_punching(self,self.fight)
 						if self.tool_near==1 and aliveai.random(1,self.tool_chance)==1 then
 							aliveai.use(self)
 						else
 							aliveai.anim(self,"mine")
-							aliveai.punch(self,self.fight,self.dmg)
+							aliveai.punch(self,self.fight,damage)
 							self.on_punch_hit(self,self.fight)
 						end
 						local hp=aliveai.gethp(self.fight)
