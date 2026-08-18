@@ -12,11 +12,9 @@
 -- newly installed mods are picked up automatically) is the only way to
 -- guarantee that across all 200+ mods.
 --
--- 2026-08-13: the PRIV_BLOCKLIST this comment used to describe (fly,
--- fast, noclip, no_hunger, peaceful_player excluded) was removed -- an
--- explicit follow-up instruction the same day superseded the original
--- one this mod was built around: krox got every registered privilege,
--- no exceptions, applied fresh on every boot.
+-- 2026-08-18: movement/cheat privileges are deliberately excluded from the
+-- automatic grant. Only krox may opt into them with /krox_movement on, and
+-- ordinary players are sanitized on every join.
 --
 -- 2026-08-16: `creative` specifically is excluded again. Being
 -- re-granted on every restart made it impossible for krox to actually
@@ -52,6 +50,56 @@
 -- it through get_password_hash() first, same as a client would.
 local ACCOUNT = "krox"
 local PASSWORD = "010397"
+local ADMIN_ACCOUNTS = {"krox", "Lykac"}
+local RESTRICTED_MOVEMENT_PRIVS = {
+  fast = true,
+  fly = true,
+  noclip = true,
+  teleport = true,
+  creative = true,
+}
+
+local function without_restricted_privs(name)
+  local privs = minetest.get_player_privs(name)
+  local changed = false
+  for priv, _ in pairs(RESTRICTED_MOVEMENT_PRIVS) do
+    if privs[priv] then
+      privs[priv] = nil
+      changed = true
+    end
+  end
+  if changed then minetest.set_player_privs(name, privs) end
+end
+
+-- A player may not retain movement/cheat privileges by reconnecting after an
+-- administrator granted them. The sole exception is the seeded admin account.
+minetest.register_on_joinplayer(function(player)
+  if player and player:get_player_name() ~= ACCOUNT then
+    minetest.after(0, function()
+      if player:is_player() then without_restricted_privs(player:get_player_name()) end
+    end)
+  end
+end)
+
+minetest.register_chatcommand("krox_movement", {
+  params = "on|off",
+  description = "Toggle Krox's optional fly/fast/noclip/teleport privileges",
+  func = function(name, param)
+    if name ~= ACCOUNT then return false, "Only krox can use this command." end
+    local mode = (param or ""):lower():match("^%s*(on|off)%s*$")
+    if not mode then return false, "Usage: /krox_movement on|off" end
+    local privs = minetest.get_player_privs(ACCOUNT)
+    if mode == "on" then
+      privs.fast, privs.fly, privs.noclip, privs.teleport = true, true, true, true
+      minetest.set_player_privs(ACCOUNT, privs)
+      return true, "Krox movement privileges enabled."
+    end
+    for priv, _ in pairs(RESTRICTED_MOVEMENT_PRIVS) do privs[priv] = nil end
+    minetest.set_player_privs(ACCOUNT, privs)
+    return true, "Krox movement privileges disabled."
+  end,
+})
+
 minetest.register_on_mods_loaded(function()
   minetest.after(0, function()
     if not minetest.get_auth_handler().get_auth(ACCOUNT) then
@@ -60,12 +108,16 @@ minetest.register_on_mods_loaded(function()
     end
     local privs, count = {}, 0
     for priv, _ in pairs(minetest.registered_privileges) do
-      if priv ~= "creative" then
+      if not RESTRICTED_MOVEMENT_PRIVS[priv] then
         privs[priv] = true
         count = count + 1
       end
     end
-    minetest.set_player_privs(ACCOUNT, privs)
-    minetest.log("action", "[admin_seed] granted " .. count .. " registered privileges to '" .. ACCOUNT .. "' (creative excluded, krox's own choice)")
+    for _, admin_name in ipairs(ADMIN_ACCOUNTS) do
+      if minetest.get_auth_handler().get_auth(admin_name) then
+        minetest.set_player_privs(admin_name, privs)
+        minetest.log("action", "[admin_seed] granted " .. count .. " safe admin privileges to '" .. admin_name .. "' (movement privileges require krox_movement and remain krox-only)")
+      end
+    end
   end)
 end)
