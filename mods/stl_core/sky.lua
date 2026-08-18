@@ -117,7 +117,7 @@ minetest.register_globalstep(function(dtime)
 		if state.lighting_timer >= 1 then
 			-- Lower shadow strength makes shaded terrain readable without raising
 			-- the sun, changing sky colours or reducing any realm's illumination.
-			player:set_lighting({shadows={intensity=0.25}})
+			player:set_lighting({shadows={intensity=0.15}})
 			state.lighting_timer = 0
 		end
 		local player_pos = player:get_pos()

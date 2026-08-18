@@ -349,8 +349,10 @@ local function alert_allies(villager, target)
 	end
 end
 
-function working_villages.villager:ai_set_target(target, shared)
-	if not alive_object(target) or target == self.object or not self:ai_is_enemy(target) then
+function working_villages.villager:ai_set_target(target, shared, forced)
+	local shared_player_alert = shared == true and target and target:is_player()
+	if not alive_object(target) or target == self.object
+		or (not forced and not shared_player_alert and not self:ai_is_enemy(target)) then
 		return false
 	end
 	self.ai_target = target
@@ -395,7 +397,9 @@ function working_villages.villager:ai_on_punch(puncher)
 		if working_villages.advanced_ai and working_villages.advanced_ai.alert then
 			working_villages.advanced_ai.alert(self, puncher, "attacked")
 		end
-		self:ai_set_target(puncher, false)
+		-- A player is not an enemy until they attack first.  This forced path is
+		-- the retaliation event; it also lets alert_allies share that target.
+		self:ai_set_target(puncher, false, true)
 	end
 end
 
