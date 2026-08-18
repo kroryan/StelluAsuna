@@ -88,6 +88,30 @@ function working_villages.navigation_scan_zone(pos)
 	return zone
 end
 
+function working_villages.navigation_find_nearest_door(pos, radius)
+	local best, best_distance
+	local minp = vector.subtract(pos, radius or 12)
+	local maxp = vector.add(pos, radius or 12)
+	for _, candidate in ipairs(minetest.find_nodes_in_area(minp, maxp, {"group:door"})) do
+		local distance = vector.distance(pos, candidate)
+		if not best_distance or distance < best_distance then
+			best, best_distance = candidate, distance
+		end
+	end
+	-- Some door mods do not expose group:door; use the shared scan as a
+	-- fallback so all villagers still learn the same exits.
+	if not best then
+		local zone = working_villages.navigation_memory.zones[zone_key(pos)]
+		for _, candidate in ipairs(zone and zone.doors or {}) do
+			local distance = vector.distance(pos, candidate)
+			if distance <= (radius or 12) and (not best_distance or distance < best_distance) then
+				best, best_distance = candidate, distance
+			end
+		end
+	end
+	return best
+end
+
 local function bed_key(pos)
 	return pos and minetest.hash_node_position(vector.round(pos))
 end
@@ -438,16 +462,40 @@ function working_villages.villager:ai_step(dtime)
 			self.ai_stuck_time = 0
 		end
 		self.ai_last_pos = vector.new(pos)
-		if (self.ai_stuck_time or 0) >= 3 then
+	if (self.ai_stuck_time or 0) >= 3 then
 			-- Abort the coroutine that is waiting on an unreachable waypoint and
 			-- give the villager a short random escape maneuver.
 			self.job_thread = nil
 			self.path = nil
 			self.destination = nil
 			self.ai_recovery_time = 1.8
+			local door = working_villages.navigation_find_nearest_door(pos, 12)
+			if door then
+				self.ai_navigation_target = vector.new(door)
+				self.ai_navigation_thread = coroutine.create(function()
+					return self:go_to(self.ai_navigation_target)
+				end)
+			end
 			self.ai_stuck_time = 0
 			self:set_state_info("I got stuck and am finding another route.")
 		end
+	end
+	if self.ai_navigation_thread then
+		local thread = self.ai_navigation_thread
+		if coroutine.status(thread) == "suspended" then
+			local ok, result = coroutine.resume(thread)
+			if not ok then
+				self.ai_navigation_thread = nil
+				self.ai_navigation_target = nil
+			elseif coroutine.status(thread) == "dead" then
+				self.ai_navigation_thread = nil
+				self.ai_navigation_target = nil
+			end
+		else
+			self.ai_navigation_thread = nil
+			self.ai_navigation_target = nil
+		end
+		return true
 	end
 	if self.ai_recovery_time and self.ai_recovery_time > 0 then
 		self.ai_recovery_time = self.ai_recovery_time - dtime
