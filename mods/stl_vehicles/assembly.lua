@@ -347,16 +347,7 @@ local function can_use_ship(user, pos, entity)
     end
     owner = owner or ""
     if owner == "" then
-        -- Never let an unowned/legacy ship be claimed merely by approaching
-        -- it.  It must already be assigned to this player (or be assigned by
-        -- the starter-ship migration) before access can establish ownership.
-        local assigned = minetest.deserialize(user:get_meta():get_string("stl_core:current_ship_pos"))
-        if not seat or type(assigned) ~= "table" or type(assigned.x) ~= "number"
-        or vector.distance(assigned, seat) >= 2 then
-            return false, "This ship has no owner yet. Assign it with /ship_set_current before entering."
-        end
-        owner = name
-        if entity then entity.ship_owner = owner else minetest.get_meta(seat):set_string("stl_vehicles:ship_owner", owner) end
+        return false, "This ship has no registered owner and cannot be entered."
     end
     if owner ~= name and not list_has(invited or {}, name) then
         return false, "This ship belongs to "..owner..". Ask them to use /invite_ship "..name.."."
@@ -490,14 +481,7 @@ minetest.register_on_mods_loaded(function()
                         right_clicks[pname] = {time=now, pos=vector.round(pos)}
                     end
                 end
-                if on_rightclick then on_rightclick(pos, node, user)
-                elseif (itemstack:is_empty() or not ({minetest.item_place_node(itemstack, user, pointed)})[2]) and not stellua.assemble_vehicle(vector.round(user:get_pos()), true) then
-                    local ship, seat = stellua.assemble_vehicle(pos)
-                    if seat then
-                        user:set_pos(seat)
-                        minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=seat}, true)
-                    end
-                end
+                if on_rightclick then on_rightclick(pos, node, user, itemstack, pointed) end
             end})
         end
     end
