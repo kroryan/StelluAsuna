@@ -1453,8 +1453,8 @@ minetest.register_ore({
 	clust_scarcity = 8 * 8 * 8,
 	clust_num_ores = 40,
 	clust_size     = 8,
-	height_min     = -10000,
-	height_max     = 3100,
+	y_min     = -10000,
+	y_max     = 3100,
 })
 
 minetest.register_ore({
@@ -1464,8 +1464,8 @@ minetest.register_ore({
 	clust_scarcity = 4 * 4 * 4,
 	clust_num_ores = 20,
 	clust_size     = 4,
-	height_max     = -10995,
-	height_min     = -11000,
+	y_max     = -10995,
+	y_min     = -11000,
 })
 
 minetest.register_craft({
