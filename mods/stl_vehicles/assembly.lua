@@ -374,6 +374,37 @@ local function enter_ship(user, pos)
     return true
 end
 
+-- Re-enter a detached/flying ship.  If a player presses E while the vehicle
+-- is moving, the LVAE no longer has blocks on the map, so the normal node
+-- right-click path cannot find a seat.  The owner can safely reclaim the
+-- nearest live LVAE without breaking or duplicating the ship.
+minetest.register_chatcommand("ship_reenter", {
+    description = "Re-enter your nearby flying ship",
+    func = function(name)
+        local user = minetest.get_player_by_name(name)
+        if not user then return false, "Player not found" end
+        if user:get_attach() then return false, "You are already attached to a vehicle." end
+        local best, best_distance
+        for _, object in ipairs(minetest.get_objects_inside_radius(user:get_pos(), 128)) do
+            local ent = object:get_luaentity()
+            if ent and ent.name == "lvae:lvae" and ent.object:is_valid()
+                and ent.ship_owner == name and not ent.player then
+                local distance = vector.distance(user:get_pos(), object:get_pos())
+                if not best_distance or distance < best_distance then
+                    best, best_distance = ent, distance
+                end
+            end
+        end
+        if not best then
+            return false, "No reclaimable ship found within 128 blocks."
+        end
+        best.player = name
+        user:set_attach(best.object)
+        minetest.chat_send_player(name, "Ship control restored. Press E to exit safely.")
+        return true, "Re-entered ship."
+    end,
+})
+
 minetest.register_chatcommand("invite_ship", {
     params = "<player>",
     description = "Invite a player to enter your ship",

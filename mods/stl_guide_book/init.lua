@@ -206,6 +206,7 @@ Enter the ship with double right-click, take control, then type <b>/ship_panel</
 
 From the panel you can assign that ship as your <b>current ship</b> or enable its waypoint. The command equivalents are:
 - <b>/ship_panel</b> — open the panel for the nearby/piloted ship.
+- <b>/ship_reenter</b> — owner-only recovery command if you exited a moving ship; reattaches you to your nearest flying ship within 128 blocks.
 - <b>/ship_set_current</b> — assign the nearby or currently piloted ship.
 - <b>/ship_marker</b> — show the current ship's red waypoint.
 - <b>/ship_marker off</b> — hide it.
