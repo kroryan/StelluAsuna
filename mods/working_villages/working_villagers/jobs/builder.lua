@@ -129,6 +129,9 @@ If I have the materials of course. Also I'll look for building markers within a 
 					else
 						print(msg)
 					end
+					if working_villages.request_build_material then
+						working_villages.request_build_material(self, nname)
+					end
 					self:set_state_info(("I am currently waiting for somebody to give me some %s."):format(nname))
 					coroutine.yield(co_command.pause,"waiting for materials")
 				end

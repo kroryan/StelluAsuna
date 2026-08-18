@@ -53,6 +53,10 @@ working_villages.require("jobs/woodcutter")
 working_villages.require("jobs/torcher")
 working_villages.require("jobs/snowclearer")
 
+-- Defensive/cooperative combat and construction behavior. Loaded after the
+-- jobs so it can safely interrupt and resume their existing coroutines.
+working_villages.require("ai")
+
 if working_villages.setting_enabled("spawn",false) then
   working_villages.require("spawn")
 end
@@ -64,4 +68,3 @@ end
 --ready
 local time_to_load= os.clock() - init
 log.action("loaded init in %.4f s", time_to_load)
-

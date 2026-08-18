@@ -118,7 +118,9 @@ end
 -- working_villages.villager.is_enemy returns if an object is an enemy.
 function working_villages.villager:is_enemy(obj)
   log.verbose("villager %s checks if %s is hostile",self.inventory_name,obj)
-  --TODO
+  if self.ai_is_enemy then
+    return self:ai_is_enemy(obj)
+  end
   return false
 end
 
@@ -932,6 +934,7 @@ function working_villages.register_villager(product_name, def)
       self.job_data = data["job_data"]
       self.state_info = data["state_info"]
       self.pos_data = data["pos_data"]
+      self.ai_state = data["ai_state"] or "calm"
 
       local inventory = create_inventory(self)
       for list_name, list in pairs(data["inventory"]) do
@@ -985,6 +988,7 @@ function working_villages.register_villager(product_name, def)
       ["job_data"] = self.job_data,
       ["state_info"] = self.state_info,
       ["pos_data"] = self.pos_data,
+      ["ai_state"] = self.ai_state or "calm",
     }
 
     -- set lists.
@@ -1012,6 +1016,12 @@ function working_villages.register_villager(product_name, def)
     -- pickup surrounding item.
     self:pickup_item()
 
+    -- Combat, retreat and cooperative deliveries take priority over a job,
+    -- but return control to the normal coroutine as soon as they finish.
+    if self.ai_step and self:ai_step(dtime) then
+      return
+    end
+
     if self.pause then
       return
     end
@@ -1033,8 +1043,10 @@ function working_villages.register_villager(product_name, def)
   end
 
   -- on_punch is a callback function that is called when a player punches a villager.
-  local function on_punch()--self, puncher, time_from_last_punch, tool_capabilities, dir
-  --TODO: aggression (add player ratings table)
+  local function on_punch(self, puncher)--self, puncher, time_from_last_punch, tool_capabilities, dir
+    if self.ai_on_punch then
+      self:ai_on_punch(puncher)
+    end
   end
 
   -- register a definition of a new villager.
@@ -1076,6 +1088,11 @@ function working_villages.register_villager(product_name, def)
   villager_def.job_data                    = {}
   villager_def.pos_data                    = {}
   villager_def.new_job                     = ""
+  villager_def.ai_state                    = "calm"
+  villager_def.ai_target                   = nil
+  villager_def.ai_delivery                 = nil
+  villager_def.ai_build_request            = nil
+  villager_def.ai_delivery_from            = nil
 
   -- callback methods
   villager_def.on_activate                 = on_activate
@@ -1105,4 +1122,3 @@ function working_villages.register_villager(product_name, def)
     product_name    = name,
   })
 end
-

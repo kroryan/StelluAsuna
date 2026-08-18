@@ -39,6 +39,7 @@ logistica.GuideApi.register(GUIDE_NAME, {
 		{name = "10. Controls reference", id = "controls"},
 		{name = "11. Ship panel and markers", id = "panel"},
 		{name = "12. Planet fauna", id = "fauna"},
+		{name = "13. SpawnPoint", id = "spawnpoint"},
 	},
 	pageText = {
 		warning = page("Important: this is a test manual", [[
@@ -220,7 +221,23 @@ Every Stellua planet has a fauna profile. StelluAsuna uses the real Animalia/Cre
 The species profile changes by planet. Examples include cows, foxes, frogs, horses, opossums, owls, pigs, rats, reindeer, sheep, song birds, turkeys, tropical fish, wolves, bats, cats, chickens and grizzly bears. Planet-specific colour morphs make the local population recognisable without replacing Animalia's models.
 
 Fauna spawns near explored planet surfaces and is capped around each player to avoid server lag. Some species flee; others are predators. If no creature appears immediately, remain near a surface area for a short time while the planet area finishes generating.
-]], nil, {"animalia:fox", "animalia:wolf", "animalia:horse", "animalia:sheep"}),
+		]], nil, {"animalia:fox", "animalia:wolf", "animalia:horse", "animalia:sheep"}),
+
+		spawnpoint = page("SpawnPoint: respawn location", [[
+<b>Personal spawn</b>
+
+Stand where you want to respawn and use <b>/setspawn</b>. This sets the personal spawnpoint only for the player who runs the command. It is kept across deaths, reconnects and server restarts.
+
+<b>Shared spawn (admin)</b>
+
+An administrator can stand at a safe central location and use <b>/setspawnall</b>. This changes the shared world spawn for every player. It does not erase each player's personal spawnpoint; a personal point set with <b>/setspawn</b> still takes priority for that player.
+
+<b>Teleport and check</b>
+
+Players with the <b>spawn</b> privilege can use <b>/spawn</b> to teleport to the shared spawn. Use <b>/spawnpoint</b> to display the current shared spawn coordinates. Only server administrators can use <b>/setspawnall</b>.
+
+Choose a location with solid ground, air above it and enough room for a ship. Avoid setting a spawn inside a wall, water, lava or a protected machine.
+]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
 	},
 })
 
