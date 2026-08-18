@@ -127,6 +127,24 @@ minetest.register_chatcommand("invite_claim", {
 		table.insert(claim.invited, target)
 		save()
 		return true, "Invited " .. target .. " to claim #" .. id .. "."
+end,
+})
+
+minetest.register_chatcommand("revoke_claim", {
+	params = "<id> <player>",
+	description = "Revoke a player's access to your Rainbow Claimer area",
+	func = function(name, param)
+		local id, target = (param or ""):match("^%s*(%d+)%s+(%S+)%s*$")
+		local claim = id and find_id(id)
+		if not claim or claim.owner ~= name then return false, "Only the claim owner can revoke invitations." end
+		for index, value in ipairs(claim.invited) do
+			if value == target then
+				table.remove(claim.invited, index)
+				save()
+				return true, "Revoked " .. target .. " from claim #" .. id .. "."
+			end
+		end
+		return false, target .. " is not invited to claim #" .. id .. "."
 	end,
 })
 

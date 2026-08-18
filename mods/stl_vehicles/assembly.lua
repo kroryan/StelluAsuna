@@ -439,6 +439,41 @@ minetest.register_chatcommand("invite_ship", {
             minetest.get_meta(seat):set_string("stl_vehicles:ship_invited", minetest.serialize(invited))
         end
         return true, "Invited "..target.." to your ship."
+end,
+})
+
+minetest.register_chatcommand("revoke_ship", {
+    params = "<player>",
+    description = "Revoke a player's invitation to your ship",
+    func = function(name, param)
+        local target = (param or ""):match("^%s*(%S+)%s*$")
+        if not target then return false, "Usage: /revoke_ship <player>" end
+        local player = minetest.get_player_by_name(name)
+        if not player then return false, "Player not found" end
+        local attached = player:get_attach()
+        local entity = attached and attached:is_valid() and attached:get_luaentity()
+        local seat, owner, invited
+        if entity and entity.name == "lvae:lvae" then
+            owner, invited = entity.ship_owner or "", entity.ship_invited or {}
+        else
+            local _, nearby = stellua.assemble_vehicle(vector.round(player:get_pos()), true)
+            if not nearby then return false, "Pilot your ship or stand beside it first." end
+            seat, owner, invited = stellua.get_ship_access(nearby)
+        end
+        if owner ~= name then return false, "Only the ship owner can revoke invitations." end
+        invited = invited or {}
+        for index, value in ipairs(invited) do
+            if value == target then
+                table.remove(invited, index)
+                if entity and entity.name == "lvae:lvae" then
+                    entity.ship_invited = invited
+                elseif seat then
+                    minetest.get_meta(seat):set_string("stl_vehicles:ship_invited", minetest.serialize(invited))
+                end
+                return true, "Revoked " .. target .. " from your ship."
+            end
+        end
+        return false, target .. " is not invited to your ship."
     end,
 })
 
