@@ -68,9 +68,9 @@ core.register_on_generated(function(minp, maxp, blockseed)
         end
     end
 
-    -- Set the lighting within the `VoxelManip` to a uniform value
-    vm:set_lighting({ day = 0, night = 0 }, minp, maxp)
-    -- Calculate lighting for what has been created.
+    -- Recalculate lighting after Everness edits without zeroing sunlight.
+    -- Forcing day=0 here makes every freshly generated chunk pitch black in
+    -- the merged StelluAsuna world (including the player's hand/tools).
     vm:calc_lighting()
     -- Liquid nodes were placed so set them flowing.
     vm:update_liquids()
