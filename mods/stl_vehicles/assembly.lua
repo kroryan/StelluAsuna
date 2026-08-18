@@ -228,6 +228,23 @@ end
 -- blocks. Protect every connected spaceship node from being dug by anyone
 -- except the owner. Invitations grant entry/piloting only, never demolition.
 minetest.register_on_mods_loaded(function()
+    local base_is_protected = minetest.is_protected
+
+    -- Protection is checked by the engine before node-specific can_dig hooks,
+    -- and several area tools use this path directly. Keep this wrapper here,
+    -- before Claimer's wrapper is installed, so Claimer can still remain the
+    -- authoritative outer protection layer for claimed areas.
+    minetest.is_protected = function(pos, player_name)
+        local ship, seat = stellua.assemble_vehicle(pos, true)
+        if ship and seat then
+            local owner = minetest.get_meta(seat):get_string("stl_vehicles:ship_owner")
+            if owner == "" or owner ~= (player_name or "") then
+                return true
+            end
+        end
+        return base_is_protected(pos, player_name)
+    end
+
     for name, def in pairs(minetest.registered_nodes) do
         if minetest.get_item_group(name, "spaceship") > 0
             and name ~= "stl_vehicles:air" then
