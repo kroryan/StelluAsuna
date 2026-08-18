@@ -935,6 +935,8 @@ function working_villages.register_villager(product_name, def)
       self.state_info = data["state_info"]
       self.pos_data = data["pos_data"]
       self.ai_state = data["ai_state"] or "calm"
+      self.ai_memory = data["ai_memory"] or {}
+      self.ai_preferred_bed = data["ai_preferred_bed"]
 
       local inventory = create_inventory(self)
       for list_name, list in pairs(data["inventory"]) do
@@ -989,6 +991,8 @@ function working_villages.register_villager(product_name, def)
       ["state_info"] = self.state_info,
       ["pos_data"] = self.pos_data,
       ["ai_state"] = self.ai_state or "calm",
+      ["ai_memory"] = self.ai_memory or {},
+      ["ai_preferred_bed"] = self.ai_preferred_bed,
     }
 
     -- set lists.
@@ -1093,6 +1097,9 @@ function working_villages.register_villager(product_name, def)
   villager_def.ai_delivery                 = nil
   villager_def.ai_build_request            = nil
   villager_def.ai_delivery_from            = nil
+  villager_def.ai_memory                   = {}
+  villager_def.ai_preferred_bed            = nil
+  villager_def.ai_sleeping                 = false
 
   -- callback methods
   villager_def.on_activate                 = on_activate

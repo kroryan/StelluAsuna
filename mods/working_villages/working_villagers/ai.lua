@@ -5,6 +5,96 @@
 local log = working_villages.require("log")
 
 working_villages.ai_registry = working_villages.ai_registry or {}
+working_villages.bed_reservations = working_villages.bed_reservations or {}
+
+local function bed_key(pos)
+	return pos and minetest.hash_node_position(vector.round(pos))
+end
+
+local function bed_is_valid(pos)
+	if not pos then return false end
+	local node = minetest.get_node_or_nil(pos)
+	return node and minetest.get_item_group(node.name, "villager_bed_bottom") > 0
+end
+
+local function bed_is_occupied(pos, villager)
+	for _, object in ipairs(minetest.get_objects_inside_radius(pos, 0.9)) do
+		if object ~= villager.object then
+			if object:is_player() then
+				return true
+			end
+			local entity = object:get_luaentity()
+			if entity and entity.ai_sleeping then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+local function reserve_bed(villager, preferred)
+	preferred = preferred or villager.ai_preferred_bed
+	if not preferred then return nil end
+	villager.ai_preferred_bed = vector.new(preferred)
+	local key = bed_key(preferred)
+	local owner = key and working_villages.bed_reservations[key]
+	if bed_is_valid(preferred) and not bed_is_occupied(preferred, villager)
+		and (owner == nil or owner == villager.inventory_name) then
+		working_villages.bed_reservations[key] = villager.inventory_name
+		villager.ai_assigned_bed = vector.new(preferred)
+		return preferred
+	end
+
+	-- A generated house can contain several beds. Pick the closest free one
+	-- when a stale/duplicated assignment is detected.
+	local best, best_distance
+	for _, candidate in ipairs(minetest.find_nodes_in_area(
+		vector.subtract(preferred, 8), vector.add(preferred, 8), {"group:villager_bed_bottom"})) do
+		local candidate_key = bed_key(candidate)
+		local candidate_owner = candidate_key and working_villages.bed_reservations[candidate_key]
+		if (not candidate_owner or candidate_owner == villager.inventory_name)
+			and not bed_is_occupied(candidate, villager) then
+			local distance = vector.distance(preferred, candidate)
+			if not best_distance or distance < best_distance then
+				best, best_distance = candidate, distance
+			end
+		end
+	end
+	if best then
+		working_villages.bed_reservations[bed_key(best)] = villager.inventory_name
+		villager.ai_assigned_bed = vector.new(best)
+		return best
+	end
+	return nil
+end
+
+function working_villages.villager:ai_reserve_bed()
+	local assigned = reserve_bed(self, self.pos_data and self.pos_data.bed_pos)
+	if assigned then
+		self.pos_data.bed_pos = vector.new(assigned)
+		self.ai_no_bed = false
+	else
+		self.ai_no_bed = true
+	end
+	return assigned
+end
+
+local function remember_key(object)
+	if object:is_player() then
+		return "player:" .. object:get_player_name()
+	end
+	local entity = object:get_luaentity()
+	return "entity:" .. ((entity and entity.name) or "unknown")
+end
+
+local function remember_threat(villager, object)
+	villager.ai_memory = villager.ai_memory or {}
+	local key = remember_key(object)
+	villager.ai_memory[key] = {
+		expires = minetest.get_gametime() + 60,
+		pos = vector.round(object:get_pos()),
+	}
+end
 
 local function alive_object(object)
 	return object and object:get_pos() ~= nil and object:get_hp() > 0
@@ -81,6 +171,7 @@ function working_villages.villager:ai_set_target(target, shared)
 		return false
 	end
 	self.ai_target = target
+	remember_threat(self, target)
 	self.ai_state = "engage"
 	self.ai_state_time = 0
 	self.ai_shared_threat = shared == true
@@ -180,9 +271,15 @@ local function combat_step(villager, dtime)
 		villager.object:set_velocity({x = 0, y = villager.object:get_velocity().y, z = 0})
 		villager:set_yaw_by_direction(direction)
 		villager:set_animation(working_villages.animation_frames.MINE)
+		local damage = 4
+		local wield = villager:get_wield_item_stack()
+		local capabilities = wield and wield:get_definition().tool_capabilities
+		if capabilities and capabilities.damage_groups and capabilities.damage_groups.fleshy then
+			damage = math.max(1, capabilities.damage_groups.fleshy)
+		end
 		target:punch(villager.object, 1.0, {
 			full_punch_interval = 1.0,
-			damage_groups = {fleshy = 4},
+			damage_groups = {fleshy = damage},
 		}, direction)
 		villager.ai_attack_cooldown = 1.1
 	end
@@ -242,6 +339,34 @@ function working_villages.request_build_material(villager, item_name)
 end
 
 function working_villages.villager:ai_step(dtime)
+	local pos = self.object:get_pos()
+	if pos then
+		local previous = self.ai_last_pos
+		local velocity = self.object:get_velocity()
+		if previous and not self.ai_target and not self.ai_delivery
+			and vector.distance(pos, previous) < 0.08
+			and vector.length(velocity) > 0.8 then
+			self.ai_stuck_time = (self.ai_stuck_time or 0) + dtime
+		else
+			self.ai_stuck_time = 0
+		end
+		self.ai_last_pos = vector.new(pos)
+		if (self.ai_stuck_time or 0) >= 3 then
+			-- Abort the coroutine that is waiting on an unreachable waypoint and
+			-- give the villager a short random escape maneuver.
+			self.job_thread = nil
+			self.path = nil
+			self.destination = nil
+			self.ai_recovery_time = 1.8
+			self.ai_stuck_time = 0
+			self:set_state_info("I got stuck and am finding another route.")
+		end
+	end
+	if self.ai_recovery_time and self.ai_recovery_time > 0 then
+		self.ai_recovery_time = self.ai_recovery_time - dtime
+		self:change_direction_randomly()
+		return true
+	end
 	if self.ai_target then
 		return combat_step(self, dtime)
 	end
@@ -270,6 +395,20 @@ function working_villages.villager:ai_step(dtime)
 		seek_builder_request(self)
 	end
 	return false
+end
+
+-- Replace the old unconditional bed teleport with an exclusive reservation.
+-- The original routine still handles animation, doors and dawn timing.
+local original_goto_bed = working_villages.villager.goto_bed
+working_villages.villager.goto_bed = function(self)
+		if self.pos_data then
+			local assigned = self:ai_reserve_bed()
+			self.pos_data.bed_pos = assigned
+			self.ai_sleeping = assigned ~= nil
+		end
+		local result = original_goto_bed(self)
+		self.ai_sleeping = false
+		return result
 end
 
 minetest.register_globalstep(function()

@@ -61,8 +61,8 @@ working_villages.register_job("working_villages:job_guard", {
 		end
 
 		local enemy = self:get_nearest_enemy(20)
-		if enemy then
-			self:atack(enemy)
+		if enemy and self.ai_set_target then
+			self:ai_set_target(enemy, false)
 		end
 
 		coroutine.yield()

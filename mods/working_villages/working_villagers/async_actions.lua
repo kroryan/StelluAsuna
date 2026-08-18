@@ -14,6 +14,8 @@ function working_villages.villager:go_to(pos)
 	self:set_timer("go_to:find_path",0) -- find path interval
 	self:set_timer("go_to:change_dir",0)
 	self:set_timer("go_to:give_up",0)
+	local last_progress_pos = vector.new(self.object:get_pos())
+	local stuck_steps = 0
 	if self.path == nil then
 		--TODO: actually no path shouldn't be accepted
 		--we'd have to check whether we can find a shorter path in the right direction
@@ -25,6 +27,20 @@ function working_villages.villager:go_to(pos)
 	self:set_animation(working_villages.animation_frames.WALK)
 
 	while #self.path ~= 0 do
+		local current_pos = self.object:get_pos()
+		local velocity = self.object:get_velocity()
+		local horizontal_speed = math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z)
+		if vector.distance(current_pos, last_progress_pos) < 0.06 and horizontal_speed > 0.5 then
+			stuck_steps = stuck_steps + 1
+		else
+			stuck_steps = 0
+			last_progress_pos = vector.new(current_pos)
+		end
+		if stuck_steps >= 80 then
+			self.object:set_velocity{x = 0, y = velocity.y, z = 0}
+			self.path = nil
+			return false, fail.no_path
+		end
 		self:count_timer("go_to:find_path")
 		self:count_timer("go_to:change_dir")
 		if self:timer_exceeded("go_to:find_path",100) then
@@ -444,4 +460,3 @@ function working_villages.villager:handle_job_pos()
 		self:goto_job()
 	end
 end
-
