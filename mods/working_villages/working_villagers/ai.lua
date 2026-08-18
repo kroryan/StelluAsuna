@@ -255,31 +255,61 @@ local function is_hostile_entity(object)
 		or name:match("spider") ~= nil
 end
 
--- AliveAI's perception helpers are used as an optional behaviour library.
--- Working Villagers remain the entity and keep their own pathfinder/jobs.
+-- Dedicated Working Villagers perception/combat helpers.  These are adapted
+-- from the MIT-licensed AliveAI behaviour algorithms, but do not call or
+-- depend on the AliveAI runtime.
 local function ai_visible(from, to)
 	if not from or not to then return false end
-	if aliveai and aliveai.visiable then
-		local ok, visible = pcall(aliveai.visiable, from, to)
-		if ok and type(visible) == "boolean" then return visible end
+	local delta = {x = from.x - to.x, y = from.y - to.y - 2, z = from.z - to.z}
+	local distance = vector.distance(from, to)
+	if distance < 0.01 then return true end
+	local step = vector.multiply(delta, -1 / math.max(distance, 0.01))
+	for i = 1, math.floor(distance) do
+		local node = minetest.get_node_or_nil({
+			x = from.x + step.x * i,
+			y = from.y + step.y * i,
+			z = from.z + step.z * i,
+		})
+		local def = node and minetest.registered_nodes[node.name]
+		if def and def.walkable then return false end
 	end
-	return minetest.line_of_sight(from, to)
+	return true
 end
 
-local function aliveai_attack(villager, target, damage)
-	if aliveai and aliveai.punch then
-		local ok = pcall(aliveai.punch, villager, target, damage)
-		if ok then return true end
-	end
-	return false
+local function villager_attack(villager, target, damage)
+	if not target or not target:get_pos() then return true end
+	target:punch(villager.object, 1.0, {
+		full_punch_interval = 1.0,
+		damage_groups = {fleshy = damage},
+	}, vector.direction(villager.object:get_pos(), target:get_pos()))
+	return true
 end
 
--- Reuse AliveAI's adjacent-node tactical search while retaining the native
--- Working Villagers pathfinder for the actual movement.
+-- Adjacent-node tactical search: choose a walkable position around a target,
+-- then let Working Villagers' own pathfinder perform the movement.
 local function tactical_approach(villager, target_pos)
-	if not (aliveai and aliveai.neartarget) then return nil end
-	local ok, point = pcall(aliveai.neartarget, villager, vector.round(target_pos), 1, -2, -1)
-	if ok and point and type(point.x) == "number" then return point end
+	local origin = villager.object:get_pos()
+	local base = vector.round(target_pos)
+	local candidates = {
+		{x=base.x-1,y=base.y,z=base.z}, {x=base.x+1,y=base.y,z=base.z},
+		{x=base.x,y=base.y,z=base.z-1}, {x=base.x,y=base.y,z=base.z+1},
+		{x=base.x-1,y=base.y,z=base.z-1}, {x=base.x+1,y=base.y,z=base.z+1},
+	}
+	local best, best_distance
+	for _, point in ipairs(candidates) do
+		local node = minetest.get_node_or_nil(point)
+		local below = minetest.get_node_or_nil({x=point.x,y=point.y-1,z=point.z})
+		local above = minetest.get_node_or_nil({x=point.x,y=point.y+1,z=point.z})
+		local below_def = below and minetest.registered_nodes[below.name]
+		local node_def = node and minetest.registered_nodes[node.name]
+		local above_def = above and minetest.registered_nodes[above.name]
+		if node_def and not node_def.walkable and above_def and not above_def.walkable
+		and below_def and below_def.walkable and ai_visible(origin, point) then
+			local distance = vector.distance(origin, point)
+			if not best_distance or distance < best_distance then best, best_distance = point, distance end
+		end
+	end
+	if best then return best end
 	return nil
 end
 
@@ -435,12 +465,7 @@ local function combat_step(villager, dtime)
 		if capabilities and capabilities.damage_groups and capabilities.damage_groups.fleshy then
 			damage = math.max(1, capabilities.damage_groups.fleshy)
 		end
-		if not aliveai_attack(villager, target, damage) then
-			target:punch(villager.object, 1.0, {
-				full_punch_interval = 1.0,
-				damage_groups = {fleshy = damage},
-			}, direction)
-		end
+		villager_attack(villager, target, damage)
 		villager.ai_attack_cooldown = 1.1
 	end
 	return true
