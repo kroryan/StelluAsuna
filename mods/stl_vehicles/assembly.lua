@@ -10,7 +10,7 @@ local old_on_activate = lvae_defs.on_activate
 local old_set_node = lvae_defs.set_node
 
 function lvae_defs.get_staticdata(self)
-    local tanks = table.copy(self.tanks or {})
+	local tanks = table.copy(self.tanks or {})
     for _, t in ipairs(tanks or {}) do
         local detached = t[2] and minetest.get_inventory({type="detached", name=t[2]})
         if detached then t[2] = detached:get_lists() else t[2] = {} end
@@ -20,14 +20,14 @@ function lvae_defs.get_staticdata(self)
             end
         end
     end
-    return minetest.serialize({old_get_staticdata(self), self.player, self.power, tanks, self.collisionbox, self.ship_owner, self.ship_invited})
+	return minetest.serialize({old_get_staticdata(self), self.player, self.power, tanks, self.collisionbox, self.ship_owner, self.ship_invited, self.seat_offset})
 end
 
 function lvae_defs.on_activate(self, staticdata, dtime)
     if staticdata and staticdata ~= "" and not tonumber(staticdata) then
         local decoded = minetest.deserialize(staticdata)
         if type(decoded) == "table" then
-            staticdata, self.player, self.power, self.tanks, self.collisionbox, self.ship_owner, self.ship_invited = unpack(decoded)
+			staticdata, self.player, self.power, self.tanks, self.collisionbox, self.ship_owner, self.ship_invited, self.seat_offset = unpack(decoded)
         end
         self.collisionbox = self.collisionbox or {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
         self.object:set_properties({physical=true, collisionbox=self.collisionbox})
@@ -45,11 +45,32 @@ function lvae_defs.on_activate(self, staticdata, dtime)
     return old_on_activate(self, staticdata, dtime)
 end
 
+-- LVAE entities are positioned at the point used to detach the ship, which
+-- is not necessarily the seat.  Keep a player aligned to the actual seat
+-- node and add half a node of height so their feet rest on its top surface.
+local function find_seat_attach_offset(vehicle)
+	if vehicle.seat_offset then return vehicle.seat_offset end
+	for _, node in pairs(vehicle.data or {}) do
+		if node.entity and minetest.get_item_group(node.name, "seat") > 0 then
+			local p = node.entity.pos or {x = 0, y = 0, z = 0}
+			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y + 0.5, z = p.z}, 10)
+			return vehicle.seat_offset
+		end
+	end
+	return {x = 0, y = 5, z = 0}
+end
+
+local function attach_player_to_vehicle(player, vehicle)
+	if not player or not vehicle or not vehicle.object or not vehicle.object:is_valid() then return false end
+	player:set_attach(vehicle.object, "", find_seat_attach_offset(vehicle), {x = 0, y = 0, z = 0}, true)
+	return true
+end
+
 function lvae_defs.on_step(self, dtime)
-    local player = self.player and minetest.get_player_by_name(self.player)
-    if player and player:is_player() and self.object:is_valid() and not player:get_attach() then
-        player:set_attach(self.object)
-    end
+	local player = self.player and minetest.get_player_by_name(self.player)
+	if player and player:is_player() and self.object:is_valid() and not player:get_attach() then
+		attach_player_to_vehicle(player, self)
+	end
     --return old_on_step(self, dtime)
 end
 
@@ -220,6 +241,11 @@ function stellua.detach_vehicle(pos)
     if not ship or not seat then return nil end
     local lvae = LVAE(pos)
     lvae.power = power
+	lvae.seat_offset = vector.multiply({
+		x = seat.x - pos.x,
+		y = seat.y - pos.y + 0.5,
+		z = seat.z - pos.z,
+	}, 10)
     local owner, invited
     local seat_meta = minetest.get_meta(seat)
     owner = seat_meta:get_string("stl_vehicles:ship_owner")
@@ -374,7 +400,7 @@ local function enter_ship(user, pos)
         return false
     end
     ent.player = user:get_player_name()
-    user:set_attach(ent.object)
+	attach_player_to_vehicle(user, ent)
     minetest.sound_play({name="doors_door_close", gain=0.3}, {object=ent.object}, true)
     minetest.chat_send_player(user:get_player_name(), "Ship control active. Press Space to launch; press E again to exit.")
     return true
@@ -405,7 +431,7 @@ minetest.register_chatcommand("ship_reenter", {
             return false, "No reclaimable ship found within 128 blocks."
         end
         best.player = name
-        user:set_attach(best.object)
+		attach_player_to_vehicle(user, best)
         minetest.chat_send_player(name, "Ship control restored. Press E to exit safely.")
         return true, "Re-entered ship."
     end,
@@ -721,7 +747,7 @@ minetest.register_globalstep(function(dtime)
 				else
 					local ent = stellua.detach_vehicle(pos)
 					if ent and ent.object and ent.object:is_valid() then
-						player:set_attach(ent.object)
+						attach_player_to_vehicle(player, ent)
 						ent.player = playername
 					else
 						minetest.chat_send_player(playername, "Ship launch failed: the vehicle is incomplete or busy.")
