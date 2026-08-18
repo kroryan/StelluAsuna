@@ -1645,7 +1645,7 @@ aliveai.create_bot({
 minetest.register_node("aliveai_threats:slime", {
 	description = "Slime",
 	tiles = {"default_river_water.png^[colorize:#00aa00aa"},
-	alpha = 200,
+	use_texture_alpha = "blend",
 	walkable = false,
 	pointable = true,
 	drowning = 1,

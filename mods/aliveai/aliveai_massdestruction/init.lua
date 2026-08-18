@@ -398,7 +398,7 @@ minetest.register_node("aliveai_massdestruction:source", {
 			animation = {type = "vertical_frames",aspect_w = 16,aspect_h = 16,length = 2.0,},
 			backface_culling = false,
 		},},
-	alpha = 220,
+	use_texture_alpha = "blend",
 	paramtype = "light",
 	light_source = 13,
 	walkable = false,
@@ -433,7 +433,7 @@ minetest.register_node("aliveai_massdestruction:flowing", {
 			animation = {type = "vertical_frames",aspect_w = 16,aspect_h = 16,length = 2.0}
 		}
 	},
-	alpha = 190,
+	use_texture_alpha = "blend",
 	paramtype = "light",
 	light_source = 13,
 	paramtype2 = "flowingliquid",
@@ -961,7 +961,7 @@ minetest.register_node("aliveai_massdestruction:toxicdirt", {
 minetest.register_node("aliveai_massdestruction:toxicwater", {
 	description = "Toxic water",
 	tiles = {"default_river_water.png^[colorize:#604f20aa"},
-	alpha = 200,
+	use_texture_alpha = "blend",
 	walkable = false,
 	pointable = true,
 	drowning = 1,

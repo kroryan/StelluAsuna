@@ -50,7 +50,7 @@ minetest.register_node("nightshade:nightshade_glowin_leaves_1", {
 	tiles = {"nightshade_tree_glowing_leaves.png"},
 	paramtype = "light",
 	is_ground_content = false,
-	light_source = 15,
+	light_source = 14,
 	groups = {snappy = 3, leafdecay = 3, flammable = 2, leaves = 1},
 	drop = {
 		max_items = 1,

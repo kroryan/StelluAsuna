@@ -824,7 +824,7 @@ end
 		inventory_image = "crystal.png",
 		wield_image = "crystal.png",
 		paramtype = "light",
-		light_source = 15,
+		light_source = 14,
 		sunlight_propagates = true,
 		walkable = true,
 		damage_per_second = 0,

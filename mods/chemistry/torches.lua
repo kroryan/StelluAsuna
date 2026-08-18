@@ -17,7 +17,7 @@ minetest.register_node("chemistry:magnesium_torch", {
 	sunlight_propagates = true,
 	walkable = false,
 	liquids_pointable = false,
-	light_source = 20,
+	light_source = 14,
 	groups = {cracky=3, dig_immediate=3, attached_node=1, torch=1, igniter=1},
 	drop = "chemistry:magnesium_torch",
 	selection_box = {
@@ -69,7 +69,7 @@ minetest.register_node("chemistry:magnesium_torch_wall", {
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	walkable = false,
-	light_source = 20,
+	light_source = 14,
 	groups = {cracky=3, dig_immediate=3, attached_node=1, torch=1, igniter=1, not_in_creative_inventory=1},
 	drop = "chemistry:magnesium_torch",
 	selection_box = {
@@ -149,7 +149,7 @@ minetest.register_node("chemistry:anthracite_torch", {
 	sunlight_propagates = true,
 	walkable = false,
 	liquids_pointable = false,
-	light_source = 20,
+	light_source = 14,
 	groups = {cracky=3, dig_immediate=3, attached_node=1, torch=1},
 	drop = "chemistry:anthracite_torch",
 	selection_box = {
@@ -201,7 +201,7 @@ minetest.register_node("chemistry:anthracite_torch_wall", {
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
 	walkable = false,
-	light_source = 20,
+	light_source = 14,
 	groups = {cracky=3, dig_immediate=3, attached_node=1, torch=1, not_in_creative_inventory=1},
 	drop = "chemistry:anthracite_torch",
 	selection_box = {

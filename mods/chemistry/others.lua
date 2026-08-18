@@ -958,7 +958,7 @@ minetest.register_node("chemistry:magnesium_fire", {
 	},
 	inventory_image = "magnesium_fire.png",
 	paramtype = "light",
-	light_source = 20,
+	light_source = 14,
 	walkable = false,
 	buildable_to = true,
 	sunlight_propagates = true,
@@ -992,7 +992,7 @@ minetest.register_node("chemistry:permanent_magnesium_fire", {
 	},
 	inventory_image = "magnesium_fire.png",
 	paramtype = "light",
-	light_source = 20,
+	light_source = 14,
 	walkable = false,
 	buildable_to = true,
 	sunlight_propagates = true,
@@ -1802,4 +1802,3 @@ minetest.register_craft({
 	},
 	replacements = {{'fire:flint_and_steel', 'fire:flint_and_steel'}},
 })
-

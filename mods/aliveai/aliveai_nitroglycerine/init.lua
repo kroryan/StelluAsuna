@@ -561,7 +561,7 @@ minetest.register_node("aliveai_nitroglycerine:icebox", {
 	sounds = default.node_sound_glass_defaults(),
 	paramtype = "light",
 	sunlight_propagates = true,
-	alpha = 30,
+	use_texture_alpha = "blend",
 	is_ground_content = false,
 	drowning = 1,
 	damage_per_second = 2,

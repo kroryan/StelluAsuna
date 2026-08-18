@@ -42,7 +42,7 @@ if worldgate.settings.beaconglow then
     "telemosaic:beacon_err_protected",
   }) do
     minetest.override_item(beacon,{
-      light_source = 15,
+      light_source = 14,
     })
   end
 end

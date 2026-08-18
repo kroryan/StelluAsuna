@@ -107,7 +107,7 @@ core.register_node("cloudcraft:cloud",{
   description = "Cloud",
   drawtype = "glasslike",
   tiles = { "[fill:16x16:#F9F9F9F0" },
-  use_texture_alpha = true,
+  use_texture_alpha = "blend",
   post_effect_color = "#F9F9F9F0",
   sunlight_propagates = false,
   light_source = 1,

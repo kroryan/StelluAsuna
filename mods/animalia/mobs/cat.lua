@@ -30,7 +30,7 @@ creatura.register_mob("animalia:cat", {
 		"animalia_cat_ash.png",
 		"animalia_cat_birch.png",
 	},
-	use_texture_alpha = false,
+	use_texture_alpha = "clip",
 	makes_footstep_sound = false,
 	backface_culling = true,
 	glow = 0,

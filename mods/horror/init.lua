@@ -149,17 +149,17 @@ minetest.register_node("horror:blood_flowing", {
 	tiles = {"horror_bloodsource.png"},
 	special_tiles = {
 		{
-			image="horror_animblood.png",
+			name="horror_animblood.png",
 			backface_culling=false,
 			animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=1}
 		},
 		{
-			image="horror_animblood.png",
+			name="horror_animblood.png",
 			backface_culling=true,
 			animation={type="vertical_frames", aspect_w=32, aspect_h=32, length=1}
 		},
 	},
-	alpha = 190,
+	use_texture_alpha = "blend",
 	paramtype = "light",
 	paramtype2 = "flowingliquid",
 	walkable = false,
@@ -192,7 +192,7 @@ minetest.register_node("horror:bloodsource", {
 			backface_culling = false,
 		}
 	},
-	alpha = 190,
+	use_texture_alpha = "blend",
 	paramtype = "light",
 	walkable = false,
 	pointable = false,
@@ -320,7 +320,7 @@ minetest.register_node("horror:candlestick", {
 	wield_image = "horror_candlestick.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 20,
+	light_source = 14,
 	groups = {snappy=1, oddly_breakable_by_hand=1, dig_immediate=1},
 	selection_box = {
 		type = "fixed",
@@ -346,7 +346,7 @@ minetest.register_node("horror:candle", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 20,
+	light_source = 14,
 	groups = {cracky=1},
 	node_box = {
 		type = "fixed",
@@ -370,7 +370,7 @@ minetest.register_node("horror:candle", {
 	wield_image = "horror_candle_inv.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 15,
+	light_source = 14,
 	groups = {cracky=1, oddly_breakable_by_hand=1},
 	selection_box = {
 		type = "fixed",
@@ -708,8 +708,8 @@ minetest.register_node("horror:sunorb", {
 	inventory_image = "horror_orb.png",
 	paramtype = "light",
 	sunlight_propagates = true,
-	light_source = 2000,
-	alpha = 100,
+	light_source = 14,
+	use_texture_alpha = "blend",
 	walkable = false,
 	is_ground_content = true,
 	selection_box = {
@@ -730,11 +730,11 @@ minetest.register_node("horror:pentagram", {
 	visual_scale = 3.0,
 	tiles = {"horror_pentagram.png"},
 	inventory_image = "horror_pentagram.png",
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
-	light_source = 50,
+	light_source = 14,
 	walkable = false,
 	is_ground_content = true,
 	selection_box = {
@@ -773,11 +773,11 @@ minetest.register_node("horror:portal", {
 	visual_scale = 3.0,
 	tiles = {"horror_portal.png"},
 	inventory_image = "horror_portal.png",
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
-	light_source = 50,
+	light_source = 14,
 	walkable = false,
 	is_ground_content = true,
 	selection_box = {
@@ -798,7 +798,7 @@ minetest.register_node("horror:blood_splatter", {
 	drawtype = "signlike",
 	tiles = {"horror_bloodsplat.png"},
 	inventory_image = "horror_bloodsplat.png",
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	paramtype = "light",
 	paramtype2 = "wallmounted",
 	sunlight_propagates = true,
@@ -840,7 +840,7 @@ minetest.register_node("horror:fire", {
 	drawtype = "plantlike",
 	sunlight_propagates = true,
 	paramtype = "light",
-	light_source = 40,
+	light_source = 14,
 	walkable = false,
 	damage_per_second = 2,
 	tiles = {{
@@ -858,7 +858,7 @@ minetest.register_node("horror:gfire", {
 	drawtype = "plantlike",
 	sunlight_propagates = true,
 	paramtype = "light",
-	light_source = 30,
+	light_source = 14,
 	walkable = false,
 	damage_per_second = 2,
 	tiles = {{
@@ -940,10 +940,10 @@ minetest.register_node("horror:spiderweb_decaying", {
 minetest.register_node("horror:lantern", {
 	description = "Lantern",
 	drawtype = "plantlike",
-	use_texture_alpha = true,
+	use_texture_alpha = "blend",
 	sunlight_propagates = true,
 	paramtype = "light",
-	light_source = 100,
+	light_source = 14,
 	walkable = false,
 	tiles = {
 		"horror_lantern.png"
@@ -1237,7 +1237,7 @@ minetest.register_node("horror:gloworb", {
 	},
 	drawtype = "nodebox",
 	paramtype = "light",
-	light_source = 1000,
+	light_source = 14,
 	groups = {cracky=1},
 	walkable = false,
 	node_box = {
@@ -1267,7 +1267,7 @@ minetest.register_node("horror:candle", {
 	drawtype = "nodebox",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 20,
+	light_source = 14,
 	groups = {cracky=1},
 	node_box = {
 		type = "fixed",
@@ -1291,7 +1291,7 @@ minetest.register_node("horror:candle", {
 	wield_image = "horror_candle_inv.png",
 	paramtype = "light",
 	paramtype2 = "facedir",
-	light_source = 15,
+	light_source = 14,
 	groups = {cracky=1, oddly_breakable_by_hand=1},
 	selection_box = {
 		type = "fixed",
@@ -1594,7 +1594,7 @@ minetest.register_node("horror:flames", {
 	inventory_image = "horror_flame.png",
 	paramtype = "light",
 	sunlight_propagates = true,
-	light_source = 50,
+	light_source = 14,
 	walkable = false,
 	is_ground_content = false,
 	selection_box = {

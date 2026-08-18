@@ -154,7 +154,7 @@ minetest.register_node("aliveai_threats:crystal_big", {
 	mesh = "aliveai_threats_crystals.obj",
 	visual_scale = 0.3,
 	wield_scale = {x=1, y=1, z=1},
-	alpha = 20,
+	use_texture_alpha = "blend",
 	tiles = {
 		{
 			name = "aliveai_threats_crystals.png",
@@ -201,7 +201,7 @@ minetest.register_node("aliveai_threats:crystal_medium", {
 	mesh = "aliveai_threats_crystals.obj",
 	visual_scale = 0.2,
 	wield_scale = {x=1, y=1, z=1},
-	alpha = 20,
+	use_texture_alpha = "blend",
 	tiles = {
 		{
 			name = "aliveai_threats_crystals.png",
@@ -241,7 +241,7 @@ minetest.register_node("aliveai_threats:crystal_small", {
 	mesh = "aliveai_threats_crystal.obj",
 	visual_scale = 2,
 	wield_scale = {x=2, y=2, z=2},
-	alpha = 20,
+	use_texture_alpha = "blend",
 	tiles = {
 		{
 			name = "aliveai_threats_crystals.png",

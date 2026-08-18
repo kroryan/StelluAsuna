@@ -267,7 +267,7 @@ minetest.register_node("aliveai_electric:lightning_clump", {
 	drawtype="plantlike",
 	light_source = 8,
 	paramtype = "light",
-	alpha = 50,
+	use_texture_alpha = "blend",
 	sunlight_propagates = true,
 	liquid_viscosity = 8,
 	liquid_renewable = false,

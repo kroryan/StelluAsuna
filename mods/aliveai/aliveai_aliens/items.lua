@@ -513,7 +513,7 @@ minetest.register_entity("aliveai_aliens:shrinkbox",{
 minetest.register_node("aliveai_aliens:lazer_node", {
 	description = "Lazer",
 	drawtype="glasslike",
-	alpha=50,
+	use_texture_alpha = "blend",
 	tiles = {"gui_hb_bg.png^[colorize:#ffffff"},
 	drop="",
 	light_source = default.LIGHT_MAX - 1,

@@ -690,7 +690,7 @@ minetest.register_node("chemistry:anthracite_fire", {
 	},
 	inventory_image = "anthracite_fire.png",
 	paramtype = "light",
-	light_source = 20,
+	light_source = 14,
 	walkable = false,
 	buildable_to = true,
 	sunlight_propagates = true,
@@ -725,7 +725,7 @@ minetest.register_node("chemistry:permanent_anthracite_fire", {
 	},
 	inventory_image = "anthracite_fire.png",
 	paramtype = "light",
-	light_source = 20,
+	light_source = 14,
 	walkable = false,
 	buildable_to = true,
 	sunlight_propagates = true,
@@ -780,7 +780,7 @@ minetest.register_node("chemistry:permanent_anthracite_fire", {
 	if flame_sound then
 		local handles = {}
 		local timer = 0
-	
+
 		-- Parameters
 		local radius = 8 -- Flame node search radius around player
 		local cycle = 3 -- Cycle time for sound updates
@@ -878,4 +878,3 @@ minetest.register_node("chemistry:permanent_anthracite_fire", {
 	
 	-- Deprecated function kept temporarily to avoid crashes if mod fire nodes call it
 	function chemistry.update_sounds_around() end
-	

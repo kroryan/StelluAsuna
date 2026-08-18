@@ -504,7 +504,7 @@ minetest.register_entity("draconis:dragon_ice", {
 		textures = {
 			"draconis_dragon_ice.png^[opacity:170"
 		},
-		use_texture_alpha = true
+		use_texture_alpha = "blend"
 	},
 	active_time = 0,
 	on_activate = function(self)

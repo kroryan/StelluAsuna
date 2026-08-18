@@ -8,7 +8,7 @@ minetest.register_entity("stl_core:skybox", {
         visual_size = {x=100, y=100, z=32000},
         mesh = "skybox.obj",
         textures = {"blank.png"},
-        use_texture_alpha = true,
+        use_texture_alpha = "blend",
         glow = -1,
         static_save = false,
         pointable = false
