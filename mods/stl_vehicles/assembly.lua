@@ -224,6 +224,34 @@ function stellua.set_ship_owner(pos, owner)
     return true
 end
 
+-- A ship is a single player-owned structure, not a collection of ordinary
+-- blocks. Protect every connected spaceship node from being dug by anyone
+-- except the owner. Invitations grant entry/piloting only, never demolition.
+minetest.register_on_mods_loaded(function()
+    for name, def in pairs(minetest.registered_nodes) do
+        if minetest.get_item_group(name, "spaceship") > 0
+            and name ~= "stl_vehicles:air" then
+            local old_can_dig = def.can_dig
+            def.can_dig = function(pos, digger)
+                local ship, seat = stellua.assemble_vehicle(pos, true)
+                if ship and seat then
+                    local owner = minetest.get_meta(seat):get_string("stl_vehicles:ship_owner")
+                    local player_name = digger and digger:is_player()
+                        and digger:get_player_name() or ""
+                    if owner == "" or player_name ~= owner then
+                        if player_name ~= "" then
+                            minetest.chat_send_player(player_name,
+                                "You cannot break another player's ship. Only its owner can dismantle it.")
+                        end
+                        return false
+                    end
+                end
+                return old_can_dig and old_can_dig(pos, digger) or true
+            end
+        end
+    end
+end)
+
 --Fake air for vehicles so they preserve position of air
 minetest.register_node("stl_vehicles:air", {
     description = "Vehicle Air",
