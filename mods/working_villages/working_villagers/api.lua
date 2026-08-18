@@ -1083,9 +1083,42 @@ function working_villages.register_villager(product_name, def)
     end
 
     if self.pause then
+      self.ai_pause_watchdog = (self.ai_pause_watchdog or 0) + dtime
+      if self.ai_pause_watchdog < 8 then return end
+      self.ai_pause_watchdog = 0
+      self.pause = false
+      self.path = nil
+      self.destination = nil
+      self:change_direction_randomly()
+      self:set_state_info("I recovered from a stale paused state.")
       return
     end
+    self.ai_pause_watchdog = 0
     job_coroutines.resume(self,dtime)
+
+    -- Last-resort motion watchdog. A persisted job coroutine can be alive
+    -- while its old path has no remaining waypoints; in that state the entity
+    -- silently stands forever. Keep combat/sleep/build actions untouched, but
+    -- recover ordinary villagers after a short period without movement.
+    if not self.ai_target and not self.ai_sleeping and not self.ai_delivery then
+      local velocity = self.object:get_velocity()
+      local horizontal = math.sqrt((velocity.x or 0)^2 + (velocity.z or 0)^2)
+      if horizontal < 0.05 then
+        self.ai_motion_watchdog = (self.ai_motion_watchdog or 0) + dtime
+      else
+        self.ai_motion_watchdog = 0
+      end
+      if self.ai_motion_watchdog >= 8 then
+        self.ai_motion_watchdog = 0
+        self.path = nil
+        self.destination = nil
+        self.pause = false
+        self:change_direction_randomly()
+        self:set_state_info("I was idle too long and resumed my village routine.")
+      end
+    else
+      self.ai_motion_watchdog = 0
+    end
   end
 
   -- on_rightclick is a callback function that is called when a player right-click them.
