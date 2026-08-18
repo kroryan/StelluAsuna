@@ -152,9 +152,16 @@ minetest.register_on_mods_loaded(function()
 				if self.pos_data and not self.pos_data.door_pos then
 					self.pos_data.door_pos = self.pos_data.home_pos
 				end
-				if self.pause and self.get_job_name and self:get_job_name() == RESIDENT_JOB then
+				if self.get_job_name and self:get_job_name() == RESIDENT_JOB then
+					-- Entity persistence can restore a dead coroutine or a stale pause
+					-- flag. Recreate the single resident routine so villagers never load
+					-- as silent, immobile statues after a restart.
+					local job = working_villages.registered_jobs[RESIDENT_JOB]
+					if job and (not self.job_thread or coroutine.status(self.job_thread) == "dead") then
+						self.job_thread = coroutine.create(job.jobfunc)
+					end
 					self.pause = false
-					minetest.log("action", "[stl_village_bridge] Recovered and unpaused resident " .. tostring(self.nametag) .. " on load.")
+					minetest.log("action", "[stl_village_bridge] Recovered resident " .. tostring(self.nametag) .. " on load.")
 				end
 			end
 			

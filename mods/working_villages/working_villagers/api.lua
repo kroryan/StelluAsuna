@@ -344,8 +344,13 @@ end
 -- working_villages.villager.change_direction change direction to destination and velocity vector.
 function working_villages.villager:change_direction(destination)
   local position = self.object:get_pos()
+  if not position or not destination then return end
   local direction = vector.subtract(destination, position)
   direction.y = 0
+	if math.abs(direction.x) < 0.05 and math.abs(direction.z) < 0.05 then
+		self.object:set_velocity({x = 0, y = self.object:get_velocity().y, z = 0})
+		return
+	end
   local velocity = vector.multiply(vector.normalize(direction), 1.5)
 
   self.object:set_velocity(velocity)
