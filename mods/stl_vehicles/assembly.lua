@@ -53,7 +53,9 @@ local function find_seat_attach_offset(vehicle)
 	for _, node in pairs(vehicle.data or {}) do
 		if node.entity and minetest.get_item_group(node.name, "seat") > 0 then
 			local p = node.entity.pos or {x = 0, y = 0, z = 0}
-			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y + 0.5, z = p.z}, 10)
+			-- Player attachment positions are centred on the player body.  The
+			-- seat's top is one node above its origin, not half a node.
+			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y + 1.0, z = p.z}, 10)
 			return vehicle.seat_offset
 		end
 	end
@@ -243,7 +245,7 @@ function stellua.detach_vehicle(pos)
     lvae.power = power
 	lvae.seat_offset = vector.multiply({
 		x = seat.x - pos.x,
-		y = seat.y - pos.y + 0.5,
+		y = seat.y - pos.y + 1.0,
 		z = seat.z - pos.z,
 	}, 10)
     local owner, invited
