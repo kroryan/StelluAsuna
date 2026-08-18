@@ -347,6 +347,14 @@ local function can_use_ship(user, pos, entity)
     end
     owner = owner or ""
     if owner == "" then
+        -- Never let an unowned/legacy ship be claimed merely by approaching
+        -- it.  It must already be assigned to this player (or be assigned by
+        -- the starter-ship migration) before access can establish ownership.
+        local assigned = minetest.deserialize(user:get_meta():get_string("stl_core:current_ship_pos"))
+        if not seat or type(assigned) ~= "table" or type(assigned.x) ~= "number"
+        or vector.distance(assigned, seat) >= 2 then
+            return false, "This ship has no owner yet. Assign it with /ship_set_current before entering."
+        end
         owner = name
         if entity then entity.ship_owner = owner else minetest.get_meta(seat):set_string("stl_vehicles:ship_owner", owner) end
     end
@@ -393,7 +401,7 @@ minetest.register_chatcommand("invite_ship", {
             if not nearby then return false, "Pilot your ship or stand beside it first." end
             seat, owner, invited = stellua.get_ship_access(nearby)
         end
-        if owner == "" then owner = name end
+        if owner == "" then return false, "This ship has no registered owner." end
         if owner ~= name then return false, "Only the ship owner can invite players." end
         if not list_has(invited or {}, target) then table.insert(invited, target) end
         if entity and entity.name == "lvae:lvae" then

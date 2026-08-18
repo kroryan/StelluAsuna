@@ -364,9 +364,16 @@ minetest.register_chatcommand("ship_set_current", {
 			target = seat
 		end
 		if not target then return false, "No complete ship found nearby" end
+		if stellua.get_ship_access then
+			local seat, owner = stellua.get_ship_access(target)
+			if not seat then return false, "No complete ship found nearby" end
+			if owner == "" then return false, "This ship has no registered owner." end
+			if owner ~= name then return false, "This ship belongs to "..owner.."." end
+		end
 		local meta = player:get_meta()
 		meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(target)))
 		meta:set_string("stl_core:ship_marker_mode", "current")
+		if stellua.set_ship_owner then stellua.set_ship_owner(target, name) end
 		update_ship_waypoint(player)
 		return true, "Current ship assigned. Use /ship_marker to show its waypoint."
 	end,

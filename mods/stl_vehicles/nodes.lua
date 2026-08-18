@@ -18,7 +18,13 @@ minetest.register_node("stl_vehicles:seat", {
     sunlight_propagates = true,
     paramtype2 = "facedir", --lvae doesn't like 4dir
     groups = {cracky=1, spaceship=1, seat=1},
-    sounds = stellua.node_sound_wood_defaults()
+    sounds = stellua.node_sound_wood_defaults(),
+    after_place_node = function(pos, placer)
+        if placer and placer:is_player() then
+            minetest.get_meta(pos):set_string("stl_vehicles:ship_owner", placer:get_player_name())
+            minetest.get_meta(pos):set_string("stl_vehicles:ship_invited", minetest.serialize({}))
+        end
+    end,
 })
 
 --The fuel tank, required to power the thrusters or engines of a vehicle
