@@ -86,7 +86,6 @@ local new_style = true
 --needed for functions
 horror = {}
 
---Vignette overlay from Vignette mod by TriBlade9(license MIT)
 --permanent dawn
 if dark then
 minetest.register_on_joinplayer(function(player)
@@ -96,15 +95,6 @@ minetest.register_on_joinplayer(function(player)
 		player:set_sky({r=0, g=0, b=0}, "plain")
 		end
 	end)
-	player:hud_add({
-    hud_elem_type = "image",
-    position = {x = 0.5, y = 0.5},
-    scale = {
-      x = -100,
-      y = -100
-    },
-    text = "horror_hud.png"
-  })
 	if weird_stuff and math.random(1,700) == 666 then
 		player:hud_add({
 		hud_elem_type = "image",
