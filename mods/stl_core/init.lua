@@ -92,6 +92,7 @@ local starter_ship_path = modpath .. "schems/starter_rocket.mts"
 local starter_ship_key = "stl_core:starter_ship_placed"
 local starter_ship_radius = 1
 local starter_ship_height = 6
+local starter_ship_placement_lock = false
 
 local function starter_ship_ground(node)
 	if not node or node.name == "air" or node.name == "ignore" then return false end
@@ -134,7 +135,15 @@ local function find_starter_ship_base(player)
 		local z = pz + offset.z
 		for dy = -6, 6 do
 			local y = ground_y + dy
-			if starter_ship_base_is_clear(x, y, z) then
+			local candidate = vector.new(x, y, z)
+			local occupied_by_player = false
+			for _, other in ipairs(minetest.get_connected_players()) do
+				if vector.distance(other:get_pos(), candidate) < 4 then occupied_by_player = true; break end
+			end
+			local occupied_by_ship = minetest.find_nodes_in_area(
+				vector.subtract(candidate, 3), vector.add(candidate, 3), {"group:spaceship"})
+			if not occupied_by_player and (not occupied_by_ship or #occupied_by_ship == 0)
+			and starter_ship_base_is_clear(x, y, z) then
 				return {x=x, y=y, z=z}
 			end
 		end
@@ -146,6 +155,10 @@ local function place_starter_ship(player, attempt)
 	if not player or not player:is_player() then return end
 	local meta = player:get_meta()
 	if meta:get_int(starter_ship_key) == 1 then return end
+	if starter_ship_placement_lock then
+		minetest.after(0.5, function() place_starter_ship(player, attempt + 1) end)
+		return
+	end
 	if player:get_pos().y >= (stellua.hybrid_space_min or 6368) then return end
 
 	local base = find_starter_ship_base(player)
@@ -160,7 +173,12 @@ local function place_starter_ship(player, attempt)
 		return
 	end
 
+	starter_ship_placement_lock = true
 	minetest.place_schematic(base, starter_ship_path, "0", {}, true, "place_center_x, place_center_z")
+	starter_ship_placement_lock = false
+	minetest.after(0, function()
+		if stellua.set_ship_owner then stellua.set_ship_owner(base, player:get_player_name()) end
+	end)
 	local tank = minetest.registered_nodes["stl_vehicles:tank"]
 	if tank and tank.on_construct then
 		tank.on_construct(vector.add(base, {x=0, y=4, z=0}))
@@ -172,6 +190,8 @@ local function place_starter_ship(player, attempt)
 	meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(base)))
 	meta:set_string("stl_core:ship_marker_mode", "current")
 	meta:set_int(starter_ship_key, 1)
+	-- The current assignment survives reconnects; the starter-only marker is
+	-- used until the player reaches the ship, then becomes the normal marker.
 	if meta:get_int("stl_core:starter_ship_found") == 0 then
 		meta:set_string("stl_core:ship_marker_mode", "starter")
 	end
@@ -267,6 +287,10 @@ local function update_ship_waypoint(player)
 		end
 	end
 	local starter = read_player_pos(meta, "stl_core:starter_ship_pos")
+	if starter and not read_player_pos(meta, "stl_core:current_ship_pos") then
+		meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(starter)))
+		meta:set_string("stl_core:ship_marker_mode", meta:get_int("stl_core:starter_ship_found") == 0 and "starter" or "current")
+	end
 	if starter and meta:get_int("stl_core:starter_ship_found") == 0 then
 		local current = read_player_pos(meta, "stl_core:current_ship_pos")
 		if current and vector.distance(current, starter) < 2 then
@@ -278,9 +302,13 @@ local function update_ship_waypoint(player)
 	if starter and meta:get_int("stl_core:starter_ship_found") == 0
 	and vector.distance(player:get_pos(), starter) <= 9 then
 		meta:set_int("stl_core:starter_ship_found", 1)
-		meta:set_string("stl_core:ship_marker_mode", "off")
+		meta:set_string("stl_core:ship_marker_mode", "current")
 		remove_ship_waypoint(player)
 		minetest.chat_send_player(player:get_player_name(), "Starter ship found. Enter it, then use /ship_panel while piloting.")
+	end
+	if read_player_pos(meta, "stl_core:current_ship_pos")
+	and meta:get_string("stl_core:ship_marker_mode") == "" then
+		meta:set_string("stl_core:ship_marker_mode", "current")
 	end
 	local pos, label = ship_marker_target(player)
 	if pos then

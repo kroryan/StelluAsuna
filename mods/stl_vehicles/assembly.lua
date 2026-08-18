@@ -20,14 +20,14 @@ function lvae_defs.get_staticdata(self)
             end
         end
     end
-    return minetest.serialize({old_get_staticdata(self), self.player, self.power, tanks, self.collisionbox})
+    return minetest.serialize({old_get_staticdata(self), self.player, self.power, tanks, self.collisionbox, self.ship_owner, self.ship_invited})
 end
 
 function lvae_defs.on_activate(self, staticdata, dtime)
     if staticdata and staticdata ~= "" and not tonumber(staticdata) then
         local decoded = minetest.deserialize(staticdata)
         if type(decoded) == "table" then
-            staticdata, self.player, self.power, self.tanks, self.collisionbox = unpack(decoded)
+            staticdata, self.player, self.power, self.tanks, self.collisionbox, self.ship_owner, self.ship_invited = unpack(decoded)
         end
         self.collisionbox = self.collisionbox or {-0.5, -0.5, -0.5, 0.5, 0.5, 0.5}
         self.object:set_properties({physical=true, collisionbox=self.collisionbox})
@@ -173,6 +173,34 @@ function stellua.assemble_vehicle(pos, find_interior)
     return out, seat, engines, power, tanks
 end
 
+local function access_list(meta)
+    local list = minetest.deserialize(meta:get_string("stl_vehicles:ship_invited"))
+    return type(list) == "table" and list or {}
+end
+
+local function list_has(list, name)
+    for _, value in ipairs(list) do
+        if value == name then return true end
+    end
+    return false
+end
+
+-- Ownership is stored on the seat node, which is stable while the ship is
+-- built, and copied to the LVAE while it is flying.
+function stellua.get_ship_access(pos)
+    local _, seat = stellua.assemble_vehicle(vector.round(pos), true)
+    if not seat then return nil end
+    local meta = minetest.get_meta(seat)
+    return seat, meta:get_string("stl_vehicles:ship_owner"), access_list(meta)
+end
+
+function stellua.set_ship_owner(pos, owner)
+    local seat = select(2, stellua.assemble_vehicle(vector.round(pos), true))
+    if not seat then return false end
+    minetest.get_meta(seat):set_string("stl_vehicles:ship_owner", owner or "")
+    return true
+end
+
 --Fake air for vehicles so they preserve position of air
 minetest.register_node("stl_vehicles:air", {
     description = "Vehicle Air",
@@ -192,6 +220,12 @@ function stellua.detach_vehicle(pos)
     if not ship or not seat then return nil end
     local lvae = LVAE(pos)
     lvae.power = power
+    local owner, invited
+    local seat_meta = minetest.get_meta(seat)
+    owner = seat_meta:get_string("stl_vehicles:ship_owner")
+    invited = access_list(seat_meta)
+    lvae.ship_owner = owner ~= "" and owner or nil
+    lvae.ship_invited = invited
     lvae.tanks = {}
     for _, p in ipairs(tanks or {}) do
         local inv = minetest.create_detached_inventory("spaceship_inv"..inv_count, {})
@@ -231,14 +265,25 @@ function stellua.land_vehicle(vehicle, pos)
     pos = pos or vehicle:get_pos()
     if vehicle.get_luaentity then vehicle = vehicle:get_luaentity() end
     if not vehicle or type(vehicle.data) ~= "table" then return false end
+    local owner = vehicle.ship_owner
+    local invited = vehicle.ship_invited or {}
+    local landed_seat
     for _, node in pairs(vehicle.data) do
         if node.entity then
             if node.name == "stl_vehicles:air" then
                 minetest.remove_node(node.entity.pos)
             else
                 minetest.set_node(node.entity.pos+pos, node)
+                if minetest.get_item_group(node.name, "seat") > 0 then
+                    landed_seat = node.entity.pos + pos
+                end
             end
         end
+    end
+    if landed_seat then
+        local meta = minetest.get_meta(landed_seat)
+        meta:set_string("stl_vehicles:ship_owner", owner or "")
+        meta:set_string("stl_vehicles:ship_invited", minetest.serialize(invited))
     end
     for _, val in ipairs(vehicle.tanks) do
         local p, invname, fuel = unpack(val)
@@ -290,8 +335,34 @@ local ship_panels = {}
 local ship_panel_entities = {}
 local right_clicks = {}
 
+local function can_use_ship(user, pos, entity)
+    local name = user:get_player_name()
+    local owner = entity and entity.ship_owner or nil
+    local invited = entity and entity.ship_invited or nil
+    local seat
+    if not entity then
+        seat, owner, invited = stellua.get_ship_access(pos)
+        if not seat then return false, "This ship has no usable seat." end
+        invited = invited or {}
+    end
+    owner = owner or ""
+    if owner == "" then
+        owner = name
+        if entity then entity.ship_owner = owner else minetest.get_meta(seat):set_string("stl_vehicles:ship_owner", owner) end
+    end
+    if owner ~= name and not list_has(invited or {}, name) then
+        return false, "This ship belongs to "..owner..". Ask them to use /invite_ship "..name.."."
+    end
+    return true
+end
+
 local function enter_ship(user, pos)
     if not user or not user:is_player() or user:get_attach() then return false end
+    local allowed, reason = can_use_ship(user, pos)
+    if not allowed then
+        minetest.chat_send_player(user:get_player_name(), reason)
+        return false
+    end
     local ent = stellua.detach_vehicle(vector.round(pos))
     if not ent or not ent.object or not ent.object:is_valid() then
         minetest.chat_send_player(user:get_player_name(), "Ship entry failed: the ship is incomplete or busy.")
@@ -303,6 +374,37 @@ local function enter_ship(user, pos)
     minetest.chat_send_player(user:get_player_name(), "Ship control active. Press Space to launch; press E again to exit.")
     return true
 end
+
+minetest.register_chatcommand("invite_ship", {
+    params = "<player>",
+    description = "Invite a player to enter your ship",
+    func = function(name, param)
+        local target = (param or ""):match("^%s*(%S+)%s*$")
+        if not target then return false, "Usage: /invite_ship <player>" end
+        local player = minetest.get_player_by_name(name)
+        if not player then return false, "Player not found" end
+        local attached = player:get_attach()
+        local entity = attached and attached:is_valid() and attached:get_luaentity()
+        local seat, owner, invited
+        if entity and entity.name == "lvae:lvae" then
+            owner, invited = entity.ship_owner or "", entity.ship_invited or {}
+        else
+            local _, nearby = stellua.assemble_vehicle(vector.round(player:get_pos()), true)
+            if not nearby then return false, "Pilot your ship or stand beside it first." end
+            seat, owner, invited = stellua.get_ship_access(nearby)
+        end
+        if owner == "" then owner = name end
+        if owner ~= name then return false, "Only the ship owner can invite players." end
+        if not list_has(invited or {}, target) then table.insert(invited, target) end
+        if entity and entity.name == "lvae:lvae" then
+            entity.ship_owner, entity.ship_invited = owner, invited
+        else
+            minetest.get_meta(seat):set_string("stl_vehicles:ship_owner", owner)
+            minetest.get_meta(seat):set_string("stl_vehicles:ship_invited", minetest.serialize(invited))
+        end
+        return true, "Invited "..target.." to your ship."
+    end,
+})
 
 local function ship_panel_formspec(player, ship_pos)
     local ship, seat, engines, power, tanks = stellua.assemble_vehicle(ship_pos, true)
@@ -538,16 +640,21 @@ minetest.register_globalstep(function(dtime)
                     minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=pos}, true)
                 end
 
-            --make vehicle launch on jump
+			--make vehicle launch on jump
 			elseif control.jump and (index or (pos.y > -1000 and pos.y < 1000)) and minetest.get_item_group(minetest.get_node(pos).name, "seat") > 0 then
-				local ent = stellua.detach_vehicle(pos)
-				if ent and ent.object and ent.object:is_valid() then
-					player:set_attach(ent.object)
-					ent.player = playername
+				local allowed, reason = can_use_ship(player, pos)
+				if not allowed then
+					minetest.chat_send_player(playername, reason)
 				else
-					minetest.chat_send_player(playername, "Ship launch failed: the vehicle is incomplete or busy.")
+					local ent = stellua.detach_vehicle(pos)
+					if ent and ent.object and ent.object:is_valid() then
+						player:set_attach(ent.object)
+						ent.player = playername
+					else
+						minetest.chat_send_player(playername, "Ship launch failed: the vehicle is incomplete or busy.")
+					end
+					minetest.sound_play({name="doors_door_close", gain=0.3}, {pos=pos}, true)
 				end
-                minetest.sound_play({name="doors_door_close", gain=0.3}, {pos=pos}, true)
             end
         end
 
