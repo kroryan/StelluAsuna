@@ -750,22 +750,15 @@ mobs:register_mob("horror:skull", {
    fly = true,
    do_custom = function(self)
    local apos = self.object:getpos()
-		 minetest.add_particlespawner(
-			12, --amount
-			0.3, --time
-			{x=apos.x-0.3, y=apos.y+0.6, z=apos.z-0.3}, --minpos
-			{x=apos.x+0.3, y=apos.y+0.6, z=apos.z+0.3}, --maxpos
-			{x=-0, y=-0, z=-0}, --minvel
-			{x=0, y=0, z=0}, --maxvel
-			{x=0,y=1.5,z=0}, --minacc
-			{x=0.5,y=1.5,z=0.5}, --maxacc
-			1, --minexptime
-			2, --maxexptime
-			3, --minsize
-			5, --maxsize
-			false, --collisiondetection
-			"horror_flame3.png" --texture
-		)
+		 minetest.add_particlespawner({
+			amount = 12, time = 0.3,
+			minpos = {x=apos.x-0.3, y=apos.y+0.6, z=apos.z-0.3},
+			maxpos = {x=apos.x+0.3, y=apos.y+0.6, z=apos.z+0.3},
+			minvel = {x=0, y=0, z=0}, maxvel = {x=0, y=0, z=0},
+			minacc = {x=0,y=1.5,z=0}, maxacc = {x=0.5,y=1.5,z=0.5},
+			minexptime = 1, maxexptime = 2, minsize = 3, maxsize = 5,
+			collisiondetection = false, texture = "horror_flame3.png"
+		})
    end,
    fall_speed = 0,
    stepheight = 10,
@@ -990,22 +983,15 @@ mobs:register_mob("horror:mothman", {
    fly = true,
    do_custom = function(self)
    local apos = self.object:getpos()
-		minetest.add_particlespawner(
-			1, --amount
-			0.3, --time
-			{x=apos.x-0.3, y=apos.y-0.3, z=apos.z-0.3}, --minpos
-			{x=apos.x+0.3, y=apos.y-0.3, z=apos.z+0.3}, --maxpos
-			{x=-0, y=-0, z=-0}, --minvel
-			{x=0, y=0, z=0}, --maxvel
-			{x=0,y=-1,z=0}, --minacc
-			{x=0.5,y=-1,z=0.5}, --maxacc
-			3, --minexptime
-			5, --maxexptime
-			3, --minsize
-			5, --maxsize
-			false, --collisiondetection
-			"horror_dust.png" --texture
-		)
+		minetest.add_particlespawner({
+			amount = 1, time = 0.3,
+			minpos = {x=apos.x-0.3, y=apos.y-0.3, z=apos.z-0.3},
+			maxpos = {x=apos.x+0.3, y=apos.y-0.3, z=apos.z+0.3},
+			minvel = {x=0, y=0, z=0}, maxvel = {x=0, y=0, z=0},
+			minacc = {x=0,y=-1,z=0}, maxacc = {x=0.5,y=-1,z=0.5},
+			minexptime = 3, maxexptime = 5, minsize = 3, maxsize = 5,
+			collisiondetection = false, texture = "horror_dust.png"
+		})
    end,
    fall_speed = 0,
    stepheight = 5,
