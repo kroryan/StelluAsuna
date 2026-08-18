@@ -138,7 +138,6 @@ minetest.register_decoration({
 		octaves = 3,
 		persist = 0.66
 	},
-	biomes = {"chestnut_forest"},
 	y_max = 31000,
 	y_min = 1,
 	schematic = chemistry.chestnut_tree,

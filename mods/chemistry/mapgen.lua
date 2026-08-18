@@ -374,7 +374,6 @@ local function register_flower(flower_name)
 		},
 		y_max = 30,
 		y_min = 1,
-      biomes = {"chestnut_forest"},
 		decoration = "flowers:"..flower_name,
 	})
 end
@@ -402,7 +401,6 @@ local function register_grass_decoration(offset, scale, length)
 			octaves = 3,
 			persist = 0.6
 		},
-		biomes = {"chestnut_forest"},
 		y_max = 31000,
 		y_min = 1,
 		decoration = "default:grass_" .. length,
