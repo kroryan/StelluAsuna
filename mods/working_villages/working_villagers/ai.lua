@@ -255,6 +255,34 @@ local function is_hostile_entity(object)
 		or name:match("spider") ~= nil
 end
 
+-- AliveAI's perception helpers are used as an optional behaviour library.
+-- Working Villagers remain the entity and keep their own pathfinder/jobs.
+local function ai_visible(from, to)
+	if not from or not to then return false end
+	if aliveai and aliveai.visiable then
+		local ok, visible = pcall(aliveai.visiable, from, to)
+		if ok and type(visible) == "boolean" then return visible end
+	end
+	return minetest.line_of_sight(from, to)
+end
+
+local function aliveai_attack(villager, target, damage)
+	if aliveai and aliveai.punch then
+		local ok = pcall(aliveai.punch, villager, target, damage)
+		if ok then return true end
+	end
+	return false
+end
+
+-- Reuse AliveAI's adjacent-node tactical search while retaining the native
+-- Working Villagers pathfinder for the actual movement.
+local function tactical_approach(villager, target_pos)
+	if not (aliveai and aliveai.neartarget) then return nil end
+	local ok, point = pcall(aliveai.neartarget, villager, vector.round(target_pos), 1, -2, -1)
+	if ok and point and type(point.x) == "number" then return point end
+	return nil
+end
+
 local function has_item(villager, item_name)
 	local inventory = villager:get_inventory()
 	return inventory and inventory:contains_item("main", ItemStack(item_name))
@@ -395,7 +423,7 @@ local function combat_step(villager, dtime)
 	villager:set_displayed_action("defending the village")
 	villager:set_state_info("Fighting a hostile creature or attacker.")
 	if distance > 2.5 then
-		move_toward(villager, target:get_pos())
+		move_toward(villager, tactical_approach(villager, target:get_pos()) or target:get_pos())
 	elseif villager.ai_attack_cooldown <= 0 then
 		local direction = vector.direction(villager.object:get_pos(), target:get_pos())
 		villager.object:set_velocity({x = 0, y = villager.object:get_velocity().y, z = 0})
@@ -407,10 +435,12 @@ local function combat_step(villager, dtime)
 		if capabilities and capabilities.damage_groups and capabilities.damage_groups.fleshy then
 			damage = math.max(1, capabilities.damage_groups.fleshy)
 		end
-		target:punch(villager.object, 1.0, {
-			full_punch_interval = 1.0,
-			damage_groups = {fleshy = damage},
-		}, direction)
+		if not aliveai_attack(villager, target, damage) then
+			target:punch(villager.object, 1.0, {
+				full_punch_interval = 1.0,
+				damage_groups = {fleshy = damage},
+			}, direction)
+		end
 		villager.ai_attack_cooldown = 1.1
 	end
 	return true
@@ -537,7 +567,8 @@ function working_villages.villager:ai_step(dtime)
 	-- react to nearby hostiles once alerted, which keeps the server lighter.
 	local watch_radius = self:get_job_name() == "working_villages:job_guard" and 20 or 6
 	for _, object in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), watch_radius)) do
-		if is_hostile_entity(object) then
+		if is_hostile_entity(object)
+		and ai_visible(self.object:get_pos(), object:get_pos()) then
 			self:ai_set_target(object, false)
 			return combat_step(self, dtime)
 		end
