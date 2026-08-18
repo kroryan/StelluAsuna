@@ -24,7 +24,7 @@ local function now()
 end
 
 local function valid_object(object)
-	return object and object:get_pos() and (not object:get_hp or object:get_hp() > 0)
+	return object and object:get_pos() and (not object.get_hp or object:get_hp() > 0)
 end
 
 local function name_of(object)
