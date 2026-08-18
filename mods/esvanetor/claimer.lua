@@ -41,8 +41,10 @@ local function persist_claim(pos, placer)
 	next_id = next_id + 1
 	claims[id] = {
 		id = id, owner = name, center = vector.round(pos),
-		minx = math.floor(pos.x) - HALF, maxx = math.floor(pos.x) + HALF,
-		minz = math.floor(pos.z) - HALF, maxz = math.floor(pos.z) + HALF,
+		-- HALF cells on the negative side and HALF on the positive side: exactly
+		-- 1000 columns, with the claimer block at the centre edge convention.
+		minx = math.floor(pos.x) - HALF, maxx = math.floor(pos.x) + HALF - 1,
+		minz = math.floor(pos.z) - HALF, maxz = math.floor(pos.z) + HALF - 1,
 		invited = {},
 	}
 	local meta = minetest.get_meta(pos)
