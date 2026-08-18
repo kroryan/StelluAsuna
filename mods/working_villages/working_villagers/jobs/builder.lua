@@ -120,6 +120,9 @@ If I have the materials of course. Also I'll look for building markers within a 
 					self:go_to(destination)
 					self:place(nnode,npos)
 					if minetest.get_node(npos).name==nnode.name then
+						if working_villages.advanced_ai and working_villages.advanced_ai.complete_build then
+							working_villages.advanced_ai.complete_build(npos)
+						end
 						meta:set_int("index",meta:get_int("index")+1)
 					end
 				else
@@ -131,6 +134,9 @@ If I have the materials of course. Also I'll look for building markers within a 
 					end
 					if working_villages.request_build_material then
 						working_villages.request_build_material(self, nname)
+					end
+					if working_villages.advanced_ai and working_villages.advanced_ai.request_build then
+						working_villages.advanced_ai.request_build(self, nname, npos)
 					end
 					self:set_state_info(("I am currently waiting for somebody to give me some %s."):format(nname))
 					coroutine.yield(co_command.pause,"waiting for materials")

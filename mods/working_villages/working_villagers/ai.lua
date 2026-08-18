@@ -329,6 +329,7 @@ end
 
 local function clear_target(villager)
 	villager.ai_target = nil
+	villager.advanced_route = nil
 	villager.ai_state = "calm"
 	villager.ai_state_time = 0
 	villager.ai_attack_cooldown = 0
@@ -369,6 +370,9 @@ function working_villages.villager:ai_set_target(target, shared)
 	if not shared then
 		alert_allies(self, target)
 	end
+	if not shared and working_villages.advanced_ai and working_villages.advanced_ai.alert then
+		working_villages.advanced_ai.alert(self, target, shared and "ally" or "detected")
+	end
 	return true
 end
 
@@ -388,12 +392,20 @@ function working_villages.villager:ai_on_punch(puncher)
 		return
 	end
 	if self:ai_is_enemy(puncher) or puncher:is_player() then
+		if working_villages.advanced_ai and working_villages.advanced_ai.alert then
+			working_villages.advanced_ai.alert(self, puncher, "attacked")
+		end
 		self:ai_set_target(puncher, false)
 	end
 end
 
 local function move_away(villager, target_pos)
 	local pos = villager.object:get_pos()
+	if working_villages.advanced_ai and villager.ai_target
+		and working_villages.advanced_ai.retreat_point then
+		local retreat = working_villages.advanced_ai.retreat_point(villager, villager.ai_target)
+		if retreat then target_pos = vector.subtract(pos, vector.subtract(retreat, pos)) end
+	end
 	local direction = vector.subtract(pos, target_pos)
 	direction.y = 0
 	if vector.length(direction) < 0.1 then
@@ -408,6 +420,11 @@ end
 
 local function move_toward(villager, target_pos)
 	local pos = villager.object:get_pos()
+	if working_villages.advanced_ai and vector.distance(pos, target_pos) > 3
+		and working_villages.advanced_ai.next_waypoint then
+		local waypoint = working_villages.advanced_ai.next_waypoint(villager, target_pos)
+		if waypoint then target_pos = waypoint end
+	end
 	local direction = vector.subtract(target_pos, pos)
 	direction.y = 0
 	if vector.length(direction) < 0.1 then

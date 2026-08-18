@@ -49,6 +49,13 @@ or compressed by the release build:
 
 ## Other included third-party material
 
+- `mods/working_villages/working_villagers/advanced_ai.lua`: project-owned
+  GPL-3.0-or-later integration. Its navigation, threat-memory, tactical
+  combat and cooperative construction routines are an independent adaptation
+  of behaviour concepts from the MIT-licensed AliveAI project; no AliveAI
+  runtime code or dependency is shipped. The upstream notice is preserved in
+  `mods/aliveai/LICENSE`.
+
 - `mods/spawnpoint/`: Static Spawnpoint by octacian, sourced from the public
   `octacian/spawnpoint` repository at commit `e428ced`. Code and included
   screenshot are distributed under the upstream MIT license; see

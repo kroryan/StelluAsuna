@@ -56,6 +56,9 @@ working_villages.require("jobs/snowclearer")
 -- Defensive/cooperative combat and construction behavior. Loaded after the
 -- jobs so it can safely interrupt and resume their existing coroutines.
 working_villages.require("ai")
+-- Advanced self-contained navigation, threat memory and construction
+-- coordination. This keeps Working Villagers entities/jobs as the runtime.
+working_villages.require("advanced_ai")
 
 if working_villages.setting_enabled("spawn",false) then
   working_villages.require("spawn")
