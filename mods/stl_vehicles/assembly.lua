@@ -585,6 +585,15 @@ local FRICT = 0.2
 local aux1s = {}
 local orbit_slots = {}
 
+local function save_current_ship_position(player, pos)
+	if not player or not pos then return end
+	local meta = player:get_meta()
+	meta:set_string("stl_core:current_ship_pos", minetest.serialize(vector.round(pos)))
+	if meta:get_string("stl_core:ship_marker_mode") ~= "starter" then
+		meta:set_string("stl_core:ship_marker_mode", "current")
+	end
+end
+
 minetest.register_globalstep(function(dtime)
 	for _, player in ipairs(minetest.get_connected_players()) do
 		local pos = vector.round(player:get_pos())
@@ -658,9 +667,13 @@ minetest.register_globalstep(function(dtime)
 				vehicle = nil
 			end
 			local transferring = false
-			if vehicle then
+		if vehicle then
 			local y = vehicle:get_pos().y
 			local rel_y = (y-500)%1000
+			local vehicle_entity = vehicle:get_luaentity()
+			if vehicle_entity and vehicle_entity.ship_owner == playername then
+				save_current_ship_position(player, vehicle:get_pos())
+			end
 
             --land vehicle with aux1
             if aux1 and on_ground(ent, pos) then
@@ -668,6 +681,7 @@ minetest.register_globalstep(function(dtime)
                 player:set_pos(vector.round(pos))
                 minetest.sound_play({name="doors_door_close", gain=0.3}, {pos=vehicle:get_pos()}, true)
                 stellua.land_vehicle(vehicle)
+                save_current_ship_position(player, pos)
                 stellua.set_respawn(player, pos)
 
             else
@@ -699,6 +713,7 @@ minetest.register_globalstep(function(dtime)
 						player:set_pos(slotpos)
 						player:set_detach()
 						stellua.land_vehicle(ent, slotpos)
+						save_current_ship_position(player, slotpos)
 					stellua.set_respawn(player, slotpos)
 					transferring = true
 				end
@@ -719,6 +734,7 @@ minetest.register_globalstep(function(dtime)
 						player:set_pos(slotpos)
 						player:set_detach()
 						stellua.land_vehicle(ent, slotpos)
+						save_current_ship_position(player, slotpos)
 						stellua.set_respawn(player, slotpos)
 						transferring = true
 					end
