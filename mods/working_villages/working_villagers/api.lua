@@ -473,6 +473,20 @@ end
 function working_villages.villager:handle_obstacles(ignore_fence,ignore_doors)
   local velocity = self.object:get_velocity()
   local front_diff = self:get_look_direction()
+	local function open_door_at(pos)
+		if ignore_doors then return false end
+		pos = vector.round(pos)
+		local node = minetest.get_node(pos)
+		if minetest.get_item_group(node.name, "door") <= 0
+			and not string.find(node.name, "doors:door") then
+			return false
+		end
+		local door = doors.get(pos)
+		if door and not door:state() then
+			door:open()
+		end
+		return door ~= nil
+	end
   for i,v in pairs(front_diff) do
     local front_pos = vector.new(0,0,0)
     front_pos[i] = v
@@ -484,17 +498,11 @@ function working_villages.villager:handle_obstacles(ignore_fence,ignore_doors)
     above_node = minetest.get_node(above_node)
     if minetest.get_item_group(front_node.name, "fence") > 0 and not(ignore_fence) then
       self:change_direction_randomly()
-	elseif string.find(front_node.name,"doors:door") and not(ignore_doors) then
-	  local door = doors.get(front_pos)
-	  local door_dir = vector.apply(minetest.facedir_to_dir(front_node.param2),math.abs)
-	  local villager_dir = vector.round(vector.apply(front_diff,math.abs))
-	  if vector.equals(door_dir,villager_dir) then
-		-- Never toggle an already-open door closed while approaching it.
-		if not door:state() then
-			door:open()
-		end
-	  end
-    elseif minetest.registered_nodes[front_node.name].walkable
+	elseif open_door_at(front_pos) then
+	  -- Door orientation is irrelevant: if it is in the collision path,
+	  -- opening it is always safer than trying to walk through the frame.
+	elseif minetest.registered_nodes[front_node.name]
+	  and minetest.registered_nodes[front_node.name].walkable
       and not(minetest.registered_nodes[above_node.name].walkable) then
       if velocity.y == 0 then
         local nBox = minetest.registered_nodes[front_node.name].node_box
@@ -517,7 +525,8 @@ function working_villages.villager:handle_obstacles(ignore_fence,ignore_doors)
   end
 	if not ignore_doors then
 	  local back_pos = self:get_back()
-	  if string.find(minetest.get_node(back_pos).name,"doors:door") then
+	  if minetest.get_item_group(minetest.get_node(back_pos).name, "door") > 0
+		or string.find(minetest.get_node(back_pos).name,"doors:door") then
 		local door = doors.get(back_pos)
 		if door:state() then
 			door:close()
