@@ -39,7 +39,7 @@ creatura.register_mob("draconis:ice_dragon", {
 	visual_size = {x = 20, y = 20},
 	glow = 12,
 	backface_culling = false,
-	use_texture_alpha = "clip",
+	use_texture_alpha = false,
 	textures = {
 		"draconis_ice_dragon_" .. colors[1] .. ".png^draconis_baked_in_shading.png",
 		"draconis_ice_dragon_" .. colors[2] .. ".png^draconis_baked_in_shading.png",

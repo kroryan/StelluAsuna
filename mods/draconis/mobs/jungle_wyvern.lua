@@ -27,7 +27,7 @@ creatura.register_mob("draconis:jungle_wyvern", {
 	},
 	visual_size = {x = 10, y = 10},
 	backface_culling = false,
-	use_texture_alpha = "clip",
+	use_texture_alpha = false,
 	textures = {
 		"draconis_jungle_wyvern_" .. colors[1] .. ".png",
 		"draconis_jungle_wyvern_" .. colors[2] .. ".png",
