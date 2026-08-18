@@ -355,6 +355,12 @@ local function can_use_ship(user, pos, entity)
     return true
 end
 
+local function is_exact_ship_owner(player_name, entity)
+    return type(player_name) == "string" and player_name ~= ""
+        and entity and type(entity.ship_owner) == "string"
+        and entity.ship_owner ~= "" and entity.ship_owner == player_name
+end
+
 local function enter_ship(user, pos)
     if not user or not user:is_player() or user:get_attach() then return false end
     local allowed, reason = can_use_ship(user, pos)
@@ -388,7 +394,7 @@ minetest.register_chatcommand("ship_reenter", {
         for _, object in ipairs(minetest.get_objects_inside_radius(user:get_pos(), 128)) do
             local ent = object:get_luaentity()
             if ent and ent.name == "lvae:lvae" and ent.object:is_valid()
-                and ent.ship_owner == name and not ent.player then
+                and is_exact_ship_owner(name, ent) and not ent.player then
                 local distance = vector.distance(user:get_pos(), object:get_pos())
                 if not best_distance or distance < best_distance then
                     best, best_distance = ent, distance
