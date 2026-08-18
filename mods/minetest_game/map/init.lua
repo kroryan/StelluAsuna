@@ -15,9 +15,11 @@ local S = minetest.get_translator("map")
 function map.update_hud_flags(player)
 	local creative_enabled = minetest.is_creative_enabled(player:get_player_name())
 
-	local minimap_enabled = creative_enabled or
-		player:get_inventory():contains_item("main", "map:mapping_kit")
-	local radar_enabled = creative_enabled
+	-- StelluaAsuna keeps the minimap available to every player.  The client
+	-- still controls opening it (default key V), while the server no longer
+	-- hides it behind creative mode or a mapping kit.
+	local minimap_enabled = true
+	local radar_enabled = true
 
 	player:hud_set_flags({
 		minimap = minimap_enabled,

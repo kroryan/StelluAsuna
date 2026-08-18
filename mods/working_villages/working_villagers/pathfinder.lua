@@ -115,6 +115,17 @@ end
 
 function pathfinder.find_path(pos, endpos, entity)
 	--print("searching for a path to:" .. minetest.pos_to_string(endpos))
+	-- Prefer Luanti's native pathfinder for normal terrain. Closed doors are
+	-- deliberately left to the fallback below: the villager opens those while
+	-- crossing the threshold.
+	if minetest.find_path then
+		local jump = (entity and entity.jump_height and entity.jump_height > 0) and 1 or 0
+		local drop = (entity and entity.fear_height) or 2
+		local native = minetest.find_path(pos, endpos, 32, jump, drop, "A*_noprefetch")
+		if native and #native > 0 then
+			return native
+		end
+	end
 	local start_index = minetest.hash_node_position(pos)
 	local target_index = minetest.hash_node_position(endpos)
 	local count = 1
@@ -165,7 +176,7 @@ function pathfinder.find_path(pos, endpos, entity)
 				end
 				table.insert(path, closedSet[current_index].pos)
 				current_index = closedSet[current_index].parent
-				if #path > 100 then
+				if #path > 300 then
 					--print("path to long")
 					return
 				end

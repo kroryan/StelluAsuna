@@ -71,7 +71,9 @@ function working_villages.villager:go_to(pos)
 		end
 
 		-- follow path
-		if self:is_near({x=self.path[1].x,y=self.object:get_pos().y,z=self.path[1].z}, 1) then
+		-- Do not finish a route merely because the villager is near the door
+		-- node: that used to make it turn around before crossing the threshold.
+		if self:is_near({x=self.path[1].x,y=self.object:get_pos().y,z=self.path[1].z}, 0.55) then
 			table.remove(self.path, 1)
 
 			if #self.path == 0 then -- end of path
