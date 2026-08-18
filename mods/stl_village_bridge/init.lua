@@ -19,7 +19,11 @@ working_villages.register_job(RESIDENT_JOB, {
 				if self.ai_inside_home and self.pos_data.door_pos then
 					self:set_state_info("I am finding the way out of my house.")
 					self:set_displayed_action("leaving home")
-					local left = self:go_to(self.pos_data.door_pos)
+					local exit_pos = self.pos_data.door_pos
+					if working_villages.navigation_get_door_exit then
+						exit_pos = working_villages.navigation_get_door_exit(self, exit_pos)
+					end
+					local left = self:go_to(exit_pos)
 					if left == true then
 						self.ai_inside_home = false
 					else

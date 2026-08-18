@@ -426,6 +426,9 @@ function working_villages.villager:goto_bed()
 			end
 			self:sleep()
 			local exit_pos = self.pos_data.door_pos or self.pos_data.home_pos
+			if working_villages.navigation_get_door_exit and self.pos_data.door_pos then
+				exit_pos = working_villages.navigation_get_door_exit(self, self.pos_data.door_pos)
+			end
 			local reached_exit = self:go_to(exit_pos)
 			self.ai_inside_home = reached_exit ~= true
 		end

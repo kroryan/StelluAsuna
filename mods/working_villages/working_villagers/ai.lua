@@ -112,6 +112,25 @@ function working_villages.navigation_find_nearest_door(pos, radius)
 	return best
 end
 
+function working_villages.navigation_get_door_exit(villager, door_pos)
+	if not door_pos then return nil end
+	local pos = villager.object:get_pos()
+	local direction = vector.subtract(door_pos, pos)
+	direction.y = 0
+	if vector.length(direction) < 0.1 then
+		direction = villager:get_look_direction()
+	end
+	direction = vector.round(vector.normalize(direction))
+	if direction.x == 0 and direction.z == 0 then direction = {x = 1, y = 0, z = 0} end
+	-- The door node itself is not a valid stopping point: aim two nodes
+	-- beyond it so the pathfinder must cross the threshold.
+	return {
+		x = math.floor(door_pos.x) + direction.x * 2,
+		y = math.floor(door_pos.y),
+		z = math.floor(door_pos.z) + direction.z * 2,
+	}
+end
+
 local function bed_key(pos)
 	return pos and minetest.hash_node_position(vector.round(pos))
 end
