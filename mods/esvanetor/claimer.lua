@@ -58,14 +58,14 @@ local function persist_claim(pos, placer)
 	local meta = minetest.get_meta(pos)
 	meta:set_string("esvanetor:claimer_id", id)
 	meta:set_string("esvanetor:claimer_owner", name)
-	meta:set_string("infotext", ("Rainbow Claimer #%s — %s (1000x1000)"):format(id, name))
+	meta:set_string("infotext", ("Claimer #%s — %s (1000x1000)"):format(id, name))
 	save()
 	return id
 end
 
 minetest.register_node("esvanetor:claimer", {
-	description = "Rainbow Claimer\nClaims a 1000x1000 area",
-	tiles = {"constructor.png"},
+	description = "Claimer\nClaims a 1000x1000 area",
+	tiles = {"claimer.png"},
 	groups = {cracky = 1, oddly_breakable_by_hand = 1},
 	paramtype = "light", light_source = 8,
 	stack_max = 1,
@@ -99,7 +99,7 @@ minetest.register_node("esvanetor:claimer", {
 		if not claim then return end
 		local players = #claim.invited > 0 and table.concat(claim.invited, ", ") or "none"
 		minetest.chat_send_player(clicker:get_player_name(),
-			("Rainbow Claimer #%s\nOwner: %s\nArea: 1000x1000\nInvited: %s"):format(claim.id, claim.owner, players))
+			("Claimer #%s\nOwner: %s\nArea: 1000x1000\nInvited: %s"):format(claim.id, claim.owner, players))
 	end,
 	on_destruct = function(pos)
 		local id = minetest.get_meta(pos):get_string("esvanetor:claimer_id")
@@ -160,5 +160,14 @@ minetest.register_on_mods_loaded(function()
 			return not allowed(claim, name or "")
 		end
 		return base_is_protected(pos, name)
+	end
+end)
+
+-- Tell players who owns a protected block instead of leaving a silent denial.
+minetest.register_on_protection_violation(function(pos, name)
+	local claim = claim_at(pos)
+	if claim and name and name ~= claim.owner and not invited(claim, name) then
+		minetest.chat_send_player(name,
+			("This block is protected by Claimer #%s owned by %s."):format(claim.id, claim.owner))
 	end
 end)
