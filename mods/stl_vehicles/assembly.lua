@@ -396,15 +396,18 @@ local function enter_ship(user, pos)
         minetest.chat_send_player(user:get_player_name(), reason)
         return false
     end
-    local ent = stellua.detach_vehicle(vector.round(pos))
-    if not ent or not ent.object or not ent.object:is_valid() then
-        minetest.chat_send_player(user:get_player_name(), "Ship entry failed: the ship is incomplete or busy.")
+    -- Ground entry must remain node-based.  Stellua's original implementation
+    -- places the player directly on the connected seat and only detaches the
+    -- vehicle when jump is pressed.  Detaching on right-click makes the LVAE
+    -- origin become the player's position, which can put them inside the hull.
+    local seat = select(1, stellua.get_ship_access(pos))
+    if not seat then
+        minetest.chat_send_player(user:get_player_name(), "Ship entry failed: no connected seat found.")
         return false
     end
-    ent.player = user:get_player_name()
-	attach_player_to_vehicle(user, ent)
-    minetest.sound_play({name="doors_door_close", gain=0.3}, {object=ent.object}, true)
-    minetest.chat_send_player(user:get_player_name(), "Ship control active. Press Space to launch; press E again to exit.")
+	user:set_pos(seat)
+    minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=seat}, true)
+    minetest.chat_send_player(user:get_player_name(), "You are on the ship seat. Press Space to take control and launch.")
     return true
 end
 
