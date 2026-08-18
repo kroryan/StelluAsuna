@@ -14,7 +14,7 @@ minetest.register_decoration({
    y_min = 0,
 	fill_ratio = 0.0015,
    flags = "place_center_x, place_center_z",
-	biomes = {"alkaline_land"},
+	biomes = {"alkaline_desert"},
 	schematic = chemistry.cesium_volcano,
 	spawn_by = "chemistry:alkaline_sand", num_spawn_by = 4,
 	rotation = "random"
@@ -211,7 +211,7 @@ minetest.register_decoration({
 	fill_ratio = 0.0015, 
 	y_min = 0, 
 	y_max = 25,
-	biomes = {"alkaline_land"},
+	biomes = {"alkaline_desert"},
 	decoration = {"chemistry:pond1"},
 	spawn_by = "group:alkaline_sand", num_spawn_by = 8
 })
@@ -239,4 +239,3 @@ minetest.register_decoration({
 	decoration = {"chemistry:pond3"},
 	spawn_by = "chemistry:dirt_with_ash", num_spawn_by = 8
 })
-
