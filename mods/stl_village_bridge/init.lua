@@ -16,6 +16,17 @@ working_villages.register_job(RESIDENT_JOB, {
 				self:go_to(ft)
 			else
 				self:handle_night()
+				if self.ai_inside_home and self.pos_data.door_pos then
+					self:set_state_info("I am finding the way out of my house.")
+					self:set_displayed_action("leaving home")
+					local left = self:go_to(self.pos_data.door_pos)
+					if left == true then
+						self.ai_inside_home = false
+					else
+						self:set_state_info("My exit is blocked; I will retry after scanning the house.")
+						self:delay(30)
+					end
+				else
 				self:set_state_info("Following my village routine.")
 				self:set_displayed_action("village resident")
 				
@@ -43,6 +54,7 @@ working_villages.register_job(RESIDENT_JOB, {
 					end
 				end
 				self:delay(math.random(20, 50))
+				end
 			end
 		end
 	end,
@@ -102,6 +114,7 @@ mg_villages.inhabitants.spawn_one_mob = function(bed, village_id, plot_nr, bed_n
 		villager.owner_name = "working_villages:self_employed"
 		villager.nametag = table.concat({bed.first_name or "Resident", bed.middle_name or "", bed.last_name or ""}, " ")
 		villager.pos_data.home_pos = vector.round(spawn_pos)
+		villager.pos_data.door_pos = vector.round(spawn_pos)
 		villager.pos_data.bed_pos = bed_pos
 		villager.pos_data.job_pos = workplace(village_id, bed)
 		villager.pos_data.stelluasuna_bed_id = id
@@ -132,6 +145,9 @@ minetest.register_on_mods_loaded(function()
 			local old_on_punch = def.on_punch
 			def.on_activate = function(self, staticdata, dtime_s)
 				if old_on_activate then old_on_activate(self, staticdata, dtime_s) end
+				if self.pos_data and not self.pos_data.door_pos then
+					self.pos_data.door_pos = self.pos_data.home_pos
+				end
 				if self.pause and self.get_job_name and self:get_job_name() == RESIDENT_JOB then
 					self.pause = false
 					minetest.log("action", "[stl_village_bridge] Recovered and unpaused resident " .. tostring(self.nametag) .. " on load.")

@@ -381,7 +381,8 @@ function working_villages.villager:goto_bed()
 		log.action("villager %s is going home", self.inventory_name)
 		self:set_state_info("I'm going home, it's late.")
 		self:set_displayed_action("going home")
-		local reached_home = self:go_to(self.pos_data.home_pos)
+		local home_entry = self.pos_data.door_pos or self.pos_data.home_pos
+		local reached_home = self:go_to(home_entry)
 		if reached_home == false then
 			self:set_state_info("I could not find a safe route home; waiting here until dawn.")
 			self:set_displayed_action("waiting until dawn")
@@ -424,7 +425,9 @@ function working_villages.villager:goto_bed()
 				tod = minetest.get_timeofday()
 			end
 			self:sleep()
-			self:go_to(self.pos_data.home_pos)
+			local exit_pos = self.pos_data.door_pos or self.pos_data.home_pos
+			local reached_exit = self:go_to(exit_pos)
+			self.ai_inside_home = reached_exit ~= true
 		end
 	end
 	return true
