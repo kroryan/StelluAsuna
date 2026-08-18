@@ -501,3 +501,20 @@ minetest.register_chatcommand("star", {
         return true, "Name: "..star.name.."\nSeed: "..star.seed.."\nScale: "..star.scale.."\nPlanets: "..#star.planets.."\nPosition: ("..star.pos.x..", "..star.pos.y..", "..star.pos.z..")"
     end
 })
+
+-- Normalize legacy TileDef tables before compatibility mods call
+-- override_item().  Older bundled mods used `image`; current Luanti expects
+-- `name`, and mutating the registered definition here avoids re-registration
+-- warnings while preserving the actual texture and animation settings.
+minetest.register_on_mods_loaded(function()
+	for _, def in pairs(minetest.registered_items) do
+		if def.tiles then
+			for _, tile in pairs(def.tiles) do
+				if type(tile) == "table" and tile.image and not tile.name then
+					tile.name = tile.image
+					tile.image = nil
+				end
+			end
+		end
+	end
+end)

@@ -969,6 +969,12 @@ end
 
 function Everness.register_ore(self, def)
     local _def = table.copy(def)
+    -- Luanti 5.10 renamed ore bounds; accept old callers without emitting
+    -- deprecation warnings and keep the canonical fields in the registry.
+    if _def.y_min == nil and _def.height_min ~= nil then _def.y_min = _def.height_min end
+    if _def.y_max == nil and _def.height_max ~= nil then _def.y_max = _def.height_max end
+    _def.height_min = nil
+    _def.height_max = nil
     -- @TOTO using `ore` as name here will override the entry when there are multiple ore registrations for the same ore (different noise)
     -- using indexed table would be more appropriate here
     local _name = _def.ore
