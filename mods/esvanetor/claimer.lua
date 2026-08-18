@@ -37,14 +37,22 @@ end
 local function persist_claim(pos, placer)
 	local name = placer and placer:get_player_name() or ""
 	if name == "" then return end
+	local x, z = math.floor(pos.x), math.floor(pos.z)
+	local minx, maxx = x - HALF, x + HALF - 1
+	local minz, maxz = z - HALF, z + HALF - 1
+	for _, existing in pairs(claims) do
+		if minx <= existing.maxx and maxx >= existing.minx
+			and minz <= existing.maxz and maxz >= existing.minz then
+			return nil, existing
+		end
+	end
 	local id = tostring(next_id)
 	next_id = next_id + 1
 	claims[id] = {
 		id = id, owner = name, center = vector.round(pos),
 		-- HALF cells on the negative side and HALF on the positive side: exactly
 		-- 1000 columns, with the claimer block at the centre edge convention.
-		minx = math.floor(pos.x) - HALF, maxx = math.floor(pos.x) + HALF - 1,
-		minz = math.floor(pos.z) - HALF, maxz = math.floor(pos.z) + HALF - 1,
+		minx = minx, maxx = maxx, minz = minz, maxz = maxz,
 		invited = {},
 	}
 	local meta = minetest.get_meta(pos)
@@ -65,7 +73,16 @@ minetest.register_node("esvanetor:claimer", {
 		-- The placer is attached by after_place_node below.
 	end,
 	after_place_node = function(pos, placer)
-		local id = persist_claim(pos, placer)
+		local id, existing = persist_claim(pos, placer)
+		if not id then
+			minetest.remove_node(pos)
+			if placer then
+				minetest.add_item(pos, ItemStack("esvanetor:claimer"))
+				minetest.chat_send_player(placer:get_player_name(),
+					"This area overlaps claim #" .. tostring(existing and existing.id or "unknown") .. ". Claims cannot overlap.")
+			end
+			return
+		end
 		if id and placer then
 			minetest.chat_send_player(placer:get_player_name(),
 				("Claim #%s created: 1000x1000 blocks. Invite with /invite_claim %s <player>"):format(id, id))
@@ -119,7 +136,11 @@ minetest.register_on_mods_loaded(function()
 	local base_is_protected = minetest.is_protected
 	minetest.is_protected = function(pos, name)
 		local claim = claim_at(pos)
-		if claim and not allowed(claim, name or "") then return true end
+		if claim then
+			-- A claim is authoritative: authorized users bypass lower-priority
+			-- protection providers, while everyone else is denied unconditionally.
+			return not allowed(claim, name or "")
+		end
 		return base_is_protected(pos, name)
 	end
 end)
