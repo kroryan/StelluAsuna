@@ -470,6 +470,40 @@ end
 --if the villager hits a walkable he wil jump
 --if ignore_fence is false the villager will not jump over fences
 --if ignore_doors is false and the villager hits a door he opens it
+-- Open doors by proximity, not only by the current look vector. A villager
+-- can arrive while its movement coroutine is still turning; the old check
+-- then left it oscillating against the frame forever.
+function working_villages.villager:open_nearby_doors(radius)
+  if not doors or not self.object or not self.object:get_pos() then return false end
+  local p = vector.round(self.object:get_pos())
+  radius = math.max(1, math.floor(radius or 2))
+  local opened = false
+  for x = -radius, radius do
+    for y = 0, 1 do
+      for z = -radius, radius do
+        local q = {x=p.x+x, y=p.y+y, z=p.z+z}
+        local n = minetest.get_node(q)
+        if minetest.get_item_group(n.name, "door") > 0
+            or string.find(n.name, "doors:door", 1, true) then
+          local d = doors.get(q)
+          if d and not d:state() then
+            d:open()
+            self.ai_last_open_door = vector.new(q)
+            self.ai_last_open_door_time = minetest.get_gametime()
+            opened = true
+          elseif d and d:state() and not self.ai_last_open_door then
+            -- Remember an already-open doorway too, so it can be closed after
+            -- the villager has actually crossed it.
+            self.ai_last_open_door = vector.new(q)
+            self.ai_last_open_door_time = minetest.get_gametime()
+          end
+        end
+      end
+    end
+  end
+  return opened
+end
+
 function working_villages.villager:handle_obstacles(ignore_fence,ignore_doors)
   local velocity = self.object:get_velocity()
   local front_diff = self:get_look_direction()
@@ -528,8 +562,15 @@ function working_villages.villager:handle_obstacles(ignore_fence,ignore_doors)
 	  if minetest.get_item_group(minetest.get_node(back_pos).name, "door") > 0
 		or string.find(minetest.get_node(back_pos).name,"doors:door") then
 		local door = doors.get(back_pos)
-		if door:state() then
+		local tracked = self.ai_last_open_door
+		local away = tracked and vector.distance(self.object:get_pos(), tracked) > 1.5
+		local old_enough = not self.ai_last_open_door_time
+			or minetest.get_gametime() - self.ai_last_open_door_time >= 2
+		if door and door:state() and tracked
+			and vector.distance(back_pos, tracked) <= 1.5 and away and old_enough then
 			door:close()
+			self.ai_last_open_door = nil
+			self.ai_last_open_door_time = nil
 		end
 	  end
   end

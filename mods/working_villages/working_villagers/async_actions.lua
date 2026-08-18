@@ -71,6 +71,11 @@ function working_villages.villager:go_to(pos)
 		end
 
 		-- follow path
+		-- Open nearby doorways before steering; turning latency must not trap
+		-- the villager against a door frame.
+		if self.open_nearby_doors then
+			self:open_nearby_doors(2)
+		end
 		-- Do not finish a route merely because the villager is near the door
 		-- node: that used to make it turn around before crossing the threshold.
 		if self:is_near({x=self.path[1].x,y=self.object:get_pos().y,z=self.path[1].z}, 0.55) then

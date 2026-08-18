@@ -175,6 +175,12 @@ minetest.register_on_mods_loaded(function()
 					if old_on_punch then
 						old_on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
 					end
+					-- Keep the bridge wrapper from swallowing the working_villagers AI
+					-- callback. Residents must alert nearby allies and defend themselves
+					-- even when another mod supplied the damage callback.
+					if self.ai_on_punch and puncher then
+						self:ai_on_punch(puncher)
+					end
 					if not damage or damage <= 0 then
 						local groups = tool_capabilities and tool_capabilities.damage_groups
 						damage = groups and groups.fleshy or 1
