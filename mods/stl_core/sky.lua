@@ -1,5 +1,6 @@
 local NORTH = vector.new(0, 0, -1)
 local UP = vector.new(0, 1, 0)
+local EVERNESS_OWNS_SKY = minetest.get_modpath("everness") ~= nil
 
 --Skybox planet/star entity
 minetest.register_entity("stl_core:skybox", {
@@ -86,11 +87,16 @@ end
 
 local function apply_homeworld(player, state)
 	if state.realm_key == "home" then return end
-	player:set_sky({type="regular", clouds=true})
-	player:set_sun({visible=true, sunrise_visible=true, scale=1})
-	player:set_moon({visible=true})
-	player:set_stars({visible=true})
-	player:set_clouds({height=120})
+	-- Everness refreshes its biome sky, sun, moon and cloud presentation on a
+	-- timer.  Do not overwrite that presentation when returning to Asuna.
+	-- Without Everness, retain Stellua's regular Luanti sky fallback.
+	if not EVERNESS_OWNS_SKY then
+		player:set_sky({type="regular", clouds=true})
+		player:set_sun({visible=true, sunrise_visible=true, scale=1})
+		player:set_moon({visible=true})
+		player:set_stars({visible=true})
+		player:set_clouds({height=120})
+	end
 	clear_realm_physics(player, "gravity", "stl_core:realm_gravity")
 	clear_realm_physics(player, "speed", "stl_core:realm_speed")
 	stellua.set_space_armor(player, false)
@@ -107,6 +113,13 @@ minetest.register_globalstep(function(dtime)
 		local name = player:get_player_name()
 		local state = realm_states[name] or {}
 		realm_states[name] = state
+		state.lighting_timer = (state.lighting_timer or 0) + dtime
+		if state.lighting_timer >= 1 then
+			-- Lower shadow strength makes shaded terrain readable without raising
+			-- the sun, changing sky colours or reducing any realm's illumination.
+			player:set_lighting({shadows={intensity=0.25}})
+			state.lighting_timer = 0
+		end
 		local player_pos = player:get_pos()
 		local index = stellua.get_planet_index(player_pos.y)
 		local slot = stellua.get_slot_index(player_pos)
