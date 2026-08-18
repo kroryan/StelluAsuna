@@ -6,6 +6,84 @@ local log = working_villages.require("log")
 
 working_villages.ai_registry = working_villages.ai_registry or {}
 working_villages.bed_reservations = working_villages.bed_reservations or {}
+working_villages.navigation_memory = working_villages.navigation_memory or {
+	zones = {},
+	blocked_edges = {},
+}
+
+local ZONE_SIZE = 8
+
+local function zone_key(pos)
+	return table.concat({
+		math.floor(pos.x / ZONE_SIZE),
+		math.floor(pos.y / 4),
+		math.floor(pos.z / ZONE_SIZE),
+	}, ":")
+end
+
+local function edge_key(a, b)
+	return minetest.hash_node_position(vector.round(a)) .. ">" ..
+		minetest.hash_node_position(vector.round(b))
+end
+
+function working_villages.navigation_note_blocked(a, b)
+	if not a or not b then return end
+	working_villages.navigation_memory.blocked_edges[edge_key(a, b)] =
+		minetest.get_gametime() + 45
+end
+
+function working_villages.navigation_is_blocked(a, b)
+	local key = edge_key(a, b)
+	local expiry = working_villages.navigation_memory.blocked_edges[key]
+	if expiry and expiry > minetest.get_gametime() then return true end
+	working_villages.navigation_memory.blocked_edges[key] = nil
+	return false
+end
+
+function working_villages.navigation_scan_zone(pos)
+	local key = zone_key(pos)
+	local now = minetest.get_gametime()
+	local zone = working_villages.navigation_memory.zones[key]
+	if zone and now - zone.last_scan < 8 then return zone end
+	zone = zone or {exits = {}, doors = {}, blocked = {}}
+	zone.last_scan = now
+	zone.exits = {}
+	zone.doors = {}
+	zone.blocked = {}
+	local minp = {x = math.floor(pos.x / ZONE_SIZE) * ZONE_SIZE, y = math.floor(pos.y) - 3, z = math.floor(pos.z / ZONE_SIZE) * ZONE_SIZE}
+	local maxp = {x = minp.x + ZONE_SIZE - 1, y = pos.y + 3, z = minp.z + ZONE_SIZE - 1}
+	for x = minp.x, maxp.x do
+		for y = minp.y, maxp.y do
+			for z = minp.z, maxp.z do
+				local p = {x = x, y = y, z = z}
+				local node = minetest.get_node_or_nil(p)
+				if node then
+					local name = node.name
+					if name:find("doors:") then
+						zone.doors[#zone.doors + 1] = vector.new(p)
+					elseif minetest.registered_nodes[name] and minetest.registered_nodes[name].walkable then
+						zone.blocked[#zone.blocked + 1] = vector.new(p)
+					end
+				end
+			end
+		end
+	end
+	-- Record walkable boundary cells as known exits for every villager.
+	for x = minp.x, maxp.x do
+		for _, z in ipairs({minp.z, maxp.z}) do
+			local p = {x = x, y = math.floor(pos.y), z = z}
+			if minetest.get_node(p).name == "air" then zone.exits[#zone.exits + 1] = p end
+		end
+	end
+	for z = minp.z + 1, maxp.z - 1 do
+		for _, x in ipairs({minp.x, maxp.x}) do
+			local p = {x = x, y = math.floor(pos.y), z = z}
+			if minetest.get_node(p).name == "air" then zone.exits[#zone.exits + 1] = p end
+		end
+	end
+	working_villages.navigation_memory.zones[key] = zone
+	return zone
+end
 
 local function bed_key(pos)
 	return pos and minetest.hash_node_position(vector.round(pos))
@@ -384,6 +462,7 @@ function working_villages.villager:ai_step(dtime)
 		return false
 	end
 	self.ai_scan_timer = 0
+	working_villages.navigation_scan_zone(self.object:get_pos())
 	-- Guards keep watch even when nobody has been hit yet. Other villagers
 	-- react to nearby hostiles once alerted, which keeps the server lighter.
 	local watch_radius = self:get_job_name() == "working_villages:job_guard" and 20 or 6

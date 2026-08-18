@@ -20,6 +20,9 @@ function working_villages.villager:go_to(pos)
 		-- Never steer blindly at the destination: that is what made villagers
 		-- walk into house walls when a door or corridor was blocked.
 		self.object:set_velocity{x = 0, y = 0, z = 0}
+		if working_villages.navigation_note_blocked then
+			working_villages.navigation_note_blocked(self.object:get_pos(), self.destination)
+		end
 		return false, fail.no_path
 	end
 	--print("the first waypiont on his path:" .. minetest.pos_to_string(self.path[1]))
@@ -38,6 +41,9 @@ function working_villages.villager:go_to(pos)
 		end
 		if stuck_steps >= 80 then
 			self.object:set_velocity{x = 0, y = velocity.y, z = 0}
+			if working_villages.navigation_note_blocked and self.path[1] then
+				working_villages.navigation_note_blocked(current_pos, self.path[1])
+			end
 			self.path = nil
 			return false, fail.no_path
 		end

@@ -484,17 +484,16 @@ function working_villages.villager:handle_obstacles(ignore_fence,ignore_doors)
     above_node = minetest.get_node(above_node)
     if minetest.get_item_group(front_node.name, "fence") > 0 and not(ignore_fence) then
       self:change_direction_randomly()
-    elseif string.find(front_node.name,"doors:door") and not(ignore_doors) then
-      local door = doors.get(front_pos)
-      local door_dir = vector.apply(minetest.facedir_to_dir(front_node.param2),math.abs)
-      local villager_dir = vector.round(vector.apply(front_diff,math.abs))
-      if vector.equals(door_dir,villager_dir) then
-        if door:state() then
-          door:close()
-        else
-          door:open()
-        end
-      end
+	elseif string.find(front_node.name,"doors:door") and not(ignore_doors) then
+	  local door = doors.get(front_pos)
+	  local door_dir = vector.apply(minetest.facedir_to_dir(front_node.param2),math.abs)
+	  local villager_dir = vector.round(vector.apply(front_diff,math.abs))
+	  if vector.equals(door_dir,villager_dir) then
+		-- Never toggle an already-open door closed while approaching it.
+		if not door:state() then
+			door:open()
+		end
+	  end
     elseif minetest.registered_nodes[front_node.name].walkable
       and not(minetest.registered_nodes[above_node.name].walkable) then
       if velocity.y == 0 then
@@ -516,12 +515,14 @@ function working_villages.villager:handle_obstacles(ignore_fence,ignore_doors)
       end
     end
   end
-  if not ignore_doors then
-    local back_pos = self:get_back()
-    if string.find(minetest.get_node(back_pos).name,"doors:door") then
-      local door = doors.get(back_pos)
-      door:close()
-    end
+	if not ignore_doors then
+	  local back_pos = self:get_back()
+	  if string.find(minetest.get_node(back_pos).name,"doors:door") then
+		local door = doors.get(back_pos)
+		if door:state() then
+			door:close()
+		end
+	  end
   end
 end
 
