@@ -29,7 +29,7 @@ function working_villages.villager:go_to(pos)
 	self:change_direction(self.path[1])
 	self:set_animation(working_villages.animation_frames.WALK)
 
-	while #self.path ~= 0 do
+	while self.path and #self.path ~= 0 do
 		local current_pos = self.object:get_pos()
 		local velocity = self.object:get_velocity()
 		local horizontal_speed = math.sqrt(velocity.x * velocity.x + velocity.z * velocity.z)
@@ -67,7 +67,9 @@ function working_villages.villager:go_to(pos)
 		end
 
 		if self:timer_exceeded("go_to:change_dir",30) then
-			self:change_direction(self.path[1])
+			if self.path and self.path[1] then
+				self:change_direction(self.path[1])
+			end
 		end
 
 		-- follow path
@@ -94,6 +96,10 @@ function working_villages.villager:go_to(pos)
 		self:handle_obstacles(true)
 		-- end step
 		coroutine.yield()
+	end
+	if not self.path then
+		self.object:set_velocity{x = 0, y = 0, z = 0}
+		return false, fail.no_path
 	end
 	-- stop
 	self.object:set_velocity{x = 0, y = 0, z = 0}
