@@ -458,6 +458,32 @@ minetest.register_on_mods_loaded(function()
 	end)
 end)
 
+-- Give a minority of generated underground structures a monster encounter.
+-- dungeonsplus marks its generated loot chests; this never touches player
+-- storage and the encounter is rolled only once per structure.
+local underground_encounter_mobs = {
+	"horror:skeleton", "horror:spider", "horror:ghost", "mobs_monster:dungeon_master",
+}
+minetest.register_abm({
+	label = "Stellua underground structure encounters",
+	nodenames = {"default:chest"}, interval = 10, chance = 1, catch_up = false,
+	action = function(pos)
+		local meta = minetest.get_meta(pos)
+		if meta:get_int("stl_dungeon_structure") ~= 1
+			or meta:get_int("stl_dungeon_encounter_rolled") == 1 then return end
+		meta:set_int("stl_dungeon_encounter_rolled", 1)
+		if math.random(100) > 15 then return end
+		local spawn = vector.add(pos, {x = 0, y = 1, z = 0})
+		local node = minetest.get_node_or_nil(spawn)
+		if not node or node.name ~= "air" then return end
+		local available = {}
+		for _, name in ipairs(underground_encounter_mobs) do
+			if minetest.registered_entities[name] then available[#available + 1] = name end
+		end
+		if #available > 0 then minetest.add_entity(spawn, available[math.random(#available)]) end
+	end,
+})
+
 minetest.register_chatcommand("space_status", {
 	description = "Show the current hybrid realm, planet and orbital state",
 	func = function(name)

@@ -127,6 +127,9 @@ local features = {
       vdata[pos] = cids.chest
       local vpos = va:position(pos)
       chest_on_construct(vpos)
+      -- Mark generated dungeon loot for StelluaAsuna's one-time encounter
+      -- roll; player-placed chests are never affected.
+      core.get_meta(vpos):set_int("stl_dungeon_structure", 1)
 
       local pcgr = PcgRandom(core.hash_node_position(vpos))
       local meta = core.get_meta(vpos)
