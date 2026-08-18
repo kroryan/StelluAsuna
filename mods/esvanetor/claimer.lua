@@ -109,9 +109,12 @@ minetest.register_node("esvanetor:claimer", {
 
 minetest.register_craft({
 	output = "esvanetor:claimer",
-	recipe = {{"esvanetor:prismatic_edge", "default:mese_crystal", "esvanetor:prismatic_edge"},
-		{"default:steelblock", "default:diamondblock", "default:steelblock"},
-		{"", "default:steelblock", ""}},
+	-- Deliberately accessible: a Claimer is a protection tool, not end-game
+	-- equipment.  It still consumes a mese crystal and steel, but no diamond
+	-- block, alloy or rainbow weapon is required.
+	recipe = {{"default:steel_ingot", "default:steel_ingot", "default:steel_ingot"},
+		{"", "default:mese_crystal", ""},
+		{"", "default:wood", ""}},
 })
 
 minetest.register_chatcommand("invite_claim", {
