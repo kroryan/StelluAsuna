@@ -123,7 +123,7 @@ logistica.register_controller("simple_controller", {
       "logistica_network_controller_side.png",
       "logistica_network_controller_side.png",
       {
-        image = "logistica_network_controller_front_anim.png",
+        name = "logistica_network_controller_front_anim.png",
         backface_culling = false,
         animation = {
           type = "vertical_frames",
@@ -239,7 +239,7 @@ logistica.register_lava_furnace(S("Lava Furnace"), "lava_furnace", 4, {
     "logistica_lava_furnace_side.png", "logistica_lava_furnace_side.png",
     "logistica_lava_furnace_side.png",
     {
-      image = "logistica_lava_furnace_front_on_anim.png",
+      name = "logistica_lava_furnace_front_on_anim.png",
       backface_culling = false,
       animation = {
         type = "vertical_frames",
@@ -273,7 +273,7 @@ logistica.register_pump(S("Liquid Pump"), "pump",
     "logistica_pump_top.png", "logistica_pump_bottom.png", "logistica_pump_side.png"
   },
   { "logistica_pump_top.png", "logistica_pump_bottom.png", {
-    image = "logistica_pump_side_on.png",
+    name = "logistica_pump_side_on.png",
     backface_culling = false,
     animation = {
       type = "vertical_frames",
