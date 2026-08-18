@@ -60,8 +60,8 @@ end
 
 local function check_clearance(cpos, x, z, height) --TODO: this is unused
 	for i = 1, height do
-		local n_name = minetest.get_node({x = cpos.x + x, y = cpos.y + i, z = cpos.z + z}).name
-		local c_name = minetest.get_node({x = cpos.x, y = cpos.y + i, z = cpos.z}).name
+		local n_name = minetest.get_node({x = cpos.x + x, y = cpos.y + i, z = cpos.z + z})
+		local c_name = minetest.get_node({x = cpos.x, y = cpos.y + i, z = cpos.z})
 		--print(i, n_name, c_name)
 		if walkable(n_name) or walkable(c_name) then
 			return false
@@ -73,29 +73,20 @@ end
 assert(check_clearance)
 
 local function get_neighbor_ground_level(pos, jump_height, fall_height)
-	local node = minetest.get_node(pos)
-	local height = 0
-	if walkable(node) then
-		repeat
-			height = height + 1
-			if height > jump_height then
-				return nil
-			end
-			pos.y = pos.y + 1
-			node = minetest.get_node(pos)
-		until not(walkable(node))
-		return pos
-	else
-		repeat
-			height = height + 1
-			if height > fall_height then
-				return nil
-			end
-			pos.y = pos.y - 1
-			node = minetest.get_node(pos)
-		until walkable(node)
-		return {x = pos.x, y = pos.y + 1, z = pos.z}
+	local function can_stand(candidate)
+		local below = minetest.get_node({x = candidate.x, y = candidate.y - 1, z = candidate.z})
+		if not walkable(below) then return false end
+		for height = 0, 1 do
+			local body = minetest.get_node({x = candidate.x, y = candidate.y + height, z = candidate.z})
+			if walkable(body) then return false end
+		end
+		return true
 	end
+	for offset = jump_height, -fall_height, -1 do
+		local candidate = {x = pos.x, y = pos.y + offset, z = pos.z}
+		if can_stand(candidate) then return candidate end
+	end
+	return nil
 end
 
 local function get_neighbors(current_pos, entity_height, entity_jump_height, entity_fear_height)
@@ -106,59 +97,13 @@ local function get_neighbors(current_pos, entity_height, entity_jump_height, ent
 		local neighbor_pos = {x = current_pos.x + x, y = current_pos.y, z = current_pos.z + z}
 		local neighbor = minetest.get_node(neighbor_pos)
 		local neighbor_ground_level = get_neighbor_ground_level(neighbor_pos, entity_jump_height, entity_fear_height)
-		local neighbor_clearance = false
-		if neighbor_ground_level then
-			-- print(neighbor_ground_level.y - current_pos.y)
-			-- minetest.set_node(neighbor_ground_level, {name = "default:dry_shrub"})
-			local node_above_head = minetest.get_node(
-					{x = current_pos.x, y = current_pos.y + entity_height, z = current_pos.z})
-			if neighbor_ground_level.y - current_pos.y > 0 and not(walkable(node_above_head)) then
-				local height = -1
-				repeat
-					height = height + 1
-					local node = minetest.get_node(
-							{x = neighbor_ground_level.x,
-							y = neighbor_ground_level.y + height,
-							z = neighbor_ground_level.z})
-				until walkable(node) or height > entity_height
-				if height >= entity_height then
-					neighbor_clearance = true
-				end
-			elseif neighbor_ground_level.y - current_pos.y > 0 and walkable(node_above_head) then
-				neighbors[neighbors_index] = {
-						hash = nil,
-						pos = nil,
-						clear = nil,
-						walkable = nil,
-				}
-			else
-				local height = -1
-				repeat
-					height = height + 1
-					local node = minetest.get_node(
-							{x = neighbor_ground_level.x,
-							y = current_pos.y + height,
-							z = neighbor_ground_level.z})
-				until walkable(node) or height > entity_height
-				if height >= entity_height then
-					neighbor_clearance = true
-				end
-			end
-
-			neighbors[neighbors_index] = {
-					hash = minetest.hash_node_position(neighbor_ground_level),
-					pos = neighbor_ground_level,
-					clear = neighbor_clearance,
-					walkable = walkable(neighbor),
-			}
-		else
-			neighbors[neighbors_index] = {
-					hash = nil,
-					pos = nil,
-					clear = nil,
-					walkable = nil,
-			}
-		end
+		neighbors[neighbors_index] = {
+			hash = neighbor_ground_level and minetest.hash_node_position(neighbor_ground_level) or nil,
+			pos = neighbor_ground_level,
+			clear = neighbor_ground_level ~= nil,
+			-- Doors are treated as passable targets; handle_obstacles opens them.
+			walkable = walkable(neighbor),
+		}
 		neighbors_index = neighbors_index + 1
 	end
 	end
@@ -215,8 +160,8 @@ function pathfinder.find_path(pos, endpos, entity)
 			local path = {}
 			local reverse_path = {}
 			repeat
-				if not(closedSet[current_index]) then
-					return {endpos} --was empty return
+			if not(closedSet[current_index]) then
+					return nil
 				end
 				table.insert(path, closedSet[current_index].pos)
 				current_index = closedSet[current_index].parent
@@ -290,8 +235,8 @@ function pathfinder.find_path(pos, endpos, entity)
 			return
 		end
 	until count < 1
-	--print("count < 1")
-	return {endpos}
+	-- No route exists; callers must choose another destination or wait.
+	return nil
 end
 
 pathfinder.walkable = walkable

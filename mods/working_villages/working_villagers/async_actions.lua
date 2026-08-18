@@ -17,10 +17,10 @@ function working_villages.villager:go_to(pos)
 	local last_progress_pos = vector.new(self.object:get_pos())
 	local stuck_steps = 0
 	if self.path == nil then
-		--TODO: actually no path shouldn't be accepted
-		--we'd have to check whether we can find a shorter path in the right direction
-		--return false, fail.no_path
-		self.path = {self.destination}
+		-- Never steer blindly at the destination: that is what made villagers
+		-- walk into house walls when a door or corridor was blocked.
+		self.object:set_velocity{x = 0, y = 0, z = 0}
+		return false, fail.no_path
 	end
 	--print("the first waypiont on his path:" .. minetest.pos_to_string(self.path[1]))
 	self:change_direction(self.path[1])
@@ -375,7 +375,14 @@ function working_villages.villager:goto_bed()
 		log.action("villager %s is going home", self.inventory_name)
 		self:set_state_info("I'm going home, it's late.")
 		self:set_displayed_action("going home")
-		self:go_to(self.pos_data.home_pos)
+		local reached_home = self:go_to(self.pos_data.home_pos)
+		if reached_home == false then
+			self:set_state_info("I could not find a safe route home; waiting here until dawn.")
+			self:set_displayed_action("waiting until dawn")
+			self.object:set_velocity{x = 0, y = 0, z = 0}
+			self.wait_until_dawn()
+			return true
+		end
 		if (self.pos_data.bed_pos==nil) then
 			log.warning("villager %s couldn't find his bed",self.inventory_name)
 			--TODO: go home anyway
@@ -395,7 +402,14 @@ function working_villages.villager:goto_bed()
 			log.info("villager %s bed is at: %s", self.inventory_name, minetest.pos_to_string(self.pos_data.bed_pos))
 			self:set_state_info("I'm going to bed, it's late.")
 			self:set_displayed_action("going to bed")
-			self:go_to(self.pos_data.bed_pos)
+			local reached_bed = self:go_to(self.pos_data.bed_pos)
+			if reached_bed == false then
+				self:set_state_info("My bed is blocked, so I am waiting safely until dawn.")
+				self:set_displayed_action("waiting until dawn")
+				self.object:set_velocity{x = 0, y = 0, z = 0}
+				self.wait_until_dawn()
+				return true
+			end
 			self:set_state_info("I am going to sleep soon.")
 			self:set_displayed_action("waiting for dusk")
 			local tod = minetest.get_timeofday()

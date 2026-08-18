@@ -129,6 +129,7 @@ minetest.register_on_mods_loaded(function()
 		local def = minetest.registered_entities[entity_name]
 		if def then
 			local old_on_activate = def.on_activate
+			local old_on_punch = def.on_punch
 			def.on_activate = function(self, staticdata, dtime_s)
 				if old_on_activate then old_on_activate(self, staticdata, dtime_s) end
 				if self.pause and self.get_job_name and self:get_job_name() == RESIDENT_JOB then
@@ -151,6 +152,9 @@ minetest.register_on_mods_loaded(function()
 				end
 
 				def.on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
+					if old_on_punch then
+						old_on_punch(self, puncher, time_from_last_punch, tool_capabilities, dir, damage)
+					end
 					if not damage or damage <= 0 then
 						local groups = tool_capabilities and tool_capabilities.damage_groups
 						damage = groups and groups.fleshy or 1

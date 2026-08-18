@@ -176,6 +176,12 @@ function working_villages.villager:ai_set_target(target, shared)
 	self.ai_state_time = 0
 	self.ai_shared_threat = shared == true
 	self.pause = false
+	if self.ai_sleeping then
+		local pos = self.object:get_pos()
+		self.ai_sleeping = false
+		self.object:set_pos({x = pos.x, y = pos.y + 0.5, z = pos.z})
+		self:set_animation(working_villages.animation_frames.STAND)
+	end
 	self:set_displayed_action("defending the village")
 	self:set_state_info("I detected a threat and alerted nearby villagers.")
 	if not shared then
