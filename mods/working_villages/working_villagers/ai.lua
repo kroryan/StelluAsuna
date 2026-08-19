@@ -671,6 +671,10 @@ function working_villages.villager:ai_step(dtime)
 		self:change_direction_randomly()
 		return true
 	end
+	if self.ai_target and not alive_object(self.ai_target) then
+		self.ai_target = nil
+		self.ai_attack_cooldown = 0
+	end
 	if self.ai_target then
 		return combat_step(self, dtime)
 	end
