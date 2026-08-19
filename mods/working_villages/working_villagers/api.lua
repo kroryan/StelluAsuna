@@ -388,7 +388,32 @@ end
 
 -- working_villages.villager.change_direction_randomly change direction randonly.
 function working_villages.villager:change_direction_randomly()
-  local direction = {
+  local position = self.object:get_pos()
+  local direction
+  -- Pick an actually visible, standable direction instead of blindly
+  -- steering into a wall. This is also used by the stuck-route recovery.
+  if position then
+    for _ = 1, 12 do
+      local candidate = {x = math.random(-1, 1), y = 0, z = math.random(-1, 1)}
+      if candidate.x ~= 0 or candidate.z ~= 0 then
+        local front = vector.add(position, candidate)
+        local head = {x = front.x, y = front.y + 1, z = front.z}
+        local floor = {x = front.x, y = front.y - 1, z = front.z}
+        local front_node = minetest.get_node_or_nil(front)
+        local head_node = minetest.get_node_or_nil(head)
+        local floor_node = minetest.get_node_or_nil(floor)
+        local front_def = front_node and minetest.registered_nodes[front_node.name]
+        local head_def = head_node and minetest.registered_nodes[head_node.name]
+        local floor_def = floor_node and minetest.registered_nodes[floor_node.name]
+        if front_def and head_def and floor_def and not front_def.walkable
+          and not head_def.walkable and floor_def.walkable then
+          direction = candidate
+          break
+        end
+      end
+    end
+  end
+  direction = direction or {
     x = math.random(0, 5) * 2 - 5,
     y = 0,
     z = math.random(0, 5) * 2 - 5,
