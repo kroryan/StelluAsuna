@@ -124,7 +124,7 @@ function forms.register_menu_page(pageid, title)
 					break
 				end
 			end
-			form = form .. "label[0.5,"..(formbottom-1.65)..";Villager ID: "..
+			form = form .. "label[5.0,"..(formbottom-1.65)..";Villager ID: "..
 				minetest.formspec_escape(villager.villager_id or "unknown").."]"
 			if working_villages.villahome_can_follow and working_villages.villahome_can_follow(villager, playername) then
 				local follow_label = villager.ai_follow_enabled and "Disable follow mode" or "Enable follow mode"
