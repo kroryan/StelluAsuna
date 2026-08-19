@@ -410,8 +410,20 @@ function working_villages.villager:change_direction_randomly()
         local front_def = front_node and minetest.registered_nodes[front_node.name]
         local head_def = head_node and minetest.registered_nodes[head_node.name]
         local floor_def = floor_node and minetest.registered_nodes[floor_node.name]
-        if front_def and head_def and floor_def and not front_def.walkable
-          and not head_def.walkable and floor_def.walkable then
+        local lower = {x = front.x, y = front.y - 1, z = front.z}
+        local lower_head = {x = lower.x, y = lower.y + 1, z = lower.z}
+        local lower_floor = {x = lower.x, y = lower.y - 1, z = lower.z}
+        local lower_node = minetest.get_node_or_nil(lower)
+        local lower_head_node = minetest.get_node_or_nil(lower_head)
+        local lower_floor_node = minetest.get_node_or_nil(lower_floor)
+        local lower_def = lower_node and minetest.registered_nodes[lower_node.name]
+        local lower_head_def = lower_head_node and minetest.registered_nodes[lower_head_node.name]
+        local lower_floor_def = lower_floor_node and minetest.registered_nodes[lower_floor_node.name]
+        local same_level = front_def and head_def and floor_def and not front_def.walkable
+          and not head_def.walkable and floor_def.walkable
+        local one_block_down = lower_def and lower_head_def and lower_floor_def
+          and not lower_def.walkable and not lower_head_def.walkable and lower_floor_def.walkable
+        if same_level or one_block_down then
           direction = candidate
           break
         end
