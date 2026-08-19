@@ -1618,15 +1618,20 @@ end
 
 aliveai.visiable=function(pos1,pos2)
 	pos1 = type(pos1) == "userdata" and pos1:get_pos() or pos1.object and pos1.object:get_pos() or pos1
-	pos2 = type(pos2) == "userdata" and pos2:get_pos() or pos2	
+	pos2 = type(pos2) == "userdata" and pos2:get_pos() or pos2
 
-	if not (pos1 and pos2) then
+	if type(pos1) ~= "table" or type(pos2) ~= "table"
+		or type(pos1.x) ~= "number" or type(pos1.y) ~= "number" or type(pos1.z) ~= "number"
+		or type(pos2.x) ~= "number" or type(pos2.y) ~= "number" or type(pos2.z) ~= "number" then
 		return false
 	end
 
 	local v = {x = pos1.x - pos2.x, y = pos1.y - pos2.y-1, z = pos1.z - pos2.z}
 	v.y=v.y-1
 	local amount = (v.x ^ 2 + v.y ^ 2 + v.z ^ 2) ^ 0.5
+	if amount <= 0 or amount ~= amount then
+		return true
+	end
 	local d=vector.distance(pos1,pos2)
 	v.x = (v.x  / amount)*-1
 	v.y = (v.y  / amount)*-1
