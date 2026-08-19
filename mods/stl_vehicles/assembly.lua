@@ -358,6 +358,21 @@ minetest.register_on_mods_loaded(function()
 		end
 		return ""
 	end
+	local function adjacent_ship_owner(pos)
+		for _, dir in ipairs({
+			{x=1,y=0,z=0}, {x=-1,y=0,z=0}, {x=0,y=1,z=0},
+			{x=0,y=-1,z=0}, {x=0,y=0,z=1}, {x=0,y=0,z=-1},
+		}) do
+			local p = vector.add(pos, dir)
+			local n = minetest.get_node(p)
+			if minetest.get_item_group(n.name, "spaceship") > 0
+				or minetest.get_meta(p):get_int("stl_vehicles:converted") == 1 then
+				local owner = node_owner(p)
+				if owner ~= "" then return owner end
+			end
+		end
+		return ""
+	end
 
     -- Protection is checked by the engine before node-specific can_dig hooks,
     -- and several area tools use this path directly. Keep this wrapper here,
@@ -371,6 +386,10 @@ minetest.register_on_mods_loaded(function()
             if owner == "" or owner ~= (player_name or "") then
                 return true
             end
+		elseif adjacent_ship_owner(pos) ~= ""
+			and adjacent_ship_owner(pos) == (player_name or "") then
+			-- The owner may extend and repair their ship into adjacent space.
+			return false
         end
         return base_is_protected(pos, player_name)
     end
