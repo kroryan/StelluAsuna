@@ -43,6 +43,7 @@ logistica.GuideApi.register(GUIDE_NAME, {
 		{name = "14. Claims and security doors", id = "protection"},
 		{name = "15. Villahome / NPC bases", id = "villahome"},
 		{name = "16. Ship Converter", id = "converter"},
+		{name = "17. Ship Home / Crew", id = "shiphome"},
 	},
 	pageText = {
 		warning = page("Important: this is a test manual", [[
@@ -310,6 +311,14 @@ When the scan is valid, press <b>Convert</b>. The original blocks and their appe
 
 Recognized native hull blocks include <b>stl_decor:glass</b>, <b>stl_core:copper_block</b> and <b>stl_core:titanium_block</b>. After conversion, ordinary blocks are also accepted as part of that specific ship. Keep the ship clear of terrain and do not build a second seat inside it.
 ]], recipes({"stl_vehicles:ship_converter"}), {"stl_vehicles:ship_converter", "stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:tank", "stl_vehicles:impulse_engine"}),
+
+		shiphome = page("Ship Home / Crew Station", [[
+Place a <b>Ship Home / Crew Station</b> (<b>stl_vehicles:ship_home</b>) inside the already assembled ship, then right-click it and press <b>Scan ship interior</b>. It detects the connected ship around it and stores only the interior envelope. The home does <b>not</b> claim, protect or include the outside hull, terrain, launch pad or any other ship.
+
+<b>WARNING</b>: the block must be physically inside the ship. If it is on an outer wall, outside, or in a structure that has not been converted/assembled, the scan is rejected. If the ship is rebuilt, moved or resized, scan the Ship Home again.
+
+The owner can add or remove crew names in the menu. The assignment is stored in the node and survives reconnects and server restarts. Keep exactly one Ship Home per crew area; placing several does not merge their interiors.
+]], recipes({"stl_vehicles:ship_home"}), {"stl_vehicles:ship_home", "stl_vehicles:ship_converter", "stl_vehicles:seat"}),
 	},
 })
 

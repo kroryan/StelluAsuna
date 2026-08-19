@@ -6,6 +6,19 @@ local DIRECTIONS = {}
 for i = 0, 5 do DIRECTIONS[#DIRECTIONS + 1] = minetest.wallmounted_to_dir(i) end
 
 local function key(p) return minetest.hash_node_position(p) end
+local function find_native_anchor(pos)
+	local best, distance
+	for x = -12, 12 do for y = -12, 12 do for z = -12, 12 do
+		local p = vector.add(pos, {x=x,y=y,z=z})
+		local n = minetest.get_node_or_nil(p)
+		if n and (minetest.get_item_group(n.name, "spaceship") > 0
+			or minetest.get_meta(p):get_int("stl_vehicles:converted") == 1) then
+			local d = math.abs(x) + math.abs(y) + math.abs(z)
+			if not distance or d < distance then best, distance = p, d end
+		end
+	end end end
+	return best
+end
 local function formspec(meta)
 	local count = meta:get_int("stl_vehicles:scan_count")
 	local status = meta:get_string("stl_vehicles:scan_status")
@@ -36,6 +49,25 @@ local function scan(pos, player)
 		return false, "Only the converter owner can use this block."
 	end
 	local queue, seen, blocks = {vector.round(pos)}, {}, {}
+	-- If this is an existing Stellua ship, use its native hull as a strict
+	-- bounding envelope.  This prevents a converter touching a launch pad or
+	-- natural rock from counting the whole connected terrain as the ship.
+	local anchor = find_native_anchor(pos)
+	local minp, maxp
+	if anchor then
+		local native = select(1, stellua.assemble_vehicle(anchor, true))
+		if native and #native > 0 then
+			minp, maxp = vector.copy(native[1]), vector.copy(native[1])
+			for _, p in ipairs(native) do
+				for _, c in ipairs({"x", "y", "z"}) do minp[c] = math.min(minp[c], p[c]); maxp[c] = math.max(maxp[c], p[c]) end
+			end
+			-- One block of allowance permits ordinary hull panels and the converter
+			-- itself without opening the scan to terrain beyond the ship envelope.
+			minp = vector.subtract(minp, {x=1,y=1,z=1})
+			maxp = vector.add(maxp, {x=1,y=1,z=1})
+			queue = {vector.round(pos)}
+		end
+	end
 	while #queue > 0 do
 		local p = table.remove(queue, 1)
 		local h = key(p)
@@ -43,13 +75,16 @@ local function scan(pos, player)
 			seen[h] = true
 			local node = minetest.get_node_or_nil(p)
 			if not node then return false, "The structure is not fully loaded; try again." end
-			if node.name ~= "air" and node.name ~= "ignore" then
+			local inside = not minp or (p.x >= minp.x and p.x <= maxp.x and p.y >= minp.y and p.y <= maxp.y and p.z >= minp.z and p.z <= maxp.z)
+			if node.name ~= "air" and node.name ~= "ignore" and inside then
 				if #blocks >= LIMIT then return false, "Structure exceeds the strict 999-block limit." end
 				if minetest.is_protected(p, name) then return false, "A protected block is part of this structure." end
 				blocks[#blocks + 1] = vector.round(p)
 				for _, d in ipairs(DIRECTIONS) do
 					local n = p + d
-					if not seen[key(n)] then queue[#queue + 1] = n end
+					if not seen[key(n)] then
+						if not minp or (n.x >= minp.x and n.x <= maxp.x and n.y >= minp.y and n.y <= maxp.y and n.z >= minp.z and n.z <= maxp.z) then queue[#queue + 1] = n end
+					end
 				end
 			end
 		end
