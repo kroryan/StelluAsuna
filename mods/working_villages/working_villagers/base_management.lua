@@ -167,6 +167,15 @@ minetest.register_node("working_villages:villahome", {
 	end,
 })
 
+minetest.register_craft({
+	output = "working_villages:villahome",
+	recipe = {
+		{"default:wood", "default:steel_ingot", "default:wood"},
+		{"default:steel_ingot", "default:mese_crystal_fragment", "default:steel_ingot"},
+		{"default:wood", "default:wood", "default:wood"},
+	},
+})
+
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local id = formname:match("^working_villages:villahome_(H%-%d+)$")
 	if id then
