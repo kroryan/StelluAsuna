@@ -1,4 +1,4 @@
--- Ship Home: a crew home limited to the interior envelope of one ship.
+-- Ship Home: a crew home for the complete connected ship structure.
 local function hash(p) return minetest.hash_node_position(p) end
 local function anchor_near(pos)
 	local best, dist
@@ -25,7 +25,7 @@ local function bounds(meta)
 end
 local function gui(pos)
 	local m=minetest.get_meta(pos); local list=crew(m); local a,b=bounds(m)
-	local range=(a and b) and ("Interior: "..(b.x-a.x+1).." x "..(b.y-a.y+1).." x "..(b.z-a.z+1)) or "Interior not scanned yet"
+	local range=(a and b) and ("Ship: "..(b.x-a.x+1).." x "..(b.y-a.y+1).." x "..(b.z-a.z+1).." blocks") or "Ship not scanned yet"
 	return "formspec_version[4]size[10,7]"..
 		"label[0.5,0.35;Ship Home / Crew Station]"..
 		"label[0.5,0.8;Owner: "..minetest.formspec_escape(m:get_string("stl_vehicles:home_owner")).."]"..
@@ -34,11 +34,11 @@ local function gui(pos)
 		"field[5.1,2.0;4.2,0.8;crew_name;Player name;]"..
 		"button[5.1,2.8;1.9,0.8;add;Add crew]"..
 		"button[7.2,2.8;1.9,0.8;remove;Remove crew]"..
-		"button[0.5,4.25;2.5,0.8;scan;Scan ship interior]"..
+		"button[0.5,4.25;2.5,0.8;scan;Scan complete ship]"..
 		"button_exit[7.2,4.25;1.9,0.8;close;Close]"..
 		"label[0.5,5.2;Status: "..minetest.formspec_escape(m:get_string("stl_vehicles:home_status")).."]"..
-		"label[0.5,5.65;WARNING: this home covers only the scanned interior of this ship.]"..
-		"label[0.5,6.05;It never claims the outside hull, terrain or another ship.]"
+		"label[0.5,5.65;WARNING: all connected ship blocks are included; air gaps are not.]"..
+		"label[0.5,6.05;Terrain or another disconnected structure is never included.]"
 end
 local function show(pos,p) minetest.show_formspec(p:get_player_name(),"stl_vehicles:ship_home:"..hash(pos),gui(pos)) end
 local function owns(pos,p)
@@ -51,13 +51,25 @@ local function scan_home(pos,p)
 	if not anchor then return false,"No connected spaceship found nearby. Place this block inside a converted ship." end
 	local ship=select(1,stellua.assemble_vehicle(anchor,true))
 	if not ship or #ship==0 then return false,"The ship could not be assembled; check its seat and conversion." end
-	local minp,maxp=vector.copy(ship[1]),vector.copy(ship[1])
-	for _,q in ipairs(ship) do for _,c in ipairs({"x","y","z"}) do minp[c]=math.min(minp[c],q[c]); maxp[c]=math.max(maxp[c],q[c]) end end
-	if pos.x<=minp.x or pos.x>=maxp.x or pos.y<=minp.y or pos.y>=maxp.y or pos.z<=minp.z or pos.z>=maxp.z then
-		return false,"Ship Home must be placed inside the ship, not on its outer hull."
+	local queue,seen,blocks={anchor},{},{}
+	while #queue>0 do
+		local q=table.remove(queue,1); local h=hash(q)
+		if not seen[h] then
+			seen[h]=true; local node=minetest.get_node_or_nil(q)
+			if not node then return false,"Ship is not fully loaded; try again." end
+			if node.name~="air" and node.name~="ignore" then
+				if #blocks>=999 then return false,"Ship exceeds the strict 999 connected-block limit; terrain touching it is included in the scan." end
+				blocks[#blocks+1]=vector.round(q)
+				for _,d in ipairs({vector.new(1,0,0),vector.new(-1,0,0),vector.new(0,1,0),vector.new(0,-1,0),vector.new(0,0,1),vector.new(0,0,-1)}) do
+					local n=q+d; if not seen[hash(n)] then queue[#queue+1]=n end
+				end
+			end
+		end
 	end
-	local m=minetest.get_meta(pos); m:set_string("stl_vehicles:home_min",minetest.pos_to_string(minp)); m:set_string("stl_vehicles:home_max",minetest.pos_to_string(maxp)); m:set_int("stl_vehicles:interior_count",math.max(0,(maxp.x-minp.x-1)*(maxp.y-minp.y-1)*(maxp.z-minp.z-1)))
-	return true,"Interior scanned and assigned to this ship."
+	local minp,maxp=vector.copy(blocks[1]),vector.copy(blocks[1])
+	for _,q in ipairs(blocks) do for _,c in ipairs({"x","y","z"}) do minp[c]=math.min(minp[c],q[c]); maxp[c]=math.max(maxp[c],q[c]) end end
+	local m=minetest.get_meta(pos); m:set_string("stl_vehicles:home_min",minetest.pos_to_string(minp)); m:set_string("stl_vehicles:home_max",minetest.pos_to_string(maxp)); m:set_int("stl_vehicles:ship_count",#blocks); m:set_string("stl_vehicles:ship_nodes",minetest.serialize(blocks))
+	return true,"Complete ship scanned: "..#blocks.." connected blocks assigned to this crew home."
 end
 
 minetest.register_node("stl_vehicles:ship_home",{
