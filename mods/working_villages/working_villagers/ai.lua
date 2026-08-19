@@ -382,18 +382,22 @@ function working_villages.villager:ai_is_enemy(object)
 	if not object or object == self.object or not alive_object(object) then
 		return false
 	end
+	local mode = self.village_defense_mode or "npcs"
+	if mode == "passive" then return false end
 	if object:is_player() then
-		-- Villagers only retaliate against players who attacked them first.
-		return self.ai_target == object
+		-- Never turn a player's own villagers against their owner.  Base orders
+		-- can opt into active player defence; the default remains retaliation.
+		if object:get_player_name() == self.owner_name then return false end
+		return mode == "players" or mode == "all" or self.ai_target == object
 	end
-	return is_hostile_entity(object)
+	return mode ~= "players" and is_hostile_entity(object)
 end
 
 function working_villages.villager:ai_on_punch(puncher)
 	if not alive_object(puncher) then
 		return
 	end
-	if self:ai_is_enemy(puncher) or puncher:is_player() then
+	if self:ai_is_enemy(puncher) or (puncher:is_player() and (self.village_defense_mode or "npcs") ~= "passive") then
 		if working_villages.advanced_ai and working_villages.advanced_ai.alert then
 			working_villages.advanced_ai.alert(self, puncher, "attacked")
 		end
@@ -613,7 +617,7 @@ function working_villages.villager:ai_step(dtime)
 	-- react to nearby hostiles once alerted, which keeps the server lighter.
 	local watch_radius = self:get_job_name() == "working_villages:job_guard" and 20 or 6
 	for _, object in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), watch_radius)) do
-		if is_hostile_entity(object)
+		if (is_hostile_entity(object) or (object:is_player() and self:ai_is_enemy(object)))
 		and ai_visible(self.object:get_pos(), object:get_pos()) then
 			self:ai_set_target(object, false)
 			return combat_step(self, dtime)

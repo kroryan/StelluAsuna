@@ -18,6 +18,22 @@ working_villages.registered_jobs = {}
 
 working_villages.registered_eggs = {}
 
+local villager_id_storage = minetest.get_mod_storage()
+function working_villages.allocate_villager_id()
+	local next_id = villager_id_storage:get_int("next_villager_id") + 1
+	villager_id_storage:set_int("next_villager_id", next_id)
+	return string.format("V-%06d", next_id)
+end
+
+function working_villages.ensure_villager_id(self)
+	if self.villager_id and self.villager_id ~= "" then return self.villager_id end
+	local key = "villager_id:" .. tostring(self.inventory_name or "")
+	local saved = key ~= "villager_id:" and villager_id_storage:get_string(key) or ""
+	self.villager_id = saved ~= "" and saved or working_villages.allocate_villager_id()
+	if key ~= "villager_id:" then villager_id_storage:set_string(key, self.villager_id) end
+	return self.villager_id
+end
+
 -- records failed node place attempts to prevent repeating mistakes
 -- key=minetest.pos_to_string(pos) val=(os.clock()+180)
 local failed_pos_data = {}
@@ -993,6 +1009,9 @@ function working_villages.register_villager(product_name, def)
       self.ai_state = data["ai_state"] or "calm"
       self.ai_memory = data["ai_memory"] or {}
       self.ai_preferred_bed = data["ai_preferred_bed"]
+      self.villager_id = data["villager_id"]
+      self.village_home_id = data["village_home_id"]
+      self.village_defense_mode = data["village_defense_mode"] or "npcs"
 
       local inventory = create_inventory(self)
       for list_name, list in pairs(data["inventory"]) do
@@ -1001,6 +1020,8 @@ function working_villages.register_villager(product_name, def)
 
       fix_pos_data(self)
     end
+
+    working_villages.ensure_villager_id(self)
 
     self:set_displayed_action("active")
 
@@ -1016,6 +1037,13 @@ function working_villages.register_villager(product_name, def)
       self.pause = (self.pause == "resting")
     end
 
+    if self:get_job_name() == "" then
+      local choices = {}
+      for job_name, _ in pairs(working_villages.registered_jobs) do
+        if job_name ~= "working_villages:job_empty" then choices[#choices + 1] = job_name end
+      end
+      if #choices > 0 then self.new_job = choices[math.random(#choices)] end
+    end
     local job = self:get_job()
     if job ~= nil then
       if type(job.on_start)=="function" then
@@ -1049,6 +1077,9 @@ function working_villages.register_villager(product_name, def)
       ["ai_state"] = self.ai_state or "calm",
       ["ai_memory"] = self.ai_memory or {},
       ["ai_preferred_bed"] = self.ai_preferred_bed,
+      ["villager_id"] = self.villager_id,
+      ["village_home_id"] = self.village_home_id,
+      ["village_defense_mode"] = self.village_defense_mode or "npcs",
     }
 
     -- set lists.
@@ -1189,6 +1220,9 @@ function working_villages.register_villager(product_name, def)
   villager_def.ai_memory                   = {}
   villager_def.ai_preferred_bed            = nil
   villager_def.ai_sleeping                 = false
+  villager_def.villager_id                 = ""
+  villager_def.village_home_id             = ""
+  villager_def.village_defense_mode        = "npcs"
 
   -- callback methods
   villager_def.on_activate                 = on_activate

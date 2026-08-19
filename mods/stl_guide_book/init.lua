@@ -41,6 +41,7 @@ logistica.GuideApi.register(GUIDE_NAME, {
 		{name = "12. Planet fauna", id = "fauna"},
 		{name = "13. SpawnPoint", id = "spawnpoint"},
 		{name = "14. Claims and security doors", id = "protection"},
+		{name = "15. Villahome / NPC bases", id = "villahome"},
 	},
 	pageText = {
 		warning = page("Important: this is a test manual", [[
@@ -265,7 +266,31 @@ Use the commands as the door owner:
 - <b>/revoke_door &lt;id&gt; &lt;player&gt;</b> — revoke access.
 
 Door IDs and invitations survive reconnects and server restarts. A door can be placed inside a claim only by someone allowed to build there, but its own owner/invitation list still controls opening and closing.
-]], recipes({"esvanetor:claimer", "esvanetor:security_door"}), {"esvanetor:claimer", "esvanetor:security_door"}),
+		]], recipes({"esvanetor:claimer", "esvanetor:security_door"}), {"esvanetor:claimer", "esvanetor:security_door"}),
+
+		villahome = page("Villahome / NPC bases", [[
+<b>Villahome Base Beacon</b>
+
+Place a <b>Villahome</b> to create a persistent player base with a 1001 x 1001 block management area (500 blocks in every direction). Right-click it to open its menu. The beacon has a unique ID such as <b>H-00001</b>.
+
+Every Working Villager receives a persistent ID such as <b>V-000001</b>, including villagers spawned from male and female eggs and villagers that already existed before this system was installed. Newly spawned villagers automatically receive a useful job instead of remaining inactive.
+
+<b>Assign villagers</b>
+
+In the Villahome menu, enter a Villager ID and press <b>Assign</b>. The nearest bed in the base area is selected as the villager's home preference. A villager can also be assigned from <b>/menuvilla</b> by entering both the Villager ID and Villahome ID.
+
+<b>Defence orders</b>
+
+Use the buttons in either menu to choose:
+- <b>Monsters</b>: defend against hostile NPCs and monsters.
+- <b>Players</b>: defend the base against players, except the owner.
+- <b>Both</b>: defend against monsters and players.
+- <b>Work only</b>: do jobs and never initiate defence.
+
+Nearby villagers share threats and help one another. They also patrol their active area and remove spiderwebs they are allowed to edit, keeping base interiors clear. Claims and server protection always override NPC actions.
+
+Use <b>/menuvilla</b> to manage villagers without carrying a sceptre. Menus show the IDs and the current defence order. Villahome ownership and assignments persist across reconnects and restarts.
+]], recipes({"working_villages:villahome"}), {"working_villages:villahome", "working_villages:villager_male_egg", "working_villages:villager_female_egg"}),
 	},
 })
 
