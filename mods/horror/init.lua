@@ -3,6 +3,54 @@ if minetest.get_modpath("mobs") then
 dofile(minetest.get_modpath("horror").."/mobs.lua")
 end
 
+-- At night every Horror mob actively acquires nearby players and NPCs. The
+-- bundled mobs API normally defaults to players/monsters only, which made
+-- Working Villagers invisible to many Horror creatures.
+local horror_target_timer = 0
+minetest.register_globalstep(function(dtime)
+	horror_target_timer = horror_target_timer + dtime
+	if horror_target_timer < 0.5 then return end
+	horror_target_timer = 0
+	local tod = minetest.get_timeofday()
+	if tod >= 0.2 and tod <= 0.8 then return end
+	for _, player in ipairs(minetest.get_connected_players()) do
+		for _, object in ipairs(minetest.get_objects_inside_radius(player:get_pos(), 64)) do
+		local entity = object:get_luaentity()
+		if entity and entity.name and entity.name:find("^horror:") and entity.object == object
+			and entity.attack_type and not entity.attack then
+			entity.attack_players = true
+			entity.attack_npcs = true
+			entity.attack_animals = true
+			entity.attacks_monsters = true
+			entity.attack_chance = 100
+			local pos = object:get_pos()
+			local best, best_distance
+			for _, target in ipairs(minetest.get_objects_inside_radius(pos, entity.view_range or 16)) do
+				if target ~= object and (target:is_player() or target:get_luaentity()) then
+					local target_entity = target:get_luaentity()
+					local target_name = target_entity and target_entity.name or ""
+					local is_npc = target_entity and (target_entity.type == "npc"
+						or (working_villages and working_villages.is_villager
+							and working_villages.is_villager(target_name)))
+					if target:is_player() or is_npc then
+						local target_pos = target:get_pos()
+						local distance = target_pos and vector.distance(pos, target_pos)
+						if distance and (not best_distance or distance < best_distance)
+							and (not minetest.line_of_sight or minetest.line_of_sight(pos, target_pos)) then
+							best, best_distance = target, distance
+						end
+					end
+				end
+			end
+			if best then
+				entity.attack = best
+				entity.state = "attack"
+			end
+		end
+		end
+	end
+end)
+
 --flint and steel override(not included in the license since it's only changing the node placed)
 if minetest.registered_items["fire:flint_and_steel"] then
 minetest.override_item("fire:flint_and_steel", {
