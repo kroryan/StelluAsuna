@@ -590,6 +590,11 @@ end
 function working_villages.villager:ai_step(dtime)
 	local pos = self.object:get_pos()
 	if pos then
+		-- Follow is strictly opt-in; reject legacy/corrupt truthy values.
+		if self.ai_follow_enabled ~= true then
+			self.ai_follow_enabled = false
+			self.ai_follow_owner = nil
+		end
 		-- Follow mode is available only to the owner of the assigned Villahome.
 		-- It yields to combat and is persisted with the entity staticdata.
 		if self.ai_follow_enabled and self.ai_follow_owner
