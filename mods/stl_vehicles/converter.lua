@@ -6,6 +6,11 @@ local DIRECTIONS = {}
 for i = 0, 5 do DIRECTIONS[#DIRECTIONS + 1] = minetest.wallmounted_to_dir(i) end
 
 local function key(p) return minetest.hash_node_position(p) end
+local function is_ship_block(pos)
+	local node = minetest.get_node_or_nil(pos)
+	return node and (minetest.get_item_group(node.name, "spaceship") > 0
+		or minetest.get_meta(pos):get_int("stl_vehicles:converted") == 1)
+end
 local function find_native_anchor(pos)
 	local best, distance
 	for x = -12, 12 do for y = -12, 12 do for z = -12, 12 do
@@ -134,6 +139,20 @@ minetest.register_craft({
 	output = "stl_vehicles:ship_converter",
 	recipe = {{"stl_core:titanium", "stl_core:copper", "stl_core:titanium"}, {"stl_core:copper", "stl_vehicles:assembler", "stl_core:copper"}, {"", "stl_core:titanium", ""}}
 })
+
+-- Any block placed face-to-face with a ship becomes structural immediately.
+-- This is intentionally limited to the six adjacent nodes so a player cannot
+-- accidentally convert a distant base or terrain merely by placing a block.
+minetest.register_on_placenode(function(pos, newnode, placer)
+	if not pos or not newnode then return end
+	for _, d in ipairs(DIRECTIONS) do
+		if is_ship_block(pos + d) then
+			minetest.get_meta(pos):set_int("stl_vehicles:converted", 1)
+			minetest.get_meta(pos):set_string("stl_vehicles:auto_converted_by", placer and placer:get_player_name() or "")
+			return
+		end
+	end
+end)
 
 minetest.register_on_player_receive_fields(function(player, formname, fields)
 	local hash = formname:match("^stl_vehicles:converter:(.+)$")

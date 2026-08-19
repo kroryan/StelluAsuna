@@ -311,7 +311,7 @@ When the scan is valid, press <b>Convert</b>. The original blocks and their appe
 
 Recognized native hull blocks include <b>stl_decor:glass</b>, <b>stl_core:copper_block</b> and <b>stl_core:titanium_block</b>. After conversion, ordinary blocks are also accepted as part of that specific ship. Keep the ship clear of terrain and do not build a second seat inside it.
 
-<b>Blocks safe to add after conversion</b>: <b>stl_decor:glass</b>, <b>stl_core:copper_block</b>, <b>stl_core:titanium_block</b>, <b>stl_vehicles:seat</b>, <b>stl_vehicles:tank</b>, <b>stl_vehicles:rocket</b>, <b>stl_vehicles:impulse_engine</b>, <b>stl_vehicles:ship_converter</b> and <b>stl_vehicles:ship_home</b>. These carry the <b>spaceship</b> group and remain part of the ship when added face-to-face. The converter also marks ordinary blocks during a new conversion; arbitrary ungrouped blocks added later are not automatically structural.
+<b>Blocks safe to add after conversion</b>: <b>stl_decor:glass</b>, <b>stl_core:copper_block</b>, <b>stl_core:titanium_block</b>, <b>stl_vehicles:seat</b>, <b>stl_vehicles:tank</b>, <b>stl_vehicles:rocket</b>, <b>stl_vehicles:impulse_engine</b>, <b>stl_vehicles:ship_converter</b> and <b>stl_vehicles:ship_home</b>. These carry the <b>spaceship</b> group and remain part of the ship when added face-to-face. Any ordinary ungrouped block placed directly against a ship block is now marked structural automatically as well.
 ]], recipes({"stl_vehicles:ship_converter"}), {"stl_vehicles:ship_converter", "stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:tank", "stl_vehicles:impulse_engine"}),
 
 		shiphome = page("Ship Home / Crew Station", [[
