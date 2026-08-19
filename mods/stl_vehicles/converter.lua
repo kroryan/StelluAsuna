@@ -1,7 +1,7 @@
 -- Ship Converter: safely opts an arbitrary, floating structure into the
 -- Stellua vehicle assembler.  It stores only a small metadata marker on each
 -- node, so conversion is reversible without replacing or copying blocks.
-local LIMIT = 999
+local LIMIT = 10000
 local DIRECTIONS = {}
 for i = 0, 5 do DIRECTIONS[#DIRECTIONS + 1] = minetest.wallmounted_to_dir(i) end
 
@@ -33,7 +33,7 @@ local function formspec(meta)
 		"button[4.5,3.25;1.8,0.8;undo;Undo conversion]" ..
 		"button_exit[6.5,3.25;1.8,0.8;close;Close]" ..
 		"label[0.5,4.55;Rules: the complete structure must float and every outside face must touch air.]" ..
-		"label[0.5,4.95;Maximum 999 blocks. Conversion keeps the original blocks and can be undone.]"
+		"label[0.5,4.95;Maximum 10000 blocks. Conversion keeps the original blocks and can be undone.]"
 end
 
 local function show(pos, player)

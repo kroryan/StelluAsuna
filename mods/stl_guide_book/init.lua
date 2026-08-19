@@ -297,7 +297,7 @@ Use <b>/menuvilla</b> to manage villagers without carrying a sceptre. Menus show
 		converter = page("Ship Converter: scan, preview and undo", [[
 <b>Floating structure requirement</b>
 
-The <b>Ship Converter</b> turns an ordinary connected build into a Stellua ship. Place the converter on the structure and right-click it. Press <b>Scan + Preview</b>: the game counts the connected non-air blocks automatically, shows a temporary particle preview and checks every outside face. The complete structure must be floating: every face that is not touching another ship block must touch <b>air</b>. Any contact with ground, terrain, a wall, water or another solid block is rejected. The strict maximum is <b>999 blocks</b> and there must be exactly one Vehicle Seat.
+The <b>Ship Converter</b> turns an ordinary connected build into a Stellua ship. Place the converter on the structure and right-click it. Press <b>Scan + Preview</b>: the game counts the connected non-air blocks automatically, shows a temporary particle preview and checks every outside face. The complete structure must be floating: every face that is not touching another ship block must touch <b>air</b>. Any contact with ground, terrain, a wall, water or another solid block is rejected. The strict maximum is <b>10000 blocks</b> and there must be exactly one Vehicle Seat.
 
 When the scan is valid, press <b>Convert</b>. The original blocks and their appearance stay unchanged; they are marked as structural ship blocks and can now be assembled. Press <b>Undo conversion</b> to remove the markers from the last conversion. Only the converter owner (or an administrator with protection bypass) can scan or convert it. Protection rules are always respected.
 
@@ -315,7 +315,7 @@ Recognized native hull blocks include <b>stl_decor:glass</b>, <b>stl_core:copper
 		shiphome = page("Ship Home / Crew Station", [[
 Place a <b>Ship Home / Crew Station</b> (<b>stl_vehicles:ship_home</b>) on or inside the already assembled ship, then right-click it and press <b>Scan complete ship</b>. It detects every solid block connected face-to-face to the ship and stores the complete connected structure, including the outer hull. Air gaps are not included. The home does <b>not</b> claim terrain or another disconnected structure.
 
-<b>WARNING</b>: all blocks touching the ship are included. If terrain touches the ship, it is also detected and the strict 999-block limit will reject the scan. Keep the ship detached from terrain. If the ship is rebuilt, moved or resized, scan the Ship Home again.
+<b>WARNING</b>: all blocks touching the ship are included. If terrain touches the ship, it is also detected and the strict 10000-block limit will reject the scan. Keep the ship detached from terrain. If the ship is rebuilt, moved or resized, scan the Ship Home again.
 
 The owner can add or remove crew names in the menu. The assignment is stored in the node and survives reconnects and server restarts. Keep exactly one Ship Home per crew area; placing several does not merge their interiors.
 ]], recipes({"stl_vehicles:ship_home"}), {"stl_vehicles:ship_home", "stl_vehicles:ship_converter", "stl_vehicles:seat"}),

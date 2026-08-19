@@ -125,7 +125,7 @@ function stellua.assemble_vehicle(pos, find_interior)
     local minp, maxp = vector.copy(pos), vector.copy(pos)
 
     --first pass: find the walls
-    while #checking > 0 and #out < 1000 do
+    while #checking > 0 and #out < 10000 do
         local p = table.remove(checking, 1)
         local nodename = minetest.get_node(p).name
 		local s = minetest.get_item_group(nodename, "spaceship")
@@ -165,7 +165,7 @@ function stellua.assemble_vehicle(pos, find_interior)
         end
     end
 
-    if #out >= 1000 or not seat then return end
+    if #out >= 10000 or not seat then return end
 
     --second pass: find all interiors
     if find_interior then

@@ -58,7 +58,7 @@ local function scan_home(pos,p)
 			seen[h]=true; local node=minetest.get_node_or_nil(q)
 			if not node then return false,"Ship is not fully loaded; try again." end
 			if node.name~="air" and node.name~="ignore" then
-				if #blocks>=999 then return false,"Ship exceeds the strict 999 connected-block limit; terrain touching it is included in the scan." end
+				if #blocks>=10000 then return false,"Ship exceeds the strict 10000 connected-block limit; terrain touching it is included in the scan." end
 				blocks[#blocks+1]=vector.round(q)
 				for _,d in ipairs({vector.new(1,0,0),vector.new(-1,0,0),vector.new(0,1,0),vector.new(0,-1,0),vector.new(0,0,1),vector.new(0,0,-1)}) do
 					local n=q+d; if not seen[hash(n)] then queue[#queue+1]=n end
