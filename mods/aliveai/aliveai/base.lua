@@ -1181,11 +1181,20 @@ end
 
 
 aliveai.falling=function(self)
+	-- Entities can be removed between the active-object step and this callback
+	-- (for example while a threat is dying).  Luanti then returns nil from
+	-- get_velocity(); never index that result or let one NPC bring down the
+	-- whole server.
+	if not self or not self.object or not self.object:get_pos() then return self end
+	local function get_velocity()
+		local velocity=self.object:get_velocity()
+		return velocity or {x=0,y=0,z=0}
+	end
 	self.timerfalling=0
 
 	if self.floating==1 then
 		local a=self.object:get_acceleration()
-		local v=self.object:get_velocity()
+		local v=get_velocity()
 		if v.y~=0 and v.y<-0.02 or v.y>0.02 then
 			v.y=v.y*0.79
 		else
@@ -1216,8 +1225,8 @@ aliveai.falling=function(self)
 		local s=1
 		if self.dying or self.dead or self.sleeping then s=-1 end
 		self.object:set_acceleration({x =0, y =0.1*s, z =0})
-		if self.object:get_velocity().y<-0.1 then
-			local y=self.object:get_velocity().y
+		if get_velocity().y<-0.1 then
+			local y=get_velocity().y
 			self.object:set_velocity({x = self.move.x, y =y/2, z =self.move.z})
 			return self
 		end
@@ -1248,8 +1257,8 @@ aliveai.falling=function(self)
 		if self.climb==pos.y then self.air=self.air+0.1 end
 		self.climb=pos.y
 		self.object:set_acceleration({x =0, y =0.1, z =0})
-		if self.object:get_velocity().y<-0.1 then
-			local y=self.object:get_velocity().y
+		if get_velocity().y<-0.1 then
+			local y=get_velocity().y
 			self.object:set_velocity({x = self.move.x, y =y/2, z =self.move.z})
 			return self
 		end
@@ -1283,12 +1292,12 @@ aliveai.falling=function(self)
 		self.air=nil
 		self.drown=nil
 -- falling
-	elseif self.object:get_velocity().y~=0 then
+	elseif get_velocity().y~=0 then
 		if not self.fallingfrom or self.fallingfrom<pos.y then self.fallingfrom=pos.y end
 	end
 --and hit the ground
 	if self.fallingfrom then
-		if self.object:get_velocity().y==0 then
+			if get_velocity().y==0 then
 			local from=math.floor(self.fallingfrom+0.5)
 			local hit=math.floor(pos.y+0.5)
 			self.isfalling=nil
@@ -1308,7 +1317,7 @@ aliveai.falling=function(self)
 				end
 			end
 		end
-	elseif not self.told_flying and self.object:get_attach() and self.object:get_velocity().y==0 then
+	elseif not self.told_flying and self.object:get_attach() and get_velocity().y==0 then
 		local n=minetest.registered_nodes[minetest.get_node({x=pos.x,y=pos.y-2,z=pos.z}).name]
 		if n and not (n.walkable or test.climbable or test2.liquid_viscosity>0 or n.liquid_viscosity>0) then
 			aliveai.sayrnd(self,"Hey, im flying!","",true)
@@ -1376,7 +1385,7 @@ aliveai.falling=function(self)
 			end
 			self.falllook.times=10
 			return self
-		elseif j[4]==false and self.object:get_velocity().y==0 then
+			elseif j[4]==false and get_velocity().y==0 then
 			self.object:set_velocity({x = self.move.x*2, y = 5.2, z =self.move.z*2})
 		end
 	end
