@@ -386,7 +386,7 @@ local function update_ship_waypoint(player)
 		meta:set_int("stl_core:starter_ship_found", 1)
 		meta:set_string("stl_core:ship_marker_mode", "current")
 		remove_ship_waypoint(player)
-		minetest.chat_send_player(player:get_player_name(), "Starter ship found. Enter it, then use /ship_panel while piloting.")
+		minetest.chat_send_player(player:get_player_name(), "Starter ship found. Stand within 8 blocks and type /ship_enter to enter it, then use /ship_panel while piloting.")
 	end
 	if read_player_pos(meta, "stl_core:current_ship_pos")
 	and meta:get_string("stl_core:ship_marker_mode") == "" then
@@ -407,7 +407,7 @@ local function update_ship_waypoint(player)
 		and meta:get_int("stl_core:ship_tutorial_notice") == 0 then
 			meta:set_int("stl_core:ship_tutorial_notice", 1)
 			minetest.chat_send_player(player:get_player_name(),
-				"Tutorial 1/5: Find your orange starter ship. Follow the waypoint, enter it, then use /ship_panel while piloting. Use /ship_tutorial skip to skip this step.")
+				"Tutorial 1/5: Find your orange starter ship. Follow the waypoint, stand within 8 blocks and type /ship_enter to enter it, then use /ship_panel while piloting. Use /ship_tutorial skip to skip this step.")
 		end
 		set_ship_waypoint(player, pos, label)
 	else

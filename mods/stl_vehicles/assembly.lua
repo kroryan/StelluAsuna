@@ -183,8 +183,8 @@ local NORTH = vector.new(0, 0, -1)
 -- owning LVAE instead of treating them as inert display entities.
 lvae_node_defs.on_rightclick = function(self, clicker)
 	-- LVAE child nodes are visual blocks while the ship is in flight.  Do not
-	-- mount on right-click: right-click must remain available for normal block
-	-- interaction and editing.  Use Aux1 (recommended binding: Y) near the ship.
+	-- Mounting is command-only: right-click must remain available for normal
+	-- block interaction and editing. Use /ship_enter near the ship.
 	return
 end
 
@@ -378,6 +378,10 @@ minetest.register_on_mods_loaded(function()
             if owner == "" or owner ~= (player_name or "") then
                 return true
             end
+			-- Ship ownership is authoritative for the owner's own hull. Do not
+			-- pass this through lower-priority village/area wrappers that could
+			-- incorrectly make the owner's ship read-only.
+			return false
 		elseif adjacent_ship_owner(pos) ~= ""
 			and adjacent_ship_owner(pos) == (player_name or "") then
 			-- The owner may extend and repair their ship into adjacent space.
@@ -625,7 +629,7 @@ minetest.register_chatcommand("ship_enter", {
 		if player:get_attach() then return false, "You are already in a ship." end
 		local target = nearby_ship_pos(player)
 		if not target or not enter_ship(player, target) then
-			return false, "No accessible complete ship found within 8 blocks. Set Aux1 to Y and try again nearby."
+			return false, "No accessible complete ship found within 8 blocks. Stand closer and try /ship_enter again."
 		end
 		return true, "Entered ship. Press Space to pilot."
 	end,
@@ -919,18 +923,9 @@ minetest.register_globalstep(function(dtime)
 
 		local aux1 = control.aux1 and not aux1s[playername]
 		aux1s[playername] = control.aux1
-		-- Mounting uses the Aux1 action (set Aux1 to Y in the client key
-		-- settings). Search only the immediate area and let enter_ship enforce
-		-- ownership/invitations; this never selects a distant or foreign ship.
-		local mounted = false
-		if aux1 and not attached_vehicle then
-			local ship_pos = nearby_ship_pos(player)
-			if ship_pos then mounted = enter_ship(player, ship_pos) end
-		end
-
 		-- Once detached, never scan the whole node-built ship again while the
 		-- player is driving it. That scan is only needed to enter/launch/exit.
-		if not mounted and not attached_vehicle and (aux1 or control.jump) and stellua.assemble_vehicle(pos, true) then
+		if not attached_vehicle and (aux1 or control.jump) and stellua.assemble_vehicle(pos, true) then
 
             --make player exit on aux1
             if aux1 then
