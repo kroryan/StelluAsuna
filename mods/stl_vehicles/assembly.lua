@@ -90,15 +90,19 @@ end
 -- is not necessarily the seat.  Keep a player aligned to the actual seat
 -- node and add half a node of height so their feet rest on its top surface.
 local function find_seat_attach_offset(vehicle)
+	if not vehicle.camera_distance then
+		local box = vehicle.collisionbox or {-1,-1,-1,1,1,1}
+		vehicle.camera_distance = math.max(24, math.min(96, math.max(box[4]-box[1], box[5]-box[2], box[6]-box[3]) * 2.5))
+	end
 	if vehicle.seat_offset then return vehicle.seat_offset end
 	for _, node in pairs(vehicle.data or {}) do
 		if node.entity and minetest.get_item_group(node.name, "seat") > 0 then
 			local p = node.entity.pos or {x = 0, y = 0, z = 0}
 			-- Player attachment positions are centred on the player body.  The
 			-- seat's top is one node above its origin, not half a node.
-			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y + 1.0, z = p.z}, 10)
-			local box = vehicle.collisionbox or {-1,-1,-1,1,1,1}
-			vehicle.camera_distance = math.max(24, math.min(96, math.max(box[4]-box[1], box[5]-box[2], box[6]-box[3]) * 2.5))
+			-- The seat collision top is only about 0.25 nodes above its origin;
+			-- +1.0 put the player's head into the roof block.
+			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y + 0.3, z = p.z}, 10)
 			return vehicle.seat_offset
 		end
 	end
@@ -118,8 +122,11 @@ local function attach_player_to_vehicle(player, vehicle)
 	-- offset is restored when the pilot exits or lands, so other mounts and
 	-- normal walking are unaffected.
 	if player.set_eye_offset then
-		local distance = vehicle.camera_distance or 32
-		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = distance * 0.25, z = distance})
+		local distance = math.min(15, vehicle.camera_distance or 15)
+		-- Luanti clamps third-person offsets to roughly 15 nodes.  Use the full
+		-- legal distance behind the ship and scale the vertical offset with the
+		-- hull so the structure, rather than the player's head, is visible.
+		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = math.min(15, distance * 0.5), z = -distance})
 	end
 	return true
 end
@@ -134,6 +141,17 @@ local function restore_vehicle_camera(player, vehicle)
 		player:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
 	end
 	if saved then saved[player:get_player_name()] = nil end
+end
+
+local function force_player_exit(player, vehicle)
+	if not player then return end
+	player:set_detach()
+	restore_vehicle_camera(player, vehicle)
+	player:set_velocity({x = 0, y = 0, z = 0})
+	player:set_properties({physical = true})
+	if player.set_physics_override then
+		player:set_physics_override({speed = 1, jump = 1, gravity = 1, sneak = true})
+	end
 end
 
 function lvae_defs.on_step(self, dtime)
@@ -909,8 +927,7 @@ minetest.register_globalstep(function(dtime)
 
             --land vehicle with aux1
             if aux1 and on_ground(ent, pos) then
-                player:set_detach()
-                restore_vehicle_camera(player, ent)
+				force_player_exit(player, ent)
                 player:set_pos(vector.round(pos))
                 minetest.sound_play({name="doors_door_close", gain=0.3}, {pos=vehicle:get_pos()}, true)
                 stellua.land_vehicle(vehicle)
@@ -922,8 +939,7 @@ minetest.register_globalstep(function(dtime)
                 -- in orbit. Never leave the player attached to a removed
                 -- vehicle entity.
                 if aux1 then
-                    player:set_detach()
-                    restore_vehicle_camera(player, ent)
+					force_player_exit(player, ent)
                     ent.player = nil
                     local exit_pos = vector.round(pos + player:get_look_dir() * 2)
                     local tries = 0
@@ -945,8 +961,7 @@ minetest.register_globalstep(function(dtime)
 						minetest.emerge_area(slotpos, slotpos)
 					end
 						player:set_pos(slotpos)
-						player:set_detach()
-						restore_vehicle_camera(player, ent)
+						force_player_exit(player, ent)
 						stellua.land_vehicle(ent, slotpos)
 						save_current_ship_position(player, slotpos)
 					stellua.set_respawn(player, slotpos)
@@ -967,8 +982,7 @@ minetest.register_globalstep(function(dtime)
                     --move to slot if above y=250
                     if rel_y >= 750 then
 						player:set_pos(slotpos)
-						player:set_detach()
-						restore_vehicle_camera(player, ent)
+						force_player_exit(player, ent)
 						stellua.land_vehicle(ent, slotpos)
 						save_current_ship_position(player, slotpos)
 						stellua.set_respawn(player, slotpos)
