@@ -606,21 +606,30 @@ function working_villages.villager:ai_step(dtime)
 		end
 		local previous = self.ai_last_pos
 		local velocity = self.object:get_velocity()
-		if previous and not self.ai_target and not self.ai_delivery
-			and vector.distance(pos, previous) < 0.08
-			and vector.length(velocity) > 0.8 then
+		local horizontal_speed = math.sqrt((velocity.x or 0)^2 + (velocity.z or 0)^2)
+		local destination_far = self.destination and vector.distance(pos, self.destination) > 2
+		if not self.ai_target and not self.ai_delivery and destination_far
+			and horizontal_speed < 0.08 then
+			self.ai_stuck_time = (self.ai_stuck_time or 0) + dtime
+		elseif previous and not self.ai_target and not self.ai_delivery
+			and vector.distance(pos, previous) < 0.08 and horizontal_speed > 0.8 then
 			self.ai_stuck_time = (self.ai_stuck_time or 0) + dtime
 		else
 			self.ai_stuck_time = 0
 		end
 		self.ai_last_pos = vector.new(pos)
-	if (self.ai_stuck_time or 0) >= 3 then
+		if (self.ai_stuck_time or 0) >= 1.5 then
 			-- Abort the coroutine that is waiting on an unreachable waypoint and
 			-- give the villager a short random escape maneuver.
 			self.job_thread = nil
 			self.path = nil
 			self.destination = nil
+			if working_villages.navigation_note_blocked and previous then
+				working_villages.navigation_note_blocked(previous, pos)
+			end
 			self.ai_recovery_time = 1.8
+			self.ai_job_cooldown = 5
+			self.ai_recovery_turn = 0
 			local door = working_villages.navigation_find_nearest_door(pos, 12)
 			if door then
 				self.ai_navigation_target = vector.new(door)
@@ -646,6 +655,15 @@ function working_villages.villager:ai_step(dtime)
 		else
 			self.ai_navigation_thread = nil
 			self.ai_navigation_target = nil
+		end
+		return true
+	end
+	if self.ai_job_cooldown and self.ai_job_cooldown > 0 and not self.ai_target and not self.ai_delivery then
+		self.ai_job_cooldown = self.ai_job_cooldown - dtime
+		self.ai_recovery_turn = (self.ai_recovery_turn or 0) - dtime
+		if self.ai_recovery_turn <= 0 then
+			self.ai_recovery_turn = 0.65
+			self:change_direction_randomly()
 		end
 		return true
 	end
