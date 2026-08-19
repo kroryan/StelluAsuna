@@ -6,6 +6,10 @@ local homes = minetest.deserialize(storage:get_string("villager_homes")) or {}
 local home_seq = storage:get_int("home_seq")
 local HOME_RADIUS = 500
 local HOME_SCAN = {x=HOME_RADIUS, y=HOME_RADIUS, z=HOME_RADIUS}
+-- Bed lookup must stay within Luanti's find_nodes_in_area volume limit.
+-- The base remains 1001x1001 for ownership, but beds are local to the NPC.
+local BED_SCAN_RADIUS = 64
+local BED_SCAN = {x=BED_SCAN_RADIUS, y=BED_SCAN_RADIUS, z=BED_SCAN_RADIUS}
 
 local function save_homes()
 	storage:set_string("villager_homes", minetest.serialize(homes))
@@ -41,7 +45,7 @@ end
 
 local function find_bed(home, villager_pos)
 	local beds = minetest.find_nodes_in_area(
-		vector.subtract(home.pos, HOME_SCAN), vector.add(home.pos, HOME_SCAN), {"group:bed"})
+		vector.subtract(villager_pos, BED_SCAN), vector.add(villager_pos, BED_SCAN), {"group:bed"})
 	local best, distance
 	for _, bed in ipairs(beds) do
 		local d = vector.distance(villager_pos, bed)
