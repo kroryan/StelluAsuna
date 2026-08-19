@@ -630,13 +630,12 @@ function working_villages.villager:ai_step(dtime)
 			self.ai_recovery_time = 1.8
 			self.ai_job_cooldown = 5
 			self.ai_recovery_turn = 0
-			local door = working_villages.navigation_find_nearest_door(pos, 12)
-			if door then
-				self.ai_navigation_target = vector.new(door)
-				self.ai_navigation_thread = coroutine.create(function()
-					return self:go_to(self.ai_navigation_target)
-				end)
-			end
+			-- Do not aim at the nearest door here: it may be behind the
+			-- obstacle. Force a real cardinal turn and let the normal job
+			-- planner recalculate after the escape cooldown.
+			self.ai_navigation_thread = nil
+			self.ai_navigation_target = nil
+			self:change_direction_randomly()
 			self.ai_stuck_time = 0
 			self:set_state_info("I got stuck and am finding another route.")
 		end
@@ -674,6 +673,23 @@ function working_villages.villager:ai_step(dtime)
 	end
 	if self.ai_target then
 		return combat_step(self, dtime)
+	end
+	if self.ai_follow_enabled and self.ai_follow_owner then
+		local owner = minetest.get_player_by_name(self.ai_follow_owner)
+		if owner then
+			local owner_pos = owner:get_pos()
+			local distance = owner_pos and vector.distance(pos, owner_pos) or 0
+			if owner_pos and distance > 3 then
+				self.destination = vector.new(owner_pos)
+				self:change_direction(owner_pos)
+			else
+				self.destination = nil
+				local velocity = self.object:get_velocity()
+				self.object:set_velocity({x=0, y=velocity.y, z=0})
+			end
+			-- Prevent the normal job coroutine from overwriting follow movement.
+			return true
+		end
 	end
 	if self.ai_delivery then
 		return delivery_step(self)

@@ -393,9 +393,14 @@ function working_villages.villager:change_direction_randomly()
   -- Pick an actually visible, standable direction instead of blindly
   -- steering into a wall. This is also used by the stuck-route recovery.
   if position then
-    for _ = 1, 12 do
-      local candidate = {x = math.random(-1, 1), y = 0, z = math.random(-1, 1)}
-      if candidate.x ~= 0 or candidate.z ~= 0 then
+    local candidates = {
+      {x=1,y=0,z=0}, {x=-1,y=0,z=0},
+      {x=0,y=0,z=1}, {x=0,y=0,z=-1},
+    }
+    for _ = 1, #candidates do
+      local index = math.random(1, #candidates)
+      local candidate = table.remove(candidates, index)
+      if candidate then
         local front = vector.add(position, candidate)
         local head = {x = front.x, y = front.y + 1, z = front.z}
         local floor = {x = front.x, y = front.y - 1, z = front.z}
