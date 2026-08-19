@@ -55,8 +55,8 @@ This book documents Stellua's starships, fuel, planets, slots and travel system 
 
 Always land before leaving a ship unattended. Keep a spare seat, fuel and building materials at your base.
 
-<b>Luanti controls, not Minecraft controls:</b> the default inventory key is <b>I</b>. Use <b>/ship_enter</b> to enter a nearby ship; it works with grounded ships within 8 blocks and flying ships within 128 blocks, without client configuration. Aux1 (normally <b>E</b>) is only used to land or exit while piloting.
-]], nil, {"stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
+<b>Luanti controls, not Minecraft controls:</b> the default inventory key is <b>I</b>. Right-click a <b>Keyship</b> attached to your ship to board, or use <b>/ship_enter</b> nearby. Aux1 (normally <b>E</b>) is only used to land or exit while piloting.
+]], nil, {"stl_vehicles:keyship", "stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
 
 		starter = page("First minutes: find your ship", [[
 <b>Tutorial step 1 — find the orange starter ship</b>
@@ -66,13 +66,14 @@ After your first connection, a red directional waypoint and the text <b>FOLLOW T
 The ship is deliberately placed beside the spawn rather than inside it. Search the immediate surroundings if the arrow is not visible. You can also use <b>/ship_marker starter</b> to show it again.
 
 Tutorial controls:
-- Stand within eight blocks of your ship and type <b>/ship_enter</b> to sit in its seat. Right-click remains available for editing and using ship blocks.
+- The golden <b>Keyship</b> block is built into the very top of every starter ship. Right-click it to board and sit in the ship's seat.
+- Alternatively, stand within eight blocks and type <b>/ship_enter</b>. This is useful if the Keyship is inaccessible.
 - Press <b>Space</b> while seated to take control and launch/ascend.
 - Press <b>Aux1</b> (normally <b>E</b>) to land or exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
 - While piloting, type <b>/ship_panel</b> to open its control panel.
 
 If you want to skip this first tutorial step, use <b>/ship_tutorial skip</b>. Skipping only hides the arrival guidance; it does not remove your ship.
-]], nil, {"stl_guide_book:guide", "stl_vehicles:seat"}),
+]], nil, {"stl_guide_book:guide", "stl_vehicles:keyship", "stl_vehicles:seat"}),
 
 		intro = page("Stellua in one minute", [[
 Stellua is a vertical space sandbox. Asuna and every generated planet occupy different altitude bands. A starship climbs out of a planet's atmosphere, enters the star system, and can then be sent to another planet.
@@ -109,10 +110,12 @@ Liquid fuels belong in ordinary Fuel Tanks. Petroleum and methane buckets are hi
 
 5. For interplanetary transfer, add an <b>Impulse Engine</b> and fill its separate tank with Uranium. Impulse Engines are both engine and tank blocks.
 
-6. If you want a proper enclosed cabin, make sure the interior is connected and small enough for the vehicle assembler to scan. The scan has a finite size limit.
+6. Add one or more <b>Keyship</b> blocks inside or outside the connected hull. Right-clicking any of them boards the ship. They obey ship ownership and invitations, so they are not a way to steal another player's ship.
 
-7. Stand within eight blocks of the ship and use <b>/ship_enter</b>. Right-click is reserved for editing and using blocks. If the ship will not assemble, check for missing seat, disconnected blocks, more than one seat, or an oversized/intersecting structure.
-]], recipes({"stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}), {"stl_vehicles:air"}),
+7. If you want a proper enclosed cabin, make sure the interior is connected and small enough for the vehicle assembler to scan. The scan has a finite size limit.
+
+8. Right-click a connected <b>Keyship</b>, or stand within eight blocks and use <b>/ship_enter</b>. If the ship will not assemble, check for a missing seat, disconnected blocks, more than one seat, or an oversized/intersecting structure.
+]], recipes({"stl_vehicles:keyship", "stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}), {"stl_vehicles:air"}),
 
 		fuel = page("Fuel: impulse and rocket", [[
 <b>Rocket ascent fuel</b>
@@ -173,6 +176,9 @@ You must be piloting the ship first. Then type <b>/ship_panel</b>. The panel is 
 <b>/ship_enter does not seat me</b>
 For a grounded ship, stand within eight blocks. A flying LVAE ship can be recovered from up to 128 blocks away. Run <b>/ship_enter</b>; the ship must be owned by you or shared with you, and it cannot be actively piloted by somebody else.
 
+<b>The Keyship does not let me board</b>
+It must be connected face-to-face to a ship with exactly one Vehicle Seat. You must own that ship or have an active <b>/invite_ship</b> invitation, and another player cannot already be piloting it.
+
 <b>The ship will not launch</b>
 Stand on the seat, verify at least one Rocket Engine and fuel in a Fuel Tank, then use jump+sneak. A normal jump only gives manual vertical control.
 
@@ -184,7 +190,7 @@ Put Uranium in the Impulse Engine inventory. Rocket fuel does not replace fissil
 
 <b>The ship disappeared or is stuck</b>
 Do not disconnect during a transfer or while landing. Reconnect, check the last slot and contact an administrator with your coordinates and destination.
-]], nil, {"stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
+]], nil, {"stl_vehicles:keyship", "stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
 
 		controls = page("Controls reference", [[
 <b>W / A / S / D</b> — steer forward, left, reverse and right while flying.
@@ -199,16 +205,18 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>I</b> — open the Luanti inventory and the Planets page for destination selection.
 
-<b>/ship_enter</b> — enter a grounded ship within 8 blocks or recover a flying LVAE ship within 128 blocks. This is the only ship-entry method and requires no client key configuration.
+<b>Right-click Keyship</b> — board the ship containing that Keyship. It works as a real block while grounded and as a clickable ship block while flying.
+
+<b>/ship_enter</b> — alternative entry: enter a grounded ship within 8 blocks or recover a flying LVAE ship within 128 blocks. It requires no client key configuration.
 
 <b>/ship_panel</b> — open the ship control panel while piloting.
 
 Control the ship gently. Maximum horizontal speed is limited, but a fast descent can still damage your landing position.
-]], nil, {"stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:assembler"}),
+]], nil, {"stl_vehicles:keyship", "stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:assembler"}),
 
 		panel = page("Ship panel and markers", [[
 <b>Ship panel</b>
-Enter the ship with <b>/ship_enter</b>, take control, then type <b>/ship_panel</b>. The panel shows position, engine power, fuel-tank count and seat status. Right-clicking blocks is reserved for normal editing and equipment interaction.
+Board through a <b>Keyship</b> or with <b>/ship_enter</b>, take control, then type <b>/ship_panel</b>. The panel shows position, engine power, fuel-tank count and seat status. Right-clicking ordinary ship blocks remains available for their normal interaction; right-clicking Keyship boards.
 
 From the panel you can assign that ship as your <b>current ship</b> or enable its waypoint. The command equivalents are:
 - <b>/ship_panel</b> — open the panel for the nearby/piloted ship.
@@ -303,6 +311,7 @@ When the scan is valid, press <b>Convert</b>. The original blocks and their appe
 
 <b>Exact in-game items for a working ship</b>
 
+- <b>Keyship</b> — <b>stl_vehicles:keyship</b> — optional physical boarding point; several may be connected inside or outside.
 - <b>Vehicle Seat</b> — <b>stl_vehicles:seat</b> — exactly one, where the pilot sits.
 - <b>Rocket Engine</b> — <b>stl_vehicles:rocket</b> — provides ascent power.
 - <b>Fuel Tank</b> — <b>stl_vehicles:tank</b> — fill it with an item accepted by the fuel group.
@@ -311,8 +320,8 @@ When the scan is valid, press <b>Convert</b>. The original blocks and their appe
 
 Recognized native hull blocks include <b>stl_decor:glass</b>, <b>stl_core:copper_block</b> and <b>stl_core:titanium_block</b>. After conversion, ordinary blocks are also accepted as part of that specific ship. Keep the ship clear of terrain and do not build a second seat inside it.
 
-<b>Blocks safe to add after conversion</b>: <b>stl_decor:glass</b>, <b>stl_core:copper_block</b>, <b>stl_core:titanium_block</b>, <b>stl_vehicles:seat</b>, <b>stl_vehicles:tank</b>, <b>stl_vehicles:rocket</b>, <b>stl_vehicles:impulse_engine</b>, <b>stl_vehicles:ship_converter</b> and <b>stl_vehicles:ship_home</b>. These carry the <b>spaceship</b> group and remain part of the ship when added face-to-face. Any ordinary ungrouped block placed directly against a ship block is now marked structural automatically as well.
-]], recipes({"stl_vehicles:ship_converter"}), {"stl_vehicles:ship_converter", "stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:tank", "stl_vehicles:impulse_engine"}),
+<b>Blocks safe to add after conversion</b>: <b>stl_decor:glass</b>, <b>stl_core:copper_block</b>, <b>stl_core:titanium_block</b>, <b>stl_vehicles:keyship</b>, <b>stl_vehicles:seat</b>, <b>stl_vehicles:tank</b>, <b>stl_vehicles:rocket</b>, <b>stl_vehicles:impulse_engine</b>, <b>stl_vehicles:ship_converter</b> and <b>stl_vehicles:ship_home</b>. These carry the <b>spaceship</b> group and remain part of the ship when added face-to-face. Any ordinary ungrouped block placed directly against a ship block is now marked structural automatically as well.
+]], recipes({"stl_vehicles:ship_converter", "stl_vehicles:keyship"}), {"stl_vehicles:ship_converter", "stl_vehicles:keyship", "stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:tank", "stl_vehicles:impulse_engine"}),
 
 		shiphome = page("Ship Home / Crew Station", [[
 Place a <b>Ship Home / Crew Station</b> (<b>stl_vehicles:ship_home</b>) on or inside the already assembled ship, then right-click it and press <b>Scan complete ship</b>. It detects every solid block connected face-to-face to the ship and stores the complete connected structure, including the outer hull. Air gaps are not included. The home does <b>not</b> claim terrain or another disconnected structure.

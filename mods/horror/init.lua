@@ -3,9 +3,10 @@ if minetest.get_modpath("mobs") then
 dofile(minetest.get_modpath("horror").."/mobs.lua")
 end
 
--- At night every Horror mob actively acquires nearby players and NPCs. The
--- bundled mobs API normally defaults to players/monsters only, which made
--- Working Villagers invisible to many Horror creatures.
+-- At night every hostile Horror mob actively acquires nearby players and
+-- NPCs. Mobs Redo's attack_chance is inverse (100 disables acquisition), and
+-- entering the "attack" state directly bypasses do_attack initialization;
+-- both mistakes made the earlier compatibility loop look active but inert.
 local horror_target_timer = 0
 minetest.register_globalstep(function(dtime)
 	horror_target_timer = horror_target_timer + dtime
@@ -13,40 +14,49 @@ minetest.register_globalstep(function(dtime)
 	horror_target_timer = 0
 	local tod = minetest.get_timeofday()
 	if tod >= 0.2 and tod <= 0.8 then return end
+	local villagers = rawget(_G, "working_villages")
+	local checked = {}
 	for _, player in ipairs(minetest.get_connected_players()) do
-		for _, object in ipairs(minetest.get_objects_inside_radius(player:get_pos(), 64)) do
-		local entity = object:get_luaentity()
-		if entity and entity.name and entity.name:find("^horror:") and entity.object == object
-			and entity.attack_type and not entity.attack then
-			entity.attack_players = true
-			entity.attack_npcs = true
-			entity.attack_animals = true
-			entity.attacks_monsters = true
-			entity.attack_chance = 100
-			local pos = object:get_pos()
-			local best, best_distance
-			for _, target in ipairs(minetest.get_objects_inside_radius(pos, entity.view_range or 16)) do
-				if target ~= object and (target:is_player() or target:get_luaentity()) then
-					local target_entity = target:get_luaentity()
-					local target_name = target_entity and target_entity.name or ""
-					local is_npc = target_entity and (target_entity.type == "npc"
-						or (working_villages and working_villages.is_villager
-							and working_villages.is_villager(target_name)))
-					if target:is_player() or is_npc then
-						local target_pos = target:get_pos()
-						local distance = target_pos and vector.distance(pos, target_pos)
-						if distance and (not best_distance or distance < best_distance)
-							and (not minetest.line_of_sight or minetest.line_of_sight(pos, target_pos)) then
-							best, best_distance = target, distance
+		for _, object in ipairs(minetest.get_objects_inside_radius(player:get_pos(), 96)) do
+			if not checked[object] then
+				checked[object] = true
+				local entity = object:get_luaentity()
+				if entity and entity.name and entity.name:find("^horror:")
+				and entity.object == object and entity.type == "monster"
+				and entity.passive ~= true and entity.attack_type
+				and (not entity.attack or not entity.attack:get_pos()
+					or entity.attack:get_hp() <= 0) then
+					entity.attack_players = true
+					entity.attack_npcs = true
+					entity.attack_chance = 0
+					local pos = object:get_pos()
+					local best, best_distance
+					for _, target in ipairs(minetest.get_objects_inside_radius(
+						pos, entity.view_range or 16)) do
+						if target ~= object and target:get_hp() > 0 then
+							local target_entity = target:get_luaentity()
+							local target_name = target_entity and target_entity.name or ""
+							local is_npc = target_entity and (target_entity.type == "npc"
+								or (villagers and villagers.is_villager
+									and villagers.is_villager(target_name)))
+							if target:is_player() or is_npc then
+								local target_pos = target:get_pos()
+								local distance = target_pos and vector.distance(pos, target_pos)
+								local from_eye = vector.add(pos, {x=0, y=1, z=0})
+								local to_eye = target_pos and vector.add(target_pos, {x=0, y=1, z=0})
+								if distance and (not best_distance or distance < best_distance)
+								and (not minetest.line_of_sight
+									or minetest.line_of_sight(from_eye, to_eye)) then
+									best, best_distance = target, distance
+								end
+							end
 						end
+					end
+					if best and type(entity.do_attack) == "function" then
+						entity:do_attack(best, true)
 					end
 				end
 			end
-			if best then
-				entity.attack = best
-				entity.state = "attack"
-			end
-		end
 		end
 	end
 end)

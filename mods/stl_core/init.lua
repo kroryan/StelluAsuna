@@ -91,7 +91,7 @@ end)
 local starter_ship_path = modpath .. "schems/starter_rocket.mts"
 local starter_ship_key = "stl_core:starter_ship_placed"
 local starter_ship_radius = 1
-local starter_ship_height = 6
+local starter_ship_height = 7
 local starter_ship_placement_lock = false
 
 local function starter_ship_ground(node)
@@ -190,6 +190,8 @@ local function starter_ship_base_is_clear(x, y, z)
 		for dz = -starter_ship_radius, starter_ship_radius do
 			local ground = minetest.get_node_or_nil({x=x + dx, y=y, z=z + dz})
 			if not starter_ship_ground(ground) then return false end
+			-- The 3x7x3 schematic includes Keyship as its seventh, uppermost
+			-- layer, so reserve the complete structure before placing it.
 			for dy = 1, starter_ship_height - 1 do
 				local node = minetest.get_node_or_nil({x=x + dx, y=y + dy, z=z + dz})
 				if not starter_ship_space(node) then return false end
@@ -302,6 +304,99 @@ local function read_player_pos(meta, key)
 	return vector.new(pos)
 end
 
+-- Starter ships created before Keyship existed are upgraded when their owner
+-- next joins. Positions are persisted on player metadata, so no broad world
+-- scan or guessing is needed and ordinary player-built ships are untouched.
+local starter_keyship_migration_key = "stl_core:starter_keyship_migrated"
+
+local function add_keyship_to_starter(player, ship_pos)
+	if not player or not player:is_player() or not ship_pos
+	or not stellua.assemble_vehicle then return false end
+	local ship, seat = stellua.assemble_vehicle(vector.round(ship_pos), true)
+	if not ship or not seat then return false end
+	local player_name = player:get_player_name()
+	local owner = minetest.get_meta(seat):get_string("stl_vehicles:ship_owner")
+	if owner ~= "" and owner ~= player_name then return false end
+
+	local max_y
+	local top_nodes = {}
+	for _, pos in ipairs(ship) do
+		local node_name = minetest.get_node(pos).name
+		if node_name == "stl_vehicles:keyship" then
+			player:get_meta():set_int(starter_keyship_migration_key, 1)
+			return true
+		end
+		if node_name ~= "air" and node_name ~= "stl_vehicles:air" then
+			if not max_y or pos.y > max_y then
+				max_y = pos.y
+				top_nodes = {vector.new(pos)}
+			elseif pos.y == max_y then
+				top_nodes[#top_nodes + 1] = vector.new(pos)
+			end
+		end
+	end
+	if not max_y then return false end
+
+	-- Prefer the top block horizontally closest to the seat. On the original
+	-- starter rocket this is the exact centre and therefore matches the new
+	-- 3x7x3 schematic layout.
+	table.sort(top_nodes, function(a, b)
+		local ad = math.abs(a.x - seat.x) + math.abs(a.z - seat.z)
+		local bd = math.abs(b.x - seat.x) + math.abs(b.z - seat.z)
+		return ad < bd
+	end)
+	for _, top in ipairs(top_nodes) do
+		local key_pos = vector.add(top, {x = 0, y = 1, z = 0})
+		local existing = minetest.get_node_or_nil(key_pos)
+		if existing and existing.name == "air" then
+			minetest.set_node(key_pos, {name = "stl_vehicles:keyship"})
+			local key_meta = minetest.get_meta(key_pos)
+			key_meta:set_string("infotext", "Keyship — right-click to board")
+			key_meta:set_string("stl_vehicles:ship_owner", player_name)
+			if stellua.set_ship_owner then stellua.set_ship_owner(seat, player_name) end
+			player:get_meta():set_int(starter_keyship_migration_key, 1)
+			minetest.log("action", "[stl_core] Added Keyship to existing starter ship for "
+				.. player_name .. " at " .. minetest.pos_to_string(key_pos))
+			return true
+		end
+	end
+	return false
+end
+
+local function migrate_existing_starter_keyship(player)
+	if not player or not player:is_player()
+	or player:get_meta():get_int(starter_keyship_migration_key) == 1 then return end
+	local name = player:get_player_name()
+	local meta = player:get_meta()
+	local candidates = {}
+	local starter = read_player_pos(meta, "stl_core:starter_ship_pos")
+	local current = read_player_pos(meta, "stl_core:current_ship_pos")
+	if starter then candidates[#candidates + 1] = starter end
+	if current and (not starter or vector.distance(current, starter) > 0.1) then
+		candidates[#candidates + 1] = current
+	end
+	if #candidates == 0 then return end
+	local function try_candidate(index)
+		local pos = candidates[index]
+		if not pos then
+			if index < #candidates then try_candidate(index + 1) end
+			return
+		end
+		local completed = false
+		minetest.emerge_area(vector.subtract(pos, 8), vector.add(pos, 8),
+			function(_, _, remaining)
+				if completed or remaining ~= 0 then return end
+				completed = true
+				minetest.after(0, function()
+					local connected = minetest.get_player_by_name(name)
+					if connected and not add_keyship_to_starter(connected, pos)
+					and index < #candidates then try_candidate(index + 1) end
+				end)
+			end)
+	end
+	try_candidate(1)
+end
+
 local function remove_ship_waypoint(player)
 	local name = player:get_player_name()
 	local state = ship_waypoints[name]
@@ -386,7 +481,7 @@ local function update_ship_waypoint(player)
 		meta:set_int("stl_core:starter_ship_found", 1)
 		meta:set_string("stl_core:ship_marker_mode", "current")
 		remove_ship_waypoint(player)
-		minetest.chat_send_player(player:get_player_name(), "Starter ship found. Stand within 8 blocks and type /ship_enter to enter it, then use /ship_panel while piloting.")
+		minetest.chat_send_player(player:get_player_name(), "Starter ship found. Right-click its golden Keyship block to board, or stand within 8 blocks and type /ship_enter. Use /ship_panel while piloting.")
 	end
 	if read_player_pos(meta, "stl_core:current_ship_pos")
 	and meta:get_string("stl_core:ship_marker_mode") == "" then
@@ -407,7 +502,7 @@ local function update_ship_waypoint(player)
 		and meta:get_int("stl_core:ship_tutorial_notice") == 0 then
 			meta:set_int("stl_core:ship_tutorial_notice", 1)
 			minetest.chat_send_player(player:get_player_name(),
-				"Tutorial 1/5: Find your orange starter ship. Follow the waypoint, stand within 8 blocks and type /ship_enter to enter it, then use /ship_panel while piloting. Use /ship_tutorial skip to skip this step.")
+				"Tutorial 1/5: Find your orange starter ship. Follow the waypoint and right-click the golden Keyship block on top to board; /ship_enter also works nearby. Use /ship_panel while piloting, or /ship_tutorial skip to skip this step.")
 		end
 		set_ship_waypoint(player, pos, label)
 	else
@@ -423,6 +518,10 @@ minetest.register_globalstep(function(dtime)
 end)
 
 minetest.register_on_joinplayer(function(player)
+	minetest.after(4, function()
+		local connected = minetest.get_player_by_name(player:get_player_name())
+		if connected then migrate_existing_starter_keyship(connected) end
+	end)
 	minetest.after(2.5, function()
 		if player and player:is_player() then update_ship_waypoint(player) end
 	end)

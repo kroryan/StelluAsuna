@@ -177,15 +177,34 @@ lvae_node_defs.on_punch = nil
 
 local UP = vector.new(0, 1, 0)
 local NORTH = vector.new(0, 0, -1)
+local can_use_ship
 
 -- Re-entry after a reconnect: the visible LVAE child nodes are the part of
 -- the ship the player can actually point at. Route their right-click to the
 -- owning LVAE instead of treating them as inert display entities.
 lvae_node_defs.on_rightclick = function(self, clicker)
-	-- LVAE child nodes are visual blocks while the ship is in flight.  Do not
-	-- Mounting is command-only: right-click must remain available for normal
-	-- block interaction and editing. Use /ship_enter near the ship.
-	return
+	-- Ordinary LVAE child nodes stay inert so right-click is never an implicit
+	-- boarding action. Keyship is the deliberate physical exception.
+	if not self.node or self.node.name ~= "stl_vehicles:keyship"
+		or not clicker or not clicker:is_player() or clicker:get_attach() then
+		return
+	end
+	local vehicle = self.parent
+	if not vehicle or not vehicle.object or not vehicle.object:is_valid() then return end
+	local allowed, reason = can_use_ship(clicker, nil, vehicle)
+	if not allowed then
+		minetest.chat_send_player(clicker:get_player_name(), reason)
+		return
+	end
+	local name = clicker:get_player_name()
+	if vehicle.player and vehicle.player ~= "" and vehicle.player ~= name then
+		minetest.chat_send_player(name, "This ship is already being piloted.")
+		return
+	end
+	vehicle.player = name
+	attach_player_to_vehicle(clicker, vehicle)
+	minetest.chat_send_player(name,
+		"Keyship accepted. Ship control restored; use Aux1 (normally E) to land or exit safely.")
 end
 
 -- The converter can opt ordinary connected blocks into a ship without
@@ -558,7 +577,7 @@ local ship_panels = {}
 local ship_panel_entities = {}
 local right_clicks = {}
 
-local function can_use_ship(user, pos, entity)
+can_use_ship = function(user, pos, entity)
     local name = user:get_player_name()
     local owner = entity and entity.ship_owner or nil
     local invited = entity and entity.ship_invited or nil
@@ -606,6 +625,13 @@ local function enter_ship(user, pos)
     minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=seat}, true)
     minetest.chat_send_player(user:get_player_name(), "You are on the ship seat. Press Space to take control and launch.")
     return true
+end
+
+-- Public node-facing entry point. Keeping the authorization and seat lookup
+-- in one place makes Keyship obey exactly the same owner/invitation rules as
+-- /ship_enter.
+function stellua.enter_ship_at(user, pos)
+	return enter_ship(user, pos)
 end
 
 local function nearby_ship_pos(player)

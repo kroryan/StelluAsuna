@@ -91,6 +91,10 @@ or compressed by the release build:
 These are not copies of a package found in Asuna, Stellua or the exact public
 ContentDB searches performed for this audit:
 
+- `mods/stl_vehicles/textures/stl_vehicles_keyship.png`: original project
+  texture generated specifically for StelluAsuna with OpenAI image generation,
+  then manually reduced to a 16x16 indexed PNG. It is released as CC0-1.0.
+
 - `mods/shared_textures/`: present from project commit `674a699` and given a
   no-op init by `ce8631e`. Its two 1x1 PNGs have the same hash as each other,
   but do not match the `blank.png` files in `horror` or `shields_mtg`, and no

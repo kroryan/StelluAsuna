@@ -1,3 +1,42 @@
+-- A physical boarding point for grounded and flying ships. The actual entry
+-- API is installed by assembly.lua after this file has registered the node.
+minetest.register_node("stl_vehicles:keyship", {
+    description = "Keyship",
+    tiles = {"stl_vehicles_keyship.png"},
+    paramtype = "light",
+    sunlight_propagates = true,
+    groups = {cracky=2, spaceship=1, keyship=1},
+    sounds = stellua.node_sound_metal_defaults(),
+    on_construct = function(pos)
+        minetest.get_meta(pos):set_string("infotext", "Keyship — right-click to board")
+    end,
+    after_place_node = function(pos, placer)
+        if placer and placer:is_player() then
+            minetest.get_meta(pos):set_string(
+                "stl_vehicles:ship_owner", placer:get_player_name())
+        end
+    end,
+    on_rightclick = function(pos, _, clicker, itemstack)
+        if not clicker or not clicker:is_player() then return itemstack end
+        if type(stellua.enter_ship_at) ~= "function" then
+            minetest.chat_send_player(clicker:get_player_name(),
+                "Keyship is not ready yet; try again in a moment.")
+            return itemstack
+        end
+        stellua.enter_ship_at(clicker, pos)
+        return itemstack
+    end,
+})
+
+minetest.register_craft({
+    output = "stl_vehicles:keyship",
+    recipe = {
+        {"stl_core:copper", "stl_core:titanium", ""},
+        {"", "stl_core:copper", ""},
+        {"", "stl_core:copper", ""},
+    },
+})
+
 --The seat, which is the central node of a spaceship or any other vehicle
 minetest.register_node("stl_vehicles:seat", {
     description = "Vehicle Seat",
