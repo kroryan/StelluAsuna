@@ -234,7 +234,7 @@ function lvae:remove()
 	self.object:remove()
 end
 
-lvae.initial_properties = {textures = {"blank.png"}, pointable = false, visual_size = {x = 0, y = 0, z = 0}}
+lvae.initial_properties = {static_save = true, textures = {"blank.png"}, pointable = false, visual_size = {x = 0, y = 0, z = 0}}
 minetest.register_entity("lvae:lvae", lvae)
 
 function LVAE(pos)

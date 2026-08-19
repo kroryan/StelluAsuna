@@ -343,9 +343,12 @@ function stellua.detach_vehicle(pos)
         table.insert(lvae.tanks, {p-pos, "spaceship_inv"..inv_count, meta:get_float("fuel"), meta:get_string("fuel_group")})
         inv_count = inv_count+1
     end
-    for _, p in ipairs(ship or {}) do
-        local node = minetest.get_node(p)
-        if node.name == "air" then
+	for _, p in ipairs(ship or {}) do
+		local node = minetest.get_node(p)
+		-- Preserve node metadata (including auto-conversion markers, Ship Home
+		-- ownership and inventories) while the ship is represented by an LVAE.
+		node.meta = minetest.get_meta(p):to_table()
+		if node.name == "air" then
             lvae:set_node(p-pos, {name="stl_vehicles:air"})
         else
             lvae:set_node(p-pos, node)
@@ -381,8 +384,9 @@ function stellua.land_vehicle(vehicle, pos)
         if node.entity then
             if node.name == "stl_vehicles:air" then
                 minetest.remove_node(node.entity.pos)
-            else
-                minetest.set_node(node.entity.pos+pos, node)
+			else
+				minetest.set_node(node.entity.pos+pos, node)
+				if node.meta then minetest.get_meta(node.entity.pos+pos):from_table(node.meta) end
                 if minetest.get_item_group(node.name, "seat") > 0 then
                     landed_seat = node.entity.pos + pos
                 end
