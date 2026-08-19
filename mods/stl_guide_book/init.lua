@@ -42,6 +42,7 @@ logistica.GuideApi.register(GUIDE_NAME, {
 		{name = "13. SpawnPoint", id = "spawnpoint"},
 		{name = "14. Claims and security doors", id = "protection"},
 		{name = "15. Villahome / NPC bases", id = "villahome"},
+		{name = "16. Ship Converter", id = "converter"},
 	},
 	pageText = {
 		warning = page("Important: this is a test manual", [[
@@ -290,7 +291,25 @@ Use the buttons in either menu to choose:
 Nearby villagers share threats and help one another. They also patrol their active area and remove spiderwebs they are allowed to edit, keeping base interiors clear. Claims and server protection always override NPC actions.
 
 Use <b>/menuvilla</b> to manage villagers without carrying a sceptre. Menus show the IDs and the current defence order. Villahome ownership and assignments persist across reconnects and restarts.
-]], recipes({"working_villages:villahome"}), {"working_villages:villahome", "working_villages:villager_male_egg", "working_villages:villager_female_egg"}),
+		]], recipes({"working_villages:villahome"}), {"working_villages:villahome", "working_villages:villager_male_egg", "working_villages:villager_female_egg"}),
+
+		converter = page("Ship Converter: scan, preview and undo", [[
+<b>Floating structure requirement</b>
+
+The <b>Ship Converter</b> turns an ordinary connected build into a Stellua ship. Place the converter on the structure and right-click it. Press <b>Scan + Preview</b>: the game counts the connected non-air blocks automatically, shows a temporary particle preview and checks every outside face. The complete structure must be floating: every face that is not touching another ship block must touch <b>air</b>. Any contact with ground, terrain, a wall, water or another solid block is rejected. The strict maximum is <b>999 blocks</b> and there must be exactly one Vehicle Seat.
+
+When the scan is valid, press <b>Convert</b>. The original blocks and their appearance stay unchanged; they are marked as structural ship blocks and can now be assembled. Press <b>Undo conversion</b> to remove the markers from the last conversion. Only the converter owner (or an administrator with protection bypass) can scan or convert it. Protection rules are always respected.
+
+<b>Exact in-game items for a working ship</b>
+
+- <b>Vehicle Seat</b> — <b>stl_vehicles:seat</b> — exactly one, where the pilot sits.
+- <b>Rocket Engine</b> — <b>stl_vehicles:rocket</b> — provides ascent power.
+- <b>Fuel Tank</b> — <b>stl_vehicles:tank</b> — fill it with an item accepted by the fuel group.
+- <b>Impulse Engine</b> — <b>stl_vehicles:impulse_engine</b> — required for planet/star transfers; fill its tank with Uranium.
+- <b>Ship Converter</b> — <b>stl_vehicles:ship_converter</b> — optional after conversion, but useful for scanning and undoing.
+
+Recognized native hull blocks include <b>stl_decor:glass</b>, <b>stl_core:copper_block</b> and <b>stl_core:titanium_block</b>. After conversion, ordinary blocks are also accepted as part of that specific ship. Keep the ship clear of terrain and do not build a second seat inside it.
+]], recipes({"stl_vehicles:ship_converter"}), {"stl_vehicles:ship_converter", "stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:tank", "stl_vehicles:impulse_engine"}),
 	},
 })
 

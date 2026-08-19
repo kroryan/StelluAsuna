@@ -91,13 +91,22 @@ lvae_node_defs.on_punch = nil
 local UP = vector.new(0, 1, 0)
 local NORTH = vector.new(0, 0, -1)
 
+-- The converter can opt ordinary connected blocks into a ship without
+-- changing their visual node type.  Keep this marker deliberately local to
+-- stl_vehicles so unrelated metadata cannot make terrain assemble as a ship.
+local function is_ship_node(pos, name)
+	name = name or minetest.get_node(pos).name
+	return minetest.get_item_group(name, "spaceship") > 0
+		or minetest.get_meta(pos):get_int("stl_vehicles:converted") == 1
+end
+
 --Assemble a vehicle from any node
 function stellua.assemble_vehicle(pos, find_interior)
     --go down until we find the floor
     local orig_pos = vector.copy(pos)
     if find_interior then
         local attempts = 0
-        while minetest.get_item_group(minetest.get_node(pos).name, "spaceship") == 0 and attempts < 64 do
+        while not is_ship_node(pos) and attempts < 64 do
             pos = pos-UP
             attempts = attempts+1
         end
@@ -119,8 +128,11 @@ function stellua.assemble_vehicle(pos, find_interior)
     while #checking > 0 and #out < 1000 do
         local p = table.remove(checking, 1)
         local nodename = minetest.get_node(p).name
-        local s = minetest.get_item_group(nodename, "spaceship")
-        if s > 0 then
+		local s = minetest.get_item_group(nodename, "spaceship")
+		if s > 0 or minetest.get_meta(p):get_int("stl_vehicles:converted") == 1 then
+			-- Converted blocks behave as structural (propagating) blocks.  Native
+			-- rocket nodes retain their special non-propagating group value.
+			if s == 0 then s = 1 end
             table.insert(out, p)
             table.insert(out_hash, minetest.hash_node_position(p))
             if find_interior then
