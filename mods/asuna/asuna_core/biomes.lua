@@ -1306,17 +1306,13 @@ for name,group in pairs(asuna.biome_groups) do
   end
 end
 
--- Override biome registration function to prevent duplicate biome registrations
-local no_biome_mods = {
-  default = true,
-  ethereal = true,
-  everness = true,
-  livingjungle = true,
-  naturalbiomes = true,
-}
+-- Prevent duplicate biome registrations without suppressing complete biome
+-- providers.  The old mod-name blacklist discarded every biome later offered
+-- by default, Everness and Natural Biomes, even when Asuna had no biome with
+-- that name. Decorations then referenced names that had never been registered.
 local mtrb = minetest.register_biome
 minetest.register_biome = function(def)
-  if minetest.registered_biomes[def.name] or no_biome_mods[minetest.get_current_modname()] then
+  if minetest.registered_biomes[def.name] then
     return minetest.get_biome_id(def.name)
   else
     return mtrb(def)
@@ -1334,4 +1330,76 @@ end
 
 for _,biome in ipairs(asuna.biome_groups.below) do
   minetest.register_biome(asuna.biomes[biome].generate_definition())
+end
+
+-- Normalize legacy biome selectors used by the bundled ecosystem mods. Asuna
+-- calls subterranean variants *_below while Minetest Game and older mods call
+-- them *_under; some optional mods also leave selectors for biome packs that
+-- are not installed. Resolve those selectors to the equivalent real Asuna
+-- biome instead of registering broken decorations or deleting any biome.
+local biome_compat = {
+  taiga_shore = "taiga",
+  tundra_highland_shore = "tundra_highland",
+  snowy_grassland = "frost",
+  rainforest_swamp = "swamp",
+  icesheet = "glacier",
+  icesheet_under = "glacier_below",
+  snowy_grassland_under = "frost_below",
+  tundra_beach = "tundra_shore",
+  tundra_under = "tundra_below",
+  taiga_under = "taiga_below",
+  coniferous_forest_under = "coniferous_forest_below",
+  deciduous_forest_under = "deciduous_forest_below",
+  savanna_under = "savanna_below",
+  sandstone_desert_under = "sandstone_desert_below",
+  rainforest_under = "rainforest_below",
+  alderswamp = "naturalbiomes:alderswamp",
+  alpine = "naturalbiomes:alpine",
+  ["livingfloatlands:coldsteppe"] = "frost",
+  ["livingfloatlands:coldgiantforest"] = "coniferous_forest",
+  ["livingfloatlands:giantforest"] = "jumble",
+  ["livingfloatlands:paleojungle"] = "rainforest",
+}
+
+local function resolve_biome_selector(name)
+  if type(name) ~= "string" or name == "" then return nil end
+  if minetest.registered_biomes[name] then return name end
+  local mapped = biome_compat[name]
+  if not mapped and name:sub(-12) == "_shore_shore" then
+    mapped = name:sub(1, -7)
+  elseif not mapped and name:sub(-12) == "_below_shore" then
+    mapped = name:sub(1, -13) .. "_shore"
+  elseif not mapped and name:sub(-6) == "_under" then
+    mapped = name:sub(1, -7) .. "_below"
+  end
+  return mapped and minetest.registered_biomes[mapped] and mapped or nil
+end
+
+local function normalize_biome_selectors(def)
+  if type(def) ~= "table" or def.biomes == nil then return def end
+  local source = type(def.biomes) == "table" and def.biomes or {def.biomes}
+  local resolved, seen = {}, {}
+  for _, name in ipairs(source) do
+    local valid = resolve_biome_selector(name)
+    if valid and not seen[valid] then
+      seen[valid] = true
+      table.insert(resolved, valid)
+    end
+  end
+  if #resolved == 0 then return nil end
+  local copy = table.copy(def)
+  copy.biomes = resolved
+  return copy
+end
+
+local register_decoration_raw = minetest.register_decoration
+minetest.register_decoration = function(def)
+  def = normalize_biome_selectors(def)
+  return def and register_decoration_raw(def) or nil
+end
+
+local register_ore_raw = minetest.register_ore
+minetest.register_ore = function(def)
+  def = normalize_biome_selectors(def)
+  return def and register_ore_raw(def) or nil
 end

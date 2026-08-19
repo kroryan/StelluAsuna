@@ -55,7 +55,7 @@ This book documents Stellua's starships, fuel, planets, slots and travel system 
 
 Always land before leaving a ship unattended. Keep a spare seat, fuel and building materials at your base.
 
-<b>Luanti controls, not Minecraft controls:</b> the default inventory key is <b>I</b>. Use <b>/ship_enter</b> to enter a nearby ship; it works without any client configuration. Aux1 (normally <b>E</b>) is only used to land or exit while piloting.
+<b>Luanti controls, not Minecraft controls:</b> the default inventory key is <b>I</b>. Use <b>/ship_enter</b> to enter a nearby ship; it works with grounded ships within 8 blocks and flying ships within 128 blocks, without client configuration. Aux1 (normally <b>E</b>) is only used to land or exit while piloting.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
 
 		starter = page("First minutes: find your ship", [[
@@ -171,7 +171,7 @@ Use <b>/ship_marker starter</b> for the starter ship, or <b>/ship_marker</b> for
 You must be piloting the ship first. Then type <b>/ship_panel</b>. The panel is not opened by clicking blocks. The ship must contain exactly one connected seat.
 
 <b>/ship_enter does not seat me</b>
-Stand within eight blocks of a valid ship and run the command. The ship needs exactly one connected seat and must be owned by you or shared with you.
+For a grounded ship, stand within eight blocks. A flying LVAE ship can be recovered from up to 128 blocks away. Run <b>/ship_enter</b>; the ship must be owned by you or shared with you, and it cannot be actively piloted by somebody else.
 
 <b>The ship will not launch</b>
 Stand on the seat, verify at least one Rocket Engine and fuel in a Fuel Tank, then use jump+sneak. A normal jump only gives manual vertical control.
@@ -199,7 +199,7 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>I</b> — open the Luanti inventory and the Planets page for destination selection.
 
-<b>/ship_enter</b> — enter a nearby connected spaceship and take control. This is the only ship-entry method and requires no client key configuration.
+<b>/ship_enter</b> — enter a grounded ship within 8 blocks or recover a flying LVAE ship within 128 blocks. This is the only ship-entry method and requires no client key configuration.
 
 <b>/ship_panel</b> — open the ship control panel while piloting.
 

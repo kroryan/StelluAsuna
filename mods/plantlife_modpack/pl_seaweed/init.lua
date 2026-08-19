@@ -113,11 +113,23 @@ minetest.register_alias("along_shore:seaweed_4", "flowers:seaweed_4")
 
 -- Register seaweed decorations
 local warm_shores = {}
+local warm_shores_seen = {}
+local function add_existing_shore(biome)
+	-- Asuna feature groups also contain generated *_shore and *_below
+	-- variants. Appending another suffix produced impossible names such as
+	-- rainforest_shore_shore and rainforest_below_shore.
+	local shore = biome
+	if not biome:match("_shore$") then shore = biome .. "_shore" end
+	if asuna.biomes[shore] and not warm_shores_seen[shore] then
+		warm_shores_seen[shore] = true
+		table.insert(warm_shores, shore)
+	end
+end
 for _,biome in ipairs(asuna.features.ocean.temperate) do
-	table.insert(warm_shores,biome .. "_shore")
+	add_existing_shore(biome)
 end
 for _,biome in ipairs(asuna.features.ocean.tropical) do
-	table.insert(warm_shores,biome .. "_shore")
+	add_existing_shore(biome)
 end
 
 local seaweed_selector = {

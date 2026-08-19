@@ -621,17 +621,44 @@ local function nearby_ship_pos(player)
 	return candidates[1]
 end
 
+local function enter_nearby_flying_ship(player, radius)
+	local name = player:get_player_name()
+	local best, best_distance
+	for _, object in ipairs(minetest.get_objects_inside_radius(player:get_pos(), radius or 128)) do
+		local entity = object:get_luaentity()
+		if entity and entity.name == "lvae:lvae" and object:is_valid()
+			and (not entity.player or entity.player == name) then
+			local allowed = can_use_ship(player, nil, entity)
+			if allowed then
+				local distance = vector.distance(player:get_pos(), object:get_pos())
+				if not best_distance or distance < best_distance then
+					best, best_distance = entity, distance
+				end
+			end
+		end
+	end
+	if not best then return false end
+	best.player = name
+	attach_player_to_vehicle(player, best)
+	minetest.chat_send_player(name,
+		"Flying ship found and control restored. Use Aux1 (normally E) to land or exit safely.")
+	return true
+end
+
 minetest.register_chatcommand("ship_enter", {
-	description = "Enter your nearby ship",
+	description = "Enter your nearby grounded or flying ship",
 	func = function(name)
 		local player = minetest.get_player_by_name(name)
 		if not player then return false, "Player not found" end
 		if player:get_attach() then return false, "You are already in a ship." end
 		local target = nearby_ship_pos(player)
-		if not target or not enter_ship(player, target) then
-			return false, "No accessible complete ship found within 8 blocks. Stand closer and try /ship_enter again."
+		if target and enter_ship(player, target) then
+			return true, "Entered grounded ship. Press Space to pilot."
 		end
-		return true, "Entered ship. Press Space to pilot."
+		if enter_nearby_flying_ship(player, 128) then
+			return true, "Entered flying ship."
+		end
+		return false, "No accessible grounded ship within 8 blocks or flying ship within 128 blocks."
 	end,
 })
 
@@ -645,24 +672,9 @@ minetest.register_chatcommand("ship_reenter", {
         local user = minetest.get_player_by_name(name)
         if not user then return false, "Player not found" end
         if user:get_attach() then return false, "You are already attached to a vehicle." end
-        local best, best_distance
-        for _, object in ipairs(minetest.get_objects_inside_radius(user:get_pos(), 128)) do
-            local ent = object:get_luaentity()
-			if ent and ent.name == "lvae:lvae" and ent.object:is_valid()
-				and is_exact_ship_owner(name, ent)
-				and (not ent.player or ent.player == name) then
-                local distance = vector.distance(user:get_pos(), object:get_pos())
-                if not best_distance or distance < best_distance then
-                    best, best_distance = ent, distance
-                end
-            end
-        end
-        if not best then
+        if not enter_nearby_flying_ship(user, 128) then
             return false, "No reclaimable ship found within 128 blocks."
         end
-        best.player = name
-		attach_player_to_vehicle(user, best)
-        minetest.chat_send_player(name, "Ship control restored. Press E to exit safely.")
         return true, "Re-entered ship."
     end,
 })
