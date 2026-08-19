@@ -1,6 +1,30 @@
 --Remember the next inventory id
 local inv_count = 1
 
+-- Node metadata may contain ItemStack userdata, which cannot be serialized by
+-- the engine when an LVAE is saved. Convert it to plain strings first.
+local function serializable_node_meta(meta)
+	local raw = meta:to_table() or {}
+	local out = {fields = {}, inventory = {}}
+	for k, v in pairs(raw.fields or {}) do out.fields[k] = tostring(v) end
+	for listname, list in pairs(raw.inventory or {}) do
+		out.inventory[listname] = {}
+		for i, stack in ipairs(list) do out.inventory[listname][i] = ItemStack(stack):to_string() end
+	end
+	return out
+end
+
+local function restore_node_meta(pos, data)
+	if type(data) ~= "table" then return end
+	local meta = minetest.get_meta(pos)
+	for k, v in pairs(data.fields or {}) do meta:set_string(k, tostring(v)) end
+	local inv = meta:get_inventory()
+	for listname, list in pairs(data.inventory or {}) do
+		inv:set_size(listname, #list)
+		for i, value in ipairs(list) do inv:set_stack(listname, i, ItemStack(value)) end
+	end
+end
+
 --Override static saving functions for LVAE to allow saving more arbitrary data
 local lvae_defs = minetest.registered_entities["lvae:lvae"]
 
@@ -56,6 +80,8 @@ local function find_seat_attach_offset(vehicle)
 			-- Player attachment positions are centred on the player body.  The
 			-- seat's top is one node above its origin, not half a node.
 			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y + 1.0, z = p.z}, 10)
+			local box = vehicle.collisionbox or {-1,-1,-1,1,1,1}
+			vehicle.camera_distance = math.max(24, math.min(96, math.max(box[4]-box[1], box[5]-box[2], box[6]-box[3]) * 2.5))
 			return vehicle.seat_offset
 		end
 	end
@@ -75,7 +101,8 @@ local function attach_player_to_vehicle(player, vehicle)
 	-- offset is restored when the pilot exits or lands, so other mounts and
 	-- normal walking are unaffected.
 	if player.set_eye_offset then
-		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 2, z = 8})
+		local distance = vehicle.camera_distance or 32
+		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = distance * 0.25, z = distance})
 	end
 	return true
 end
@@ -347,7 +374,7 @@ function stellua.detach_vehicle(pos)
 		local node = minetest.get_node(p)
 		-- Preserve node metadata (including auto-conversion markers, Ship Home
 		-- ownership and inventories) while the ship is represented by an LVAE.
-		node.meta = minetest.get_meta(p):to_table()
+		node.meta = serializable_node_meta(minetest.get_meta(p))
 		if node.name == "air" then
             lvae:set_node(p-pos, {name="stl_vehicles:air"})
         else
@@ -386,7 +413,7 @@ function stellua.land_vehicle(vehicle, pos)
                 minetest.remove_node(node.entity.pos)
 			else
 				minetest.set_node(node.entity.pos+pos, node)
-				if node.meta then minetest.get_meta(node.entity.pos+pos):from_table(node.meta) end
+				if node.meta then restore_node_meta(node.entity.pos+pos, node.meta) end
                 if minetest.get_item_group(node.name, "seat") > 0 then
                     landed_seat = node.entity.pos + pos
                 end
