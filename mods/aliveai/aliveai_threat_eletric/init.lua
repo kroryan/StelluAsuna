@@ -216,7 +216,11 @@ aliveai.create_bot({
 	on_punching=function(self,target)
 		local pos=target:get_pos()
 		if math.random(1,3)==1 and minetest.registered_nodes[minetest.get_node(pos).name] and minetest.registered_nodes[minetest.get_node(pos).name].buildable_to then
-			minetest.set_node(pos, {name="aliveai_threat_eletric:lightning"})
+			-- The lightning node belongs to aliveai_electric; the old
+			-- threat_eletric namespace caused a fatal Unknown node error.
+			if minetest.registered_nodes["aliveai_electric:lightning"] then
+				minetest.set_node(pos, {name="aliveai_electric:lightning"})
+			end
 		end
 	end,
 	on_punched=function(self,puncher)
