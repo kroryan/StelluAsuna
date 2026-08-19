@@ -10,8 +10,18 @@ working_villages.navigation_memory = working_villages.navigation_memory or {
 	zones = {},
 	blocked_edges = {},
 }
-
 local ZONE_SIZE = 8
+
+local navigation_storage = minetest.get_mod_storage()
+local saved_navigation = minetest.deserialize(navigation_storage:get_string("navigation_memory"))
+if type(saved_navigation) == "table" and type(saved_navigation.zones) == "table" then
+	working_villages.navigation_memory.zones = saved_navigation.zones
+	-- Blocked edges are deliberately not restored: they are short-lived
+	-- observations, while the scanned geometry is persistent knowledge.
+	working_villages.navigation_memory.blocked_edges = {}
+end
+local navigation_dirty = false
+local navigation_save_timer = 0
 
 local function zone_key(pos)
 	return table.concat({
@@ -32,6 +42,25 @@ function working_villages.navigation_note_blocked(a, b)
 		minetest.get_gametime() + 45
 end
 
+local function mark_navigation_dirty(pos)
+	if not pos then return end
+	local base_x = math.floor(pos.x / ZONE_SIZE)
+	local base_y = math.floor(pos.y / 4)
+	local base_z = math.floor(pos.z / ZONE_SIZE)
+	for dx = -1, 1 do for dz = -1, 1 do
+		local zone = working_villages.navigation_memory.zones[(base_x + dx) .. ":" .. base_y .. ":" .. (base_z + dz)]
+		if zone then zone.dirty = true end
+	end end
+	navigation_dirty = true
+end
+
+minetest.register_on_placenode(function(pos)
+	mark_navigation_dirty(pos)
+end)
+minetest.register_on_dignode(function(pos)
+	mark_navigation_dirty(pos)
+end)
+
 function working_villages.navigation_is_blocked(a, b)
 	if not a or not b or type(a.x) ~= "number" or type(b.x) ~= "number" then
 		return false
@@ -47,12 +76,13 @@ function working_villages.navigation_scan_zone(pos)
 	local key = zone_key(pos)
 	local now = minetest.get_gametime()
 	local zone = working_villages.navigation_memory.zones[key]
-	if zone and now - zone.last_scan < 8 then return zone end
+	if zone and not zone.dirty then return zone end
 	zone = zone or {exits = {}, doors = {}, blocked = {}}
 	zone.last_scan = now
 	zone.exits = {}
 	zone.doors = {}
 	zone.blocked = {}
+	zone.dirty = false
 	local minp = {x = math.floor(pos.x / ZONE_SIZE) * ZONE_SIZE, y = math.floor(pos.y) - 3, z = math.floor(pos.z / ZONE_SIZE) * ZONE_SIZE}
 	local maxp = {x = minp.x + ZONE_SIZE - 1, y = pos.y + 3, z = minp.z + ZONE_SIZE - 1}
 	for x = minp.x, maxp.x do
@@ -85,6 +115,7 @@ function working_villages.navigation_scan_zone(pos)
 		end
 	end
 	working_villages.navigation_memory.zones[key] = zone
+	navigation_dirty = true
 	return zone
 end
 
@@ -647,11 +678,20 @@ working_villages.villager.goto_bed = function(self)
 		return result
 end
 
-minetest.register_globalstep(function()
+minetest.register_globalstep(function(dtime)
 	for object, _ in pairs(working_villages.ai_registry) do
 		if not alive_object(object) then
 			working_villages.ai_registry[object] = nil
 		end
+	end
+	navigation_save_timer = navigation_save_timer + (dtime or 0)
+	if navigation_dirty and navigation_save_timer >= 15 then
+		navigation_save_timer = 0
+		navigation_dirty = false
+		navigation_storage:set_string("navigation_memory", minetest.serialize({
+		zones = working_villages.navigation_memory.zones,
+		version = 1,
+	}))
 	end
 end)
 
