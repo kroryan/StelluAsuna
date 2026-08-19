@@ -442,7 +442,15 @@ function working_villages.villager:update_infotext()
     infotext = infotext .. "no job\n"
     self.disp_action = "inactive"
   end
-  infotext = infotext .. "[Owner] : " .. self.owner_name
+  -- Always expose the persistent identifier when the entity is inspected.
+  -- Older villagers may not have one until activation; allocate it lazily so
+  -- the displayed ID is never blank and remains stable across restarts.
+  local villager_id = self.villager_id
+  if (not villager_id or villager_id == "") and working_villages.ensure_villager_id then
+    villager_id = working_villages.ensure_villager_id(self)
+  end
+  infotext = infotext .. "[ID] : " .. (villager_id or "unknown")
+  infotext = infotext .. "\n[Owner] : " .. self.owner_name
   infotext = infotext .. "\nthis villager is " .. self.disp_action
   if self.pause then
     infotext = infotext .. ", [paused]"
