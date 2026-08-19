@@ -55,7 +55,7 @@ This book documents Stellua's starships, fuel, planets, slots and travel system 
 
 Always land before leaving a ship unattended. Keep a spare seat, fuel and building materials at your base.
 
-<b>Luanti controls, not Minecraft controls:</b> the default inventory key is <b>I</b>. The ship uses Luanti's configurable <b>Aux1</b> action (usually <b>E</b>) for landing/exit. Check Settings → Change keys if your client uses different bindings.
+<b>Luanti controls, not Minecraft controls:</b> the default inventory key is <b>I</b>. Set the configurable <b>Aux1</b> action to <b>Y</b> in Settings → Change keys. Y enters a nearby ship and, while piloting, exits or lands it.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}),
 
 		starter = page("First minutes: find your ship", [[
@@ -66,9 +66,9 @@ After your first connection, a red directional waypoint and the text <b>FOLLOW T
 The ship is deliberately placed beside the spawn rather than inside it. Search the immediate surroundings if the arrow is not visible. You can also use <b>/ship_marker starter</b> to show it again.
 
 Tutorial controls:
-- Double right-click a connected spaceship block to sit on its seat.
+- Set the client Aux1 key to <b>Y</b>. Stand within four blocks of your ship and press <b>Y</b> once to sit in its seat. Right-click remains available for editing and using ship blocks.
 - Press <b>Space</b> while seated to take control and launch/ascend.
-- Press <b>Aux1</b> (usually <b>E</b>) to land or exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
+- Press <b>Y</b> (Aux1) to land or exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
 - While piloting, type <b>/ship_panel</b> to open its control panel.
 
 If you want to skip this first tutorial step, use <b>/ship_tutorial skip</b>. Skipping only hides the arrival guidance; it does not remove your ship.
@@ -111,7 +111,7 @@ Liquid fuels belong in ordinary Fuel Tanks. Petroleum and methane buckets are hi
 
 6. If you want a proper enclosed cabin, make sure the interior is connected and small enough for the vehicle assembler to scan. The scan has a finite size limit.
 
-7. Right-click a spaceship block to sit in it. If the ship will not assemble, check for missing seat, disconnected blocks, more than one seat, or an oversized/intersecting structure.
+7. Stand within four blocks of the ship and press <b>Y</b> (Aux1) to sit in it. Right-click is reserved for editing and using blocks. If the ship will not assemble, check for missing seat, disconnected blocks, more than one seat, or an oversized/intersecting structure.
 ]], recipes({"stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}), {"stl_vehicles:air"}),
 
 		fuel = page("Fuel: impulse and rocket", [[
@@ -158,7 +158,7 @@ The transfer system is not a Stargate and does not use Stargate addresses. It is
 		landing = page("Land and return home", [[
 After a transfer you appear above the destination planet. Use jump to rise and sneak to descend. Use the direction keys to position the ship over a safe landing area.
 
-When the ship touches solid ground, press <b>Aux1</b> (usually <b>E</b>) to land and convert the vehicle back into map blocks. The player respawn point is updated when landing. Exit through the front of the ship, then inspect the tanks and repair the hull.
+When the ship touches solid ground, press <b>Y</b> (Aux1) to land and convert the vehicle back into map blocks. The player respawn point is updated when landing. Exit through the front of the ship, then inspect the tanks and repair the hull.
 
 To return to Asuna, use the Planets page's homeworld option when you have a valid slot. The ship is detached from that slot and moved to the Asuna arrival altitude. Land before leaving it.
 ]], nil, {"stl_vehicles:seat", "stl_vehicles:tank", "stl_core:uranium"}),
@@ -170,8 +170,8 @@ Use <b>/ship_marker starter</b> for the starter ship, or <b>/ship_marker</b> for
 <b>The ship panel does nothing</b>
 You must be piloting the ship first. Then type <b>/ship_panel</b>. The panel is not opened by clicking blocks. The ship must contain exactly one connected seat.
 
-<b>Right-click does not seat me</b>
-Double right-click a spaceship block. You are not pointing at a spaceship block, the seat is not connected, or the scan found an invalid structure. Confirm exactly one connected seat.
+<b>Y does not seat me</b>
+Set Aux1 to Y in the client key settings, then stand within four blocks of a valid ship. The ship needs exactly one connected seat and must be owned by you or shared with you.
 
 <b>The ship will not launch</b>
 Stand on the seat, verify at least one Rocket Engine and fuel in a Fuel Tank, then use jump+sneak. A normal jump only gives manual vertical control.
@@ -193,13 +193,13 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>Shift / Sneak</b> — descend manually.
 
-<b>Aux1</b> (usually <b>E</b>) — land or exit the ship. On solid ground it restores the ship to blocks; while airborne it performs a controlled exit.
+<b>Y</b> (Aux1) — land or exit the ship. On solid ground it restores the ship to blocks; while airborne it performs a controlled exit.
 
 <b>Jump + Sneak</b> — engage the rocket launch burn and consume ordinary Fuel Tank fuel.
 
 <b>I</b> — open the Luanti inventory and the Planets page for destination selection.
 
-<b>Double right-click</b> — enter a connected spaceship and take control.
+<b>Y (Aux1)</b> — enter a nearby connected spaceship and take control. Set Aux1 to Y in Settings → Change keys.
 
 <b>/ship_panel</b> — open the ship control panel while piloting.
 
@@ -208,7 +208,7 @@ Control the ship gently. Maximum horizontal speed is limited, but a fast descent
 
 		panel = page("Ship panel and markers", [[
 <b>Ship panel</b>
-Enter the ship with double right-click, take control, then type <b>/ship_panel</b>. The panel shows position, engine power, fuel-tank count and seat status. It is intentionally not opened by right-clicking blocks.
+Enter the ship with Y (Aux1), take control, then type <b>/ship_panel</b>. The panel shows position, engine power, fuel-tank count and seat status. Right-clicking blocks is reserved for normal editing and equipment interaction.
 
 From the panel you can assign that ship as your <b>current ship</b> or enable its waypoint. The command equivalents are:
 - <b>/ship_panel</b> — open the panel for the nearby/piloted ship.

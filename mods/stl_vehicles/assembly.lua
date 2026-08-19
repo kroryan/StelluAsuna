@@ -100,9 +100,10 @@ local function find_seat_attach_offset(vehicle)
 			local p = node.entity.pos or {x = 0, y = 0, z = 0}
 			-- Player attachment positions are centred on the player body.  The
 			-- seat's top is one node above its origin, not half a node.
-			-- The seat collision top is only about 0.25 nodes above its origin;
-			-- +1.0 put the player's head into the roof block.
-			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y + 0.3, z = p.z}, 10)
+			-- LVAE attachment coordinates are centred on the pilot model.  A
+			-- positive offset puts the head into the cabin roof; use the seat's
+			-- own origin so the pilot is seated in the chair, not above it.
+			vehicle.seat_offset = vector.multiply({x = p.x, y = p.y, z = p.z}, 10)
 			return vehicle.seat_offset
 		end
 	end
@@ -181,22 +182,10 @@ local NORTH = vector.new(0, 0, -1)
 -- the ship the player can actually point at. Route their right-click to the
 -- owning LVAE instead of treating them as inert display entities.
 lvae_node_defs.on_rightclick = function(self, clicker)
-	if not clicker or not clicker:is_player() or clicker:get_attach() then return end
-	local vehicle = self.parent
-	if not vehicle or not vehicle.object or not vehicle.object:is_valid() then return end
-	local name = clicker:get_player_name()
-	local invited_ok = false
-	for _, invited_name in ipairs(vehicle.ship_invited or {}) do
-		if invited_name == name then invited_ok = true break end
-	end
-	if vehicle.ship_owner ~= name and not invited_ok
-		and not minetest.check_player_privs(name, {protection_bypass = true}) then
-		minetest.chat_send_player(name, "Only the ship owner or an invited crew member can enter this ship.")
-		return
-	end
-	vehicle.player = name
-	attach_player_to_vehicle(clicker, vehicle)
-	minetest.chat_send_player(name, "Ship control restored. Press E to exit safely.")
+	-- LVAE child nodes are visual blocks while the ship is in flight.  Do not
+	-- mount on right-click: right-click must remain available for normal block
+	-- interaction and editing.  Use Aux1 (recommended binding: Y) near the ship.
+	return
 end
 
 -- The converter can opt ordinary connected blocks into a ship without
@@ -606,7 +595,7 @@ local function enter_ship(user, pos)
     end
 	-- Put the player's feet just above the seat node, not at its origin. This
 	-- avoids spawning the head inside the roof block and keeps the seat usable.
-	user:set_pos(vector.add(seat, {x = 0, y = 0.3, z = 0}))
+	user:set_pos(vector.add(seat, {x = 0, y = 0.05, z = 0}))
     minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=seat}, true)
     minetest.chat_send_player(user:get_player_name(), "You are on the ship seat. Press Space to take control and launch.")
     return true
@@ -773,21 +762,12 @@ minetest.register_on_mods_loaded(function()
     for name, defs in pairs(minetest.registered_nodes) do
         if minetest.get_item_group(name, "spaceship") > 0 then
             local on_rightclick = defs.on_rightclick
-            minetest.override_item(name, {on_rightclick = function (pos, node, user, itemstack, pointed)
-                if user and user:is_player() then
-                    local pname = user:get_player_name()
-                    local now = minetest.get_us_time() * 0.000001
-                    local previous = right_clicks[pname]
-                    if previous and now - previous.time <= 0.55
-                    and vector.distance(previous.pos, pos) <= 2 then
-                        right_clicks[pname] = nil
-                        if enter_ship(user, pos) then return itemstack end
-                    else
-                        right_clicks[pname] = {time=now, pos=vector.round(pos)}
-                    end
-                end
-                if on_rightclick then on_rightclick(pos, node, user, itemstack, pointed) end
-            end})
+			minetest.override_item(name, {on_rightclick = function (pos, node, user, itemstack, pointed)
+				-- Mounting is deliberately not bound to right-click. Preserve the
+				-- node's own interaction so owners can edit and use ship equipment.
+				if on_rightclick then return on_rightclick(pos, node, user, itemstack, pointed) end
+				return itemstack
+			end})
         end
     end
 end)
@@ -907,8 +887,23 @@ minetest.register_globalstep(function(dtime)
 		local playername = player:get_player_name()
 		local attached_vehicle = player:get_attach()
 
-        local aux1 = control.aux1 and not aux1s[playername]
-        aux1s[playername] = control.aux1
+		local aux1 = control.aux1 and not aux1s[playername]
+		aux1s[playername] = control.aux1
+		-- Mounting uses the Aux1 action (set Aux1 to Y in the client key
+		-- settings). Search only the immediate area and let enter_ship enforce
+		-- ownership/invitations; this never selects a distant or foreign ship.
+		if aux1 and not attached_vehicle then
+			local near = vector.round(pos)
+			local minp = vector.subtract(near, 4)
+			local maxp = vector.add(near, 4)
+			local candidates = minetest.find_nodes_in_area(minp, maxp, {"group:spaceship"})
+			table.sort(candidates, function(a, b)
+				return vector.distance(pos, a) < vector.distance(pos, b)
+			end)
+			for _, ship_pos in ipairs(candidates) do
+				if enter_ship(player, ship_pos) then break end
+			end
+		end
 
 		-- Once detached, never scan the whole node-built ship again while the
 		-- player is driving it. That scan is only needed to enter/launch/exit.
