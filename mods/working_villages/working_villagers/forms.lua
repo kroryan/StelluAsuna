@@ -91,12 +91,14 @@ function forms.form_base(width,height,villager)
 	if villager.nametag and villager.nametag~="" then
 		villager_name = villager.nametag.." - "
 	end
+	local villager_id = villager and villager.villager_id or "unknown"
 
 	return "size["..width..","..height.."]"
 		.. default.gui_bg
 		.. default.gui_bg_img
 		.. default.gui_slots
-		.. "label[0,0;"..villager_name..jobname.."]"
+		.. "label[0,0;"..minetest.formspec_escape(villager_name..jobname).."]"
+		.. "label[0,0.45;Villager ID: "..minetest.formspec_escape(villager_id).."]"
 end
 
 function forms.register_menu_page(pageid, title)
@@ -122,6 +124,8 @@ function forms.register_menu_page(pageid, title)
 					break
 				end
 			end
+			form = form .. "label[0.5,"..(formbottom-1.65)..";Villager ID: "..
+				minetest.formspec_escape(villager.villager_id or "unknown").."]"
 			form = form .. "button_exit[3.5,"..(formbottom-1)..";1,1;exit;bye]"
 			return form
 		end,
