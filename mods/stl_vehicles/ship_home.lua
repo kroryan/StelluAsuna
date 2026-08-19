@@ -36,8 +36,9 @@ local function gui(pos)
 		"button[7.2,2.8;1.9,0.8;remove;Remove crew]"..
 		"button[0.5,4.25;2.5,0.8;scan;Scan ship interior]"..
 		"button_exit[7.2,4.25;1.9,0.8;close;Close]"..
-		"label[0.5,5.2;WARNING: this home covers only the scanned interior of this ship.]"..
-		"label[0.5,5.6;It never claims the outside hull, terrain or another ship.]"
+		"label[0.5,5.2;Status: "..minetest.formspec_escape(m:get_string("stl_vehicles:home_status")).."]"..
+		"label[0.5,5.65;WARNING: this home covers only the scanned interior of this ship.]"..
+		"label[0.5,6.05;It never claims the outside hull, terrain or another ship.]"
 end
 local function show(pos,p) minetest.show_formspec(p:get_player_name(),"stl_vehicles:ship_home:"..hash(pos),gui(pos)) end
 local function owns(pos,p)
