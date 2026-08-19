@@ -382,6 +382,11 @@ end
 
 function working_villages.villager:ai_set_target(target, shared, forced)
 	local shared_player_alert = shared == true and target and target:is_player()
+	-- Owner immunity is absolute, including forced retaliation and shared
+	-- alerts. Villagers must never attack the player who owns them.
+	if target and target:is_player() and target:get_player_name() == self.owner_name then
+		return false
+	end
 	if not alive_object(target) or target == self.object
 		or (not forced and not shared_player_alert and not self:ai_is_enemy(target)) then
 		return false
@@ -426,6 +431,9 @@ end
 
 function working_villages.villager:ai_on_punch(puncher)
 	if not alive_object(puncher) then
+		return
+	end
+	if puncher:is_player() and puncher:get_player_name() == self.owner_name then
 		return
 	end
 	if self:ai_is_enemy(puncher) or (puncher:is_player() and (self.village_defense_mode or "npcs") ~= "passive") then
