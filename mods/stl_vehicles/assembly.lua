@@ -327,9 +327,12 @@ function stellua.get_ship_access(pos)
 end
 
 function stellua.set_ship_owner(pos, owner)
-    local seat = select(2, stellua.assemble_vehicle(vector.round(pos), true))
+    local ship, seat = stellua.assemble_vehicle(vector.round(pos), true)
     if not seat then return false end
-    minetest.get_meta(seat):set_string("stl_vehicles:ship_owner", owner or "")
+	for _, node in ipairs(ship or {}) do
+		minetest.get_meta(node):set_string("stl_vehicles:ship_owner", owner or "")
+	end
+	minetest.get_meta(seat):set_string("stl_vehicles:ship_owner", owner or "")
     return true
 end
 
@@ -600,6 +603,33 @@ local function enter_ship(user, pos)
     minetest.chat_send_player(user:get_player_name(), "You are on the ship seat. Press Space to take control and launch.")
     return true
 end
+
+local function nearby_ship_pos(player)
+	local pos = player:get_pos()
+	local assembled = stellua.assemble_vehicle(vector.round(pos), true)
+	if assembled then return vector.round(pos) end
+	local near = vector.round(pos)
+	local candidates = minetest.find_nodes_in_area(
+		vector.subtract(near, 8), vector.add(near, 8), {"group:seat"})
+	table.sort(candidates, function(a, b)
+		return vector.distance(pos, a) < vector.distance(pos, b)
+	end)
+	return candidates[1]
+end
+
+minetest.register_chatcommand("ship_enter", {
+	description = "Enter your nearby ship",
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		if not player then return false, "Player not found" end
+		if player:get_attach() then return false, "You are already in a ship." end
+		local target = nearby_ship_pos(player)
+		if not target or not enter_ship(player, target) then
+			return false, "No accessible complete ship found within 8 blocks. Set Aux1 to Y and try again nearby."
+		end
+		return true, "Entered ship. Press Space to pilot."
+	end,
+})
 
 -- Re-enter a detached/flying ship.  If a player presses E while the vehicle
 -- is moving, the LVAE no longer has blocks on the map, so the normal node
@@ -892,22 +922,15 @@ minetest.register_globalstep(function(dtime)
 		-- Mounting uses the Aux1 action (set Aux1 to Y in the client key
 		-- settings). Search only the immediate area and let enter_ship enforce
 		-- ownership/invitations; this never selects a distant or foreign ship.
+		local mounted = false
 		if aux1 and not attached_vehicle then
-			local near = vector.round(pos)
-			local minp = vector.subtract(near, 4)
-			local maxp = vector.add(near, 4)
-			local candidates = minetest.find_nodes_in_area(minp, maxp, {"group:spaceship"})
-			table.sort(candidates, function(a, b)
-				return vector.distance(pos, a) < vector.distance(pos, b)
-			end)
-			for _, ship_pos in ipairs(candidates) do
-				if enter_ship(player, ship_pos) then break end
-			end
+			local ship_pos = nearby_ship_pos(player)
+			if ship_pos then mounted = enter_ship(player, ship_pos) end
 		end
 
 		-- Once detached, never scan the whole node-built ship again while the
 		-- player is driving it. That scan is only needed to enter/launch/exit.
-		if not attached_vehicle and (aux1 or control.jump) and stellua.assemble_vehicle(pos, true) then
+		if not mounted and not attached_vehicle and (aux1 or control.jump) and stellua.assemble_vehicle(pos, true) then
 
             --make player exit on aux1
             if aux1 then

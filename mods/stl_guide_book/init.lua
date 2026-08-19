@@ -66,7 +66,7 @@ After your first connection, a red directional waypoint and the text <b>FOLLOW T
 The ship is deliberately placed beside the spawn rather than inside it. Search the immediate surroundings if the arrow is not visible. You can also use <b>/ship_marker starter</b> to show it again.
 
 Tutorial controls:
-- Set the client Aux1 key to <b>Y</b>. Stand within four blocks of your ship and press <b>Y</b> once to sit in its seat. Right-click remains available for editing and using ship blocks.
+- Set the client Aux1 key to <b>Y</b>. Stand within eight blocks of your ship and press <b>Y</b> once to sit in its seat. If the key is not configured, use <b>/ship_enter</b>. Right-click remains available for editing and using ship blocks.
 - Press <b>Space</b> while seated to take control and launch/ascend.
 - Press <b>Y</b> (Aux1) to land or exit. On the ground this lands the ship safely; in flight it performs a controlled exit.
 - While piloting, type <b>/ship_panel</b> to open its control panel.
@@ -111,7 +111,7 @@ Liquid fuels belong in ordinary Fuel Tanks. Petroleum and methane buckets are hi
 
 6. If you want a proper enclosed cabin, make sure the interior is connected and small enough for the vehicle assembler to scan. The scan has a finite size limit.
 
-7. Stand within four blocks of the ship and press <b>Y</b> (Aux1) to sit in it. Right-click is reserved for editing and using blocks. If the ship will not assemble, check for missing seat, disconnected blocks, more than one seat, or an oversized/intersecting structure.
+7. Stand within eight blocks of the ship and press <b>Y</b> (Aux1) to sit in it, or use <b>/ship_enter</b>. Right-click is reserved for editing and using blocks. If the ship will not assemble, check for missing seat, disconnected blocks, more than one seat, or an oversized/intersecting structure.
 ]], recipes({"stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:rocket", "stl_vehicles:impulse_engine"}), {"stl_vehicles:air"}),
 
 		fuel = page("Fuel: impulse and rocket", [[
@@ -171,7 +171,7 @@ Use <b>/ship_marker starter</b> for the starter ship, or <b>/ship_marker</b> for
 You must be piloting the ship first. Then type <b>/ship_panel</b>. The panel is not opened by clicking blocks. The ship must contain exactly one connected seat.
 
 <b>Y does not seat me</b>
-Set Aux1 to Y in the client key settings, then stand within four blocks of a valid ship. The ship needs exactly one connected seat and must be owned by you or shared with you.
+Set Aux1 to Y in the client key settings, then stand within eight blocks of a valid ship. Alternatively use <b>/ship_enter</b>. The ship needs exactly one connected seat and must be owned by you or shared with you.
 
 <b>The ship will not launch</b>
 Stand on the seat, verify at least one Rocket Engine and fuel in a Fuel Tank, then use jump+sneak. A normal jump only gives manual vertical control.
@@ -199,7 +199,7 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>I</b> — open the Luanti inventory and the Planets page for destination selection.
 
-<b>Y (Aux1)</b> — enter a nearby connected spaceship and take control. Set Aux1 to Y in Settings → Change keys.
+<b>Y (Aux1)</b> — enter a nearby connected spaceship and take control. Set Aux1 to Y in Settings → Change keys. <b>/ship_enter</b> is the keyboard-independent fallback.
 
 <b>/ship_panel</b> — open the ship control panel while piloting.
 
