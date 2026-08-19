@@ -108,7 +108,7 @@ function forms.register_menu_page(pageid, title)
 			form_bottom = 9,
 			title = title,
 		},
-		constructor = function(self,villager) --self, villager, playername
+		constructor = function(self,villager,playername) --self, villager, playername
 			local formbottom = self.variables.form_bottom
 			local form = forms.form_base(8,formbottom,villager)
 			local text = self.variables.title
@@ -126,11 +126,23 @@ function forms.register_menu_page(pageid, title)
 			end
 			form = form .. "label[0.5,"..(formbottom-1.65)..";Villager ID: "..
 				minetest.formspec_escape(villager.villager_id or "unknown").."]"
+			if working_villages.villahome_can_follow and working_villages.villahome_can_follow(villager, playername) then
+				local follow_label = villager.ai_follow_enabled and "Disable follow mode" or "Enable follow mode"
+				form = form .. "button[0.5,7.25;3.0,0.8;follow_toggle;" .. follow_label .. "]"
+			end
 			form = form .. "button_exit[3.5,"..(formbottom-1)..";1,1;exit;bye]"
 			return form
 		end,
 		receiver = function(_, villager, sender, fields) --self, villager, sender, fields
 			local sender_name = sender:get_player_name()
+			if fields.follow_toggle and working_villages.villahome_can_follow
+				and working_villages.villahome_can_follow(villager, sender_name) then
+				villager.ai_follow_enabled = not villager.ai_follow_enabled
+				villager.ai_follow_owner = villager.ai_follow_enabled and sender_name or nil
+				villager:set_state_info(villager.ai_follow_enabled and "Following my Villahome owner." or "Follow mode disabled.")
+				forms.show_formspec(villager, "working_villages:talking_menu", sender_name)
+				return
+			end
 			local button = next(fields)
 			if button:find("to_page-")==1 then
 				local page_to = button:sub(9)

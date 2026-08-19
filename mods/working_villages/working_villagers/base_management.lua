@@ -32,6 +32,11 @@ local function home_for(id)
 	return id and id ~= "" and homes[id] or nil
 end
 
+function working_villages.villahome_can_follow(villager, player_name)
+	local home = villager and home_for(villager.village_home_id)
+	return home and home.owner == player_name
+end
+
 local function villager_objects(radius, center)
 	local result = {}
 	for _, object in ipairs(minetest.get_objects_inside_radius(center, radius)) do

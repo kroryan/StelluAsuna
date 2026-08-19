@@ -582,6 +582,28 @@ end
 function working_villages.villager:ai_step(dtime)
 	local pos = self.object:get_pos()
 	if pos then
+		-- Follow mode is available only to the owner of the assigned Villahome.
+		-- It yields to combat and is persisted with the entity staticdata.
+		if self.ai_follow_enabled and self.ai_follow_owner
+			and working_villages.villahome_can_follow
+			and not working_villages.villahome_can_follow(self, self.ai_follow_owner) then
+			self.ai_follow_enabled = false
+			self.ai_follow_owner = nil
+		end
+		if self.ai_follow_enabled and self.ai_follow_owner then
+			local owner = minetest.get_player_by_name(self.ai_follow_owner)
+			if owner and (self.ai_follow_timer or 0) <= 0 then
+				local owner_pos = owner:get_pos()
+				if owner_pos and vector.distance(pos, owner_pos) > 3 then
+					self.job_thread = nil
+					self.destination = vector.new(owner_pos)
+					self:change_direction(owner_pos)
+				end
+				self.ai_follow_timer = 1.0
+			else
+				self.ai_follow_timer = math.max(0, (self.ai_follow_timer or 0) - dtime)
+			end
+		end
 		local previous = self.ai_last_pos
 		local velocity = self.object:get_velocity()
 		if previous and not self.ai_target and not self.ai_delivery

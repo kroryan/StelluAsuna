@@ -1038,6 +1038,8 @@ function working_villages.register_villager(product_name, def)
       self.villager_id = data["villager_id"]
       self.village_home_id = data["village_home_id"]
       self.village_defense_mode = data["village_defense_mode"] or "npcs"
+      self.ai_follow_enabled = data["ai_follow_enabled"] or false
+      self.ai_follow_owner = data["ai_follow_owner"]
 
       local inventory = create_inventory(self)
       for list_name, list in pairs(data["inventory"]) do
@@ -1110,6 +1112,8 @@ function working_villages.register_villager(product_name, def)
       ["villager_id"] = self.villager_id,
       ["village_home_id"] = self.village_home_id,
       ["village_defense_mode"] = self.village_defense_mode or "npcs",
+      ["ai_follow_enabled"] = self.ai_follow_enabled or false,
+      ["ai_follow_owner"] = self.ai_follow_owner,
     }
 
     -- set lists.
