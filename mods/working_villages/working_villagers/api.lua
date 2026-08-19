@@ -34,6 +34,19 @@ function working_villages.ensure_villager_id(self)
 	return self.villager_id
 end
 
+-- Keep base assignment independent from entity unload/recreation.  The
+-- entity staticdata remains the fast path, while this registry is the
+-- durable source of truth across restarts and reconnects.
+function working_villages.save_villager_home(villager_id, home_id)
+	if not villager_id or villager_id == "" then return end
+	villager_id_storage:set_string("villager_home:" .. villager_id, home_id or "")
+end
+
+function working_villages.load_villager_home(villager_id)
+	if not villager_id or villager_id == "" then return "" end
+	return villager_id_storage:get_string("villager_home:" .. villager_id)
+end
+
 -- records failed node place attempts to prevent repeating mistakes
 -- key=minetest.pos_to_string(pos) val=(os.clock()+180)
 local failed_pos_data = {}
@@ -1030,6 +1043,10 @@ function working_villages.register_villager(product_name, def)
     end
 
     working_villages.ensure_villager_id(self)
+	local persisted_home = working_villages.load_villager_home(self.villager_id)
+	if persisted_home ~= "" then
+	  self.village_home_id = persisted_home
+	end
 
     self:set_displayed_action("active")
 

@@ -56,6 +56,7 @@ end
 
 local function associate(entity, home)
 	entity.village_home_id = home.id
+	working_villages.save_villager_home(entity.villager_id, home.id)
 	entity.village_home_pos = vector.new(home.pos)
 	entity.pos_data = entity.pos_data or {}
 	local bed = find_bed(home, entity.object:get_pos())
@@ -119,6 +120,7 @@ local function handle_home_fields(player, home, fields)
 	if fields.assign and entity then associate(entity, home) end
 	if fields.unassign and entity and entity.village_home_id == home.id then
 		entity.village_home_id, entity.village_home_pos = "", nil
+		working_villages.save_villager_home(entity.villager_id, "")
 		entity:set_state_info("I am no longer assigned to a player base.")
 		entity:update_infotext()
 	end
