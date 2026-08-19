@@ -177,6 +177,28 @@ lvae_node_defs.on_punch = nil
 local UP = vector.new(0, 1, 0)
 local NORTH = vector.new(0, 0, -1)
 
+-- Re-entry after a reconnect: the visible LVAE child nodes are the part of
+-- the ship the player can actually point at. Route their right-click to the
+-- owning LVAE instead of treating them as inert display entities.
+lvae_node_defs.on_rightclick = function(self, clicker)
+	if not clicker or not clicker:is_player() or clicker:get_attach() then return end
+	local vehicle = self.parent
+	if not vehicle or not vehicle.object or not vehicle.object:is_valid() then return end
+	local name = clicker:get_player_name()
+	local invited_ok = false
+	for _, invited_name in ipairs(vehicle.ship_invited or {}) do
+		if invited_name == name then invited_ok = true break end
+	end
+	if vehicle.ship_owner ~= name and not invited_ok
+		and not minetest.check_player_privs(name, {protection_bypass = true}) then
+		minetest.chat_send_player(name, "Only the ship owner or an invited crew member can enter this ship.")
+		return
+	end
+	vehicle.player = name
+	attach_player_to_vehicle(clicker, vehicle)
+	minetest.chat_send_player(name, "Ship control restored. Press E to exit safely.")
+end
+
 -- The converter can opt ordinary connected blocks into a ship without
 -- changing their visual node type.  Keep this marker deliberately local to
 -- stl_vehicles so unrelated metadata cannot make terrain assemble as a ship.
@@ -573,8 +595,9 @@ minetest.register_chatcommand("ship_reenter", {
         local best, best_distance
         for _, object in ipairs(minetest.get_objects_inside_radius(user:get_pos(), 128)) do
             local ent = object:get_luaentity()
-            if ent and ent.name == "lvae:lvae" and ent.object:is_valid()
-                and is_exact_ship_owner(name, ent) and not ent.player then
+			if ent and ent.name == "lvae:lvae" and ent.object:is_valid()
+				and is_exact_ship_owner(name, ent)
+				and (not ent.player or ent.player == name) then
                 local distance = vector.distance(user:get_pos(), object:get_pos())
                 if not best_distance or distance < best_distance then
                     best, best_distance = ent, distance
