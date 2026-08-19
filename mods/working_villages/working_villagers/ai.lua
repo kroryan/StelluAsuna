@@ -672,16 +672,10 @@ function working_villages.villager:ai_step(dtime)
 	end
 	if self.ai_job_cooldown and self.ai_job_cooldown > 0 and not self.ai_target and not self.ai_delivery then
 		self.ai_job_cooldown = self.ai_job_cooldown - dtime
-		self.ai_recovery_turn = (self.ai_recovery_turn or 0) - dtime
-		if self.ai_recovery_turn <= 0 then
-			self.ai_recovery_turn = 0.65
-			self:change_direction_randomly()
-		end
 		return true
 	end
 	if self.ai_recovery_time and self.ai_recovery_time > 0 then
 		self.ai_recovery_time = self.ai_recovery_time - dtime
-		self:change_direction_randomly()
 		return true
 	end
 	if self.ai_target and not alive_object(self.ai_target) then
