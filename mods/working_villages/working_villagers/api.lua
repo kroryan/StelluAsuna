@@ -854,11 +854,16 @@ function working_villages.register_egg(egg_name, def)
       if pointed_thing.above ~= nil and def.product_name ~= nil then
         -- set villager's direction.
         local new_villager = minetest.add_entity(pointed_thing.above, def.product_name)
-        new_villager:get_luaentity():set_yaw_by_direction(
+        local villager_entity = new_villager:get_luaentity()
+        -- Allocate the persistent identity at spawn time.  This guarantees
+        -- egg-created villagers retain their ID and assignment immediately,
+        -- even if the map block unloads before the next globalstep.
+        working_villages.ensure_villager_id(villager_entity)
+        villager_entity:set_yaw_by_direction(
           vector.subtract(user:get_pos(), new_villager:get_pos())
         )
-        new_villager:get_luaentity().owner_name = user:get_player_name()
-        new_villager:get_luaentity():update_infotext()
+        villager_entity.owner_name = user:get_player_name()
+        villager_entity:update_infotext()
 
         itemstack:take_item()
         return itemstack
