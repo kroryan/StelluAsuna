@@ -64,8 +64,32 @@ end
 
 local function attach_player_to_vehicle(player, vehicle)
 	if not player or not vehicle or not vehicle.object or not vehicle.object:is_valid() then return false end
+	local pname = player:get_player_name()
+	if not vehicle._stellua_camera_saved then
+		vehicle._stellua_camera_saved = {}
+		local old = player.get_eye_offset and player:get_eye_offset() or nil
+		vehicle._stellua_camera_saved[pname] = old
+	end
 	player:set_attach(vehicle.object, "", find_seat_attach_offset(vehicle), {x = 0, y = 0, z = 0}, true)
+	-- Keep the pilot's view outside the vehicle in third person.  The previous
+	-- offset is restored when the pilot exits or lands, so other mounts and
+	-- normal walking are unaffected.
+	if player.set_eye_offset then
+		player:set_eye_offset({x = 0, y = 0, z = 0}, {x = 0, y = 2, z = 8})
+	end
 	return true
+end
+
+local function restore_vehicle_camera(player, vehicle)
+	if not player or not player.set_eye_offset then return end
+	local saved = vehicle and vehicle._stellua_camera_saved
+	local old = saved and saved[player:get_player_name()]
+	if old and old.offset_first and old.offset_third then
+		player:set_eye_offset(old.offset_first, old.offset_third)
+	else
+		player:set_eye_offset({x=0,y=0,z=0}, {x=0,y=0,z=0})
+	end
+	if saved then saved[player:get_player_name()] = nil end
 end
 
 function lvae_defs.on_step(self, dtime)
@@ -838,6 +862,7 @@ minetest.register_globalstep(function(dtime)
             --land vehicle with aux1
             if aux1 and on_ground(ent, pos) then
                 player:set_detach()
+                restore_vehicle_camera(player, ent)
                 player:set_pos(vector.round(pos))
                 minetest.sound_play({name="doors_door_close", gain=0.3}, {pos=vehicle:get_pos()}, true)
                 stellua.land_vehicle(vehicle)
@@ -850,6 +875,7 @@ minetest.register_globalstep(function(dtime)
                 -- vehicle entity.
                 if aux1 then
                     player:set_detach()
+                    restore_vehicle_camera(player, ent)
                     ent.player = nil
                     local exit_pos = vector.round(pos + player:get_look_dir() * 2)
                     local tries = 0
@@ -872,6 +898,7 @@ minetest.register_globalstep(function(dtime)
 					end
 						player:set_pos(slotpos)
 						player:set_detach()
+						restore_vehicle_camera(player, ent)
 						stellua.land_vehicle(ent, slotpos)
 						save_current_ship_position(player, slotpos)
 					stellua.set_respawn(player, slotpos)
@@ -893,6 +920,7 @@ minetest.register_globalstep(function(dtime)
                     if rel_y >= 750 then
 						player:set_pos(slotpos)
 						player:set_detach()
+						restore_vehicle_camera(player, ent)
 						stellua.land_vehicle(ent, slotpos)
 						save_current_ship_position(player, slotpos)
 						stellua.set_respawn(player, slotpos)

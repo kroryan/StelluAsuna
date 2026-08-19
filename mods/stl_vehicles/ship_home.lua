@@ -51,7 +51,11 @@ local function scan_home(pos,p)
 	if not anchor then return false,"No connected spaceship found nearby. Place this block inside a converted ship." end
 	local ship=select(1,stellua.assemble_vehicle(anchor,true))
 	if not ship or #ship==0 then return false,"The ship could not be assembled; check its seat and conversion." end
-	local queue,seen,blocks={anchor},{},{}
+	-- Seed from every native/converted node returned by the assembler. Rocket
+	-- engines intentionally do not propagate in the old assembler, so starting
+	-- from only the nearest anchor could omit a small upper section.
+	local queue,seen,blocks={}, {}, {}
+	for _,seed in ipairs(ship) do queue[#queue+1]=vector.round(seed) end
 	while #queue>0 do
 		local q=table.remove(queue,1); local h=hash(q)
 		if not seen[h] then

@@ -119,7 +119,7 @@ end
 minetest.register_node("stl_vehicles:ship_converter", {
 	description = "Ship Converter",
 	tiles = {"stl_vehicles_ship_converter.png"},
-	groups = {cracky=2, ship_converter=1},
+	groups = {cracky=2, spaceship=1, ship_converter=1},
 	sounds = stellua.node_sound_metal_defaults(),
 	 on_construct = function(pos)
 		minetest.get_meta(pos):set_string("stl_vehicles:scan_status", "Press Scan + Preview to inspect the connected structure.")
