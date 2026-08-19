@@ -1,12 +1,17 @@
 aliveai_electric={player={}}
 
+local function valid_pos(p)
+	return type(p) == "table" and type(p.x) == "number" and type(p.y) == "number" and type(p.z) == "number"
+end
+
 aliveai_electric.pos_between=function(pos1,pos2,density)
-	if not ((pos1 and pos1.x and pos1.y and pos1.z) or (pos2 and pos2.x and pos2.y and pos2.z)) then return end
+	if not (valid_pos(pos1) and valid_pos(pos2)) then return end
 	local d=aliveai.distance(pos1,pos2)
 	density=density or 1
 	local allpos={}
 	local v = {x = pos1.x - pos2.x, y = pos1.y - pos2.y-1, z = pos1.z - pos2.z}
 	local amount = (v.x ^ 2 + v.y ^ 2 + v.z ^ 2) ^ 0.5
+	if amount <= 0 or amount ~= amount then return {} end
 	local d=math.sqrt((pos1.x-pos2.x)*(pos1.x-pos2.x) + (pos1.y-pos2.y)*(pos1.y-pos2.y)+(pos1.z-pos2.z)*(pos1.z-pos2.z))
 	v.x = (v.x  / amount)*-1
 	v.y = (v.y  / amount)*-1
@@ -22,7 +27,7 @@ aliveai_electric.pos_between=function(pos1,pos2,density)
 end
 
 aliveai_electric.getobjects=function(pos1,pos2)
-	if not ((pos1 and pos1.x and pos1.y and pos1.z) or (pos2 and pos2.x and pos2.y and pos2.z)) then return end
+	if not (valid_pos(pos1) and valid_pos(pos2)) then return {}, {} end
 	local d=aliveai.distance(pos1,pos2)
 	local p={}
 	local obs2={}
@@ -30,6 +35,7 @@ aliveai_electric.getobjects=function(pos1,pos2)
 	local allpos={}
 	local v = {x = pos1.x - pos2.x, y = pos1.y - pos2.y-1, z = pos1.z - pos2.z}
 	local amount = (v.x ^ 2 + v.y ^ 2 + v.z ^ 2) ^ 0.5
+	if amount <= 0 or amount ~= amount then return {}, allpos end
 	local d=math.sqrt((pos1.x-pos2.x)*(pos1.x-pos2.x) + (pos1.y-pos2.y)*(pos1.y-pos2.y)+(pos1.z-pos2.z)*(pos1.z-pos2.z))
 	v.x = (v.x  / amount)*-1
 	v.y = (v.y  / amount)*-1

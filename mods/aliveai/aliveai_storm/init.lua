@@ -173,8 +173,10 @@ minetest.register_entity("aliveai_storm:power",{
 		self.d=self.d-0.1
 
 		local y=(pos.y - self.object:get_pos().y)*self.s
-		if minetest.registered_nodes[minetest.get_node({x=x,y=spos.y+y,z=z}).name].walkable then
-			if minetest.registered_nodes[minetest.get_node({x=x,y=spos.y+y+1,z=z}).name].walkable==false then
+		local node_below = minetest.registered_nodes[minetest.get_node({x=x,y=spos.y+y,z=z}).name]
+		local node_above = minetest.registered_nodes[minetest.get_node({x=x,y=spos.y+y+1,z=z}).name]
+		if node_below and node_below.walkable then
+			if node_above and node_above.walkable==false then
 				y=y+1
 			else
 				self.d=self.d-0.5
