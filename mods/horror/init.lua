@@ -3,63 +3,94 @@ if minetest.get_modpath("mobs") then
 dofile(minetest.get_modpath("horror").."/mobs.lua")
 end
 
--- At night every hostile Horror mob actively acquires nearby players and
--- NPCs. Mobs Redo's attack_chance is inverse (100 disables acquisition), and
--- entering the "attack" state directly bypasses do_attack initialization;
--- both mistakes made the earlier compatibility loop look active but inert.
-local horror_target_timer = 0
-minetest.register_globalstep(function(dtime)
-	horror_target_timer = horror_target_timer + dtime
-	if horror_target_timer < 0.5 then return end
-	horror_target_timer = 0
+-- Horror monsters are nocturnal and must attack even players carrying the
+-- Mobs Redo `peaceful_player` privilege.  Target acquisition belongs to each
+-- mob rather than to a player-centred global scan: that also covers villagers
+-- when no player happens to be close enough to drive the old scan.
+local function horror_is_night()
 	local tod = minetest.get_timeofday()
-	if tod >= 0.2 and tod <= 0.8 then return end
+	return tod < 0.2 or tod > 0.8
+end
+
+local function horror_is_npc(object)
+	local entity = object and object:get_luaentity()
+	if not entity then return false end
+	if entity.type == "npc" then return true end
 	local villagers = rawget(_G, "working_villages")
-	local checked = {}
-	for _, player in ipairs(minetest.get_connected_players()) do
-		for _, object in ipairs(minetest.get_objects_inside_radius(player:get_pos(), 96)) do
-			if not checked[object] then
-				checked[object] = true
-				local entity = object:get_luaentity()
-				if entity and entity.name and entity.name:find("^horror:")
-				and entity.object == object and entity.type == "monster"
-				and entity.passive ~= true and entity.attack_type
-				and (not entity.attack or not entity.attack:get_pos()
-					or entity.attack:get_hp() <= 0) then
-					entity.attack_players = true
-					entity.attack_npcs = true
-					entity.attack_chance = 0
-					local pos = object:get_pos()
-					local best, best_distance
-					for _, target in ipairs(minetest.get_objects_inside_radius(
-						pos, entity.view_range or 16)) do
-						if target ~= object and target:get_hp() > 0 then
-							local target_entity = target:get_luaentity()
-							local target_name = target_entity and target_entity.name or ""
-							local is_npc = target_entity and (target_entity.type == "npc"
-								or (villagers and villagers.is_villager
-									and villagers.is_villager(target_name)))
-							if target:is_player() or is_npc then
-								local target_pos = target:get_pos()
-								local distance = target_pos and vector.distance(pos, target_pos)
-								local from_eye = vector.add(pos, {x=0, y=1, z=0})
-								local to_eye = target_pos and vector.add(target_pos, {x=0, y=1, z=0})
-								if distance and (not best_distance or distance < best_distance)
-								and (not minetest.line_of_sight
-									or minetest.line_of_sight(from_eye, to_eye)) then
-									best, best_distance = target, distance
-								end
-							end
-						end
-					end
-					if best and type(entity.do_attack) == "function" then
-						entity:do_attack(best, true)
-					end
-				end
+	return villagers and type(villagers.is_villager) == "function"
+		and villagers.is_villager(entity.name or "") or false
+end
+
+local function horror_is_target(object)
+	return object and object:get_hp() > 0
+		and (object:is_player() or horror_is_npc(object))
+end
+
+local function horror_acquire_target(self)
+	if not self.object or not self.object:is_valid() then return end
+	if not horror_is_night() then
+		if horror_is_target(self.attack) and type(self.stop_attack) == "function" then
+			self:stop_attack()
+		end
+		return
+	end
+
+	local pos = self.object:get_pos()
+	if not pos then return end
+	local range = math.max(16, self.view_range or 0)
+	self.view_range = range
+	self.view_range_attacking = math.max(range + 8, self.view_range_attacking or 0)
+	self.attack_players = true
+	self.attack_npcs = true
+	self.attack_chance = 0
+
+	local best, best_distance
+	for _, target in ipairs(minetest.get_objects_inside_radius(pos, range)) do
+		if target ~= self.object and horror_is_target(target) then
+			local target_pos = target:get_pos()
+			local distance = target_pos and vector.distance(pos, target_pos)
+			-- Nearby victims are heard even around a corner. At longer range the
+			-- monster needs sight, preventing it from tracking through whole bases.
+			local visible = distance and (distance <= 5 or not minetest.line_of_sight
+				or minetest.line_of_sight(
+					vector.add(pos, {x=0, y=1, z=0}),
+					vector.add(target_pos, {x=0, y=1, z=0})))
+			if visible and (not best_distance or distance < best_distance) then
+				best, best_distance = target, distance
 			end
 		end
 	end
-end)
+
+	if best and (self.attack ~= best or self.state ~= "attack")
+	and type(self.do_attack) == "function" then
+		self:do_attack(best, true)
+	end
+end
+
+for name, definition in pairs(minetest.registered_entities) do
+	if name:find("^horror:") and definition.type == "monster"
+	and definition.passive ~= true and definition.attack_type then
+		local original_do_custom = definition.do_custom
+		definition.attack_players = true
+		definition.attack_npcs = true
+		definition.attack_chance = 0
+		definition.docile_by_day = true
+		definition.view_range = math.max(16, definition.view_range or 0)
+		definition.view_range_attacking = math.max(
+			definition.view_range + 8, definition.view_range_attacking or 0)
+		definition.pathfinding = definition.pathfinding or 1
+		definition.do_custom = function(self, dtime, moveresult)
+			self._horror_target_timer = (self._horror_target_timer or 0) + dtime
+			if self._horror_target_timer >= 0.35 then
+				self._horror_target_timer = 0
+				horror_acquire_target(self)
+			end
+			if original_do_custom then
+				return original_do_custom(self, dtime, moveresult)
+			end
+		end
+	end
+end
 
 --flint and steel override(not included in the license since it's only changing the node placed)
 if minetest.registered_items["fire:flint_and_steel"] then

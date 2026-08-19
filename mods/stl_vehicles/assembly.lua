@@ -355,6 +355,119 @@ function stellua.set_ship_owner(pos, owner)
     return true
 end
 
+local starter_marker = "stl_vehicles:server_starter"
+
+local function ship_contains_conversion(ship)
+	for _, pos in ipairs(ship or {}) do
+		if minetest.get_meta(pos):get_int("stl_vehicles:converted") == 1 then
+			return true
+		end
+	end
+	return false
+end
+
+local function legacy_starter_signature(ship)
+	local minp, maxp
+	local found = {seat=false, rocket=false, tank=false, copper=false, glass=false}
+	for _, pos in ipairs(ship or {}) do
+		local name = minetest.get_node(pos).name
+		if name ~= "air" and name ~= "stl_vehicles:air" then
+			if minp then
+				minp = select(1, vector.sort(minp, pos))
+				maxp = select(2, vector.sort(maxp, pos))
+			else
+				minp, maxp = vector.new(pos), vector.new(pos)
+			end
+			if minetest.get_item_group(name, "seat") > 0 then found.seat = true end
+			if name == "stl_vehicles:rocket" then found.rocket = true end
+			if name == "stl_vehicles:tank" then found.tank = true end
+			if name == "stl_core:copper_block" then found.copper = true end
+			if name == "stl_decor:glass" then found.glass = true end
+		end
+	end
+	if not minp or not maxp then return false end
+	local size = vector.add(vector.subtract(maxp, minp), 1)
+	return found.seat and found.rocket and found.tank and found.copper
+		and found.glass and size.x <= 3 and size.z <= 3 and size.y <= 7
+end
+
+-- Mark a ship as one delivered by the server. Converted/player-scanned ships
+-- are deliberately excluded even if they happen to resemble the starter.
+function stellua.mark_server_starter_ship(pos, owner)
+	local ship, seat = stellua.assemble_vehicle(vector.round(pos), true)
+	if not ship or not seat or ship_contains_conversion(ship) then return false end
+	local meta = minetest.get_meta(seat)
+	meta:set_int(starter_marker, 1)
+	if owner and owner ~= "" then stellua.set_ship_owner(seat, owner) end
+	return true
+end
+
+function stellua.ensure_server_starter_keyship(pos, allow_legacy)
+	local ship, seat = stellua.assemble_vehicle(vector.round(pos), true)
+	if not ship or not seat or ship_contains_conversion(ship) then return false end
+	local seat_meta = minetest.get_meta(seat)
+	local marked = seat_meta:get_int(starter_marker) == 1
+	if not marked and (not allow_legacy or not legacy_starter_signature(ship)) then
+		return false
+	end
+	local owner = seat_meta:get_string("stl_vehicles:ship_owner")
+	if owner == "" then return false end
+	seat_meta:set_int(starter_marker, 1)
+
+	local max_y
+	local top_nodes = {}
+	for _, node_pos in ipairs(ship) do
+		local name = minetest.get_node(node_pos).name
+		if name == "stl_vehicles:keyship" then
+			minetest.get_meta(node_pos):set_string("stl_vehicles:ship_owner", owner)
+			return true
+		end
+		if name ~= "air" and name ~= "stl_vehicles:air" then
+			if not max_y or node_pos.y > max_y then
+				max_y = node_pos.y
+				top_nodes = {vector.new(node_pos)}
+			elseif node_pos.y == max_y then
+				top_nodes[#top_nodes + 1] = vector.new(node_pos)
+			end
+		end
+	end
+	if not max_y then return false end
+	table.sort(top_nodes, function(a, b)
+		local ad = math.abs(a.x - seat.x) + math.abs(a.z - seat.z)
+		local bd = math.abs(b.x - seat.x) + math.abs(b.z - seat.z)
+		return ad < bd
+	end)
+	for _, top in ipairs(top_nodes) do
+		local key_pos = vector.add(top, UP)
+		local existing = minetest.get_node_or_nil(key_pos)
+		if existing and existing.name == "air" then
+			minetest.set_node(key_pos, {name="stl_vehicles:keyship"})
+			local key_meta = minetest.get_meta(key_pos)
+			key_meta:set_string("infotext", "Keyship — right-click to board")
+			key_meta:set_string("stl_vehicles:ship_owner", owner)
+			stellua.set_ship_owner(seat, owner)
+			minetest.log("action", "[stl_vehicles] Added Keyship to legacy server starter ship for "
+				.. owner .. " at " .. minetest.pos_to_string(key_pos))
+			return true
+		end
+	end
+	return false
+end
+
+-- This upgrades every old starter as its mapblock loads, including ships
+-- belonging to offline players. The signature is intentionally the compact
+-- stock rocket, so ordinary native builds and all converted ships are left
+-- alone.
+minetest.register_lbm({
+	label = "Add Keyship to legacy server starter ships",
+	name = "stl_vehicles:migrate_server_starter_keyship",
+	nodenames = {"stl_vehicles:seat"},
+	run_at_every_load = true,
+	action = function(pos)
+		stellua.ensure_server_starter_keyship(pos, true)
+	end,
+})
+
 -- A ship is a single player-owned structure, not a collection of ordinary
 -- blocks. Protect every connected spaceship node from being dug by anyone
 -- except the owner. Invitations grant entry/piloting only, never demolition.
@@ -526,6 +639,11 @@ function stellua.land_vehicle(vehicle, pos)
         local meta = minetest.get_meta(landed_seat)
         meta:set_string("stl_vehicles:ship_owner", owner or "")
         meta:set_string("stl_vehicles:ship_invited", minetest.serialize(invited))
+		-- A legacy starter may have been flying while its mapblock migration
+		-- ran. Upgrade it immediately when it becomes nodes again.
+		minetest.after(0, function()
+			stellua.ensure_server_starter_keyship(landed_seat, true)
+		end)
     end
     for _, val in ipairs(vehicle.tanks) do
         local p, invname, fuel = unpack(val)

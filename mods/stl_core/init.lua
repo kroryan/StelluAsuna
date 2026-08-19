@@ -257,8 +257,12 @@ local function place_starter_ship(player, attempt)
 	starter_ship_placement_lock = true
 	minetest.place_schematic(base, starter_ship_path, "0", {}, true, "place_center_x, place_center_z")
 	starter_ship_placement_lock = false
+	local player_name = player:get_player_name()
 	minetest.after(0, function()
-		if stellua.set_ship_owner then stellua.set_ship_owner(base, player:get_player_name()) end
+		if stellua.set_ship_owner then stellua.set_ship_owner(base, player_name) end
+		if stellua.mark_server_starter_ship then
+			stellua.mark_server_starter_ship(base, player_name)
+		end
 	end)
 	local tank = minetest.registered_nodes["stl_vehicles:tank"]
 	if tank and tank.on_construct then
@@ -321,8 +325,16 @@ local function add_keyship_to_starter(player, ship_pos)
 	local max_y
 	local top_nodes = {}
 	for _, pos in ipairs(ship) do
+		-- Ship Converter output is never upgraded automatically. A converted
+		-- ship may use a crafted Keyship, but it is not a server starter.
+		if minetest.get_meta(pos):get_int("stl_vehicles:converted") == 1 then
+			return false
+		end
 		local node_name = minetest.get_node(pos).name
 		if node_name == "stl_vehicles:keyship" then
+			if stellua.mark_server_starter_ship then
+				stellua.mark_server_starter_ship(seat, player_name)
+			end
 			player:get_meta():set_int(starter_keyship_migration_key, 1)
 			return true
 		end
@@ -354,6 +366,9 @@ local function add_keyship_to_starter(player, ship_pos)
 			key_meta:set_string("infotext", "Keyship — right-click to board")
 			key_meta:set_string("stl_vehicles:ship_owner", player_name)
 			if stellua.set_ship_owner then stellua.set_ship_owner(seat, player_name) end
+			if stellua.mark_server_starter_ship then
+				stellua.mark_server_starter_ship(seat, player_name)
+			end
 			player:get_meta():set_int(starter_keyship_migration_key, 1)
 			minetest.log("action", "[stl_core] Added Keyship to existing starter ship for "
 				.. player_name .. " at " .. minetest.pos_to_string(key_pos))

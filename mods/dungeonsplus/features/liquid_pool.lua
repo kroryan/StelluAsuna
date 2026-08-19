@@ -44,7 +44,14 @@ return {
     local dnode = core.get_content_id(core.registered_nodes[biome.node_dungeon] and biome.node_dungeon or "default:cobble")
     local stairname = core.registered_nodes[biome.node_dungeon_stair] and biome.node_dungeon_stair or "stairs:stair_cobble"
     local stair = core.get_content_id(stairname)
-    local stair_outer = core.get_content_id(stairname:gsub(":stair_",":stair_outer_",1))
+    -- Some mods register the biome's straight dungeon stair without its
+    -- optional outer-corner variant (for example Chemistry limestone brick).
+    -- Never pass that derived but nonexistent name to get_content_id: use the
+    -- matching solid dungeon material for pool corners instead.
+    local outer_name = stairname:gsub(":stair_", ":stair_outer_", 1)
+    local stair_outer = core.get_content_id(
+      core.registered_nodes[outer_name] and outer_name
+        or (core.registered_nodes[biome.node_dungeon] and biome.node_dungeon or "default:cobble"))
 
     local vdata = data.vdata
     local vparam2 = data.vparam2

@@ -1211,6 +1211,13 @@ function creatura.register_mob(name, def)
 	local box_width = def.hitbox and def.hitbox.width or 0.5
 	local box_height = def.hitbox and def.hitbox.height or 1
 	local hitbox = {-box_width, 0, -box_width, box_width, box_height, box_width}
+	-- Current Luanti entity properties accept a boolean here, while older
+	-- Creatura mobs (notably Living Slimes) still use node-style string modes.
+	-- `true` preserves their transparent textures and prevents add_entity from
+	-- rejecting the complete entity definition at spawn time.
+	if type(def.use_texture_alpha) == "string" then
+		def.use_texture_alpha = true
+	end
 
 	def.physical = def.physical or true
 	def.collide_with_objects = def.collide_with_objects or false
