@@ -349,15 +349,25 @@ end
 -- except the owner. Invitations grant entry/piloting only, never demolition.
 minetest.register_on_mods_loaded(function()
     local base_is_protected = minetest.is_protected
+	local function node_owner(pos)
+		local direct = minetest.get_meta(pos):get_string("stl_vehicles:ship_owner")
+		if direct ~= "" then return direct end
+		local ship, seat = stellua.assemble_vehicle(pos, true)
+		if ship and seat then
+			return minetest.get_meta(seat):get_string("stl_vehicles:ship_owner")
+		end
+		return ""
+	end
 
     -- Protection is checked by the engine before node-specific can_dig hooks,
     -- and several area tools use this path directly. Keep this wrapper here,
     -- before Claimer's wrapper is installed, so Claimer can still remain the
     -- authoritative outer protection layer for claimed areas.
     minetest.is_protected = function(pos, player_name)
-        local ship, seat = stellua.assemble_vehicle(pos, true)
-        if ship and seat then
-            local owner = minetest.get_meta(seat):get_string("stl_vehicles:ship_owner")
+        local node = minetest.get_node(pos)
+        if minetest.get_item_group(node.name, "spaceship") > 0
+            or minetest.get_meta(pos):get_int("stl_vehicles:converted") == 1 then
+            local owner = node_owner(pos)
             if owner == "" or owner ~= (player_name or "") then
                 return true
             end
@@ -370,9 +380,10 @@ minetest.register_on_mods_loaded(function()
             and name ~= "stl_vehicles:air" then
             local old_can_dig = def.can_dig
             def.can_dig = function(pos, digger)
-                local ship, seat = stellua.assemble_vehicle(pos, true)
-                if ship and seat then
-                    local owner = minetest.get_meta(seat):get_string("stl_vehicles:ship_owner")
+                local node = minetest.get_node(pos)
+                if minetest.get_item_group(node.name, "spaceship") > 0
+                    or minetest.get_meta(pos):get_int("stl_vehicles:converted") == 1 then
+                    local owner = node_owner(pos)
                     local player_name = digger and digger:is_player()
                         and digger:get_player_name() or ""
                     if owner == "" or player_name ~= owner then

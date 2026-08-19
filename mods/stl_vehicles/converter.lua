@@ -147,8 +147,13 @@ minetest.register_on_placenode(function(pos, newnode, placer)
 	if not pos or not newnode then return end
 	for _, d in ipairs(DIRECTIONS) do
 		if is_ship_block(pos + d) then
-			minetest.get_meta(pos):set_int("stl_vehicles:converted", 1)
-			minetest.get_meta(pos):set_string("stl_vehicles:auto_converted_by", placer and placer:get_player_name() or "")
+			local meta = minetest.get_meta(pos)
+			meta:set_int("stl_vehicles:converted", 1)
+			local adjacent_owner = minetest.get_meta(pos + d):get_string("stl_vehicles:ship_owner")
+			local owner = adjacent_owner ~= "" and adjacent_owner
+				or (placer and placer:is_player() and placer:get_player_name() or "")
+			meta:set_string("stl_vehicles:ship_owner", owner)
+			meta:set_string("stl_vehicles:auto_converted_by", owner)
 			return
 		end
 	end
@@ -174,7 +179,15 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 	elseif fields.convert then
 		ok, result = scan(pos, player)
 		if ok then
-			for _, p in ipairs(result) do minetest.get_meta(p):set_int("stl_vehicles:converted", 1) end
+			local owner = player:get_player_name()
+			for _, p in ipairs(result) do
+				local node_meta = minetest.get_meta(p)
+				node_meta:set_int("stl_vehicles:converted", 1)
+				-- Keep ownership on every structural node, not only the seat. This
+				-- lets the owner edit a ship even if a scan missed its seat or a
+				-- later-added block temporarily prevents full reassembly.
+				node_meta:set_string("stl_vehicles:ship_owner", owner)
+			end
 			meta:set_string("stl_vehicles:converted_data", minetest.serialize(result))
 			meta:set_string("stl_vehicles:scan_status", "Converted. The ship assembler now recognizes all scanned blocks.")
 		else meta:set_string("stl_vehicles:scan_status", result) end
