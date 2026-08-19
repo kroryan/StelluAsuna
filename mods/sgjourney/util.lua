@@ -29,6 +29,15 @@ function S.sound(name, pos, gain)
 	core.sound_play("sgjourney_" .. name, {pos = pos, gain = gain or 1, max_hear_distance = 48}, true)
 end
 
+-- Stargate status belongs to the player who initiated the action. Keep this
+-- helper explicitly player-scoped so future dial paths cannot accidentally
+-- broadcast private gate addresses or errors to the whole server.
+function S.notify(player, message)
+	if player and player:is_player() then
+		core.chat_send_player(player:get_player_name(), message)
+	end
+end
+
 function S.can_use(pos, player)
 	return player and not core.is_protected(pos, player:get_player_name())
 end
@@ -37,4 +46,3 @@ function S.find_gate(pos, radius)
 	local found = core.find_nodes_in_area(vector.subtract(pos, radius), vector.add(pos, radius), {"group:sgjourney_gate"})
 	return found[1]
 end
-

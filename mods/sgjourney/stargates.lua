@@ -201,6 +201,18 @@ local function teleport_through_horizon(obj, horizon)
 	if #destination_horizon == 0 then build_portal(target) end
 	local meta = obj:get_meta()
 	local now = core.get_us_time()
+	-- Keep a traveller from immediately re-entering the destination gate.  The
+	-- old implementation only used a short debounce, so a player who kept
+	-- walking could be detected by the destination aperture and sent back.
+	local exit_until = meta:get_int("sgjourney_exit_until")
+	local exit_pos = core.string_to_pos(meta:get_string("sgjourney_exit_pos"))
+	if exit_pos and exit_until > now then
+		if vector.distance(obj:get_pos(), exit_pos) <= 4.5 then
+			return true
+		end
+		meta:set_string("sgjourney_exit_pos", "")
+		meta:set_int("sgjourney_exit_until", 0)
+	end
 	if now - meta:get_int("sgjourney_teleport") <= 2000000 then return true end
 	meta:set_int("sgjourney_teleport", now)
 	if core.get_meta(target):get_int("iris_closed") == 1 then
@@ -208,9 +220,16 @@ local function teleport_through_horizon(obj, horizon)
 		obj:punch(obj, 1.0, {damage_groups = {fleshy = 20}}, nil)
 	else
 		-- All native variants use the same horizontal gate plane. Place the
-		-- traveller two nodes in front of the destination, safely outside its
-		-- controller and horizon nodes.
-		obj:set_pos(vector.add(vector.round(target), {x = 0, y = 2, z = 2}))
+		-- traveller three nodes in front of the destination, outside the
+		-- aperture's detection radius, stop inherited motion, and face away
+		-- from the gate. This makes pressing W after arrival unambiguous.
+		local exit = vector.add(vector.round(target), {x = 0, y = 2, z = 3})
+		obj:set_pos(exit)
+		obj:set_velocity({x = 0, y = 0, z = 0})
+		if obj.set_look_horizontal then obj:set_look_horizontal(0) end
+		if obj.set_look_vertical then obj:set_look_vertical(0) end
+		meta:set_string("sgjourney_exit_pos", core.pos_to_string(exit))
+		meta:set_int("sgjourney_exit_until", now + 5000000)
 		S.sound("wormhole_travel", target)
 	end
 	return true
@@ -329,7 +348,7 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	if not gate or not S.can_use(gate, player) then return end
 	if fields.dial then
 		local ok, msg = S.dial(gate, fields.address or "", player)
-		core.chat_send_player(player:get_player_name(), (ok and "[Stargate] " or "[Stargate error] ") .. msg)
+		S.notify(player, (ok and "[Stargate] " or "[Stargate error] ") .. msg)
 	elseif fields.disconnect then S.disconnect(gate)
 	elseif fields.iris then S.set_iris(gate, core.get_meta(gate):get_int("iris_closed") ~= 1) end
 end)

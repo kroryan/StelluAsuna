@@ -8,7 +8,7 @@ for _, variant in ipairs({"milky_way", "pegasus", "classic"}) do
 		on_rightclick = function(pos, _, player)
 			if not S.can_use(pos, player) then return end
 			local gate = S.find_gate(pos, 16)
-			if not gate then core.chat_send_player(player:get_player_name(), "[Stargate] No gate within 16 nodes") return end
+			if not gate then S.notify(player, "[Stargate] No gate within 16 nodes") return end
 			local own = core.get_meta(gate):get_string("address")
 			local fs = "formspec_version[4]size[9,5]label[0.5,0.5;DHD — local address " .. core.formspec_escape(own) .. "]" ..
 				"field[0.5,1.5;8,1;dhd_address;Destination address;]button[0.5,3;3.5,1;dhd_dial;Dial]button[5,3;3.5,1;dhd_close;Close]" ..
@@ -24,6 +24,5 @@ core.register_on_player_receive_fields(function(player, formname, fields)
 	local gate = core.string_to_pos(encoded)
 	if not gate or not S.can_use(gate, player) then return end
 	local ok, msg = S.dial(gate, fields.dhd_address or "", player)
-	core.chat_send_player(player:get_player_name(), (ok and "[Stargate] " or "[Stargate error] ") .. msg)
+	S.notify(player, (ok and "[Stargate] " or "[Stargate error] ") .. msg)
 end)
-
