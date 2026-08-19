@@ -14,6 +14,17 @@ local function serializable_node_meta(meta)
 	return out
 end
 
+local function sanitize_meta_table(raw)
+	if type(raw) ~= "table" then return nil end
+	local out = {fields = {}, inventory = {}}
+	for k, v in pairs(raw.fields or {}) do out.fields[k] = tostring(v) end
+	for listname, list in pairs(raw.inventory or {}) do
+		out.inventory[listname] = {}
+		for i, stack in ipairs(list) do out.inventory[listname][i] = ItemStack(stack):to_string() end
+	end
+	return out
+end
+
 local function restore_node_meta(pos, data)
 	if type(data) ~= "table" then return end
 	local meta = minetest.get_meta(pos)
@@ -34,6 +45,12 @@ local old_on_activate = lvae_defs.on_activate
 local old_set_node = lvae_defs.set_node
 
 function lvae_defs.get_staticdata(self)
+	-- Migrate entities created by older builds whose node metadata still held
+	-- ItemStack userdata. Without this pass a normal shutdown can crash while
+	-- serializing the vehicle and make it disappear.
+	for _, node in pairs(self.data or {}) do
+		if node.meta then node.meta = sanitize_meta_table(node.meta) end
+	end
 	local tanks = table.copy(self.tanks or {})
     for _, t in ipairs(tanks or {}) do
         local detached = t[2] and minetest.get_inventory({type="detached", name=t[2]})

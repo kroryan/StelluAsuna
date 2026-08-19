@@ -51,6 +51,13 @@ minetest.register_entity("lvae:node", {
 
 local lvae = {}
 
+local function normalize_properties(properties)
+	if type(properties) == "table" and type(properties.use_texture_alpha) == "string" then
+		properties.use_texture_alpha = true
+	end
+	return properties
+end
+
 function lvae:new_block(pos)
 	local r = self.radius
 	local s = (r * 2) + 1 -- Block size
@@ -106,6 +113,7 @@ function lvae:set_node(pos, node)
 	lnode.node = node
 	lnode.pos = pos
 	local properties, rotation, position = get_drawtype(node, pos, self)
+	properties = normalize_properties(properties)
 	properties.infotext = node.name
 	-- lnode.object:set_nametag_attributes({text = node.name .. "\n" .. minetest.pos_to_string(pos)})
 	lnode.object:set_properties(properties)
@@ -129,7 +137,7 @@ function lvae:set_node(pos, node)
 						local e = self.data[self.area:indexp(upos)].entity
 						if e then
 							local uproperties, urotation, uposition = get_drawtype(unode, upos, self)
-							e.object:set_properties(uproperties)
+							e.object:set_properties(normalize_properties(uproperties))
 							e.tiles = uproperties.tiles
 							e.drawtype = minetest.registered_nodes[unode.name].drawtype
 							e:update_textures()
