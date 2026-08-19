@@ -552,7 +552,9 @@ local function enter_ship(user, pos)
         minetest.chat_send_player(user:get_player_name(), "Ship entry failed: no connected seat found.")
         return false
     end
-	user:set_pos(seat)
+	-- Put the player's feet just above the seat node, not at its origin. This
+	-- avoids spawning the head inside the roof block and keeps the seat usable.
+	user:set_pos(vector.add(seat, {x = 0, y = 0.3, z = 0}))
     minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=seat}, true)
     minetest.chat_send_player(user:get_player_name(), "You are on the ship seat. Press Space to take control and launch.")
     return true
