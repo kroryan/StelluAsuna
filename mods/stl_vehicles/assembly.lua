@@ -155,6 +155,104 @@ local function force_player_exit(player, vehicle)
 	end
 end
 
+local function player_space_is_clear(pos)
+	local feet = vector.round(pos)
+	for y = 0, 1 do
+		local node = minetest.get_node_or_nil(vector.add(feet, {x=0, y=y, z=0}))
+		local def = node and minetest.registered_nodes[node.name]
+		if not def or def.walkable then return false end
+	end
+	return true
+end
+
+-- Pick a point just outside the LVAE collision box.  This must remain O(1):
+-- assembling/scanning a converted hull here used to perform several complete
+-- 10,000-node scans and froze the server precisely when the pilot pressed E.
+local function safe_vehicle_exit_position(player, vehicle)
+	local object = vehicle and vehicle.object
+	local origin = object and object:get_pos()
+	if not origin then return player:get_pos() end
+	local box = vehicle.collisionbox or {-1, -1, -1, 1, 1, 1}
+	local rotation = object:get_rotation() or {x=0, y=0, z=0}
+	local look = player:get_look_dir()
+	local local_look = vector.rotate(look, {x=0, y=-(rotation.y or 0), z=0})
+	local seat_y = vehicle.seat_offset and (vehicle.seat_offset.y or 0) / 10 or 0
+	seat_y = math.max(box[2] + 1, math.min(box[5] + 1, seat_y))
+
+	local x_sign = local_look.x < 0 and -1 or 1
+	local z_sign = local_look.z < 0 and -1 or 1
+	local primary
+	if math.abs(local_look.x) > math.abs(local_look.z) then
+		primary = {x=(x_sign < 0 and box[1] - 1.5 or box[4] + 1.5), y=seat_y, z=0}
+	else
+		primary = {x=0, y=seat_y, z=(z_sign < 0 and box[3] - 1.5 or box[6] + 1.5)}
+	end
+	local candidates = {
+		primary,
+		{x=box[4] + 1.5, y=seat_y, z=0},
+		{x=box[1] - 1.5, y=seat_y, z=0},
+		{x=0, y=seat_y, z=box[6] + 1.5},
+		{x=0, y=seat_y, z=box[3] - 1.5},
+		{x=0, y=box[5] + 1.5, z=0},
+	}
+	for _, local_pos in ipairs(candidates) do
+		local world_pos = vector.add(origin, vector.rotate(local_pos, rotation))
+		for lift = 0, 4 do
+			local candidate = vector.add(world_pos, {x=0, y=lift, z=0})
+			if player_space_is_clear(candidate) then
+				return vector.add(vector.round(candidate), {x=0, y=0.5, z=0})
+			end
+		end
+	end
+	-- The point above the collision box is outside the ship even if surrounding
+	-- terrain is still loading.  It is safer than leaving the player attached.
+	return vector.add(origin, {x=0, y=box[5] + 2, z=0})
+end
+
+local function exit_flying_vehicle(player, vehicle)
+	if not player or not vehicle then return false end
+	local exit_pos = safe_vehicle_exit_position(player, vehicle)
+	vehicle.player = nil
+	force_player_exit(player, vehicle)
+	player:set_pos(exit_pos)
+	minetest.log("action", "[stl_vehicles] " .. player:get_player_name()
+		.. " exited a flying ship at " .. minetest.pos_to_string(vector.round(exit_pos)))
+	return true
+end
+
+local function safe_node_ship_exit_position(player, ship)
+	local minp, maxp
+	for _, pos in ipairs(ship or {}) do
+		if not minp then
+			minp, maxp = vector.new(pos), vector.new(pos)
+		else
+			minp = select(1, vector.sort(minp, pos))
+			maxp = select(2, vector.sort(maxp, pos))
+		end
+	end
+	if not minp then return player:get_pos() end
+	local look = player:get_look_dir()
+	local y = math.max(minp.y + 1, math.min(maxp.y + 1, player:get_pos().y))
+	local candidates
+	if math.abs(look.x) > math.abs(look.z) then
+		local x = look.x < 0 and minp.x - 2 or maxp.x + 2
+		candidates = {{x=x, y=y, z=player:get_pos().z}}
+	else
+		local z = look.z < 0 and minp.z - 2 or maxp.z + 2
+		candidates = {{x=player:get_pos().x, y=y, z=z}}
+	end
+	candidates[#candidates + 1] = {x=(minp.x + maxp.x) / 2, y=maxp.y + 2, z=(minp.z + maxp.z) / 2}
+	for _, candidate in ipairs(candidates) do
+		for lift = 0, 4 do
+			local pos = vector.add(candidate, {x=0, y=lift, z=0})
+			if player_space_is_clear(pos) then
+				return vector.add(vector.round(pos), {x=0, y=0.5, z=0})
+			end
+		end
+	end
+	return candidates[#candidates]
+end
+
 function lvae_defs.on_step(self, dtime)
 	local player = self.player and minetest.get_player_by_name(self.player)
 	if player and player:is_player() and self.object:is_valid() and not player:get_attach() then
@@ -231,7 +329,8 @@ function stellua.assemble_vehicle(pos, find_interior)
 
     --setup
     local checking = {pos}
-    local checked = {minetest.hash_node_position(pos)}
+    local checking_head = 1
+    local checked = {[minetest.hash_node_position(pos)] = true}
     local out = {}
     local out_hash = {}
     local seat
@@ -241,16 +340,20 @@ function stellua.assemble_vehicle(pos, find_interior)
     local minp, maxp = vector.copy(pos), vector.copy(pos)
 
     --first pass: find the walls
-    while #checking > 0 and #out < 10000 do
-        local p = table.remove(checking, 1)
+    -- Use a queue head and hash sets here.  The old table.remove(..., 1) and
+    -- table.indexof calls made scans quadratic; a converted 10,000-node ship
+    -- could stall the whole server for minutes during boarding or exit.
+    while checking_head <= #checking and #out < 10000 do
+        local p = checking[checking_head]
+        checking_head = checking_head + 1
         local nodename = minetest.get_node(p).name
 		local s = minetest.get_item_group(nodename, "spaceship")
 		if s > 0 or minetest.get_meta(p):get_int("stl_vehicles:converted") == 1 then
 			-- Converted blocks behave as structural (propagating) blocks.  Native
 			-- rocket nodes retain their special non-propagating group value.
-			if s == 0 then s = 1 end
+            if s == 0 then s = 1 end
             table.insert(out, p)
-            table.insert(out_hash, minetest.hash_node_position(p))
+            out_hash[minetest.hash_node_position(p)] = true
             if find_interior then
                 for _, c in ipairs({"x", "y", "z"}) do
                     if p[c] < minp[c] then minp[c] = p[c] end
@@ -261,9 +364,9 @@ function stellua.assemble_vehicle(pos, find_interior)
                 for i = 0, 5 do
                     local newp = p+minetest.wallmounted_to_dir(i)
                     local hash = minetest.hash_node_position(newp)
-                    if table.indexof(checked, hash) <= 0 then
+                    if not checked[hash] then
                         table.insert(checking, newp)
-                        table.insert(checked, hash)
+                        checked[hash] = true
                     end
                 end
             end
@@ -290,36 +393,38 @@ function stellua.assemble_vehicle(pos, find_interior)
             for y = minp.y+1, maxp.y-1 do
                 for z = minp.z+1, maxp.z-1 do
                     local p = vector.new(x, y, z)
-                    if table.indexof(out_hash, minetest.hash_node_position(p)) <= 0 then
+                    if not out_hash[minetest.hash_node_position(p)] then
                         local checking2 = {p}
-                        local checked2 = {minetest.hash_node_position(p)}
+                        local checking2_head = 1
+                        local checked2 = {[minetest.hash_node_position(p)] = true}
                         local interior = {}
                         local interior_hash = {}
-                        while #checking2 > 0 and #interior < 100 do
-                            local q = table.remove(checking2, 1)
+                        while checking2_head <= #checking2 and #interior < 100 do
+                            local q = checking2[checking2_head]
+                            checking2_head = checking2_head + 1
                             local q_hash = minetest.hash_node_position(q)
-                            if table.indexof(wall_hash, q_hash) <= 0 then
+                            if not wall_hash[q_hash] then
                                 table.insert(interior, q)
-                                table.insert(interior_hash, q_hash)
+                                interior_hash[q_hash] = true
                                 for i = 0, 5 do
                                     local newp = q+minetest.wallmounted_to_dir(i)
                                     local hash = minetest.hash_node_position(newp)
-                                    if table.indexof(checked2, hash) <= 0 then
+                                    if not checked2[hash] then
                                         table.insert(checking2, newp)
-                                        table.insert(checked2, hash)
+                                        checked2[hash] = true
                                     end
                                 end
                             end
                         end
                         if #interior < 100 then table.insert_all(out, interior) end
-                        table.insert_all(out_hash, interior_hash)
+                        for hash in pairs(interior_hash) do out_hash[hash] = true end
                     end
                 end
             end
         end
     end
 
-    if table.indexof(out_hash, minetest.hash_node_position(orig_pos)) <= 0 then return end
+    if not out_hash[minetest.hash_node_position(orig_pos)] then return end
 
     return out, seat, engines, power, tanks
 end
@@ -823,6 +928,25 @@ minetest.register_chatcommand("ship_reenter", {
     end,
 })
 
+-- A deterministic fallback for clients whose Aux1 key event is delayed or
+-- swallowed.  It never scans, lands or removes the ship.
+minetest.register_chatcommand("ship_exit", {
+	description = "Safely leave the ship you are currently piloting",
+	func = function(name)
+		local player = minetest.get_player_by_name(name)
+		local object = player and player:get_attach()
+		local vehicle = object and object:get_luaentity()
+		if not vehicle or vehicle.name ~= "lvae:lvae" then
+			return false, "You are not piloting a flying ship."
+		end
+		if vehicle.player and vehicle.player ~= "" and vehicle.player ~= name then
+			return false, "This ship is being piloted by another player."
+		end
+		exit_flying_vehicle(player, vehicle)
+		return true, "Exited ship safely. The ship remains in place."
+	end,
+})
+
 minetest.register_chatcommand("invite_ship", {
     params = "<player>",
     description = "Invite a player to enter your ship",
@@ -1081,39 +1205,17 @@ minetest.register_globalstep(function(dtime)
 		aux1s[playername] = control.aux1
 		-- Once detached, never scan the whole node-built ship again while the
 		-- player is driving it. That scan is only needed to enter/launch/exit.
-		if not attached_vehicle and (aux1 or control.jump) and stellua.assemble_vehicle(pos, true) then
+		local assembled_ship
+		if not attached_vehicle and (aux1 or control.jump) then
+			assembled_ship = stellua.assemble_vehicle(pos, true)
+		end
+		if assembled_ship then
 
             --make player exit on aux1
             if aux1 then
-                --move forward until out of the vehicle
-                local dir = player:get_look_dir()
-                while stellua.assemble_vehicle(pos, true) do
-                    pos = vector.round(pos+dir)
-                end
-
-                local attempts = 0
-
-                --go up until there's space
-                while (minetest.registered_nodes[minetest.get_node(pos).name].walkable
-                or minetest.registered_nodes[minetest.get_node(pos+UP).name].walkable) and attempts < 8 do
-                    pos = pos+UP
-                    attempts = attempts+1
-                end
-
-                --if in outer space, skip placement
-                if index then
-                    --go down until there's something to stand on
-                    while not minetest.registered_nodes[minetest.get_node(pos).name].walkable and attempts < 8 do
-                        pos = pos-UP
-                        attempts = attempts+1
-                    end
-                else pos = pos-UP end
-
-                --if we could find a valid position then do it
-                if attempts < 8 then
-                    player:set_pos(pos+0.5*UP)
-                    minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=pos}, true)
-                end
+				pos = safe_node_ship_exit_position(player, assembled_ship)
+				player:set_pos(pos)
+				minetest.sound_play({name="doors_steel_door_close", gain=0.2}, {pos=pos}, true)
 
 			--make vehicle launch on jump
 			elseif control.jump and (index or (pos.y > -1000 and pos.y < 1000)) and minetest.get_item_group(minetest.get_node(pos).name, "seat") > 0 then
@@ -1163,16 +1265,8 @@ minetest.register_globalstep(function(dtime)
                 -- in orbit. Never leave the player attached to a removed
                 -- vehicle entity.
                 if aux1 then
-					force_player_exit(player, ent)
-                    ent.player = nil
-                    local exit_pos = vector.round(pos + player:get_look_dir() * 2)
-                    local tries = 0
-                    while tries < 8 and stellua.assemble_vehicle(exit_pos, true) do
-                        exit_pos = exit_pos + UP
-                        tries = tries + 1
-                    end
-                    player:set_pos(exit_pos + 0.5 * UP)
-                    minetest.chat_send_player(playername, "Exited ship. Re-enter it and use /ship_panel while piloting to open the panel.")
+					exit_flying_vehicle(player, ent)
+                    minetest.chat_send_player(playername, "Exited ship safely. Re-enter it with Keyship or /ship_enter.")
                     transferring = true
                 end
                 -- Asuna is the hybrid homeworld. A rocket launched from its
