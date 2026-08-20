@@ -38,6 +38,25 @@ end
 
 --Override static saving functions for LVAE to allow saving more arbitrary data
 local lvae_defs = minetest.registered_entities["lvae:lvae"]
+local vehicle_storage = minetest.get_mod_storage()
+local vehicle_storage_prefix = "flying_ship:"
+
+local function new_vehicle_storage_id(self)
+	local sequence = vehicle_storage:get_int("flying_ship_sequence") + 1
+	vehicle_storage:set_int("flying_ship_sequence", sequence)
+	local pos = self.object and self.object:get_pos() or vector.zero()
+	return minetest.sha1(table.concat({
+		tostring(os.time()), tostring(sequence), minetest.pos_to_string(vector.round(pos)),
+	}, ":"))
+end
+
+local function release_vehicle_storage(vehicle)
+	local id = vehicle and vehicle._stellua_storage_id
+	if id and id ~= "" then
+		vehicle_storage:set_string(vehicle_storage_prefix .. id, "")
+		vehicle._stellua_storage_id = nil
+	end
+end
 
 local old_get_staticdata = lvae_defs.get_staticdata
 local old_on_activate = lvae_defs.on_activate
@@ -61,12 +80,36 @@ function lvae_defs.get_staticdata(self)
             end
         end
     end
-	return minetest.serialize({old_get_staticdata(self), self.player, self.power, tanks, self.collisionbox, self.ship_owner, self.ship_invited, self.seat_offset})
+	local payload = minetest.serialize({old_get_staticdata(self), self.player, self.power, tanks, self.collisionbox, self.ship_owner, self.ship_invited, self.seat_offset})
+	-- Luanti rejects oversized entity staticdata (large converted hulls easily
+	-- exceed the engine limit) and then silently drops the ship from the map.
+	-- Keep large payloads in the mod's SQLite storage and persist only a small,
+	-- stable reference in the mapblock. Existing small/legacy entities remain
+	-- directly serialised for backwards compatibility.
+	if #payload > 48000 or self._stellua_storage_id then
+		local id = self._stellua_storage_id or new_vehicle_storage_id(self)
+		self._stellua_storage_id = id
+		vehicle_storage:set_string(vehicle_storage_prefix .. id, payload)
+		return minetest.serialize({stl_vehicle_ref=id, version=1})
+	end
+	return payload
 end
 
 function lvae_defs.on_activate(self, staticdata, dtime)
     if staticdata and staticdata ~= "" and not tonumber(staticdata) then
         local decoded = minetest.deserialize(staticdata)
+		if type(decoded) == "table" and type(decoded.stl_vehicle_ref) == "string" then
+			local id = decoded.stl_vehicle_ref
+			local stored = vehicle_storage:get_string(vehicle_storage_prefix .. id)
+			if stored == "" then
+				minetest.log("error", "[stl_vehicles] Missing persistent payload for flying ship " .. id)
+				self.object:remove()
+				return
+			end
+			self._stellua_storage_id = id
+			staticdata = stored
+			decoded = minetest.deserialize(stored)
+		end
         if type(decoded) == "table" then
 			staticdata, self.player, self.power, self.tanks, self.collisionbox, self.ship_owner, self.ship_invited, self.seat_offset = unpack(decoded)
         end
@@ -715,6 +758,9 @@ function stellua.detach_vehicle(pos)
     minp, maxp = minp-pos, maxp-pos
     lvae.collisionbox = {minp.x-0.5, minp.y-0.5, minp.z-0.5, maxp.x+0.5, maxp.y+0.5, maxp.z+0.5}
     lvae.object:set_properties({physical=true, collisionbox=lvae.collisionbox})
+	-- Create the external checkpoint immediately for a large hull instead of
+	-- waiting for the mapblock's first static-object save.
+	lvae_defs.get_staticdata(lvae)
     return lvae
 end
 
@@ -762,6 +808,7 @@ function stellua.land_vehicle(vehicle, pos)
         end
     end
     if vehicle.sound then minetest.sound_fade(vehicle.sound, 5, 0) end
+	release_vehicle_storage(vehicle)
     vehicle:remove()
 end
 
@@ -926,25 +973,6 @@ minetest.register_chatcommand("ship_reenter", {
         end
         return true, "Re-entered ship."
     end,
-})
-
--- A deterministic fallback for clients whose Aux1 key event is delayed or
--- swallowed.  It never scans, lands or removes the ship.
-minetest.register_chatcommand("ship_exit", {
-	description = "Safely leave the ship you are currently piloting",
-	func = function(name)
-		local player = minetest.get_player_by_name(name)
-		local object = player and player:get_attach()
-		local vehicle = object and object:get_luaentity()
-		if not vehicle or vehicle.name ~= "lvae:lvae" then
-			return false, "You are not piloting a flying ship."
-		end
-		if vehicle.player and vehicle.player ~= "" and vehicle.player ~= name then
-			return false, "This ship is being piloted by another player."
-		end
-		exit_flying_vehicle(player, vehicle)
-		return true, "Exited ship safely. The ship remains in place."
-	end,
 })
 
 minetest.register_chatcommand("invite_ship", {

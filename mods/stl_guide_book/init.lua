@@ -211,8 +211,6 @@ Do not disconnect during a transfer or while landing. Reconnect, check the last 
 
 <b>/ship_panel</b> — open the ship control panel while piloting.
 
-<b>/ship_exit</b> — immediate safe exit if Aux1 is delayed. It leaves a flying ship intact and stationary; it does not land or dismantle it.
-
 Control the ship gently. Maximum horizontal speed is limited, but a fast descent can still damage your landing position.
 ]], nil, {"stl_vehicles:keyship", "stl_vehicles:seat", "stl_vehicles:tank", "stl_vehicles:assembler"}),
 
@@ -223,7 +221,6 @@ Board through a <b>Keyship</b> or with <b>/ship_enter</b>, take control, then ty
 From the panel you can assign that ship as your <b>current ship</b> or enable its waypoint. The command equivalents are:
 - <b>/ship_panel</b> — open the panel for the nearby/piloted ship.
 - <b>/ship_reenter</b> — owner-only recovery command if you exited a moving ship; reattaches you to your nearest flying ship within 128 blocks.
-- <b>/ship_exit</b> — safely detach from the ship without scanning, landing or removing it.
 - <b>/revoke_ship player</b> — remove a player's ship invitation.
 - <b>/ship_set_current</b> — assign the nearby or currently piloted ship.
 - <b>/revoke_claim id player</b> — remove a player's Claimer invitation.
