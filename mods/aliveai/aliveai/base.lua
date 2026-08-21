@@ -516,7 +516,7 @@ aliveai.showtext=function(self,text,color)
 	color=color or "ff0000"
 	self.object:set_properties({nametag=text,nametag_color="#" ..  color})
 	minetest.after(1.5, function(self,del)
-		if self and self.object and self.delstatus==del then
+		if aliveai.object_is_active(self) and self.delstatus==del then
 			if self.namecolor~="" then
 				self.object:set_properties({nametag=self.botname,nametag_color="#" .. self.namecolor})
 			else
@@ -528,6 +528,7 @@ aliveai.showtext=function(self,text,color)
 end
 
 aliveai.showhp=function(self,p)
+	if not aliveai.object_is_active(self) then return self end
 	local color="ff0000"
 	if p then color="00ff00" end
 	aliveai.showtext(self,self.object:get_hp() .." / " .. self.hp_max,color)
@@ -1129,9 +1130,10 @@ end
 
 
 aliveai.dmgbynode=function(self, dtime)
+	if not aliveai.object_is_active(self) then return nil end
 	if self.damage_by_blocks~=1 then return self end
 	local pos=aliveai.newpos(self)
-	if not pos then return self end
+	if not pos then return nil end
 
 	local properties=self.object:get_properties()
 	local box=properties and properties.collisionbox or {-0.35,-1,-0.35,0.35,0.8,0.35}
@@ -1166,6 +1168,10 @@ aliveai.dmgbynode=function(self, dtime)
 			-- Environmental damage must not be blocked by an NPC's minimum
 			-- punch threshold. Keep AliveAI's normal punch/death pipeline.
 			aliveai.punchdmg(self.object,math.max(damage,self.mindamage or 0))
+			-- on_punch may remove the entity immediately.  Do not use the stale
+			-- ObjectRef or allow the bot pipeline to enter its custom step.
+			local hp=aliveai.object_is_active(self) and self.object:get_hp()
+			if not hp or hp<=0 then return nil end
 			if not (self.dying or self.dead or self.sleeping) then
 				self.object:set_yaw(math.random(0,6.28))
 				aliveai.walk(self,2)
@@ -1393,7 +1399,9 @@ aliveai.falling=function(self)
 end
 
 aliveai.jump=function(self,v)
-	if self.object:get_velocity().y==0 then
+	local velocity=self.object and self.object:get_velocity()
+	if not velocity then return self end
+	if velocity.y==0 then
 		v=v or {}
 		v.y=v.y or 5.2
 		v.x=v.x or self.move.x
@@ -1407,12 +1415,14 @@ aliveai.jumping=function(self)
 	if not pos then
 		return
 	end
+	local velocity=self.object:get_velocity()
+	if not velocity then return self end
 
 	pos.y=pos.y-self.basey
 	if minetest.get_node(pos)==nil then return end
 	local test=minetest.registered_nodes[minetest.get_node(pos).name]
 -- jump inside block
-	if self.object:get_velocity().y==0 and test.walkable and test.drawtype~="nodebox" then
+	if velocity.y==0 and test.walkable and test.drawtype~="nodebox" then
 		aliveai.jump(self)
 		aliveai.showstatus(self,"jump inside block")
 		if self.light==-1 then return self end
@@ -1430,7 +1440,7 @@ aliveai.jumping=function(self)
 		return self
 	end
 
-	if self.move.x+self.move.z~=0 and self.object:get_velocity().y==0 then
+	if self.move.x+self.move.z~=0 and velocity.y==0 then
 		local x=self.move.x
 		local z=self.move.z
 		local j={}
@@ -1444,7 +1454,8 @@ aliveai.jumping=function(self)
 			aliveai.jump(self)
 			minetest.after(0.5, function(self)
 				if self and self.object and self.object:get_luaentity() and self.object:get_luaentity().name then
-					self.object:set_velocity({x = self.move.x*2, y = self.object:get_velocity().y, z =self.move.z*2})
+					local delayed_velocity=self.object:get_velocity()
+					if delayed_velocity then self.object:set_velocity({x = self.move.x*2, y = delayed_velocity.y, z =self.move.z*2}) end
 
 				end
 			end, self)
@@ -1455,7 +1466,8 @@ aliveai.jumping=function(self)
 			aliveai.jump(self,{y=7})
 			minetest.after(0.5, function(self)
 				if self and self.object and self.object:get_luaentity() and self.object:get_luaentity().name then
-					self.object:set_velocity({x = self.move.x*2, y = self.object:get_velocity().y, z =self.move.z*2})
+					local delayed_velocity=self.object:get_velocity()
+					if delayed_velocity then self.object:set_velocity({x = self.move.x*2, y = delayed_velocity.y, z =self.move.z*2}) end
 				end
 			end, self)
 			aliveai.showstatus(self,"jump x2")
@@ -1648,11 +1660,13 @@ end
 aliveai.walk=function(self,sp)
 	local pos=self.object:get_pos()
 	if not pos then return self end
+	local velocity=self.object:get_velocity()
+	if not velocity then return self end
 	local yaw=aliveai.nan(self.object:get_yaw())
 	sp=sp or 1
 	local x =math.sin(yaw) * -1
 	local z =math.cos(yaw) * 1
-	local y=self.object:get_velocity().y
+	local y=velocity.y
 	local s=(self.move.speed+1)*sp
 	self.move.x=x*sp
 	self.move.z=z*sp
@@ -1677,12 +1691,16 @@ aliveai.walk=function(self,sp)
 end
 
 aliveai.stand=function(self)
-	if not self.move or not self.object or not self.object:get_velocity() then aliveai.kill(self) return end
+	local velocity=self.object and self.object:get_velocity()
+	if not self.move or not velocity then
+		if aliveai.object_is_active(self) then aliveai.kill(self) end
+		return
+	end
 	self.move.x=0
 	self.move.z=0
 	self.object:set_velocity({
 		x = 0,
-		y = self.object:get_velocity().y,
+		y = velocity.y,
 		z = 0})
 	aliveai.anim(self,"stand")
 	return self

@@ -453,8 +453,10 @@ minetest.register_entity("aliveai_nitroglycerine:dust",{
 		self.timer2=self.timer2-1
 
 		local v=self.object:get_velocity()
+		if not v then return self end
 		local x,y,z=math.abs(v.x),math.abs(v.y),math.abs(v.z)
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		
 		if not self.rounded and x+y+z<1 then
 			self.object:set_pos({x=math.floor(pos.x),y=math.floor(pos.y),z=math.floor(pos.z)})
@@ -490,7 +492,9 @@ minetest.register_entity("aliveai_nitroglycerine:playerp",{
 	textures ={"aliveai_air.png"},
 	pointable=false,
 	on_punch=function(self)
-		local v=self.object:get_velocity().y
+		local velocity=self.object:get_velocity()
+		if not velocity then return self end
+		local v=velocity.y
 		if v<0.2 and v>-0.2 then
 			self.kill(self)
 		end
@@ -500,7 +504,9 @@ minetest.register_entity("aliveai_nitroglycerine:playerp",{
 			self.ob:set_detach()
 			if not (liquid and liquid>0) then
 				local from=math.floor((self.y+0.5)/2)
-				local hit=math.floor((self.object:get_pos().y+0.5)/2)
+				local pos=self.object:get_pos()
+				if not pos then return self end
+				local hit=math.floor((pos.y+0.5)/2)
 				local d=from-hit
 				if d>=0 then
 					aliveai.punchdmg(self.ob,d)
@@ -516,7 +522,9 @@ minetest.register_entity("aliveai_nitroglycerine:playerp",{
 		self.ob=aliveai_nitroglycerine.new_player
 		self.ob:set_attach(self.object, "",{x = 0, y = 0, z = 0}, {x = 0, y = 0, z = 0})
 		self.object:set_acceleration({x=0,y=-10,z=0})
-		self.y=self.object:get_pos().y
+		local pos=self.object:get_pos()
+		if not pos then self.object:remove() return self end
+		self.y=pos.y
 		return self
 	end,
 	on_step=function(self, dtime)

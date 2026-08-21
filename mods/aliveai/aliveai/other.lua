@@ -891,7 +891,7 @@ aliveai.showstatus=function(self,t,c)
 		self.delstatus=math.random(0,50) 
 		local del=self.delstatus
 		minetest.after(2, function(self,del)
-			if self and self.object then
+			if aliveai.object_is_active(self) then
 				if self.delstatus==del then
 					if self.namecolor=="" then
 						self.object:set_properties({nametag="",nametag_color=""})

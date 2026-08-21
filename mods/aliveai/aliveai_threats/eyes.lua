@@ -152,10 +152,14 @@ minetest.register_entity("aliveai_threats:eyes",{
 			self.stat=r.stat
 		end
 		self.botname=aliveai.genname()
-		self.opos=aliveai.roundpos(self.object:get_pos())
+		local initial_pos = self.object:get_pos()
+		if not initial_pos then return end
+		self.opos=aliveai.roundpos(initial_pos)
 
 		minetest.after(0.1, function(self)
+			if not aliveai.object_is_active(self) then return end
 			if not self.stat then self.stat=self.object:get_pos() end
+			if not self.stat or not self.opos then return end
 			local s=3.14
 			if not self.side then self.side=1 end
 			if self.side==1 then

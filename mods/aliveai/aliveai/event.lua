@@ -149,7 +149,7 @@ aliveai.dying=function(self,set)
 			return
 		end
 		minetest.after(0.1, function(self)
-			if self.object:get_luaentity() then
+				if aliveai.object_is_active(self) and self.object:get_luaentity() then
 				aliveai.exitpath(self)
 				aliveai.anim(self,"lay")
 			end
@@ -168,7 +168,9 @@ aliveai.dying=function(self,set)
 	end
 
 	if self.dying then
-		self.object:set_velocity({x=0,y=self.object:get_velocity().y,z=0})
+		local velocity=self.object:get_velocity()
+		if not velocity then return self end
+		self.object:set_velocity({x=0,y=velocity.y,z=0})
 		if self.hp<=self.hp_max*-1 then
 			aliveai.dying(self,2)
 			return self
@@ -196,6 +198,7 @@ aliveai.dying=function(self,set)
 		self.dead=self.dead-1
 		if self.dead<0 then
 			local pos=self.object:get_pos()
+			if not pos then return self end
 			pos.y=pos.y-1
 			if minetest.get_item_group(minetest.get_node(pos).name, "igniter")>0 then
 				minetest.add_particlespawner({
@@ -241,6 +244,7 @@ aliveai.rndgoal=function(self)
 		local p2=aliveai.neartarget(self,p1)
 		if p2 then
 			local pos=aliveai.roundpos(self.object:get_pos())
+			if not pos then return self end
 			pos.y=pos.y-1
 			local p3=aliveai.creatpath(self,pos,p2)
 			if p3 then
@@ -305,6 +309,7 @@ aliveai.node_handler=function(self)
 	aliveai.showstatus(self,"handling nodes")
 	local p3
 	local pos=self.object:get_pos()
+	if not pos then return self end
 	local pt={x=pos.x,y=pos.y-1,z=pos.z}
 	for i, s in pairs(aliveai.nodes_handler) do
 		if minetest.get_node(pt).name==i then
@@ -482,6 +487,7 @@ aliveai.light=function(self)
 
 	aliveai.showstatus(self,"check light")
 	local pos=aliveai.roundpos(self.object:get_pos())
+	if not pos then return end
 	pos.y=pos.y-1
 	local l=minetest.get_node_light(pos)
 	if l==nil or (self.light>0 and l>=self.lowestlight) or (self.light<0 and l<=self.lowestlight) then
@@ -949,15 +955,18 @@ aliveai.fight=function(self)
 
 	if self.fighting==1 and (self.fight and (self.fight:get_luaentity() or self.fight:is_player())) then
 		if self.fight_hp==nil then self.fight_hp=self.object:get_hp()/2 end
-		local pos=aliveai.roundpos(self.object:get_pos())
-		local fpos=aliveai.roundpos(self.fight:get_pos())
-		local d=aliveai.distance(self,fpos)
+			local pos=aliveai.roundpos(self.object:get_pos())
+			local fpos=aliveai.roundpos(self.fight:get_pos())
+			if not pos or not fpos then self.fight=nil return self end
+			local d=aliveai.distance(self,fpos)
 		local see=aliveai.visiable(self,fpos)
-		local vy
-		if self.fight:get_luaentity() then
-			vy=self.fight:get_velocity().y
-		else
-			vy=self.fight:get_player_velocity().y
+			local vy
+			if self.fight:get_luaentity() then
+				local velocity=self.fight:get_velocity()
+				vy=velocity and velocity.y or 0
+			else
+				local velocity=self.fight:get_player_velocity()
+				vy=velocity and velocity.y or 0
 		end
 		pos.y=pos.y-1
 -- fly from
@@ -1052,7 +1061,8 @@ aliveai.fight=function(self)
 						aliveai.lookat(self,fpos)
 						self.object:set_yaw(aliveai.random(yaw*0.5,yaw*1.5))
 						aliveai.walk(self,2)
-						if math.random(1,3)==1 and self.object:get_velocity().y==0 then
+							local velocity=self.object:get_velocity()
+							if math.random(1,3)==1 and velocity and velocity.y==0 then
 							self.object:set_velocity({x = self.move.x*4, y = 5.2, z =self.move.z*4})
 						elseif math.random(1,3)==1 then
 							local yu1={x=fpos.x,y=fpos.y-2,z=fpos.z}
@@ -1108,6 +1118,7 @@ aliveai.findspace=function(self)
 		end
 		aliveai.rndwalk(self,false)
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		pos.y=pos.y+0.5
 		pos=aliveai.roundpos(pos)
 		if math.random(1,5)==1 and self.done~="findspace" then
@@ -1543,7 +1554,8 @@ aliveai.path=function(self)
 				pos=aliveai.roundpos(pos)
 				pos.y=pos.y-1
 				local p3=self.path[self.pathn]
-				if self.object:get_velocity().y==0 and aliveai.def({x=p3.x,y=p3.y-1,z=p3.z},"walkable")==false then
+					local velocity=self.object:get_velocity()
+					if velocity and velocity.y==0 and aliveai.def({x=p3.x,y=p3.y-1,z=p3.z},"walkable")==false then
 					local stuff=self.path_bridge
 					if stuff=="" then
 						for i, v in pairs(self.inv) do

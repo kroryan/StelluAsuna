@@ -394,7 +394,7 @@ aliveai.create_bot({
 				aliveai.lookat(self,self.work_path)
 				self.work_path=nil
 	--take from inventory
-				if self.work_step==1 and self.work_take then
+			if self.work_step==1 and self.work_take then
 					local meta=minetest.get_meta(self.work_take)
 					local inv = meta:get_inventory()
 					local owner=meta:get_string("owner")
@@ -453,9 +453,10 @@ aliveai.create_bot({
 --take from inventory
 		if self.work_step==1 and self.work_take then
 			local p=aliveai.neartarget(self,self.work_take,self.arm,0)
-			if p then
-				local pos=aliveai.roundpos(self.object:get_pos())
-				pos.y=pos.y-1
+				if p then
+					local pos=aliveai.roundpos(self.object:get_pos())
+					if not pos then return self end
+					pos.y=pos.y-1
 				p=aliveai.creatpath(self,pos,aliveai.roundpos(p))
 				if p then
 					self.path=p
@@ -467,9 +468,10 @@ aliveai.create_bot({
 --place
 		if self.work_step==2 and self.work_place then
 			local p=aliveai.neartarget(self,self.work_place,self.arm,0)
-			if p then
-				local pos=aliveai.roundpos(self.object:get_pos())
-				pos.y=pos.y-1
+				if p then
+					local pos=aliveai.roundpos(self.object:get_pos())
+					if not pos then return self end
+					pos.y=pos.y-1
 				p=aliveai.creatpath(self,pos,aliveai.roundpos(p))
 				if p then
 					self.path=p
@@ -481,9 +483,10 @@ aliveai.create_bot({
 --add to inventory
 		if self.work_step==2 and self.work_add then
 			local p=aliveai.neartarget(self,self.work_add,self.arm,0)
-			if p then
-				local pos=aliveai.roundpos(self.object:get_pos())
-				pos.y=pos.y-1
+				if p then
+					local pos=aliveai.roundpos(self.object:get_pos())
+					if not pos then return self end
+					pos.y=pos.y-1
 				p=aliveai.creatpath(self,pos,aliveai.roundpos(p))
 				if p then
 					self.path=p

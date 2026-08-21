@@ -158,13 +158,16 @@ aliveai.create_bot({
 	on_detecting_enemy=function(self)
 		self.notblow=1
 		minetest.after(1, function(self)
+			if not aliveai.object_is_active(self) then return end
 			self.notblow=nil
 		end,self)
 	end,
 	on_blow=function(self)
 		if self.notblow then return end
+		local pos = aliveai.object_is_active(self) and self.object:get_pos()
+		if not pos then return self end
 		aliveai.kill(self)
-		self.death(self,self.object,self.object:get_pos())
+		self.death(self,self.object,pos)
 	end,
 	death=function(self)
 		if not self.ex then
@@ -259,6 +262,7 @@ minetest.register_entity("aliveai_massdestruction:bomb",{
 		self.time=self.time+dtime
 		self.time2=self.time2-dtime
 		local v=self.object:get_velocity()
+		if not v then return self end
 		if self.time2>1 and v.y==0 and self.last_y<0 then
 			self.time2=0
 			self.expl=math.random(1,10)
@@ -267,7 +271,9 @@ minetest.register_entity("aliveai_massdestruction:bomb",{
 		self.last_y=v.y
 		self.time=0
 		if not self.expl then
-			for _, ob in ipairs(minetest.get_objects_inside_radius(self.object:get_pos(), 2)) do
+			local pos=self.object:get_pos()
+			if not pos then return self end
+			for _, ob in ipairs(minetest.get_objects_inside_radius(pos, 2)) do
 				local en=ob:get_luaentity()
 				if not (en and en.aliveaibomb) then
 					self.time2=-1
@@ -320,9 +326,11 @@ aliveai.create_bot({
 		self.aliveaibomb=1
 	end,
 	on_step=function(self, dtime)
+		local velocity=self.object:get_velocity()
+		if not velocity then return self end
 		self.obtimeer=self.obtimeer+0.1
 		self.time=0.1
-		if self.object:get_velocity().y==0 then
+		if velocity.y==0 then
 			if self.fight then
 				local pos=self.object:get_pos()
 				local pos2=self.fight:get_pos()
@@ -332,7 +340,9 @@ aliveai.create_bot({
 			else
 				self.object:set_velocity({x=math.random(-5,5),y=math.random(5,10),z=math.random(-5,5)})
 			end
-			local y=self.object:get_velocity().y
+			local next_velocity=self.object:get_velocity()
+			if not next_velocity then return self end
+			local y=next_velocity.y
 			if y==0 or y==-0 then self.object:set_velocity({x=0,y=math.random(5,10),z=0}) end
 		end
 		if self.obtimeer<1 then return self end

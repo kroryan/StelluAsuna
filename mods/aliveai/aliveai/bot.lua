@@ -1,5 +1,14 @@
-aliveai.main=function(self, dtime)
-	if not self.object or not self.object:get_pos() then return self end
+-- ObjectRefs can become invalid in the middle of a server step.  This happens
+-- most often when damage callbacks kill/remove an entity before its custom
+-- behaviour runs.  Luanti then keeps the Lua userdata briefly, but get_pos()
+-- returns nil.  Keep the check in one place so every AliveAI implementation
+-- uses the same lifecycle rule.
+aliveai.object_is_active=function(self)
+	return self and self.object and self.object:get_pos()~=nil
+end
+
+local function main_unprotected(self, dtime)
+	if not aliveai.object_is_active(self) then return self end
 	if aliveai.systemfreeze==1 then
 		if self.floating==0 then
 			self.object:set_acceleration({x=0,y=0,z =0})
@@ -14,42 +23,68 @@ aliveai.main=function(self, dtime)
 	end
 
 	if aliveai.botdelay(self,1) then return self end
-	if not self.object or not self.object:get_pos() then return self end
+	if not aliveai.object_is_active(self) then return self end
 	aliveai.bot(self, dtime)
-	aliveai.botdelay(self)
+	if aliveai.object_is_active(self) then aliveai.botdelay(self) end
+end
+
+-- An entity callback must never be able to terminate the dedicated server.
+-- The explicit lifecycle checks below fix known stale-ObjectRef paths; this
+-- boundary is the last line of defence for third-party/custom AliveAI bots.
+-- Repeated errors from one entity are rate-limited while transient failures
+-- are allowed to recover on a later step.
+aliveai.main=function(self, dtime)
+	if not aliveai.object_is_active(self) then return self end
+	local ok,result=pcall(main_unprotected,self,dtime)
+	if ok then return result end
+	local message=tostring(result)
+	local now=minetest.get_gametime()
+	if self._aliveai_last_error~=message or now>=(self._aliveai_error_log_after or 0) then
+		local name=(self.name and tostring(self.name)) or (self.botname and tostring(self.botname)) or "unknown"
+		minetest.log("error","[aliveai] contained entity callback failure for "..name..": "..message)
+		self._aliveai_last_error=message
+		self._aliveai_error_log_after=now+30
+	end
+	return self
 end
 
 aliveai.bot=function(self, dtime)
-	if not self.object or not self.object:get_pos() then return self end
+	if not aliveai.object_is_active(self) then return self end
 	aliveai.bots_delay=aliveai.bots_delay+dtime
 	self.timer=self.timer+dtime
 	self.timerfalling=self.timerfalling+dtime
 	if self.timerfalling>0.2 then aliveai.falling(self) end
+	if not aliveai.object_is_active(self) then return self end
 	if self.timer<=self.time then return self end
 	self.timer=0
 
 --betweens
 
 	if aliveai.dying(self) then return self end
-	if not aliveai.dmgbynode(self, dtime) then return self end
-	if self.step(self,dtime) or self.controlled==1 then return self end
+	if not aliveai.object_is_active(self) then return self end
+	if not aliveai.dmgbynode(self, dtime) or not aliveai.object_is_active(self) then return self end
+	local step_result=self.step(self,dtime)
+	if step_result or self.controlled==1 or not aliveai.object_is_active(self) then return self end
 	if aliveai.sleep(self) then return self end
 	aliveai.jumping(self)-- if need to jump
+	if not aliveai.object_is_active(self) then return self end
 	if aliveai.fight(self) then return self end
+	if not aliveai.object_is_active(self) then return self end
 	if aliveai.fly(self) then return self end
 
 	if aliveai.come(self) then return self end
 	if aliveai.folowing(self) then return self end
 	aliveai.searchobjects(self)
+	if not aliveai.object_is_active(self) then return self end
 	if aliveai.need_helper(self) then return self end	-- give stuff
 	if aliveai.light(self) then return self end
 	if aliveai.node_handler(self) then return self end
 	if aliveai.timer(self) then return self end		-- remove monsters
 	if aliveai.rndgoal(self) then return self end
-	
+
 	aliveai.msghandler(self)
-	
-	if not self.object or not self.object:get_pos() then return self end
+
+	if not aliveai.object_is_active(self) then return self end
 	aliveai.pickup(self)-- if can pick up items
 
 	if aliveai.lookaround(self) then return self end
@@ -229,20 +264,25 @@ minetest.register_entity(def.mod_name ..":" .. def.name,{
 	initial_sprite_basepos = {x=0, y=0},
 	is_visible = true,
 	makes_footstep_sound = true,
-on_rightclick=function(self, clicker,name)
-		self.click(self,clicker)
-	end,
-on_punch=function(self, puncher, time_from_last_punch, tool_capabilities, dir)
-		local pos=self.object:get_pos()
-		if self.destroy or minetest.get_node({x=pos.x,y=pos.y-2,z=pos.z}).name=="ignore" then
+	on_rightclick=function(self, clicker,name)
+			if not aliveai.object_is_active(self) then return self end
+			self.click(self,clicker)
+		end,
+	on_punch=function(self, puncher, time_from_last_punch, tool_capabilities, dir)
+			if not aliveai.object_is_active(self) then return self end
+			local pos=self.object:get_pos()
+			if not pos then return self end
+			if self.destroy or minetest.get_node({x=pos.x,y=pos.y-2,z=pos.z}).name=="ignore" then
 			self.object:remove()
 			aliveai.max(self,true)
 			return self
 		end
-		tool_capabilities.damage_groups.fleshy=tool_capabilities.damage_groups.fleshy or 1
+			tool_capabilities=tool_capabilities or {}
+			tool_capabilities.damage_groups=tool_capabilities.damage_groups or {}
+			tool_capabilities.damage_groups.fleshy=tool_capabilities.damage_groups.fleshy or 1
 		local mindmg=tool_capabilities.damage_groups.fleshy>=self.mindamage
 		local dmg=0
-		
+
 		if tool_capabilities and tool_capabilities.damage_groups and tool_capabilities.damage_groups.fleshy then
 			if not self.hp then self.hp=0 end
 			if mindmg==true then
@@ -268,7 +308,7 @@ on_punch=function(self, puncher, time_from_last_punch, tool_capabilities, dir)
 				self.sleeping=nil
 				self.onpunch_r=r
 				minetest.after(1, function(self,v,r)
-						if self and self.object and self.hp>0 and self.onpunch_r==r then
+						if aliveai.object_is_active(self) and self.hp>0 and self.onpunch_r==r then
 							local vel2 = self.object:get_velocity()
 							if vel2 and aliveai.samepos(aliveai.roundpos(vel2),aliveai.roundpos(v)) then
 								self.object:set_velocity({x = 0,y = vel2.y,z = 0})
@@ -291,8 +331,10 @@ on_punch=function(self, puncher, time_from_last_punch, tool_capabilities, dir)
 			end
 		end
 
-		if self.object:get_hp()<=0 and not (self.dead or self.dying) then
-			local pos=self.object:get_pos()
+			local object_hp=aliveai.object_is_active(self) and self.object:get_hp()
+			if object_hp and object_hp<=0 and not (self.dead or self.dying) then
+				local pos=self.object:get_pos()
+				if not pos then return self end
 			if self.drop_dead_body==1 then
 				aliveai.showstatus(self,"drop dead body")
 				aliveai.stand(self)
@@ -634,7 +676,7 @@ def.check_spawn_space= def.check_spawn_space or 1
 
 if def.light==nil then def.light=1 end
 if def.lowest_light==nil then def.lowest_light=10 end
- 
+
 minetest.register_abm({
 	nodenames = def.spawn_on or {"group:spreading_dirt_type","group:sand","default:snow"},
 	interval = def.spawn_interval or 30,
@@ -648,8 +690,8 @@ minetest.register_abm({
 		local l = minetest.get_node_light(pos1) or 0
 		if l==nil then return true end
 		if aliveai.random(1,def.spawn_chance)==1
-		and (def.light==0 
-		or (def.light>0 and l>=def.lowest_light) 
+		and (def.light==0
+		or (def.light>0 and l>=def.lowest_light)
 		or (def.light<0 and l<=def.lowest_light)) then
 			if aliveai.check_spawn_space==false or def.check_spawn_space==0 or ((minetest.get_node(pos1).name==def.spawn_in and minetest.get_node(pos2).name==def.spawn_in) or minetest.get_item_group(minetest.get_node(pos1).name,def.spawn_in)>0) then
 				aliveai.newbot=true
@@ -758,7 +800,7 @@ aliveai.convertdata=function(str,spl)
 				r[s2[1]]=inner
 			elseif s2[2]~=nil and string.find(s2[2],",")~=nil then	-- pos
 				r[s2[1]]=aliveai.strpos(s2[2],true)
-			else						-- else	
+			else						-- else
 				local tnr=tonumber(s2[2])
 				if tnr~=nil then s2[2]=tnr end
 				r[s2[1]]=s2[2]

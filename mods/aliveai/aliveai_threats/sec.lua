@@ -93,18 +93,21 @@ minetest.register_node("aliveai_threats:secam", {
 	},
 on_timer=function(pos, elapsed)
 		local t=minetest.get_meta(pos):get_string("team")
-		for i, ob in pairs(minetest.get_objects_inside_radius(pos, 15)) do
-			local te=aliveai.team(ob)
-			if te~="" and te~="animal" and te~=t and aliveai.visiable(pos,ob:get_pos()) then
+			for i, ob in pairs(minetest.get_objects_inside_radius(pos, 15)) do
+				local te=aliveai.team(ob)
 				local v=ob:get_pos()
-				local s={x=(v.x-pos.x)*3,y=(v.y-pos.y)*3,z=(v.z-pos.z)*3}
-				local m=minetest.add_entity(pos, "aliveai_threats:bullet1")
-				m:set_velocity(s)
+				if v and te~="" and te~="animal" and te~=t and aliveai.visiable(pos,v) then
+					local s={x=(v.x-pos.x)*3,y=(v.y-pos.y)*3,z=(v.z-pos.z)*3}
+					local m=minetest.add_entity(pos, "aliveai_threats:bullet1")
+					if not m then return true end
+					m:set_velocity(s)
 				m:set_acceleration(s)
 				minetest.sound_play("aliveai_threats_bullet1", {pos=pos, gain = 1, max_hear_distance = 15})
 				minetest.after((math.random(1,9)*0.1), function(pos,s)
-					local m=minetest.add_entity(pos, "aliveai_threats:bullet1")
-					m:get_luaentity().team=t
+						local m=minetest.add_entity(pos, "aliveai_threats:bullet1")
+						local entity=m and m:get_luaentity()
+						if not entity then return end
+						entity.team=t
 					m:set_velocity(s)
 					m:set_acceleration(s)
 					minetest.sound_play("aliveai_threats_bullet1", {pos=pos, gain = 1, max_hear_distance = 15})
@@ -128,6 +131,7 @@ minetest.register_entity("aliveai_threats:bullet1",{
 	makes_footstep_sound = false,
 on_step=function(self, dtime)
 		local pos=self.object:get_pos()
+		if not pos then return end
 		for i, ob in pairs(minetest.get_objects_inside_radius(pos, 2)) do
 			local t=aliveai.team(ob)
 			if t~="" and t~="animal" and t~=self.team then
@@ -137,8 +141,11 @@ on_step=function(self, dtime)
 			end
 		end
 		self.timer=self.timer+dtime
-		local n=minetest.get_node(self.object:get_pos()).name
-		if self.timer>1 or (n and minetest.registered_nodes[n].walkable) then aliveai.kill(self) end
+		pos = self.object:get_pos()
+		if not pos then return end
+		local n=minetest.get_node(pos).name
+		local def = n and minetest.registered_nodes[n]
+		if self.timer>1 or (def and def.walkable) then aliveai.kill(self) end
 	end,
 	timer=0,
 	team="",
@@ -377,13 +384,15 @@ minetest.register_node("aliveai_threats:secam2", {
 	},
 on_timer=function(pos, elapsed)
 		local t=minetest.get_meta(pos):get_string("team")
-		for i, ob in pairs(minetest.get_objects_inside_radius(pos, 15)) do
-			local te=aliveai.team(ob)
-			if te~="" and te~="animal" and te~=t and aliveai.visiable(pos,ob:get_pos()) then
+			for i, ob in pairs(minetest.get_objects_inside_radius(pos, 15)) do
+				local te=aliveai.team(ob)
 				local v=ob:get_pos()
-				local s={x=(v.x-pos.x)*3,y=(v.y-pos.y)*3,z=(v.z-pos.z)*3}
-				local m=minetest.add_entity(pos, "aliveai_threats:bullet2")
-				m:get_luaentity().team=t
+				if v and te~="" and te~="animal" and te~=t and aliveai.visiable(pos,v) then
+					local s={x=(v.x-pos.x)*3,y=(v.y-pos.y)*3,z=(v.z-pos.z)*3}
+					local m=minetest.add_entity(pos, "aliveai_threats:bullet2")
+					local entity=m and m:get_luaentity()
+					if not entity then return true end
+					entity.team=t
 				m:set_velocity(s)
 				m:set_acceleration(s)
 				minetest.sound_play("aliveai_threats_bullet1", {pos=pos, gain = 1, max_hear_distance = 15})

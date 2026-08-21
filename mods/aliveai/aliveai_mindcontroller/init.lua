@@ -340,10 +340,12 @@ minetest.register_on_player_receive_fields(function(player, form, pressed)
 end)
 
 aliveai_mindcontroller.mob_walk = function(self,v)
+	local velocity=self.object and self.object:get_velocity()
+	if not velocity then return end
 	local yaw=(self.object:get_yaw() or 0)+self.rotate
 	self.object:set_velocity({
 		x=math.sin(yaw)*-v,
-		y=self.object:get_velocity().y,
+		y=velocity.y,
 		z=math.cos(yaw)*v
 	})
 end
@@ -418,13 +420,15 @@ minetest.register_globalstep(function(dtime)
 				aliveai.jump(self,{y=7})
 			elseif e.aliveai then
 				aliveai.jump(self)
-			elseif e.mobs and self.jump then
-				local p=e.ob:get_pos()
-				p.y=p.y-2
+				elseif e.mobs and self.jump then
+					local p=e.ob:get_pos()
+					if not p then return end
+					p.y=p.y-2
 				local n=minetest.get_node(p).name
 				if minetest.registered_nodes[n] and minetest.registered_nodes[n].walkable then
-					local v = e.ob:get_velocity()
-					v.y = self.jump_height
+						local v = e.ob:get_velocity()
+						if not v then return end
+						v.y = self.jump_height
 					e.ob:set_velocity(v)
 					aliveai_mindcontroller.mob_walk(self, self.run_velocity)
 				end

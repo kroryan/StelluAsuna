@@ -128,18 +128,22 @@ minetest.register_entity("aliveai_storm:power",{
 
 		local pos=self.ob:get_pos()
 		local spos=self.object:get_pos()
+		if not pos or not spos then self.object:remove() return self end
 		local a=self.a * math.pi * self.s
-  		local x, z =  pos.x+self.d*math.cos(a), pos.z+self.d*math.sin(a)
-		local y=(pos.y - self.object:get_pos().y)*(self.s*0.5)
+		local x, z = pos.x+self.d*math.cos(a), pos.z+self.d*math.sin(a)
+		local y=(pos.y-spos.y)*(self.s*0.5)
 		self.a=aliveai.distance(self,{x=x,y=spos.y+y,z=z})*(math.pi*1)
 	end,
-	on_step = function(self, dtime)
-		self.timer=self.timer+dtime
+		on_step = function(self, dtime)
+			if not aliveai.object_is_active(self) then return self end
+			self.timer=self.timer+dtime
 		if self.timer<0.15 then return true end
 		self.timer=0
-		if not self.ob:get_luaentity() or self.kill then
-			self.target:set_detach()
-			self.target:set_acceleration({x=0,y=-10,z=0})
+		if not (self.ob and self.ob:get_pos()) or not (self.target and self.target:get_pos()) or self.kill then
+			if self.target and self.target:get_pos() then
+				self.target:set_detach()
+				self.target:set_acceleration({x=0,y=-10,z=0})
+			end
 			if self.target:get_luaentity() and
 			self.target:get_luaentity().age then
 				self.target:get_luaentity().age=aliveai_storm.time
@@ -152,13 +156,16 @@ minetest.register_entity("aliveai_storm:power",{
 		end
 		if not self.pus and self.d<2 then
 			local v=self.object:get_velocity()
+			if not v then return self end
 			self.object:set_velocity({x=v.x,y=100,z=v.z})
 			self.object:set_acceleration({x=0,y=-10,z=0})
 			self.pus=1
 			self.object:set_properties({physical = true})
 			return self
 		elseif self.pus then
-			if aliveai.distance(self,self.ob)>100 or self.object:get_velocity().y==0 then
+			local velocity=self.object:get_velocity()
+			if not velocity then return self end
+			if aliveai.distance(self,self.ob)>100 or velocity.y==0 then
 				self.kill=1
 				aliveai.punch(self,self.target,10)
 				return self
@@ -166,13 +173,14 @@ minetest.register_entity("aliveai_storm:power",{
 		end
 		local pos=self.ob:get_pos()
 		local spos=self.object:get_pos()
+		if not pos or not spos then return self end
 		local s=0
 		local a=self.a * math.pi * self.s
   		local x, z =  pos.x+self.d*math.cos(a), pos.z+self.d*math.sin(a)
   		self.a=self.a+1
 		self.d=self.d-0.1
 
-		local y=(pos.y - self.object:get_pos().y)*self.s
+		local y=(pos.y-spos.y)*self.s
 		local node_below = minetest.registered_nodes[minetest.get_node({x=x,y=spos.y+y,z=z}).name]
 		local node_above = minetest.registered_nodes[minetest.get_node({x=x,y=spos.y+y+1,z=z}).name]
 		if node_below and node_below.walkable then
@@ -283,9 +291,12 @@ minetest.register_entity("aliveai_storm:hail",{
 		if self.timer<0.15 then return true end
 		self.timer2=self.timer2-self.timer
 		self.timer=0
-		if self.object:get_velocity().y>=-0.9 or self.timer2<0 then
-			local pos=self.object:get_pos()
-			pos.y=pos.y-1.5
+			local velocity=self.object:get_velocity()
+			if not velocity then return self end
+			if velocity.y>=-0.9 or self.timer2<0 then
+				local pos=self.object:get_pos()
+				if not pos then return self end
+				pos.y=pos.y-1.5
 			for _, ob in ipairs(minetest.get_objects_inside_radius(pos, 2)) do
 				if aliveai.team(ob)~="storm" then aliveai.punch(self,ob,2*self.hail) end
 			end

@@ -193,6 +193,7 @@ aliveai.create_bot({
 		spawn_on={"default:silver_sand","default:dirt_with_snow","default:snow","default:snowblock","default:ice"},
 	on_step=function(self,dtime)
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		pos.y=pos.y-1.5
 		local node=minetest.get_node(pos)
 		if node and node.name and minetest.is_protected(pos,"")==false then
@@ -625,6 +626,7 @@ aliveai.create_bot({
 		mindamage=5,
 	on_punching=function(self,target)
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		pos.y=pos.y-0.5
 		local radius=self.arm
 		for _, ob in ipairs(minetest.get_objects_inside_radius(pos, radius)) do
@@ -746,6 +748,7 @@ aliveai.create_bot({
 	on_load=function(self)
 		self.move.speed=0.5
 		local pos=aliveai.roundpos(self.object:get_pos())
+		if not pos then return self end
 		local n=minetest.get_node(pos)
 		if minetest.registered_nodes[n.name] and minetest.registered_nodes[n.name].walkable then
 			pos.y=pos.y+3
@@ -765,6 +768,7 @@ aliveai.create_bot({
 		end
 	end,
 	on_step=function(self,dtime)
+		if not aliveai.object_is_active(self) then return self end
 		if self.movefromslp then
 			aliveai.rndwalk(self,false)
 			aliveai.stand(self)
@@ -779,6 +783,7 @@ aliveai.create_bot({
 		if self.domovefromslp then
 			self.domovefromslp=nil
 			local pos=self.object:get_pos()
+			if not pos then return self end
 			local gpos={x=pos.x,y=pos.y+3,z=pos.z}
 			local n=minetest.get_node(gpos)
 			if minetest.registered_nodes[n.name] and minetest.registered_nodes[n.name].walkable then
@@ -889,6 +894,7 @@ aliveai.create_bot({
 			end
 		elseif math.random(1,10)==1 or self.pull_down or self.hide then
 			local pos=aliveai.roundpos(self.object:get_pos())
+			if not pos then return self end
 			pos.y=pos.y-1
 			local l=minetest.get_node_light(pos)
 			if not l then return end
@@ -911,6 +917,7 @@ aliveai.create_bot({
 			end
 		elseif math.random(1,10)==1 then
 			local pos=self.object:get_pos()
+			if not pos then return self end
 			pos.y=pos.y-1.5
 			local n=minetest.get_node(pos)
 			if minetest.registered_nodes[n.name] and minetest.registered_nodes[n.name].tiles then
@@ -1326,14 +1333,18 @@ aliveai.create_bot({
 
 minetest.register_globalstep(function(dtime)
 	for i, o in pairs(aliveai_threats.debris) do
-		if o.ob and o.ob:get_luaentity() and o.ob:get_hp()>0 and o.ob:get_velocity().y~=0 then
-			for ii, ob in pairs(minetest.get_objects_inside_radius(o.ob:get_pos(), 1.5)) do
+		local object=o and o.ob
+		local pos=object and object:get_pos()
+		local velocity=object and object:get_velocity()
+		local entity=object and object:get_luaentity()
+		if pos and entity and object:get_hp()>0 and velocity and velocity.y~=0 then
+			for ii, ob in pairs(minetest.get_objects_inside_radius(pos, 1.5)) do
 				local en=ob:get_luaentity()
 				if not en or (en.name~="__builtin:item" and not (en.aliveai and en.botname==o.n) ) then
-					ob:punch(o.ob,1,{full_punch_interval=1,damage_groups={fleshy=1}})
-					o.ob:set_velocity({x=0, y=0, z=0})
+					ob:punch(object,1,{full_punch_interval=1,damage_groups={fleshy=1}})
+					object:set_velocity({x=0, y=0, z=0})
 					if o.on_hit_object then
-						o.on_hit_object(o.ob:get_luaentity(),o.ob:get_pos(),ob)
+						o.on_hit_object(entity,pos,ob)
 					end
 					table.remove(aliveai_threats.debris,i)
 					break
@@ -1341,8 +1352,8 @@ minetest.register_globalstep(function(dtime)
 			end
 		else
 
-			if o and o.on_hit_ground and o.ob:get_velocity() and o.ob:get_velocity().y==0 then
-				o.on_hit_ground(o.ob:get_luaentity(),o.ob:get_pos())
+			if o and o.on_hit_ground and entity and pos and velocity and velocity.y==0 then
+				o.on_hit_ground(entity,pos)
 			end
 			table.remove(aliveai_threats.debris,i)
 		end
@@ -1373,6 +1384,7 @@ aliveai.create_bot({
 		spawn_y=0,
 	spawn=function(self)
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		pos.y=pos.y-1.5
 		if minetest.get_node(pos).name=="aliveai:spawner" then pos.y=pos.y-1 end
 		local drop=minetest.get_node_drops(minetest.get_node(pos).name)[1]
@@ -2105,7 +2117,8 @@ aliveai.create_bot({
 		floating=1,
 		mindamage=5,
 	on_punching=function(self,target)
-		if not self.att and self.object:get_velocity().y==0 then
+		local velocity=self.object:get_velocity()
+		if not self.att and velocity and velocity.y==0 then
 			self.att=target
 			self.att:set_attach(self.object, "", {x=0,y=0,z=0}, {x=0,y=2,z=0})
 			self.att_pos=self.object:get_pos()
@@ -2115,12 +2128,15 @@ aliveai.create_bot({
 	end,
 	on_step=function(self,dtime)
 		if self.att then
+			local pos=self.object:get_pos()
+			if not pos or not self.att_pos then return self end
 			self.object:set_velocity({x=math.random(-3,3), y=10, z=math.random(-3,3)})
 			aliveai.punch(self,self.att)
-			if self.object:get_pos().y-self.att_pos.y>40 then
+			if pos.y-self.att_pos.y>40 then
 				self.att:set_detach()
 				minetest.after(0.5, function(self)
-					if self.att then
+					if not aliveai.object_is_active(self) or not self.att_pos then return end
+					if self.att and self.att:get_pos() then
 						self.att:set_acceleration(self.att_a)
 						self.att=nil
 					end
@@ -2185,6 +2201,7 @@ aliveai.create_bot({
 		smartfight=0,
 	spawn=function(self)
 		local pos=self.object:get_pos()
+		if not pos then return self end
 		pos.y=pos.y-1.5
 		if minetest.get_node(pos).name=="aliveai:spawner" then pos.y=pos.y-1 end
 		local drop=minetest.get_node_drops(minetest.get_node(pos).name)[1]
@@ -2235,6 +2252,7 @@ aliveai.create_bot({
 	end,
 	on_step=function(self,dtime)
 		local v=self.object:get_velocity()
+		if not v then return self end
 		if self.jtimer>1 and v.y==0 then
 			aliveai.jump(self)
 			self.jtimer=0
@@ -2998,6 +3016,7 @@ aliveai.create_bot({
 		self.animation.stand.speed=0
 		aliveai.stand(self)
 		minetest.after(0, function(self)
+			if not aliveai.object_is_active(self) then return end
 			if self.team~="stone" then
 				self.name_color="aaaaaa"
 				self.object:set_properties({nametag=self.botname,nametag_color="#" .. self.name_color})

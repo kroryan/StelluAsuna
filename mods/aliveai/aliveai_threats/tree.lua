@@ -185,6 +185,7 @@ minetest.register_entity("aliveai_threats:trees_block",{
 	visual_size={x=2,y=2},
 	on_activate=function(self, staticdata)
 		minetest.after(0.1, function(self)
+			if not aliveai.object_is_active(self) then return end
 			if not self.object:get_attach() then
 				self.object:remove()
 			end
@@ -192,6 +193,7 @@ minetest.register_entity("aliveai_threats:trees_block",{
 		self.endtime=math.random(1,4)
 	end,
 	on_step=function(self, dtime)
+		if not aliveai.object_is_active(self) then return end
 		self.time=self.time+dtime
 		if self.time<2 then return self end
 		self.time=0
@@ -199,7 +201,11 @@ minetest.register_entity("aliveai_threats:trees_block",{
 			self.time2=self.time2+1
 			if self.time2>self.endtime then
 				if math.random(1,2)==1 then
-					minetest.add_item(self.object:get_pos(),self.contenta):get_luaentity().age=890
+					local pos = self.object:get_pos()
+					if not pos then return end
+					local item = minetest.add_item(pos,self.contenta)
+					local entity = item and item:get_luaentity()
+					if entity then entity.age=890 end
 				end
 				self.object:remove()
 			end
